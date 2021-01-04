@@ -3,6 +3,7 @@
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
+    "project": "./tsconfig.json",
     "ecmaFeatures": {
       "jsx": true,
       "modules": true
@@ -23,5 +24,12 @@
   ],
   "env": {
     "react-native/react-native": true
+  },
+  "rules": {
+    "semi": [2, "always"],
+    "no-console": 2,
+    "quotes": [2, "single"],
+    "indent": [2, 2],
+    "no-multi-spaces": 2
   }
 }

@@ -14,5 +14,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@typings": ["./src/typings"]
+    }
   }
 }
