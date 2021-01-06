@@ -1,3 +1,4 @@
+/* eslint-disable no-inline-comments */
 import { TextStyle } from 'react-native';
 
 enum TypographyTypes {
