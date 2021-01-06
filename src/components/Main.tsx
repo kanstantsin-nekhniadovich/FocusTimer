@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, StyleSheet } from 'react-native';
 
-import { test, getTestValue } from '../ducks';
+import { testRequest, getTestValue } from '../ducks';
 import { AppReady } from './AppReady';
 import { Typography } from '@styles';
 import { PrimaryButton } from './common';
@@ -16,7 +16,7 @@ export const Main: React.FC = () => {
   const value = useSelector(getTestValue);
 
   const handleClick = React.useCallback(() => {
-    dispatch(test(`Dispatched value: ${Math.floor(10 * Math.random(1))}`));
+    dispatch(testRequest(Math.floor(10 * Math.random(1))));
   }, []);
 
   return (
