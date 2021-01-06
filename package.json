@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint . --ext .ts --ext .tsx --fix"
+    "lint": "eslint . --ext .ts --ext .tsx --fix",
+    "inspect": "react-devtools"
   },
   "husky": {
     "hooks": {
@@ -14,10 +15,16 @@
     }
   },
   "dependencies": {
+    "@expo-google-fonts/dm-sans": "^0.1.0",
+    "@expo-google-fonts/dm-serif-display": "^0.1.0",
+    "@expo-google-fonts/roboto": "^0.1.0",
     "@expo/config": "^3.3.22",
     "dotenv": "^8.2.0",
     "expo": "~40.0.0",
+    "expo-app-loading": "^1.0.1",
+    "expo-font": "~8.4.0",
     "react": "16.13.1",
+    "react-devtools": "^4.10.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-web": "~0.13.12",
@@ -36,6 +43,7 @@
     "@types/react-redux": "^7.1.15",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.17.0",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-native": "^3.10.0",

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { store } from './src/store';
 
-import { Main } from './src/Main';
+import { Main } from './src/components/Main';
 
 export default function App(): JSX.Element {
   return (

@@ -6,3 +6,4 @@ import { rootReducer } from './ducks/root';
 const epicMiddleware = createEpicMiddleware();
 
 export const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
+ 

@@ -16,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@typings": ["./src/typings"]
+      "@typings": ["./src/typings"],
+      "@styles": ["./src/styles"],
     }
   }
 }
