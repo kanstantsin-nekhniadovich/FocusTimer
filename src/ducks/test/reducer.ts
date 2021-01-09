@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { ActionType, createReducer } from 'typesafe-actions';
+import { createReducer } from 'typesafe-actions';
 import { testSuccess } from './actions';
 
 type State = {
@@ -10,7 +10,7 @@ const initialState: State = {
   test: 'Initial value', 
 };
 
-const handleTestSuccess = (state: State, action: ActionType<typeof testSuccess>): State => {
+const handleTestSuccess: ActionHandler<State, typeof testSuccess> = (state, action) => {
   return {
     ...state,
     test: action.payload,

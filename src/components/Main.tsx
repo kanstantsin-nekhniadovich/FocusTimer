@@ -1,11 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Text, StyleSheet } from 'react-native';
-
-import { testRequest, getTestValue } from '../ducks';
 import { AppReady } from './AppReady';
-import { Typography } from '@styles';
 import { PrimaryButton } from './common';
+import React from 'react';
+import { Typography } from '@styles';
+import { StyleSheet, Text } from 'react-native';
+import { getTestValue, loginRequest } from '../ducks';
+import { useDispatch, useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   h1: Typography.h1
@@ -16,7 +15,7 @@ export const Main: React.FC = () => {
   const value = useSelector(getTestValue);
 
   const handleClick = React.useCallback(() => {
-    dispatch(testRequest(Math.floor(10 * Math.random(1))));
+    dispatch(loginRequest({ email: 'mira@gmail.com', password: 'admin123' }));
   }, []);
 
   return (

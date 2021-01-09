@@ -26,17 +26,18 @@
     "react-native/react-native": true
   },
   "rules": {
-    "semi": [2, "always"],
-    "no-console": 2,
-    "quotes": [2, "single"],
-    "indent": [2, 2],
-    "no-multi-spaces": 2,
-    "no-inline-comments": 2,
-    "no-multiple-empty-lines": 2
+    "semi": [1, "always"],
+    "no-console": 1,
+    "quotes": [1, "single"],
+    "indent": [1, 2],
+    "no-multi-spaces": 1,
+    "no-inline-comments": 1,
+    "no-multiple-empty-lines": 1,
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   "overrides": [
     {
-        "files": ["**/*.tsx"],
+        "files": ["**/*.tsx", "**/*.ts"],
         "rules": {
             "react/prop-types": "off"
         }

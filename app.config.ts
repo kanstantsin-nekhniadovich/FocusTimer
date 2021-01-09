@@ -10,5 +10,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     firebaseAppId: process.env.FIREBASE_APP_ID,
+    api: process.env.API,
+    facebookAppId: process.env.FACEBOOK_APP_ID,
+    facebookAppName: process.env.FACEBOOK_APP_NAME,
   } 
 }) as ExpoConfig;
