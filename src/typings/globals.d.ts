@@ -3,7 +3,6 @@ import { Epic } from 'redux-observable';
 import { TestActions, AuthActions } from '../ducks';
 import { TestReducer, AuthReducer } from '../ducks';
 import { Services } from '../graphql/services';
-import { Response } from './responses';
 
 declare global {
   export type Id = string;
@@ -32,7 +31,6 @@ declare global {
   }
   
   export type NormalizedResponse<T> = SuccessResponse<T> | FailureResponse;
-  export type ServerResponse = NormalizedResponse<Response.All>;
 
   export namespace NodeJs {
     export interface ProcessEnv {

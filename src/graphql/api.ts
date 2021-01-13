@@ -15,15 +15,15 @@ const normalize = <T, P>(handle: (options: P) => Promise<ClientResultType>):
       const response = await handle(options);
 
       return {
-        status: Status.SUCCESS,
         data: response.data[property],
         error: null,
+        status: Status.SUCCESS,
       };
     } catch (error) {
       return {
-        status: Status.FAILURE,
         data: null,
         error: error.message,
+        status: Status.FAILURE,
       };
     }
   };
@@ -37,6 +37,6 @@ const query = <T extends Response.All>(options: QueryOptions, property: string):
 };
 
 export const api = {
-  query,
   mutate,
+  query,
 };

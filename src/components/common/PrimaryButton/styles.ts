@@ -52,7 +52,7 @@ export const states = {
       backgroundColor: Colors.disabled,
     },
     big: {
-      width: 328,
+      width: '100%',
     },
     small: {
       width: 'auto',

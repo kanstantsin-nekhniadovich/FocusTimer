@@ -7,6 +7,10 @@ enum ColorsType {
   darkBlue = 'darkBlue',
   disabled = 'disabled',
   chambray = 'chambray',
+  prussianBlue = 'prussianBlue',
+  silverChalice = 'silverChalice',
+  doveGray = 'doveGray',
+  error = 'error',
 } 
 
 export const Colors: Record<ColorsType, ColorValue> = {
@@ -16,5 +20,8 @@ export const Colors: Record<ColorsType, ColorValue> = {
   [ColorsType.darkBlue]: '#2028b6',
   [ColorsType.disabled]: '#898dce',
   [ColorsType.chambray]: '#405a9a',
+  [ColorsType.prussianBlue]: '#001f5a',
+  [ColorsType.silverChalice]: '#9e9e9e',
+  [ColorsType.doveGray]: '#666666',
+  [ColorsType.error]: '#de2c2c',
 };
-

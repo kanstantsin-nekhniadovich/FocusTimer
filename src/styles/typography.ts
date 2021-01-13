@@ -11,6 +11,7 @@ enum TypographyTypes {
   subtitleSmall = 'subtitleSmall',
   primary = 'primary',
   secondary = 'secondary',
+  text = 'text',
 }
 
 export const Typography: Record<TypographyTypes, TextStyle> = {
@@ -57,7 +58,7 @@ export const Typography: Record<TypographyTypes, TextStyle> = {
     lineHeight: 15,
   },
   [TypographyTypes.primary]: { // Primary Button
-    fontFamily: 'DMSans_500Medium',
+    fontFamily: 'Roboto_500Medium',
     fontSize: 14,
     letterSpacing: 0.14,
     lineHeight: 24,
@@ -69,4 +70,10 @@ export const Typography: Record<TypographyTypes, TextStyle> = {
     letterSpacing: 0,
     lineHeight: 14,
   },
+  [TypographyTypes.text]: {
+    fontFamily: 'Roboto_400Regular',
+    fontSize: 14,
+    letterSpacing: -0.3,
+    lineHeight: 18,
+  }
 };
