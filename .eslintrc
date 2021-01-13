@@ -33,8 +33,7 @@
     "no-multi-spaces": 1,
     "no-inline-comments": 1,
     "no-multiple-empty-lines": 1,
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "sort-keys": 1
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   "overrides": [
     {
