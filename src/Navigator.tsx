@@ -24,4 +24,4 @@ export const Navigator: React.FC = () => {
       <Stack.Screen name={Routes.Account} component={Account} options={{ title: '', ...commonNavigationOptions }}/>
     </Stack.Navigator>
   );
-}
+};

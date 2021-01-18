@@ -17,15 +17,15 @@ interface Props {
 }
 
 export const Field: React.FC<Props> = ({
-    value,
-    secureTextEntry = false,
-    accessibilityLabel = 'edit',
-    onEdit,
-    disableInput = false,
-    isEditable = false,
-    icon,
-    placeholder,
-  }) => {
+  value,
+  secureTextEntry = false,
+  accessibilityLabel = 'edit',
+  onEdit,
+  disableInput = false,
+  isEditable = false,
+  icon,
+  placeholder,
+}) => {
   const [inputValue, setInputValue] = React.useState(value);
 
   const onChangeText = React.useCallback((value) => {

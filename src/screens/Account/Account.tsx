@@ -52,14 +52,14 @@ export const Account: React.FC<Props> = ({ navigation }) => {
       <Field value={user.name} accessibilityLabel="change your name" onEdit={onNameChange} icon={<UserAvatar />} />
       <Field value={user.email} isEditable={false} disableInput={true} icon={<Email />} />
       <Field
-          secureTextEntry
-          value=''
-          onEdit={onPasswordChange}
-          disableInput={true}
-          isEditable={true}
-          icon={<Lock />}
-          placeholder='************'
-        />
+        secureTextEntry
+        value=''
+        onEdit={onPasswordChange}
+        disableInput={true}
+        isEditable={true}
+        icon={<Lock />}
+        placeholder='************'
+      />
       <DividerBlock height={185} />
       <TouchableOpacity style={styles.logoutButton}>
         <Logout />
