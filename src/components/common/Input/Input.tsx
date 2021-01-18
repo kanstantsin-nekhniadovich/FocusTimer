@@ -77,6 +77,7 @@ export const Input: React.FC<Props> = ({
     <View style={styles.container}>
       <TextInput
         {...rest}
+        autoCapitalize="none"
         autoCompleteType='off'
         onFocus={onFocus}
         onBlur={handleBlur}

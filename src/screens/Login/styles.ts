@@ -5,7 +5,7 @@ import { Colors } from '@styles';
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.alabaster,
     height: Dimensions.get('screen').height,
     marginTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
     paddingBottom: 39,

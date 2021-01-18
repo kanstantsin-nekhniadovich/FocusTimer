@@ -1,12 +1,24 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { PrimaryButton, DividerLine, DividerBlock } from '../../components/common';
 import { FocusTimerHeader } from '../../components/icons';
 import { LoginForm } from '../../components/LoginForm';
+import { Loader } from '../../components/common';
+import { getIsUserLoading, getUser } from '../../ducks';
 import { styles } from './styles';
+import { isDefined } from '../../utils/isDefined';
+import { Routes } from '../../routes';
 
-export const Login: React.FC = () => {
+interface Props {
+  navigation: StackNavigationProp<Screens, Routes.Login>;
+}
+
+export const Login: React.FC<Props> = ({ navigation }) => {
+  const isLoading = useSelector(getIsUserLoading);
+  const user = useSelector(getUser);
   const handleFacebookLogIn = React.useCallback(() => {
     console.log('facebook log in');
   }, []);
@@ -14,6 +26,18 @@ export const Login: React.FC = () => {
   const handleSignUp = React.useCallback(() => {
     console.log('handle sign up');
   }, []);
+
+  React.useEffect(() => {
+    if (!isDefined(user) || isLoading) {
+      return;
+    }
+
+    navigation.navigate(Routes.Account);
+  }, [user, isLoading]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <View style={styles.container}>

@@ -32,6 +32,12 @@ declare global {
   
   export type NormalizedResponse<T> = SuccessResponse<T> | FailureResponse;
 
+  export type Screens = {
+    Home: undefined,
+    Login: undefined,
+    Account: undefined,
+  }
+
   export namespace NodeJs {
     export interface ProcessEnv {
       FACEBOOK_APP_NAME: string;

@@ -22,7 +22,8 @@ export const styles = StyleSheet.create({
     ...Typography.inputText,
     position: 'absolute',
     color: 'rgba(0, 0, 0, 0.6)',
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.alabaster,
+    borderRadius: 4,
   },
   invalid: {
     borderColor: Colors.error,

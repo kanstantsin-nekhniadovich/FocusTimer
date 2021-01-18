@@ -3,6 +3,7 @@ import * as actions from './actions';
 import { authReducer } from './reducer';
 
 export * from './actions';
+export * from './selectors';
 export { authReducer } from './reducer';
 export { authEpics } from './epics';
 
