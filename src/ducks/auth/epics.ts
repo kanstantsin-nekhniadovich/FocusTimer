@@ -53,6 +53,6 @@ const logoutEpic: AppEpic = (action$) => {
     tap(async () => await removeItem('token')),
     ignoreElements(),
   );
-}
+};
 
 export const authEpics = combineEpics(loginEpic, storeJwtTokenEpic, signInFirebaseEpic, logoutEpic, signOutFirebaseEpic);

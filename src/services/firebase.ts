@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import { getItem, removeItem } from './storage';
 import { isDefined } from 'src/utils/isDefined';
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: Constants.manifest.extra.firebaseApiKey,
   authDomain: Constants.manifest.extra.firebaseAuthDomain,
   projectId: Constants.manifest.extra.firebaseProjectId,
@@ -25,7 +25,7 @@ export const initializeFirebase = () => {
 
     await removeItem(FIREBASE_TOKEN_KEY);
   });
-}
+};
 
 export const signIn = async () => {
   const token = await getItem(FIREBASE_TOKEN_KEY);

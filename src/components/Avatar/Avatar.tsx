@@ -53,22 +53,22 @@ export const Avatar: React.FC<Props> = ({ user }) => {
       {isDefined(imageUrl)
         ? <Image style={styles.avatar} source={{ uri: imageUrl }} />
         : <>
-            <LinearGradient
-              colors={['rgba(129, 140, 223, 0.45)', 'rgba(110, 120, 198, 0.888211)', 'rgba(84, 96, 182, 0.45)', '#001F5A', '#6E78C6']}
-              start={[0, 0]}
-              end={[1, 1]}
-              locations={[0, 0.0001, 0.0002, 0.6802, 1]}
-              style={{ ...styles.avatar, ...styles.fakeAvatar}}/>
-            <Text style={styles.userNameLetter}>{firstLetter}</Text>
-          </>}
-          <TouchableOpacity
-            style={styles.cameraButton}
-            onPress={storeAvatar}
-            accessibilityLabel="Upload avatar"
-            activeOpacity={0.7}
-          >
-            <Camera />
-          </TouchableOpacity>
+          <LinearGradient
+            colors={['rgba(129, 140, 223, 0.45)', 'rgba(110, 120, 198, 0.888211)', 'rgba(84, 96, 182, 0.45)', '#001F5A', '#6E78C6']}
+            start={[0, 0]}
+            end={[1, 1]}
+            locations={[0, 0.0001, 0.0002, 0.6802, 1]}
+            style={{ ...styles.avatar, ...styles.fakeAvatar}}/>
+          <Text style={styles.userNameLetter}>{firstLetter}</Text>
+        </>}
+      <TouchableOpacity
+        style={styles.cameraButton}
+        onPress={storeAvatar}
+        accessibilityLabel="Upload avatar"
+        activeOpacity={0.7}
+      >
+        <Camera />
+      </TouchableOpacity>
     </View>
   );
 };
