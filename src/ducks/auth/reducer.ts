@@ -1,22 +1,22 @@
-import { User } from '@typings';
 import { createReducer } from 'typesafe-actions';
-import { loginFailure, loginSuccess, loginRequest } from './actions';
+import { loginFailure, loginSuccess, loginRequest, logoutRequest } from './actions';
 
 interface State {
   error: Nullable<string>;
   isLoading: boolean;
-  user: Nullable<User>;
+  token: Nullable<string>;
 }
 
 const initialState: State = {
   error: null,
   isLoading: false,
-  user: null,
+  token: null,
 };
 
 export const handleLoginRequest: ActionHandler<State, typeof loginRequest> = state => {
   return {
     ...state,
+    error: null,
     isLoading: true,
   };
 };
@@ -25,7 +25,8 @@ export const handleLoginSuccess: ActionHandler<State, typeof loginSuccess> = (st
   return {
     ...state,
     isLoading: false,
-    user: action.payload.user,
+    error: null,
+    token: action.payload.token,
   };
 };
 
@@ -33,10 +34,17 @@ export const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (st
   ...state,
   error: action.payload,
   isLoading: false,
+  token: null,
+});
+
+export const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (state) => ({
+  ...state,
   user: null,
+  token: null,
 });
 
 export const authReducer = createReducer(initialState)
   .handleAction(loginRequest, handleLoginRequest)
   .handleAction(loginSuccess, handleLoginSuccess)
-  .handleAction(loginFailure, handleLoginFailure);
+  .handleAction(loginFailure, handleLoginFailure)
+  .handleAction(logoutRequest, handleLogoutRequest);

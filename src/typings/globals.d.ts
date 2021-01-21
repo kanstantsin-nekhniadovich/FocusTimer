@@ -1,19 +1,19 @@
 import { ActionType } from 'typesafe-actions';
 import { Epic } from 'redux-observable';
-import { TestActions, AuthActions } from '../ducks';
-import { TestReducer, AuthReducer } from '../ducks';
+import { AuthActions, UserActions, UserReducer } from '../ducks';
+import { AuthReducer, UserActions } from '../ducks';
 import { Services } from '../graphql/services';
 
 declare global {
   export type Id = string;
   export interface Store {
     auth: AuthReducer;
-    test: TestReducer;
+    user: UserReducer;
   }
 
   export type AppActions = 
-    | TestActions
-    | AuthActions;
+    | AuthActions
+    | UserActions;
 
   export type AppEpic = Epic<AppActions, AppActions, Store, Services>;
   export type ActionHandler<State, Action> = (state: S, action: ActionType<Action>) => State;
@@ -47,6 +47,7 @@ declare global {
       FIREBASE_PROJECT_ID: string;
       FIREBASE_STORAGE_BUCKET: string;
       FIREBASE_MESSAGING_SENDER_ID: string;
+      FIREBASE_APP_MEASUREMENT_ID: string;
       FIREBASE_APP_ID: string;
       API: string;
     }

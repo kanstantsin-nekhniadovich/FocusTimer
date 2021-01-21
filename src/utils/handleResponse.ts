@@ -1,7 +1,7 @@
 import { Status } from '../graphql/api';
 
 export const handleResponse = <T>(response: NormalizedResponse<T>) =>
-  (successHandler: (res: SuccessResponse<T>) => AppActions, failureHandler: (res: FailureResponse) => AppActions): AppActions => {
+  <S, F>(successHandler: (res: SuccessResponse<T>) => S, failureHandler: (res: FailureResponse) => F) => {
     if (response.status === Status.SUCCESS) {
       return successHandler(response);
     }

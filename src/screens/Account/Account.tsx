@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { DividerBlock } from '../../components/common';
@@ -9,7 +9,7 @@ import { Avatar } from '../../components/Avatar';
 import { Field } from './Field';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';
-import { getUser } from '../../ducks';
+import { getUser, logoutRequest } from '../../ducks';
 import { styles } from './styles';
 
 interface Props {
@@ -17,6 +17,7 @@ interface Props {
 }
 
 export const Account: React.FC<Props> = ({ navigation }) => {
+  const dispatch = useDispatch();
   const user = useSelector(getUser);
 
   React.useEffect(() => {
@@ -27,14 +28,6 @@ export const Account: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(Routes.Login);
   }, [user]);
 
-  if (!isDefined(user)) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.notLoginMessage}>User is not login</Text>
-      </View>
-    );
-  }
-
   const onNameChange = React.useCallback(() => {
     console.log('change username');
   }, []);
@@ -42,6 +35,19 @@ export const Account: React.FC<Props> = ({ navigation }) => {
   const onPasswordChange = React.useCallback(() => {
     console.log('change password');
   }, []);
+
+  const logout = React.useCallback(async () => {
+    dispatch(logoutRequest());
+    navigation.navigate(Routes.Home);
+  }, [navigation]);
+
+  if (!isDefined(user)) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.notLoginMessage}>User is not login</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -61,7 +67,7 @@ export const Account: React.FC<Props> = ({ navigation }) => {
         placeholder='************'
       />
       <DividerBlock height={185} />
-      <TouchableOpacity style={styles.logoutButton}>
+      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
         <Logout />
         <Text style={styles.logoutButtonLabel}>Log out</Text>
       </TouchableOpacity>

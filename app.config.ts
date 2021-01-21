@@ -13,5 +13,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
     firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  } 
+    firebaseAppMeasurementId: process.env.FIREBASE_APP_MEASUREMENT_ID,
+  },
 }) as ExpoConfig;

@@ -7,5 +7,7 @@ export namespace Response {
     user: User;
   }
 
-  export type All = Login;
+  export type All =
+    | Login
+    | User;
 }
