@@ -13,24 +13,20 @@ const initialState: State = {
   token: null,
 };
 
-export const handleLoginRequest: ActionHandler<State, typeof loginRequest> = state => {
-  return {
-    ...state,
-    error: null,
-    isLoading: true,
-  };
-};
+export const handleLoginRequest: ActionHandler<State, typeof loginRequest> = state => ({
+  ...state,
+  error: null,
+  isLoading: true,
+});
 
-export const handleLoginSuccess: ActionHandler<State, typeof loginSuccess> = (state, action) => {
-  return {
-    ...state,
-    isLoading: false,
-    error: null,
-    token: action.payload.token,
-  };
-};
+export const handleLoginSuccess: ActionHandler<State, typeof loginSuccess> = (state, action) => ({
+  ...state,
+  isLoading: false,
+  error: null,
+  token: action.payload.token,
+});
 
-export const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (state, action) =>({
+export const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (state, action) => ({
   ...state,
   error: action.payload,
   isLoading: false,

@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as ExpoImagePicker from 'expo-image-picker';
 import { usePermissions, MEDIA_LIBRARY } from 'expo-permissions';
 import { useDispatch } from 'react-redux';
+import * as ImageManipulator from 'expo-image-manipulator';
 
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { styles } from './styles';
@@ -32,14 +33,16 @@ export const Avatar: React.FC<Props> = ({ user }) => {
       mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [3, 4],
-      quality: 0.6,
     });
 
     if (result.cancelled) {
       return;
     }
 
-    const url = await saveAvatarToStorage(user.id, result.uri);
+    const optimizedResult = await ImageManipulator.manipulateAsync(result.uri,
+      [{ resize: { width: 200 } }], { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG });
+
+    const url = await saveAvatarToStorage(user.id, optimizedResult.uri);
     setImageUrl(url);
     dispatch(updateUserRequest({ avatarUrl: url }));
   }, [user, permission]);
