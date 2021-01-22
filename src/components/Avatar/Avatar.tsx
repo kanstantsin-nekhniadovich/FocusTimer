@@ -26,7 +26,7 @@ export const Avatar: React.FC<Props> = ({ user }) => {
       return;
     }
 
-    const media = await uploadImageFromMediaLibrary();
+    const media = await uploadImageFromMediaLibrary(200);
 
     if (isMediaUploadCancelledGuard(media)) {
       return;

@@ -1,7 +1,7 @@
 import * as ImageManipulator from 'expo-image-manipulator';
 import * as ExpoImagePicker from 'expo-image-picker';
 
-export const uploadImageFromMediaLibrary = async () => {
+export const uploadImageFromMediaLibrary = async (width: number) => {
   const media = await ExpoImagePicker.launchImageLibraryAsync({
     mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
     allowsEditing: true,
@@ -13,7 +13,7 @@ export const uploadImageFromMediaLibrary = async () => {
   }
   
   return await ImageManipulator.manipulateAsync(media.uri,
-    [{ resize: { width: 200 } }], { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG });
+    [{ resize: { width } }], { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG });
 };
 
 export const isMediaUploadCancelledGuard =
