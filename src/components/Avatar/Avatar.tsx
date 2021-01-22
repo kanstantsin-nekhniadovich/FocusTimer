@@ -2,24 +2,21 @@ import React from 'react';
 import { User } from '@typings';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as ExpoImagePicker from 'expo-image-picker';
 import { usePermissions, MEDIA_LIBRARY } from 'expo-permissions';
 import { useDispatch } from 'react-redux';
-import * as ImageManipulator from 'expo-image-manipulator';
 
-import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { styles } from './styles';
 import { isDefined } from '../../utils/isDefined';
 import { isPermissionGranted } from '../../utils/isPermissionsGranted';
 import { Camera } from '../icons';
-import { updateUserRequest } from '../../ducks';
+import { saveUserAvatarRequest } from '../../ducks';
+import { uploadImageFromMediaLibrary, isMediaUploadCancelledGuard } from '../../utils/uploadImageFromMediaLibrary'
 
 interface Props {
   user: User;
 }
 
 export const Avatar: React.FC<Props> = ({ user }) => {
-  const [imageUrl, setImageUrl] = React.useState(user.avatarUrl);
   const [permission] = usePermissions(MEDIA_LIBRARY, { ask: true }); // TODO maybe ask all permissions in the beginning?
   const dispatch = useDispatch();
 
@@ -29,32 +26,21 @@ export const Avatar: React.FC<Props> = ({ user }) => {
       return;
     }
 
-    const result = await ExpoImagePicker.launchImageLibraryAsync({
-      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [3, 4],
-    });
+    const media = await uploadImageFromMediaLibrary();
 
-    if (result.cancelled) {
-      return;
+    if (isMediaUploadCancelledGuard(media)) {
+      return
     }
 
-    const optimizedResult = await ImageManipulator.manipulateAsync(result.uri,
-      [{ resize: { width: 200 } }], { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG });
-
-    const url = await saveAvatarToStorage(user.id, optimizedResult.uri);
-    setImageUrl(url);
-    dispatch(updateUserRequest({ avatarUrl: url }));
+    dispatch(saveUserAvatarRequest(media.uri));
   }, [user, permission]);
 
-  const firstLetter = React.useMemo(() => {
-    return user.email.charAt(0);
-  }, [user]);
+  const firstLetter = React.useMemo(() => user.email.charAt(0), [user]);
 
   return (
     <View style={styles.avatarHolder}>
-      {isDefined(imageUrl)
-        ? <Image style={styles.avatar} source={{ uri: imageUrl }} />
+      {isDefined(user.avatarUrl)
+        ? <Image style={styles.avatar} source={{ uri: user.avatarUrl }} />
         : <>
           <LinearGradient
             colors={['rgba(129, 140, 223, 0.45)', 'rgba(110, 120, 198, 0.888211)', 'rgba(84, 96, 182, 0.45)', '#001F5A', '#6E78C6']}

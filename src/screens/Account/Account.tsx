@@ -3,13 +3,13 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { DividerBlock } from '../../components/common';
+import { DividerBlock, OverlayLoader } from '../../components/common';
 import { Logout, UserAvatar, Email, Lock } from '../../components/icons';
 import { Avatar } from '../../components/Avatar';
 import { Field } from './Field';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';
-import { getUser, logoutRequest } from '../../ducks';
+import { getUser, logoutRequest, getIsUserLoading } from '../../ducks';
 import { styles } from './styles';
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
 export const Account: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const isUserLoading = useSelector(getIsUserLoading);
 
   React.useEffect(() => {
     if (isDefined(user)) {
@@ -50,27 +51,30 @@ export const Account: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My account</Text>
-      <DividerBlock height={30} />
-      <View style={styles.avatar}><Avatar user={user} /></View>
-      <DividerBlock height={45} />
-      <Field value={user.name} accessibilityLabel="change your name" onEdit={onNameChange} icon={<UserAvatar />} />
-      <Field value={user.email} isEditable={false} disableInput={true} icon={<Email />} />
-      <Field
-        secureTextEntry
-        value=''
-        onEdit={onPasswordChange}
-        disableInput={true}
-        isEditable={true}
-        icon={<Lock />}
-        placeholder='************'
-      />
-      <DividerBlock height={185} />
-      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-        <Logout />
-        <Text style={styles.logoutButtonLabel}>Log out</Text>
-      </TouchableOpacity>
-    </View>
+    <>
+      {isUserLoading && <OverlayLoader />}
+      <View style={styles.container}>
+        <Text style={styles.title}>My account</Text>
+        <DividerBlock height={30} />
+        <View style={styles.avatar}><Avatar user={user} /></View>
+        <DividerBlock height={45} />
+        <Field value={user.name} accessibilityLabel="change your name" onEdit={onNameChange} icon={<UserAvatar />} />
+        <Field value={user.email} isEditable={false} disableInput={true} icon={<Email />} />
+        <Field
+          secureTextEntry
+          value=''
+          onEdit={onPasswordChange}
+          disableInput={true}
+          isEditable={true}
+          icon={<Lock />}
+          placeholder='************'
+        />
+        <DividerBlock height={185} />
+        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+          <Logout />
+          <Text style={styles.logoutButtonLabel}>Log out</Text>
+        </TouchableOpacity>
+      </View>
+    </>
   );
 };

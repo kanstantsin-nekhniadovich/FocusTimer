@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { PrimaryButton, DividerLine, DividerBlock } from '../../components/common';
 import { FocusTimerHeader } from '../../components/icons';
 import { LoginForm } from '../../components/LoginForm';
-import { DefaultLoader } from '../../components/common';
+import { OverlayLoader } from '../../components/common';
 import { getIsUserLoading, getUser } from '../../ducks';
 import { styles } from './styles';
 import { isDefined } from '../../utils/isDefined';
@@ -37,7 +37,7 @@ export const Login: React.FC<Props> = ({ navigation }) => {
 
   return (
     <>
-      {isLoading && <DefaultLoader />}
+      {isLoading && <OverlayLoader />}
       <View style={styles.container}>
         <FocusTimerHeader />
         <DividerBlock height={77} />

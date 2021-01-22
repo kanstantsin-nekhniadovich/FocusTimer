@@ -2,7 +2,7 @@ import { User } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
 import { loginSuccess, loginFailure, loginRequest } from '../auth';
-import { updateUserRequest, updateUserFailure, updateUserSuccess } from './actions';
+import { updateUserRequest, updateUserFailure, updateUserSuccess, saveUserAvatarRequest } from './actions';
 
 interface State {
   user: Nullable<User>;
@@ -56,4 +56,5 @@ export const userReducer = createReducer(initialState)
   .handleAction(loginFailure, handleLoginFailure)
   .handleAction(updateUserRequest, handleUpdateUserRequest)
   .handleAction(updateUserSuccess, handleUpdateUserSuccess)
-  .handleAction(updateUserFailure, handleUpdateUserFailure);
+  .handleAction(updateUserFailure, handleUpdateUserFailure)
+  .handleAction(saveUserAvatarRequest, handleUpdateUserRequest);

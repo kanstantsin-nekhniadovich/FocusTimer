@@ -2,7 +2,9 @@ import { isActionOf } from 'typesafe-actions';
 import { combineEpics } from 'redux-observable';
 import { filter, mergeMap, pluck, map } from 'rxjs/operators';
 
-import { updateUserRequest, updateUserSuccess, updateUserFailure } from './actions';
+import { getUser } from '../user/selectors';
+import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
+import { updateUserRequest, updateUserSuccess, updateUserFailure, saveUserAvatarRequest } from './actions';
 import { handleResponse } from '../../utils/handleResponse';
 
 const updateUserEpic: AppEpic = (action$, _state$, { userService }) => {
@@ -18,4 +20,21 @@ const updateUserEpic: AppEpic = (action$, _state$, { userService }) => {
   );
 };
 
-export const userEpics = combineEpics(updateUserEpic);
+const saveUserAvatarEpic: AppEpic = (action$, state$, { userService }) =>
+  action$.pipe(
+    filter(isActionOf(saveUserAvatarRequest)),
+    pluck('payload'),
+    mergeMap((url) => {
+      const { id } = getUser(state$.value);
+
+      return saveAvatarToStorage(id, url);
+    }),
+    mergeMap(async avatarUrl => userService.updateUser({ avatarUrl })),
+    map(handleResponse),
+    map(handler => handler(
+      res => updateUserSuccess(res.data),
+      res => updateUserFailure(res.error),
+    )),
+  );
+
+export const userEpics = combineEpics(updateUserEpic, saveUserAvatarEpic);
