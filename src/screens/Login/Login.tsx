@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { PrimaryButton, DividerLine, DividerBlock } from '../../components/common';
 import { FocusTimerHeader } from '../../components/icons';
 import { LoginForm } from '../../components/LoginForm';
-import { Loader } from '../../components/common';
+import { DefaultLoader } from '../../components/common';
 import { getIsUserLoading, getUser } from '../../ducks';
 import { styles } from './styles';
 import { isDefined } from '../../utils/isDefined';
@@ -35,21 +35,20 @@ export const Login: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(Routes.Account);
   }, [user, isLoading]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <View style={styles.container}>
-      <FocusTimerHeader />
-      <DividerBlock height={77} />
-      <LoginForm />
-      <DividerBlock height={10} />
-      <DividerLine />
-      <DividerBlock height={10} />
-      <PrimaryButton title="Log in with facebook" onPress={handleFacebookLogIn} variant={'social'} />
-      <DividerBlock height={28} />
-      <PrimaryButton title="Sign up" onPress={handleSignUp} variant={'outlined'} />
-    </View>
+    <>
+      {isLoading && <DefaultLoader />}
+      <View style={styles.container}>
+        <FocusTimerHeader />
+        <DividerBlock height={77} />
+        <LoginForm />
+        <DividerBlock height={10} />
+        <DividerLine />
+        <DividerBlock height={10} />
+        <PrimaryButton title="Log in with facebook" onPress={handleFacebookLogIn} variant={'social'} />
+        <DividerBlock height={28} />
+        <PrimaryButton title="Sign up" onPress={handleSignUp} variant={'outlined'} />
+      </View>
+    </>
   );
 };
