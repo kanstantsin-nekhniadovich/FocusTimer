@@ -19,4 +19,4 @@ export const uploadImageFromMediaLibrary = async () => {
 export const isMediaUploadCancelledGuard =
   (result: ImageManipulator.ImageResult | ExpoImagePicker.ImagePickerResult): result is ExpoImagePicker.ImagePickerResult & { cancelled: true } => {
     return 'cancelled' in result && result.cancelled;
-};
+  };

@@ -10,7 +10,7 @@ import { isDefined } from '../../utils/isDefined';
 import { isPermissionGranted } from '../../utils/isPermissionsGranted';
 import { Camera } from '../icons';
 import { saveUserAvatarRequest } from '../../ducks';
-import { uploadImageFromMediaLibrary, isMediaUploadCancelledGuard } from '../../utils/uploadImageFromMediaLibrary'
+import { uploadImageFromMediaLibrary, isMediaUploadCancelledGuard } from '../../utils/uploadImageFromMediaLibrary';
 
 interface Props {
   user: User;
@@ -29,7 +29,7 @@ export const Avatar: React.FC<Props> = ({ user }) => {
     const media = await uploadImageFromMediaLibrary();
 
     if (isMediaUploadCancelledGuard(media)) {
-      return
+      return;
     }
 
     dispatch(saveUserAvatarRequest(media.uri));
