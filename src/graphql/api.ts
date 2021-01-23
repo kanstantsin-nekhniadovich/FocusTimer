@@ -9,10 +9,10 @@ export enum Status {
 
 type ClientResultType = FetchResult<Unrestricted> | ApolloQueryResult<Unrestricted>;
 
-const normalize = <T, P>(handle: (options: P) => Promise<ClientResultType>):
-  (options: P, property: string) => Promise<NormalizedResponse<T>> => async (options: P, property: string): Promise<NormalizedResponse<T>> => {
+const normalize = <T, P>(handler: (options: P) => Promise<ClientResultType>): (options: P, property: string) =>
+  Promise<NormalizedResponse<T>> => async (options: P, property: string): Promise<NormalizedResponse<T>> => {
     try {
-      const response = await handle(options);
+      const response = await handler(options);
 
       return {
         data: response.data[property],

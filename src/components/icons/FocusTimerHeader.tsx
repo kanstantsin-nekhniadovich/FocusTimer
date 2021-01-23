@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path, LinearGradient, Stop, Defs } from 'react-native-svg';

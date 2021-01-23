@@ -16,7 +16,9 @@ export const uploadImageFromMediaLibrary = async (width: number) => {
     [{ resize: { width } }], { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG });
 };
 
+type CancelledImagePickerResult = ExpoImagePicker.ImagePickerResult & { cancelled: true };
+
 export const isMediaUploadCancelledGuard =
-  (result: ImageManipulator.ImageResult | ExpoImagePicker.ImagePickerResult): result is ExpoImagePicker.ImagePickerResult & { cancelled: true } => {
+  (result: ImageManipulator.ImageResult | ExpoImagePicker.ImagePickerResult): result is CancelledImagePickerResult => {
     return 'cancelled' in result && result.cancelled;
   };

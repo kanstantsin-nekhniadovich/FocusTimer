@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-
-import { PrimaryButton, DividerBlock } from '../components/common';
+import { useSelector } from 'react-redux';
 import { Common, Typography } from '@styles';
+
+import { getUser } from '../ducks';
+import { PrimaryButton, DividerBlock } from '../components/common';
 import { Routes } from '../routes';
+import { isDefined } from '../utils/isDefined';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +22,16 @@ interface Props {
 }
 
 export const Home: React.FC<Props> = ({ navigation }) => {
+  const user = useSelector(getUser);
+
+  React.useEffect(() => {
+    if (!isDefined(user)) {
+      return;
+    }
+
+    navigation.navigate(Routes.Account);
+  }, [user]);
+
   const navigateToLogin = React.useCallback(() => {
     navigation.navigate(Routes.Login);
   }, []);

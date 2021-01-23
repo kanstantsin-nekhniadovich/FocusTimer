@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import { Epic } from 'redux-observable';
-import { AuthActions, UserActions, UserReducer } from '../ducks';
-import { AuthReducer, UserActions } from '../ducks';
+import { AuthActions, UserReducer } from '../ducks';
+import { AuthReducer, UserActions, UiActions } from '../ducks';
 import { Services } from '../graphql/services';
 
 declare global {
@@ -13,7 +13,8 @@ declare global {
 
   export type AppActions = 
     | AuthActions
-    | UserActions;
+    | UserActions
+    | UiActions;
 
   export type AppEpic = Epic<AppActions, AppActions, Store, Services>;
   export type ActionHandler<State, Action> = (state: S, action: ActionType<Action>) => State;
