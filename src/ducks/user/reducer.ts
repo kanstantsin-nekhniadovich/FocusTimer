@@ -45,7 +45,7 @@ const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (state) 
   ...state,
   user: null,
   isLoading: false,
-})
+});
 
 const handleUpdateUserRequest: ActionHandler<State, typeof updateUserRequest> = (state) => ({
   ...state,
