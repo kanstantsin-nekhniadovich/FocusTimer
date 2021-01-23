@@ -35,7 +35,6 @@ export const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (st
 
 export const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (state) => ({
   ...state,
-  user: null,
   token: null,
 });
 

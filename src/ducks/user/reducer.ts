@@ -1,7 +1,7 @@
 import { User } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
-import { loginSuccess, loginFailure, loginRequest } from '../auth';
+import { loginSuccess, loginFailure, loginRequest, logoutRequest } from '../auth';
 import {
   updateUserRequest,
   updateUserFailure,
@@ -41,6 +41,12 @@ const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (state) =>
   isLoading: false,
 });
 
+const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (state) => ({
+  ...state,
+  user: null,
+  isLoading: false,
+})
+
 const handleUpdateUserRequest: ActionHandler<State, typeof updateUserRequest> = (state) => ({
   ...state,
   isLoading: true,
@@ -64,14 +70,11 @@ const handleFetchUserDataSuccess: ActionHandler<State, typeof fetchUserDataSucce
   isLoading: false,
 });
 
-const handleFetchUserDataFailure: ActionHandler<State, typeof fetchUserDataFailure> = (state, action) => {
-  console.log('handleFetchUserDataFailure');
-  return {
-    ...state,
-    error: action.payload,
-    isLoading: false,
-  };
-};
+const handleFetchUserDataFailure: ActionHandler<State, typeof fetchUserDataFailure> = (state, action) => ({
+  ...state,
+  error: action.payload,
+  isLoading: false,
+});
 
 export const userReducer = createReducer(initialState)
   .handleAction(loginRequest, handleLoginRequest)
@@ -83,4 +86,5 @@ export const userReducer = createReducer(initialState)
   .handleAction(saveUserAvatarRequest, handleUpdateUserRequest)
   .handleAction(fetchUserDataRequest, handleLoginRequest)
   .handleAction(fetchUserDataSuccess, handleFetchUserDataSuccess)
+  .handleAction(logoutRequest, handleLogoutRequest)
   .handleAction(fetchUserDataFailure, handleFetchUserDataFailure);
