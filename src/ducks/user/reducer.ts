@@ -1,7 +1,7 @@
 import { User } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
-import { loginSuccess, loginFailure, loginRequest, logoutRequest } from '../auth';
+import { loginSuccess, loginFailure, loginRequest, logoutRequest, facebookLoginSuccess, facebookLogoutRequest } from '../auth';
 import {
   updateUserRequest,
   updateUserFailure,
@@ -76,6 +76,17 @@ const handleFetchUserDataFailure: ActionHandler<State, typeof fetchUserDataFailu
   isLoading: false,
 });
 
+const handleFacebookLogoutRequest: ActionHandler<State, typeof facebookLogoutRequest> = (state) => ({
+  ...state,
+  user: null,
+  isLoading: false,
+});
+
+const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state, action) =>({
+  ...state,
+  user: action.payload,
+});
+
 export const userReducer = createReducer(initialState)
   .handleAction(loginRequest, handleLoginRequest)
   .handleAction(loginSuccess, handleLoginSuccess)
@@ -87,4 +98,6 @@ export const userReducer = createReducer(initialState)
   .handleAction(fetchUserDataRequest, handleLoginRequest)
   .handleAction(fetchUserDataSuccess, handleFetchUserDataSuccess)
   .handleAction(logoutRequest, handleLogoutRequest)
-  .handleAction(fetchUserDataFailure, handleFetchUserDataFailure);
+  .handleAction(fetchUserDataFailure, handleFetchUserDataFailure)
+  .handleAction(facebookLogoutRequest, handleFacebookLogoutRequest)
+  .handleAction(facebookLoginSuccess, handleFacebookLoginSuccess);

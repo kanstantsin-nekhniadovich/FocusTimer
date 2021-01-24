@@ -1,11 +1,25 @@
 import { isActionOf } from 'typesafe-actions';
-import { filter, map, mergeMap, pluck, tap, ignoreElements } from 'rxjs/operators';
+import { of, EMPTY } from 'rxjs';
+import { filter, map, mergeMap, pluck, tap, ignoreElements, catchError } from 'rxjs/operators';
 import { combineEpics } from 'redux-observable';
 
 import { handleResponse } from '../../utils/handleResponse';
-import { loginFailure, loginRequest, loginSuccess, logoutRequest } from './actions';
+
+import {
+  loginFailure,
+  loginRequest,
+  loginSuccess,
+  logoutRequest,
+  facebookLoginRequest,
+  facebookLoginFailure,
+  facebookLoginSuccess,
+  facebookLogoutRequest,
+} from './actions';
+
 import { storeItem, removeItem } from '../../services/storage';
 import { FIREBASE_TOKEN_KEY, signIn, signOut } from '../../services/firebase';
+import { facebookLogout, logInWithReadPermissionsAsync, requestUserData, isFacebookUserGuard } from '../../services/facebook';
+import { isDefined } from 'src/utils/isDefined';
 
 const loginEpic: AppEpic = (action$, _state$, { authService }) => {
   return action$.pipe(
@@ -55,4 +69,42 @@ const logoutEpic: AppEpic = (action$) => {
   );
 };
 
-export const authEpics = combineEpics(loginEpic, storeJwtTokenEpic, signInFirebaseEpic, logoutEpic, signOutFirebaseEpic);
+const facebookLoginEpic: AppEpic = (action$) =>
+  action$.pipe(
+    filter(isActionOf(facebookLoginRequest)),
+    mergeMap(async () => logInWithReadPermissionsAsync()),
+    mergeMap(async response => {
+      if (response.type === 'cancel') {
+        return EMPTY;
+      }
+
+      return requestUserData(response.token);
+    }),
+    map(data => {
+      if (!isFacebookUserGuard(data)) {
+        return facebookLoginFailure('Authentication via facebook has failed');
+      }
+      
+      const { name, email, id, picture } = data;
+      const avatarUrl = isDefined(picture) ? picture.data.url : null;
+      return facebookLoginSuccess({ name, email, id, avatarUrl });
+    }),
+    catchError(() => of(facebookLoginFailure('Authentication via facebook has failed'))),
+  );
+
+const facebookLogoutEpic: AppEpic = (action$) =>
+  action$.pipe(
+    filter(isActionOf(facebookLogoutRequest)),
+    tap(facebookLogout),
+    ignoreElements(),
+  );
+
+export const authEpics = combineEpics(
+  loginEpic,
+  storeJwtTokenEpic,
+  signInFirebaseEpic,
+  logoutEpic,
+  signOutFirebaseEpic,
+  facebookLoginEpic,
+  facebookLogoutEpic,
+);

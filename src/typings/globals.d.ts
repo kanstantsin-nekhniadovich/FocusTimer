@@ -41,8 +41,6 @@ declare global {
 
   export namespace NodeJs {
     export interface ProcessEnv {
-      FACEBOOK_APP_NAME: string;
-      FACEBOOK_APP_NAME: string;
       FIREBASE_API_KEY: string;
       FIREBASE_AUTH_DOMAIN: string;
       FIREBASE_PROJECT_ID: string;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { PrimaryButton, DividerLine, DividerBlock } from '../../components/common';
 import { FocusTimerHeader } from '../../components/icons';
 import { LoginForm } from '../../components/LoginForm';
 import { OverlayLoader } from '../../components/common';
-import { getIsUserLoading, getUser } from '../../ducks';
+import { getIsUserLoading, getUser, facebookLoginRequest } from '../../ducks';
 import { styles } from './styles';
 import { isDefined } from '../../utils/isDefined';
 import { Routes } from '../../routes';
@@ -17,10 +17,11 @@ interface Props {
 }
 
 export const Login: React.FC<Props> = ({ navigation }) => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(getIsUserLoading);
   const user = useSelector(getUser);
-  const handleFacebookLogIn = React.useCallback(() => {
-    console.log('facebook log in');
+  const handleFacebookLogIn = React.useCallback(async () => {
+    dispatch(facebookLoginRequest());
   }, []);
 
   const handleSignUp = React.useCallback(() => {

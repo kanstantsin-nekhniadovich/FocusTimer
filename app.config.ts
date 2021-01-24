@@ -5,8 +5,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   extra: {
     api: process.env.API,
-    facebookAppId: process.env.FACEBOOK_APP_ID,
-    facebookAppName: process.env.FACEBOOK_APP_NAME,
     firebaseApiKey: process.env.FIREBASE_API_KEY,
     firebaseAppId: process.env.FIREBASE_APP_ID,
     firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,

@@ -1,16 +1,27 @@
 import { createReducer } from 'typesafe-actions';
-import { loginFailure, loginSuccess, loginRequest, logoutRequest } from './actions';
+
+import {
+  loginFailure,
+  loginSuccess,
+  loginRequest,
+  logoutRequest,
+  facebookLoginFailure,
+  facebookLogoutRequest,
+  facebookLoginSuccess,
+} from './actions';
 
 interface State {
   error: Nullable<string>;
   isLoading: boolean;
   token: Nullable<string>;
+  isFacebookAuth: boolean;
 }
 
 const initialState: State = {
   error: null,
   isLoading: false,
   token: null,
+  isFacebookAuth: false,
 };
 
 export const handleLoginRequest: ActionHandler<State, typeof loginRequest> = state => ({
@@ -38,8 +49,28 @@ export const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (
   token: null,
 });
 
+export const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state) => ({
+  ...state,
+  error: null,
+  isFacebookAuth: true,
+});
+
+export const handleFacebookLoginFailure: ActionHandler<State, typeof facebookLoginFailure> = (state, action) => ({
+  ...state,
+  error: action.payload,
+  isFacebookAuth: false,
+});
+
+export const handleFacebookLogoutRequest: ActionHandler<State, typeof facebookLogoutRequest> = (state) => ({
+  ...state,
+  isFacebookAuth: false,
+});
+
 export const authReducer = createReducer(initialState)
   .handleAction(loginRequest, handleLoginRequest)
   .handleAction(loginSuccess, handleLoginSuccess)
   .handleAction(loginFailure, handleLoginFailure)
-  .handleAction(logoutRequest, handleLogoutRequest);
+  .handleAction(logoutRequest, handleLogoutRequest)
+  .handleAction(facebookLoginSuccess, handleFacebookLoginSuccess)
+  .handleAction(facebookLoginFailure, handleFacebookLoginFailure)
+  .handleAction(facebookLogoutRequest, handleFacebookLogoutRequest);

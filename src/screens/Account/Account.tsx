@@ -9,7 +9,7 @@ import { Avatar } from '../../components/Avatar';
 import { Field } from './Field';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';
-import { getUser, logoutRequest, getIsUserLoading } from '../../ducks';
+import { getUser, logoutRequest, getIsUserLoading, getIsFacebookAuth, facebookLogoutRequest } from '../../ducks';
 import { styles } from './styles';
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
 export const Account: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const isFacebookAuth = useSelector(getIsFacebookAuth);
   const isUserLoading = useSelector(getIsUserLoading);
 
   React.useEffect(() => {
@@ -38,9 +39,9 @@ export const Account: React.FC<Props> = ({ navigation }) => {
   }, []);
 
   const logout = React.useCallback(async () => {
-    dispatch(logoutRequest());
+    isFacebookAuth ? dispatch(facebookLogoutRequest()) : dispatch(logoutRequest());
     navigation.navigate(Routes.Home);
-  }, [navigation]);
+  }, [navigation, isFacebookAuth]);
 
   if (!isDefined(user)) {
     return (
