@@ -37,6 +37,7 @@ declare global {
     Home: undefined,
     Login: undefined,
     Account: undefined,
+    SignUp: undefined,
   }
 
   export namespace NodeJs {

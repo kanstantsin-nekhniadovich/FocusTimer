@@ -12,6 +12,7 @@ enum TypographyTypes {
   primary = 'primary',
   secondary = 'secondary',
   text = 'text',
+  message = 'message',
 }
 
 export const Typography: Record<TypographyTypes, TextStyle> = {
@@ -75,5 +76,11 @@ export const Typography: Record<TypographyTypes, TextStyle> = {
     fontSize: 14,
     letterSpacing: -0.3,
     lineHeight: 18,
-  }
+  },
+  [TypographyTypes.message]: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: 14,
+    letterSpacing: -0.35,
+    lineHeight: 18,
+  },
 };

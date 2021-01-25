@@ -6,3 +6,4 @@ export { UserAvatar } from './UserAvatar';
 export { ArrowBack } from './ArrowBack';
 export { Logout } from './Logout';
 export { Lock } from './Lock';
+export { WelcomeHeader } from './WelcomeHeader';

@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { Common } from '@styles';
 
 import { loginRequest } from '../../ducks/auth';
 import { Input, DividerBlock, PrimaryButton } from '../common';
@@ -30,8 +31,6 @@ export const LoginForm = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.message}>Don&#39;t miss the opportunity. Log in to create your project.</Text>
-      <DividerBlock height={20} />
       <Formik<FormProps>
         validationSchema={validationShema}
         initialValues={{ email: '', password: '' }}
@@ -47,7 +46,7 @@ export const LoginForm = () => {
               isValid={!touched.email || !errors.email}
               onChangeText={handleChange('email')}
             />
-            {touched.email && errors.email && <Text style={styles.error}>{errors.email}</Text>}
+            {touched.email && errors.email && <Text style={Common.error}>{errors.email}</Text>}
             <DividerBlock height={20} />
             <Input
               placeholder="Password"
@@ -56,7 +55,7 @@ export const LoginForm = () => {
               onChangeText={handleChange('password')}
               value={values.password}
             />
-            {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
+            {touched.password && errors.password && <Text style={Common.error}>{errors.password}</Text>}
             <DividerBlock height={2} />
             <TouchableOpacity style={styles.forgotPassword} onPress={handleForgotPassword}>
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>

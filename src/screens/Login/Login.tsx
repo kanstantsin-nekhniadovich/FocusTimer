@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -24,9 +24,9 @@ export const Login: React.FC<Props> = ({ navigation }) => {
     dispatch(facebookLoginRequest());
   }, []);
 
-  const handleSignUp = React.useCallback(() => {
-    console.log('handle sign up');
-  }, []);
+  const navigateToSignUpScreen = React.useCallback(() => {
+    navigation.navigate(Routes.SignUp);
+  }, [navigation]);
 
   React.useEffect(() => {
     if (!isDefined(user) || isLoading) {
@@ -34,7 +34,7 @@ export const Login: React.FC<Props> = ({ navigation }) => {
     }
 
     navigation.navigate(Routes.Account);
-  }, [user, isLoading]);
+  }, [user, isLoading, navigation]);
 
   return (
     <>
@@ -42,13 +42,15 @@ export const Login: React.FC<Props> = ({ navigation }) => {
       <View style={styles.container}>
         <FocusTimerHeader />
         <DividerBlock height={77} />
+        <Text style={styles.message}>Don&#39;t miss the opportunity. Log in to create your project.</Text>
+        <DividerBlock height={20} />
         <LoginForm />
         <DividerBlock height={10} />
         <DividerLine />
         <DividerBlock height={10} />
         <PrimaryButton title="Log in with facebook" onPress={handleFacebookLogIn} variant={'social'} />
         <DividerBlock height={28} />
-        <PrimaryButton title="Sign up" onPress={handleSignUp} variant={'outlined'} />
+        <PrimaryButton title="Sign up" onPress={navigateToSignUpScreen} variant={'outlined'} />
       </View>
     </>
   );

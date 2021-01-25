@@ -44,9 +44,7 @@ export const Input: React.FC<Props> = ({
     };
   }, [animation]);
 
-  const inputStyles = React.useMemo(() => {
-    return { ...styles.input, ...(!isValid ? styles.invalid : {}) };
-  }, [isValid]);
+  const inputStyles = React.useMemo(() => ({ ...styles.input, ...(!isValid ? styles.invalid : {})}), [isValid]);
 
   React.useEffect(() => {
     Animated.timing(animation, {

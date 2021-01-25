@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   textHolder: {
     width: 58,
     height: 16,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.alabaster,
     alignItems: 'center',
   },
 });

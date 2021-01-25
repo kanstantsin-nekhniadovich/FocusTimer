@@ -15,11 +15,8 @@ export const styles = StyleSheet.create({
     width: 300,
   },
   message: {
+    ...Typography.text,
     width: 240,
-    fontFamily: 'DMSans_400Regular',
-    fontSize: 14,
-    letterSpacing: -0.35,
-    lineHeight: 18,
     color: Colors.doveGray,
     textAlign: 'center',
   },

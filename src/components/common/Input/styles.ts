@@ -5,6 +5,7 @@ import { Typography } from '@styles';
 export const styles = StyleSheet.create({
   container: {
     position: 'relative',
+    width: '100%',
   },
   input: {
     ...Typography.inputText,

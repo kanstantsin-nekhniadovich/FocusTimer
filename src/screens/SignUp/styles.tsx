@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
-import { Common, Typography, Colors } from '@styles';
+import { Common, Colors, Typography } from '@styles';
 
 export const styles = StyleSheet.create({
   container: {
     ...Common.container,
-    ...Common.statusBarAdjusting,
     alignItems: 'center',
+    paddingTop: 10,
     paddingHorizontal: 17,
-    paddingTop: 37,
   },
   message: {
-    ...Typography.text,
+    ...Typography.message,
+    letterSpacing: 0,
+    lineHeight: 20,
     color: Colors.prussianBlue,
   },
 });
