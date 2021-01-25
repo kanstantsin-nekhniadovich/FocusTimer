@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
 import { Common } from '@styles';
 
 import { styles } from './styles';
 import { PrimaryButton, Input, DividerBlock } from '../common';
+import { createUserRequest } from '../../ducks';
 
 interface FormProps {
   email: string;
@@ -22,8 +24,11 @@ const validationSchema = yup.object().shape({
 });
 
 export const SignUpForm = () => {
-  const handleSignUp = React.useCallback(() => {
-    console.log('sign up');
+  const dispatch = useDispatch();
+
+  const handleSignUp = React.useCallback((values: FormProps) => {
+    const { email, password } = values;
+    dispatch(createUserRequest({ email, password }));
   }, []);
 
   return (

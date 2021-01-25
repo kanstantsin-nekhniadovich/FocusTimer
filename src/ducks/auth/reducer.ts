@@ -10,6 +10,8 @@ import {
   facebookLoginSuccess,
 } from './actions';
 
+import { createUserRequest, createUserSuccess, createUserFailure } from '../user';
+
 interface State {
   error: Nullable<string>;
   isLoading: boolean;
@@ -24,20 +26,20 @@ const initialState: State = {
   isFacebookAuth: false,
 };
 
-export const handleLoginRequest: ActionHandler<State, typeof loginRequest> = state => ({
+export const handleSetTokenRequest: ActionHandler<State, typeof loginRequest | typeof createUserRequest> = state => ({
   ...state,
   error: null,
   isLoading: true,
 });
 
-export const handleLoginSuccess: ActionHandler<State, typeof loginSuccess> = (state, action) => ({
+export const handleSetTokenSuccess: ActionHandler<State, typeof loginSuccess | typeof createUserSuccess> = (state, action) => ({
   ...state,
   isLoading: false,
   error: null,
   token: action.payload.token,
 });
 
-export const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (state, action) => ({
+export const handleSetTokenFailure: ActionHandler<State, typeof loginFailure | typeof createUserFailure> = (state, action) => ({
   ...state,
   error: action.payload,
   isLoading: false,
@@ -67,10 +69,13 @@ export const handleFacebookLogoutRequest: ActionHandler<State, typeof facebookLo
 });
 
 export const authReducer = createReducer(initialState)
-  .handleAction(loginRequest, handleLoginRequest)
-  .handleAction(loginSuccess, handleLoginSuccess)
-  .handleAction(loginFailure, handleLoginFailure)
+  .handleAction(loginRequest, handleSetTokenRequest)
+  .handleAction(loginSuccess, handleSetTokenSuccess)
+  .handleAction(loginFailure, handleSetTokenFailure)
   .handleAction(logoutRequest, handleLogoutRequest)
   .handleAction(facebookLoginSuccess, handleFacebookLoginSuccess)
   .handleAction(facebookLoginFailure, handleFacebookLoginFailure)
-  .handleAction(facebookLogoutRequest, handleFacebookLogoutRequest);
+  .handleAction(facebookLogoutRequest, handleFacebookLogoutRequest)
+  .handleAction(createUserRequest, handleSetTokenRequest)
+  .handleAction(createUserSuccess, handleSetTokenSuccess)
+  .handleAction(createUserFailure, handleSetTokenFailure);

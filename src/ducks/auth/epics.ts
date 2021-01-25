@@ -16,10 +16,12 @@ import {
   facebookLogoutRequest,
 } from './actions';
 
+import { createUserSuccess } from '../user';
+
 import { storeItem, removeItem } from '../../services/storage';
 import { FIREBASE_TOKEN_KEY, signIn, signOut } from '../../services/firebase';
 import { facebookLogout, logInWithReadPermissionsAsync, requestUserData, isFacebookUserGuard } from '../../services/facebook';
-import { isDefined } from 'src/utils/isDefined';
+import { isDefined } from '../../utils/isDefined';
 
 const loginEpic: AppEpic = (action$, _state$, { authService }) => {
   return action$.pipe(
@@ -28,7 +30,7 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
     mergeMap(({ email, password }) => authService.login(email, password)),
     map(handleResponse),
     map(handler => handler(
-      res => loginSuccess({ firebaseToken: res.data.firebaseToken, token: res.data.token, user: res.data.user }),
+      res => loginSuccess(res.data),
       res => loginFailure(res.error),
     )),
   );
@@ -36,7 +38,7 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
 
 const storeJwtTokenEpic: AppEpic = (action$) => {
   return action$.pipe(
-    filter(isActionOf(loginSuccess)),
+    filter(isActionOf([loginSuccess, createUserSuccess])),
     pluck('payload'),
     tap(async ({ firebaseToken }) => await storeItem(FIREBASE_TOKEN_KEY, firebaseToken)),
     tap(async ({ token }) => await storeItem('token', token)),
@@ -46,7 +48,7 @@ const storeJwtTokenEpic: AppEpic = (action$) => {
 
 const signInFirebaseEpic: AppEpic = (action$) => {
   return action$.pipe(
-    filter(isActionOf(loginSuccess)),
+    filter(isActionOf([loginSuccess, createUserSuccess])),
     tap(signIn),
     ignoreElements(),
   );

@@ -1,13 +1,13 @@
 import { User } from './types';
 
 export namespace Response {
-  export type Login = {
+  export type AuthPayload = {
     token: string;
     firebaseToken: string;
     user: User;
   }
 
   export type All =
-    | Login
+    | AuthPayload
     | User;
 }

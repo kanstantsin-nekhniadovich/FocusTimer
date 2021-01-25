@@ -1,5 +1,9 @@
-import { User } from '@typings';
+import { User, Response } from '@typings';
 import { createAction } from 'typesafe-actions';
+
+export const createUserRequest = createAction('user/CREATE_USER_REQUEST')<{ email: string, password: string }>();
+export const createUserSuccess = createAction('user/CREATE_USER_SUCCESS')<Response.AuthPayload>();
+export const createUserFailure = createAction('user/CREATE_USER_FAILURE')<Nullable<string>>();
 
 export const updateUserRequest = createAction('user/UPDATE_USER_REQUEST')<Partial<User>>();
 export const updateUserSuccess = createAction('user/UPDATE_USER_SUCCESS')<User>();

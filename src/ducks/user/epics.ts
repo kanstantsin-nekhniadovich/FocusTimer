@@ -10,6 +10,9 @@ import { updateUserRequest,
   fetchUserDataRequest,
   fetchUserDataSuccess,
   fetchUserDataFailure,
+  createUserRequest,
+  createUserFailure,
+  createUserSuccess,
 } from './actions';
 
 import { getUser } from '../user/selectors';
@@ -18,6 +21,18 @@ import { handleResponse } from '../../utils/handleResponse';
 import { getItem } from '../../services/storage';
 import { signIn } from '../../services/firebase';
 import { isDefined } from '../../utils/isDefined';
+
+const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
+  action$.pipe(
+    filter(isActionOf(createUserRequest)),
+    pluck('payload'),
+    mergeMap(async (payload) => userService.createUser(payload)),
+    map(handleResponse),
+    map(handler => handler(
+      res => createUserSuccess(res.data),
+      res => createUserFailure(res.error),
+    )),
+  );
 
 const updateUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
@@ -69,4 +84,9 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
     }),
   );
 
-export const userEpics = combineEpics(updateUserEpic, saveUserAvatarEpic, fetchUserDataEpic);
+export const userEpics = combineEpics(
+  updateUserEpic,
+  saveUserAvatarEpic,
+  fetchUserDataEpic,
+  createUserEpic,
+);

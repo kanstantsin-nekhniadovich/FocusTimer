@@ -2,6 +2,7 @@ import { User } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
 import { loginSuccess, loginFailure, loginRequest, logoutRequest, facebookLoginSuccess, facebookLogoutRequest } from '../auth';
+
 import {
   updateUserRequest,
   updateUserFailure,
@@ -11,6 +12,8 @@ import {
   fetchUserDataFailure,
   fetchUserDataRequest,
 } from './actions';
+
+import { createUserRequest, createUserSuccess, createUserFailure } from '../user'; 
 
 interface State {
   user: Nullable<User>;
@@ -24,18 +27,18 @@ const initialState: State = {
   error: null,
 };
 
-const handleLoginRequest: ActionHandler<State, typeof loginRequest> = (state) => ({
+const handleSetUserRequest: ActionHandler<State, typeof loginRequest | typeof createUserRequest> = (state) => ({
   ...state,
   isLoading: true,
 });
 
-const handleLoginSuccess: ActionHandler<State, typeof loginSuccess> = (state, action) => ({
+const handleSetUserSuccess: ActionHandler<State, typeof loginSuccess | typeof createUserSuccess> = (state, action) => ({
   ...state,
   user: action.payload.user,
   isLoading: false,
 });
 
-const handleLoginFailure: ActionHandler<State, typeof loginFailure> = (state) => ({
+const handleSetUserFailure: ActionHandler<State, typeof loginFailure | typeof createUserFailure> = (state) => ({
   ...state,
   user: null,
   isLoading: false,
@@ -88,16 +91,19 @@ const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSucce
 });
 
 export const userReducer = createReducer(initialState)
-  .handleAction(loginRequest, handleLoginRequest)
-  .handleAction(loginSuccess, handleLoginSuccess)
-  .handleAction(loginFailure, handleLoginFailure)
+  .handleAction(loginRequest, handleSetUserRequest)
+  .handleAction(loginSuccess, handleSetUserSuccess)
+  .handleAction(loginFailure, handleSetUserFailure)
   .handleAction(updateUserRequest, handleUpdateUserRequest)
   .handleAction(updateUserSuccess, handleUpdateUserSuccess)
   .handleAction(updateUserFailure, handleUpdateUserFailure)
   .handleAction(saveUserAvatarRequest, handleUpdateUserRequest)
-  .handleAction(fetchUserDataRequest, handleLoginRequest)
+  .handleAction(fetchUserDataRequest, handleSetUserRequest)
   .handleAction(fetchUserDataSuccess, handleFetchUserDataSuccess)
   .handleAction(logoutRequest, handleLogoutRequest)
   .handleAction(fetchUserDataFailure, handleFetchUserDataFailure)
   .handleAction(facebookLogoutRequest, handleFacebookLogoutRequest)
-  .handleAction(facebookLoginSuccess, handleFacebookLoginSuccess);
+  .handleAction(facebookLoginSuccess, handleFacebookLoginSuccess)
+  .handleAction(createUserRequest, handleSetUserRequest)
+  .handleAction(createUserSuccess, handleSetUserSuccess)
+  .handleAction(createUserFailure, handleSetUserFailure);
