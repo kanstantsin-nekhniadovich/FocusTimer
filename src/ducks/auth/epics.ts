@@ -1,9 +1,7 @@
 import { isActionOf } from 'typesafe-actions';
-import { of, EMPTY } from 'rxjs';
+import { of } from 'rxjs';
 import { filter, map, mergeMap, pluck, tap, ignoreElements, catchError } from 'rxjs/operators';
 import { combineEpics } from 'redux-observable';
-
-import { handleResponse } from '../../utils/handleResponse';
 
 import {
   loginFailure,
@@ -16,11 +14,18 @@ import {
   facebookLogoutRequest,
 } from './actions';
 
-import { createUserSuccess } from '../user';
+import {
+  facebookLogout,
+  logInWithReadPermissionsAsync,
+  requestUserData,
+  isFacebookUser,
+  isSuccessLoginResult,
+} from '../../services/facebook';
 
+import { handleResponse } from '../../utils/handleResponse';
+import { createUserSuccess } from '../user';
 import { storeItem, removeItem } from '../../services/storage';
 import { FIREBASE_TOKEN_KEY, signIn, signOut } from '../../services/firebase';
-import { facebookLogout, logInWithReadPermissionsAsync, requestUserData, isFacebookUserGuard } from '../../services/facebook';
 import { isDefined } from '../../utils/isDefined';
 
 const loginEpic: AppEpic = (action$, _state$, { authService }) => {
@@ -75,15 +80,10 @@ const facebookLoginEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(facebookLoginRequest)),
     mergeMap(async () => logInWithReadPermissionsAsync()),
-    mergeMap(async response => {
-      if (response.type === 'cancel') {
-        return EMPTY;
-      }
-
-      return requestUserData(response.token);
-    }),
+    filter(isSuccessLoginResult),
+    mergeMap(async response => requestUserData(response.token)),
     map(data => {
-      if (!isFacebookUserGuard(data)) {
+      if (!isFacebookUser(data)) {
         return facebookLoginFailure('Authentication via facebook has failed');
       }
       

@@ -33,6 +33,9 @@ export const requestUserData = async (token: string) => {
 
 export const facebookLogout = async (): Promise<void> => await facebook.logOutAsync();
 
-export const isFacebookUserGuard = (candidate: Unrestricted): candidate is FacebookUser => {
+export const isFacebookUser = (candidate: Unrestricted): candidate is FacebookUser => {
   return 'name' in candidate && 'email' in candidate && 'picture' in candidate;
 };
+
+export const isSuccessLoginResult = (result: facebook.FacebookLoginResult):
+  result is facebook.FacebookLoginResult & { type: 'success' } => result.type === 'success';
