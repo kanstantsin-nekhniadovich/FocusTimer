@@ -12,6 +12,12 @@ gql`
     password: String
     avatarUrl: String
   }
+
+  input CreateFacebookUserInput {
+    email: String!
+    name: String!
+    avatarUrl: String!
+  }
 `;
 
 
@@ -37,6 +43,21 @@ export const updateUser = gql`
       email
       name
       avatarUrl
+    }
+  }
+`;
+
+export const createFacebookUser = gql`
+  mutation($data: CreateFacebookUserInput!) {
+    createFacebookUser(data: $data) {
+      token
+      firebaseToken
+      user {
+        id
+        name
+        email
+        avatarUrl
+      }
     }
   }
 `;

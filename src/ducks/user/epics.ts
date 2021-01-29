@@ -13,6 +13,7 @@ import { updateUserRequest,
   createUserRequest,
   createUserFailure,
   createUserSuccess,
+  createFacebookUserRequest,
 } from './actions';
 
 import { getUser } from '../user/selectors';
@@ -20,6 +21,7 @@ import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { handleResponse } from '../../utils/handleResponse';
 import { getItem } from '../../services/storage';
 import { signIn } from '../../services/firebase';
+import { logInWithReadPermissionsAsync, isSuccessLoginResult, requestUserData } from '../../services/facebook';
 import { isDefined } from '../../utils/isDefined';
 
 const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
@@ -84,9 +86,30 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
     }),
   );
 
+const createFacebookUserEpic: AppEpic = (action$, _state$, { userService }) =>
+  action$.pipe(
+    filter(isActionOf(createFacebookUserRequest)),
+    mergeMap(async () => logInWithReadPermissionsAsync()),
+    filter(isSuccessLoginResult),
+    mergeMap(async response => requestUserData(response.token)),
+    filter(isDefined),
+    mergeMap(async data => {
+      const { name, email, picture } = data;
+      const avatarUrl = isDefined(picture) ? picture.data?.url : null;
+
+      return userService.createFacebookUser({ name, email, avatarUrl });
+    }),
+    map(handleResponse),
+    map(handler => handler(
+      res => createUserSuccess(res.data),
+      res => createUserFailure(res.error),
+    )),
+  );
+
 export const userEpics = combineEpics(
   updateUserEpic,
   saveUserAvatarEpic,
   fetchUserDataEpic,
   createUserEpic,
+  createFacebookUserEpic,
 );

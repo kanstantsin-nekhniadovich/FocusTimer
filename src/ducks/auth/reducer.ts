@@ -51,9 +51,10 @@ export const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (
   token: null,
 });
 
-export const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state) => ({
+export const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state, action) => ({
   ...state,
   error: null,
+  token: action.payload.token,
   isFacebookAuth: true,
 });
 

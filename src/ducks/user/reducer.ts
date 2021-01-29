@@ -3,6 +3,7 @@ import { createReducer } from 'typesafe-actions';
 
 import { loginSuccess, loginFailure, loginRequest, logoutRequest, facebookLoginSuccess, facebookLogoutRequest } from '../auth';
 
+
 import {
   updateUserRequest,
   updateUserFailure,
@@ -11,9 +12,10 @@ import {
   fetchUserDataSuccess,
   fetchUserDataFailure,
   fetchUserDataRequest,
+  createUserRequest,
+  createUserSuccess,
+  createUserFailure,
 } from './actions';
-
-import { createUserRequest, createUserSuccess, createUserFailure } from '../user'; 
 
 interface State {
   user: Nullable<User>;
@@ -87,7 +89,7 @@ const handleFacebookLogoutRequest: ActionHandler<State, typeof facebookLogoutReq
 
 const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state, action) =>({
   ...state,
-  user: action.payload,
+  user: action.payload.user,
 });
 
 export const userReducer = createReducer(initialState)

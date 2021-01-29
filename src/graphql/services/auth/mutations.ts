@@ -13,3 +13,18 @@ export const login = gql`
       }
     }
   }`;
+
+export const facebookLogin = gql`
+  mutation($email: String!) {
+    facebookLogin(email: $email) {
+      token
+      firebaseToken
+      user {
+        id
+        name
+        email
+        avatarUrl
+      }
+    }
+  }
+`;

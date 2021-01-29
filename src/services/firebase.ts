@@ -46,3 +46,5 @@ export const storeBlobToStorage = async (blob: Blob, refPath: string): Promise<s
   await storageRef.put(blob);
   return await storageRef.getDownloadURL();
 };
+
+export const isFirebaseInitialized = () => firebase.apps.length > 0;

@@ -1,6 +1,5 @@
 import { isActionOf } from 'typesafe-actions';
-import { of } from 'rxjs';
-import { filter, map, mergeMap, pluck, tap, ignoreElements, catchError } from 'rxjs/operators';
+import { filter, map, mergeMap, pluck, tap, ignoreElements } from 'rxjs/operators';
 import { combineEpics } from 'redux-observable';
 
 import {
@@ -18,7 +17,6 @@ import {
   facebookLogout,
   logInWithReadPermissionsAsync,
   requestUserData,
-  isFacebookUser,
   isSuccessLoginResult,
 } from '../../services/facebook';
 
@@ -43,7 +41,7 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
 
 const storeJwtTokenEpic: AppEpic = (action$) => {
   return action$.pipe(
-    filter(isActionOf([loginSuccess, createUserSuccess])),
+    filter(isActionOf([loginSuccess, createUserSuccess, facebookLoginSuccess])),
     pluck('payload'),
     tap(async ({ firebaseToken }) => await storeItem(FIREBASE_TOKEN_KEY, firebaseToken)),
     tap(async ({ token }) => await storeItem('token', token)),
@@ -53,7 +51,7 @@ const storeJwtTokenEpic: AppEpic = (action$) => {
 
 const signInFirebaseEpic: AppEpic = (action$) => {
   return action$.pipe(
-    filter(isActionOf([loginSuccess, createUserSuccess])),
+    filter(isActionOf([loginSuccess, createUserSuccess, facebookLoginSuccess])),
     tap(signIn),
     ignoreElements(),
   );
@@ -76,22 +74,19 @@ const logoutEpic: AppEpic = (action$) => {
   );
 };
 
-const facebookLoginEpic: AppEpic = (action$) =>
+const facebookLoginEpic: AppEpic = (action$, _state$, { authService }) =>
   action$.pipe(
     filter(isActionOf(facebookLoginRequest)),
     mergeMap(async () => logInWithReadPermissionsAsync()),
     filter(isSuccessLoginResult),
     mergeMap(async response => requestUserData(response.token)),
-    map(data => {
-      if (!isFacebookUser(data)) {
-        return facebookLoginFailure('Authentication via facebook has failed');
-      }
-      
-      const { name, email, id, picture } = data;
-      const avatarUrl = isDefined(picture) ? picture.data.url : null;
-      return facebookLoginSuccess({ name, email, id, avatarUrl });
-    }),
-    catchError(() => of(facebookLoginFailure('Authentication via facebook has failed'))),
+    filter(isDefined),
+    mergeMap(async (data) => authService.facebookLogin(data.email)),
+    map(handleResponse),
+    map(handler => handler(
+      res => facebookLoginSuccess(res.data),
+      () => facebookLoginFailure('Authentication via facebook has failed'),
+    )),
   );
 
 const facebookLogoutEpic: AppEpic = (action$) =>

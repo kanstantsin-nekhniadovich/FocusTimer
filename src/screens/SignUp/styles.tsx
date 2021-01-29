@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     ...Common.container,
     alignItems: 'center',
-    paddingTop: 10,
+    paddingTop: 35,
     paddingHorizontal: 17,
   },
   message: {

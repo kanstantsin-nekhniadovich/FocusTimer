@@ -67,7 +67,7 @@ export const SignUpForm = () => {
               isValid={!touched.repeatPassword || !errors.repeatPassword}
             />
             {touched.repeatPassword && errors.repeatPassword && <Text style={Common.error}>{errors.repeatPassword}</Text>}
-            <DividerBlock height={12} />
+            <DividerBlock />
             <PrimaryButton title='Sign Up' onPress={handleSubmit} />
           </>
         )}

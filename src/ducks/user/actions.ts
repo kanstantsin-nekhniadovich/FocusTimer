@@ -5,6 +5,8 @@ export const createUserRequest = createAction('user/CREATE_USER_REQUEST')<{ emai
 export const createUserSuccess = createAction('user/CREATE_USER_SUCCESS')<Response.AuthPayload>();
 export const createUserFailure = createAction('user/CREATE_USER_FAILURE')<Nullable<string>>();
 
+export const createFacebookUserRequest = createAction('user/CREATE_FACEBOOK_USER_REQUEST')();
+
 export const updateUserRequest = createAction('user/UPDATE_USER_REQUEST')<Partial<User>>();
 export const updateUserSuccess = createAction('user/UPDATE_USER_SUCCESS')<User>();
 export const updateUserFailure = createAction('user/UPDATE_USER_FAILURE')<string>();

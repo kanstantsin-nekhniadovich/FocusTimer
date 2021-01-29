@@ -26,7 +26,7 @@ export const initializeFacebook = async () =>
 export const logInWithReadPermissionsAsync = async () =>
   await facebook.logInWithReadPermissionsAsync({ permissions: PERMISSIONS });
 
-export const requestUserData = async (token: string) => {
+export const requestUserData = async (token: string): Promise<Nullable<FacebookUser>> => {
   const response = await fetch(`${URL}&access_token=${token}`);
   return await response.json();
 };

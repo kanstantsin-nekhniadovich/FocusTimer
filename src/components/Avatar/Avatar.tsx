@@ -11,6 +11,7 @@ import { isPermissionGranted } from '../../utils/isPermissionsGranted';
 import { Camera } from '../icons';
 import { saveUserAvatarRequest } from '../../ducks';
 import { uploadImageFromMediaLibrary, isMediaUploadCancelledGuard } from '../../utils/uploadImageFromMediaLibrary';
+import { isFirebaseInitialized } from '../../services/firebase';
 
 interface Props {
   user: User;
@@ -20,7 +21,11 @@ export const Avatar: React.FC<Props> = ({ user }) => {
   const [permission] = usePermissions(MEDIA_LIBRARY, { ask: true }); // TODO maybe ask all permissions in the beginning?
   const dispatch = useDispatch();
 
-  const storeAvatar = React.useCallback(async () => {  
+  const storeAvatar = React.useCallback(async () => {
+    if (!isFirebaseInitialized()) {
+      return;
+    }
+
     if (!isPermissionGranted(permission)) {
       alert('Hey! You have to enable Storage permissions to set avatar.');
       return;
