@@ -16,6 +16,7 @@ import { updateUserRequest,
   createFacebookUserRequest,
 } from './actions';
 
+import { showErrorAlert } from '../ui';
 import { getUser } from '../user/selectors';
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { handleResponse } from '../../utils/handleResponse';
@@ -30,9 +31,9 @@ const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
     pluck('payload'),
     mergeMap(async (payload) => userService.createUser(payload)),
     map(handleResponse),
-    map(handler => handler(
-      res => createUserSuccess(res.data),
-      res => createUserFailure(res.error),
+    mergeMap(handler => handler(
+      res => [createUserSuccess(res.data)],
+      res => [showErrorAlert(res.error), createUserFailure(res.error)],
     )),
   );
 
@@ -59,9 +60,9 @@ const saveUserAvatarEpic: AppEpic = (action$, state$, { userService }) =>
     }),
     mergeMap(async avatarUrl => userService.updateUser({ avatarUrl })),
     map(handleResponse),
-    map(handler => handler(
-      res => updateUserSuccess(res.data),
-      res => updateUserFailure(res.error),
+    mergeMap(handler => handler(
+      res => [updateUserSuccess(res.data)],
+      res => [showErrorAlert(res.error), updateUserFailure(res.error)],
     )),
   );
 
@@ -100,9 +101,9 @@ const createFacebookUserEpic: AppEpic = (action$, _state$, { userService }) =>
       return userService.createFacebookUser({ name, email, avatarUrl });
     }),
     map(handleResponse),
-    map(handler => handler(
-      res => createUserSuccess(res.data),
-      res => createUserFailure(res.error),
+    mergeMap(handler => handler(
+      res => [createUserSuccess(res.data)],
+      res => [showErrorAlert(res.error), createUserFailure(res.error)],
     )),
   );
 

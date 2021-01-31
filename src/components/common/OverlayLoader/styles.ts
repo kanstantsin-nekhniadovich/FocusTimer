@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '@styles';
+import { Colors, zIndexes } from '@styles';
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -10,6 +10,6 @@ export const styles = StyleSheet.create({
     right: 0,
     backgroundColor: Colors.white,
     opacity: 0.6,
-    zIndex: 1000,
+    zIndex: zIndexes.overlayZIndex,
   },
 });

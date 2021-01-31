@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   label: {
     ...Typography.inputText,
     position: 'absolute',
-    color: 'rgba(0, 0, 0, 0.6)',
+    color: Colors.black_60,
     backgroundColor: Colors.alabaster,
     borderRadius: 4,
   },

@@ -13,6 +13,8 @@ import {
   facebookLogoutRequest,
 } from './actions';
 
+import { showErrorAlert } from '../ui';
+
 import {
   facebookLogout,
   logInWithReadPermissionsAsync,
@@ -32,9 +34,9 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
     pluck('payload'),
     mergeMap(({ email, password }) => authService.login(email, password)),
     map(handleResponse),
-    map(handler => handler(
-      res => loginSuccess(res.data),
-      res => loginFailure(res.error),
+    mergeMap(handler => handler(
+      res => [loginSuccess(res.data)],
+      res => [showErrorAlert(res.error), loginFailure(res.error)],
     )),
   );
 };
@@ -83,9 +85,9 @@ const facebookLoginEpic: AppEpic = (action$, _state$, { authService }) =>
     filter(isDefined),
     mergeMap(async (data) => authService.facebookLogin(data.email)),
     map(handleResponse),
-    map(handler => handler(
-      res => facebookLoginSuccess(res.data),
-      () => facebookLoginFailure('Authentication via facebook has failed'),
+    mergeMap(handler => handler(
+      res => [facebookLoginSuccess(res.data)],
+      () => [showErrorAlert('Authentication failed'), facebookLoginFailure('Authentication failed')],
     )),
   );
 

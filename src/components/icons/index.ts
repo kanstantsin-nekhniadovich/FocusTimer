@@ -7,3 +7,4 @@ export { ArrowBack } from './ArrowBack';
 export { Logout } from './Logout';
 export { Lock } from './Lock';
 export { WelcomeHeader } from './WelcomeHeader';
+export { Cross } from './Cross';

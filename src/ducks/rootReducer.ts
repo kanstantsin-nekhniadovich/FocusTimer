@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 
 import { authReducer } from './auth';
 import { userReducer } from './user';
+import { uiReducer } from './ui';
 
 export const rootReducer = combineReducers<Store, AppActions>({
   auth: authReducer,
   user: userReducer,
+  ui: uiReducer,
 });
