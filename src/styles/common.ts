@@ -16,5 +16,6 @@ export const Common = StyleSheet.create({
   error: {
     ...Typography.text,
     color: Colors.error,
+    alignSelf: 'flex-start',
   },
 });

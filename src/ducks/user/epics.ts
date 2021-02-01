@@ -24,6 +24,7 @@ import { getItem } from '../../services/storage';
 import { signIn } from '../../services/firebase';
 import { logInWithReadPermissionsAsync, isSuccessLoginResult, requestUserData } from '../../services/facebook';
 import { isDefined } from '../../utils/isDefined';
+import { TOKEN } from '../../utils/constants';
 
 const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
@@ -70,7 +71,7 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(fetchUserDataRequest)),
     pluck('payload'),
-    mergeMap(async () => await getItem('token')),
+    mergeMap(async () => await getItem(TOKEN)),
     tap(token => isDefined(token) && signIn()),
     mergeMap(token => {
       if (!isDefined(token)) {

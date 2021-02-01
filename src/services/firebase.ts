@@ -2,7 +2,8 @@ import firebase from 'firebase';
 import Constants from 'expo-constants';
 
 import { getItem, removeItem } from './storage';
-import { isDefined } from 'src/utils/isDefined';
+import { isDefined } from '../utils/isDefined';
+import { FIREBASE_TOKEN_KEY } from '../utils/constants';
 
 const firebaseConfig = {
   apiKey: Constants.manifest.extra.firebaseApiKey,
@@ -13,8 +14,6 @@ const firebaseConfig = {
   appId: Constants.manifest.extra.firebaseAppId,
   measurementId: Constants.manifest.extra.firebaseAppMeasurementId,
 };
-
-export const FIREBASE_TOKEN_KEY = 'firebaseToken';
 
 export const initializeFirebase = () => {
   firebase.initializeApp(firebaseConfig);

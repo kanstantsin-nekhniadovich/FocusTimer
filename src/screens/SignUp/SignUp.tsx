@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Routes } from '../../routes';
-import { WelcomeHeader } from '../../components/icons';
+import { WelcomeHeader, Elipse56 } from '../../components/icons';
 import { DividerBlock, DividerLine, PrimaryButton, OverlayLoader } from '../../components/common';
 import { SignUpForm } from '../../components/SignUpForm';
+import { SkipButton } from '../../components/SkipButton';
 import { getUser, getIsUserLoading, createFacebookUserRequest } from '../../ducks';
 import { isDefined } from '../../utils/isDefined';
 import { styles } from './styles';
@@ -35,8 +36,10 @@ export const SignUp: React.FC<Props> = ({ navigation }) => {
     <>
       {isLoading && <OverlayLoader />}
       <View style={styles.container}>
-        <WelcomeHeader />
+        <View style={{ alignItems: 'center' }}><WelcomeHeader /></View>
         <DividerBlock height={42} />
+        <View style={styles.elipse56}><Elipse56 /></View>
+        <View style={styles.skipButtonHolder}><SkipButton navigation={navigation} /></View>
         <Text style={styles.message}>Don&#39;t miss the opportunity. Sign up to create your project.</Text>
         <DividerBlock height={14} />
         <SignUpForm />

@@ -3,11 +3,12 @@ import Constants from 'expo-constants';
 import { setContext } from '@apollo/client/link/context';
 import { getItem } from '../services/storage';
 import { isDefined } from '../utils/isDefined';
+import { TOKEN } from '../utils/constants';
 
 const httpLink = new HttpLink({ uri: Constants.manifest.extra.api });
 
 const authLink = setContext(async (_, { headers }) => {
-  const token = await getItem('token');
+  const token = await getItem(TOKEN);
 
   return {
     headers: {

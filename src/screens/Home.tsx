@@ -40,12 +40,18 @@ export const Home: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(Routes.Account);
   }, []);
 
+  const navigateToProjects = React.useCallback(() => {
+    navigation.navigate('Projects');
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={Typography.subtitleSmall}>Home Screen</Text>
       <PrimaryButton title="Log In" onPress={navigateToLogin} variant="outlined" />
       <DividerBlock height={21} />
       <PrimaryButton title="Account" onPress={navigateToAccount} variant="social" />
+      <DividerBlock />
+      <PrimaryButton title="Projects" onPress={navigateToProjects} />
     </View>
   );
 };

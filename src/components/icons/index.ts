@@ -8,3 +8,5 @@ export { Logout } from './Logout';
 export { Lock } from './Lock';
 export { WelcomeHeader } from './WelcomeHeader';
 export { Cross } from './Cross';
+export { CreateProjectHeader } from './CreateProjectHeader';
+export { Elipse56 } from './Elipse56';

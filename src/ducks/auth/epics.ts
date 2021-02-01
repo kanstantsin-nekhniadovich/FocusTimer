@@ -25,8 +25,9 @@ import {
 import { handleResponse } from '../../utils/handleResponse';
 import { createUserSuccess } from '../user';
 import { storeItem, removeItem } from '../../services/storage';
-import { FIREBASE_TOKEN_KEY, signIn, signOut } from '../../services/firebase';
+import { signIn, signOut } from '../../services/firebase';
 import { isDefined } from '../../utils/isDefined';
+import { FIREBASE_TOKEN_KEY, TOKEN } from '../../utils/constants';
 
 const loginEpic: AppEpic = (action$, _state$, { authService }) => {
   return action$.pipe(
@@ -46,7 +47,7 @@ const storeJwtTokenEpic: AppEpic = (action$) => {
     filter(isActionOf([loginSuccess, createUserSuccess, facebookLoginSuccess])),
     pluck('payload'),
     tap(async ({ firebaseToken }) => await storeItem(FIREBASE_TOKEN_KEY, firebaseToken)),
-    tap(async ({ token }) => await storeItem('token', token)),
+    tap(async ({ token }) => await storeItem(TOKEN, token)),
     ignoreElements(),
   );
 };
@@ -71,7 +72,7 @@ const logoutEpic: AppEpic = (action$) => {
   return action$.pipe(
     filter(isActionOf(logoutRequest)),
     tap(async () => await removeItem(FIREBASE_TOKEN_KEY)),
-    tap(async () => await removeItem('token')),
+    tap(async () => await removeItem(TOKEN)),
     ignoreElements(),
   );
 };
