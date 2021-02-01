@@ -5,3 +5,4 @@ export { Input } from './Input';
 export { Loader } from './Loader';
 export { OverlayLoader } from './OverlayLoader';
 export { ErrorAlert } from './ErrorAlert';
+export { HeaderTitle } from './HeaderTitle';
