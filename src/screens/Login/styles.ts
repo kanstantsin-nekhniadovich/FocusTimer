@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
   },
   message: {
     ...Typography.text,
+    letterSpacing: 0,
     color: Colors.prussianBlue,
   },
   text: {
