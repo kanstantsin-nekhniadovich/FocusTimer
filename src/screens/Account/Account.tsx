@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Colors } from '@styles';
 
-import { DividerBlock, OverlayLoader } from '../../components/common';
+import { DividerBlock, OverlayLoader, IconButton } from '../../components/common';
 import { Logout, Email } from '../../components/icons';
 import { Avatar } from '../../components/Avatar';
 import { EditUserDetails } from '../../components/EditUserDetails';
@@ -58,10 +58,14 @@ export const Account: React.FC<Props> = ({ navigation }) => {
         <DividerBlock height={60} />
         <EditUserDetails user={user} />
         <DividerBlock height={170} />
-        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+        <IconButton
+          accessibilityLabel="Logout"
+          handleClick={logout}
+          style={styles.logoutButton}
+        >
           <Logout />
           <Text style={styles.logoutButtonLabel}>Log out</Text>
-        </TouchableOpacity>
+        </IconButton>
       </View>
     </>
   );

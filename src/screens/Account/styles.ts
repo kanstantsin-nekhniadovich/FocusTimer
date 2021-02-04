@@ -26,6 +26,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     alignItems: 'center',
+    width: 'auto',
+    paddingHorizontal: 10,
   },
   logoutButtonLabel: {
     ...Typography.inputText,

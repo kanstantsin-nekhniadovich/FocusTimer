@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   cameraButton: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -6,
     right: 0,
   },
   userNameLetter: {

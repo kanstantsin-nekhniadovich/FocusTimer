@@ -1,6 +1,6 @@
 import React from 'react';
 import { User } from '@typings';
-import { View, Image, TouchableOpacity, Text } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { usePermissions, MEDIA_LIBRARY } from 'expo-permissions';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import { styles } from './styles';
 import { isDefined } from '../../utils/isDefined';
 import { isPermissionGranted } from '../../utils/isPermissionsGranted';
 import { Camera } from '../icons';
+import { IconButton } from '../common';
 import { saveUserAvatarRequest } from '../../ducks';
 import { uploadImageFromMediaLibrary, isMediaUploadCancelledGuard } from '../../utils/uploadImageFromMediaLibrary';
 import { isFirebaseInitialized } from '../../services/firebase';
@@ -55,14 +56,13 @@ export const Avatar: React.FC<Props> = ({ user }) => {
             style={{ ...styles.avatar, ...styles.fakeAvatar}}/>
           <Text style={styles.userNameLetter}>{firstLetter}</Text>
         </>}
-      <TouchableOpacity
+      <IconButton
         style={styles.cameraButton}
-        onPress={storeAvatar}
         accessibilityLabel="Upload avatar"
-        activeOpacity={0.7}
+        handleClick={storeAvatar}
       >
         <Camera />
-      </TouchableOpacity>
+      </IconButton>
     </View>
   );
 };
