@@ -13,7 +13,7 @@ import {
   facebookLogoutRequest,
 } from './actions';
 
-import { showErrorAlert } from '../ui';
+import { showAlert } from '../ui';
 
 import {
   facebookLogout,
@@ -37,7 +37,7 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
     map(handleResponse),
     mergeMap(handler => handler(
       res => [loginSuccess(res.data)],
-      res => [showErrorAlert(res.error), loginFailure(res.error)],
+      res => [showAlert({ message: res.error, type: 'error' }), loginFailure(res.error)],
     )),
   );
 };
@@ -88,7 +88,7 @@ const facebookLoginEpic: AppEpic = (action$, _state$, { authService }) =>
     map(handleResponse),
     mergeMap(handler => handler(
       res => [facebookLoginSuccess(res.data)],
-      () => [showErrorAlert('Authentication failed'), facebookLoginFailure('Authentication failed')],
+      () => [showAlert({ message: 'Authentication failed', type: 'error' }), facebookLoginFailure('Authentication failed')],
     )),
   );
 

@@ -16,7 +16,7 @@ import { updateUserRequest,
   createFacebookUserRequest,
 } from './actions';
 
-import { showErrorAlert } from '../ui';
+import { showAlert } from '../ui';
 import { getUser } from '../user/selectors';
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { handleResponse } from '../../utils/handleResponse';
@@ -34,7 +34,7 @@ const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
     map(handleResponse),
     mergeMap(handler => handler(
       res => [createUserSuccess(res.data)],
-      res => [showErrorAlert(res.error), createUserFailure(res.error)],
+      res => [showAlert({ message: res.error, type: 'error' }), createUserFailure(res.error)],
     )),
   );
 
@@ -44,9 +44,9 @@ const updateUserEpic: AppEpic = (action$, _state$, { userService }) =>
     pluck('payload'),
     mergeMap(async (payload) => userService.updateUser(payload)),
     map(handleResponse),
-    map(handler => handler(
-      res => updateUserSuccess(res.data),
-      res => updateUserFailure(res.error),
+    mergeMap(handler => handler(
+      res => [updateUserSuccess(res.data), showAlert({ message: 'User information was update successfully', type: 'success' })],
+      res => [updateUserFailure(res.error), showAlert({ message: res.error, type: 'error' })],
     )),
   );
 
@@ -62,8 +62,8 @@ const saveUserAvatarEpic: AppEpic = (action$, state$, { userService }) =>
     mergeMap(async avatarUrl => userService.updateUser({ avatarUrl })),
     map(handleResponse),
     mergeMap(handler => handler(
-      res => [updateUserSuccess(res.data)],
-      res => [showErrorAlert(res.error), updateUserFailure(res.error)],
+      res => [showAlert({ message: 'User photo was updated successfully', type: 'success' }), updateUserSuccess(res.data)],
+      res => [showAlert({ type: 'error', message: res.error }), updateUserFailure(res.error)],
     )),
   );
 
@@ -108,7 +108,7 @@ const createFacebookUserEpic: AppEpic = (action$, _state$, { userService }) =>
     map(handleResponse),
     mergeMap(handler => handler(
       res => [createUserSuccess(res.data)],
-      res => [showErrorAlert(res.error), createUserFailure(res.error)],
+      res => [showAlert({ message: res.error, type: 'error' }), createUserFailure(res.error)],
     )),
   );
 

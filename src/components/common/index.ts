@@ -4,6 +4,6 @@ export { DividerBlock } from './DividerBlock';
 export { Input } from './Input';
 export { Loader } from './Loader';
 export { OverlayLoader } from './OverlayLoader';
-export { ErrorAlert } from './ErrorAlert';
+export { Alert } from './Alert';
 export { HeaderTitle } from './HeaderTitle';
 export { IconButton } from './IconButton';

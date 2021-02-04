@@ -8,7 +8,7 @@ import { Common } from '@styles';
 import { store } from './src/store';
 import { AppReady } from './src/components/AppReady';
 import { Navigator } from './src/Navigator';
-import { ErrorAlert } from './src/components/common';
+import { Alert } from './src/components/common';
 
 export default function App(): JSX.Element {
   return (
@@ -17,7 +17,7 @@ export default function App(): JSX.Element {
         <AppReady>
           <SafeAreaView style={Common.container}>
             <Navigator />
-            <ErrorAlert />
+            <Alert />
           </SafeAreaView>
         </AppReady>
       </Provider>

@@ -1,4 +1,12 @@
+export type Alert = 'success' | 'error';
+
 export type Status = 'TODO' | 'INPROGRESS' | 'COMPLETED';
+
+export interface AlertMeta {
+  isVisible: boolean;
+  type: Alert;
+  message: string;
+}
 
 export interface User {
   id: Id;

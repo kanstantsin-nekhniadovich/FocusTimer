@@ -1,19 +1,22 @@
+import { AlertMeta } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
-import { initApplicationSuccess, showErrorAlert, hideErrorAlert, setUserSkippedLoginFlowSuccess } from './actions';
+import { initApplicationSuccess, showAlert, hideAlert, setUserSkippedLoginFlowSuccess } from './actions';
 
 interface State {
   isApplicationInited: false,
-  isErrorAlertShown: boolean;
+  alert: AlertMeta;
   isUserSkippedLoginFlow: boolean;
-  errorMessage: Nullable<string>;
 }
 
 const initialState: State = {
   isApplicationInited: false,
   isUserSkippedLoginFlow: false,
-  isErrorAlertShown: false,
-  errorMessage: null,
+  alert: {
+    isVisible: false,
+    type: 'success',
+    message: '',
+  },
 };
 
 const handleInitApplicationSuccess: ActionHandler<State, typeof initApplicationSuccess> = (state) => ({
@@ -21,16 +24,20 @@ const handleInitApplicationSuccess: ActionHandler<State, typeof initApplicationS
   isApplicationInited: true,
 });
 
-const handleShowErrorAlert: ActionHandler<State, typeof showErrorAlert> = (state, action) => ({
+const handleShowAlert: ActionHandler<State, typeof showAlert> = (state, action) => ({
   ...state,
-  isErrorAlertShown: true,
-  errorMessage: action.payload,
+  alert: {
+    isVisible: true,
+    ...action.payload,
+  },
 });
 
-const handleHideErrorAlert: ActionHandler<State, typeof hideErrorAlert> = (state) => ({
+const handleHideAlert: ActionHandler<State, typeof hideAlert> = (state) => ({
   ...state,
-  isErrorAlertShown: false,
-  errorMessage: null,
+  alert: {
+    isVisible: false,
+    message: '',
+  },
 });
 
 const handleSetUserSkippedLoginFlowSuccess: ActionHandler<State, typeof setUserSkippedLoginFlowSuccess> = (state, action) => ({
@@ -39,7 +46,7 @@ const handleSetUserSkippedLoginFlowSuccess: ActionHandler<State, typeof setUserS
 });
 
 export const uiReducer = createReducer(initialState)
-  .handleAction(showErrorAlert, handleShowErrorAlert)
-  .handleAction(hideErrorAlert, handleHideErrorAlert)
+  .handleAction(showAlert, handleShowAlert)
+  .handleAction(hideAlert, handleHideAlert)
   .handleAction(setUserSkippedLoginFlowSuccess, handleSetUserSkippedLoginFlowSuccess)
   .handleAction(initApplicationSuccess, handleInitApplicationSuccess);
