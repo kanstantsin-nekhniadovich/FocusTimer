@@ -14,6 +14,8 @@ enum ColorsType {
   alabaster = 'alabaster',
   error = 'error',
   black_60 = 'black_60',
+  black_38 = 'black_38',
+  pressEffect = 'pressEffect',
   concrete = 'concrete',
 }
 
@@ -30,6 +32,8 @@ export const Colors: Record<ColorsType, ColorValue> = {
   [ColorsType.chatelle]: '#c2b9c3',
   [ColorsType.alabaster]: '#fbfbfb',
   [ColorsType.error]: '#de2c2c',
-  [ColorsType.black_60]: 'rgba(0, 0, 0, 0.6)',
   [ColorsType.concrete]: '#f2f2f2',
+  [ColorsType.black_60]: 'rgba(0, 0, 0, 0.6)',
+  [ColorsType.black_38]: 'rgba(0, 0, 0, 0.38)',
+  [ColorsType.pressEffect]: 'rgba(95,99,104,0.15)',
 };

@@ -24,31 +24,23 @@ export const styles = StyleSheet.create({
   },
   logoutButton: {
     flexDirection: 'row',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    alignItems: 'center',
   },
   logoutButtonLabel: {
     ...Typography.inputText,
     color: Colors.prussianBlue,
     marginLeft: 9,
   },
-});
-
-export const fieldStyles = StyleSheet.create({
-  fieldContainer: {
+  emailHolder: {
     width: '100%',
+    justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 40,
   },
-  input: {
+  email: {
+    marginLeft: 20,
     ...Typography.inputText,
-    color: Colors.prussianBlue,
-    width: 200,
-    height: 24,
-    marginLeft: 30,
-    marginRight: 'auto',
+    color: Colors.doveGray,
   },
-  icon: {
-    width: 24,
-  }
 });

@@ -20,6 +20,7 @@ const commonNavigationOptions: StackNavigationOptions = {
 const HomeHeader = () => <HeaderTitle title="Home screen" />;
 const SignUpHeader = () => <HeaderTitle title="Sign up" />;
 const MyProjectsHeader = () => <HeaderTitle title="My projects" />;
+const MyAccountHeader = () => <HeaderTitle title="My account" />;
 
 export const Navigator: React.FC = () => {
   const isUserSkippedLoginFlow = useSelector(getIsUserSkippedLoginFlow);
@@ -36,7 +37,14 @@ export const Navigator: React.FC = () => {
         }}
       />
       <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
-      <Stack.Screen name={Routes.Account} component={Account} options={{ title: '', ...commonNavigationOptions }} />
+      <Stack.Screen
+        name={Routes.Account}
+        component={Account}
+        options={{
+          headerTitle: MyAccountHeader,
+          ...commonNavigationOptions
+        }}
+      />
       <Stack.Screen
         name={Routes.SignUp}
         component={SignUp}

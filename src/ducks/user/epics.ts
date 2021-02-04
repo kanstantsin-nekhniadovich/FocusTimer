@@ -20,11 +20,11 @@ import { showErrorAlert } from '../ui';
 import { getUser } from '../user/selectors';
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { handleResponse } from '../../utils/handleResponse';
-import { getItem } from '../../services/storage';
+import { getItem, removeItem } from '../../services/storage';
 import { signIn } from '../../services/firebase';
 import { logInWithReadPermissionsAsync, isSuccessLoginResult, requestUserData } from '../../services/facebook';
 import { isDefined } from '../../utils/isDefined';
-import { TOKEN } from '../../utils/constants';
+import { TOKEN, FIREBASE_TOKEN_KEY } from '../../utils/constants';
 
 const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
@@ -82,7 +82,11 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
         map(handleResponse),
         map(handler => handler(
           res => fetchUserDataSuccess(res.data),
-          res => fetchUserDataFailure(res.error),
+          res => {
+            removeItem(TOKEN);
+            removeItem(FIREBASE_TOKEN_KEY);
+            return fetchUserDataFailure(res.error);
+          },
         )),
       );
     }),

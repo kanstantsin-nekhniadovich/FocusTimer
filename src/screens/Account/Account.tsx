@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Colors } from '@styles';
 
 import { DividerBlock, OverlayLoader } from '../../components/common';
-import { Logout, UserAvatar, Email, Lock } from '../../components/icons';
+import { Logout, Email } from '../../components/icons';
 import { Avatar } from '../../components/Avatar';
-import { Field } from './Field';
+import { EditUserDetails } from '../../components/EditUserDetails';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';
 import { getUser, logoutRequest, getIsUserLoading, getIsFacebookAuth, facebookLogoutRequest } from '../../ducks';
@@ -30,14 +31,6 @@ export const Account: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(Routes.Login);
   }, [user]);
 
-  const onNameChange = React.useCallback(() => {
-    console.log('change username');
-  }, []);
-
-  const onPasswordChange = React.useCallback(() => {
-    console.log('change password');
-  }, []);
-
   const logout = React.useCallback(async () => {
     isFacebookAuth ? dispatch(facebookLogoutRequest()) : dispatch(logoutRequest());
     navigation.navigate(Routes.Home);
@@ -46,7 +39,7 @@ export const Account: React.FC<Props> = ({ navigation }) => {
   if (!isDefined(user)) {
     return (
       <View style={styles.container}>
-        <Text style={styles.notLoginMessage}>User is not login</Text>
+        <Text style={styles.notLoginMessage}>User is not logged in</Text>
       </View>
     );
   }
@@ -55,22 +48,16 @@ export const Account: React.FC<Props> = ({ navigation }) => {
     <>
       {isUserLoading && <OverlayLoader />}
       <View style={styles.container}>
-        <Text style={styles.title}>My account</Text>
-        <DividerBlock height={30} />
+        <DividerBlock height={50} />
         <View style={styles.avatar}><Avatar user={user} /></View>
-        <DividerBlock height={45} />
-        <Field value={user.name} accessibilityLabel="change your name" onEdit={onNameChange} icon={<UserAvatar />} />
-        <Field value={user.email} isEditable={false} disableInput={true} icon={<Email />} />
-        <Field
-          secureTextEntry
-          value=''
-          onEdit={onPasswordChange}
-          disableInput={true}
-          isEditable={true}
-          icon={<Lock />}
-          placeholder='************'
-        />
-        <DividerBlock height={185} />
+        <DividerBlock height={25} />
+        <View style={styles.emailHolder}>
+          <Email width={16} color={Colors.doveGray} />
+          <Text style={styles.email}>{user.email}</Text>
+        </View>
+        <DividerBlock height={60} />
+        <EditUserDetails user={user} />
+        <DividerBlock height={170} />
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
           <Logout />
           <Text style={styles.logoutButtonLabel}>Log out</Text>

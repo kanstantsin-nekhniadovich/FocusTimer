@@ -16,7 +16,9 @@ interface FormProps {
 
 const validationShema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Please enter your email'),
-  password: yup.string().required('Please enter your password'),
+  password: yup.string()
+    .required('Please enter your password')
+    .min(8, 'Password must be at least 8 characters length'),
 });
 
 export const LoginForm = () => {

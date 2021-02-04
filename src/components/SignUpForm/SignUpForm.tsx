@@ -17,7 +17,9 @@ interface FormProps {
 
 const validationSchema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Please enter your email'),
-  password: yup.string().required('Please enter your password'),
+  password: yup.string()
+    .required('Please enter your password')
+    .min(8, 'Password must be at least 8 characters length'),
   repeatPassword: yup.string()
     .required('Please repeat password')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
