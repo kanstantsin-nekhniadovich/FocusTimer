@@ -45,7 +45,7 @@ const updateUserEpic: AppEpic = (action$, _state$, { userService }) =>
     mergeMap(async (payload) => userService.updateUser(payload)),
     map(handleResponse),
     mergeMap(handler => handler(
-      res => [updateUserSuccess(res.data), showAlert({ message: 'User information was update successfully', type: 'success' })],
+      res => [updateUserSuccess(res.data), showAlert({ message: 'User info was updated successfully', type: 'success' })],
       res => [updateUserFailure(res.error), showAlert({ message: res.error, type: 'error' })],
     )),
   );

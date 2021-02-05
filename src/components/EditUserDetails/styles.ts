@@ -6,7 +6,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
+    position: 'relative',
+    marginBottom: 15,
+  },
+  arrowButton: {
+    position: 'absolute',
+    top: -4,
+    right: -56,
   },
 });
 
@@ -14,11 +20,7 @@ export const fieldStyles = StyleSheet.create({
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 70,
-  },
-  error: {
-    position: 'absolute',
-    bottom: 0,
+    justifyContent: 'center',
   },
   animatedArea: {
     justifyContent: 'center',

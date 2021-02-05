@@ -8,8 +8,8 @@ import { isDefined } from 'src/utils/isDefined';
 
 interface Props {
   name: string;
-  type?: string;
   icon: React.ReactNode;
+  type?: string;
   secureTextEntry?: boolean;
   placeholder?: string;
   style?: StyleProp<ViewStyle>;
@@ -53,7 +53,7 @@ export const Field: React.FC<Props> = ({
   }), [borderColor]);
 
   return (
-    <View {...style}>
+    <View style={style}>
       <View style={styles.inputWrapper}>
         <View style={styles.icon}>{icon}</View>
         <Animated.View style={animatedAreaStyles}>
@@ -69,7 +69,7 @@ export const Field: React.FC<Props> = ({
           />
         </Animated.View>
       </View>
-      {isDefined(error) && touched && <Text style={{ ...styles.error, ...Common.error }}>{error}</Text>}
+      {isDefined(error) && touched && <Text style={Common.error}>{error}</Text>}
     </View>
   );
 };

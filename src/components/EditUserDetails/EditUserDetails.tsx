@@ -28,11 +28,15 @@ const passwordValidationSchema = yup.object().shape({
 export const EditUserDetails: React.FC<Props> = ({ user }) => {
   const dispatch = useDispatch();
   const onUsernameChange = React.useCallback(({ username }: { username: string }) => {
+    if (user.name === username.trim()) {
+      return;
+    }
+
     dispatch(updateUserRequest({ name: username }));
-  }, []);
+  }, [user]);
 
   const onPasswordChange = React.useCallback(() => {
-    return null;
+    return undefined;
   }, []);
 
   return (
@@ -49,9 +53,9 @@ export const EditUserDetails: React.FC<Props> = ({ user }) => {
               name="username"
               placeholder="Username"
               icon={<UserAvatar />}
-              style={{ marginRight: 10 }}
             />
             <IconButton
+              style={styles.arrowButton}
               accessibilityLabel="Edit your name"
               handleClick={handleSubmit}
             >
@@ -74,9 +78,9 @@ export const EditUserDetails: React.FC<Props> = ({ user }) => {
               placeholder="Password"
               secureTextEntry
               icon={<Lock />}
-              style={{ marginRight: 10 }}
             />
             <IconButton
+              style={styles.arrowButton}
               accessibilityLabel="Edit your password"
               handleClick={handleSubmit}
             >
