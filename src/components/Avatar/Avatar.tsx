@@ -1,6 +1,6 @@
 import React from 'react';
 import { User } from '@typings';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { usePermissions, MEDIA_LIBRARY } from 'expo-permissions';
 import { useDispatch } from 'react-redux';
@@ -16,14 +16,25 @@ import { isFirebaseInitialized } from '../../services/firebase';
 
 interface Props {
   user: User;
+  isEditable?: boolean;
 }
 
-export const Avatar: React.FC<Props> = ({ user }) => {
+export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
   const [permission] = usePermissions(MEDIA_LIBRARY, { ask: true }); // TODO maybe ask all permissions in the beginning?
   const dispatch = useDispatch();
+  const animatedOpacity = React.useRef(new Animated.Value(0.4)).current;
+
+  React.useEffect(() => {
+    Animated.timing(animatedOpacity, {
+      toValue: isEditable ? 1 : 0.4,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [isEditable, animatedOpacity]);
 
   const storeAvatar = React.useCallback(async () => {
-    if (!isFirebaseInitialized()) {
+
+    if (!isEditable || !isFirebaseInitialized()) {
       return;
     }
 
@@ -31,7 +42,7 @@ export const Avatar: React.FC<Props> = ({ user }) => {
       alert('Hey! You have to enable Storage permissions to set avatar.');
       return;
     }
-
+    
     const media = await uploadImageFromMediaLibrary(200);
 
     if (isMediaUploadCancelledGuard(media)) {
@@ -39,7 +50,7 @@ export const Avatar: React.FC<Props> = ({ user }) => {
     }
 
     dispatch(saveUserAvatarRequest(media.uri));
-  }, [user, permission]);
+  }, [user, permission, isEditable]);
 
   const firstLetter = React.useMemo(() => user.email.charAt(0), [user]);
 
@@ -56,13 +67,14 @@ export const Avatar: React.FC<Props> = ({ user }) => {
             style={{ ...styles.avatar, ...styles.fakeAvatar}}/>
           <Text style={styles.userNameLetter}>{firstLetter}</Text>
         </>}
-      <IconButton
-        style={styles.cameraButton}
-        accessibilityLabel="Upload avatar"
-        handleClick={storeAvatar}
-      >
-        <Camera />
-      </IconButton>
+      <Animated.View style={{...styles.cameraButton, opacity: animatedOpacity }}>
+        <IconButton
+          accessibilityLabel="Upload avatar"
+          handleClick={storeAvatar}
+        >
+          <Camera />
+        </IconButton>
+      </Animated.View>
     </View>
   );
 };

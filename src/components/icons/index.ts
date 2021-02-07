@@ -10,3 +10,4 @@ export { WelcomeHeader } from './WelcomeHeader';
 export { Cross } from './Cross';
 export { CreateProjectHeader } from './CreateProjectHeader';
 export { Elipse56 } from './Elipse56';
+export { Edit } from './Edit';

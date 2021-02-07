@@ -6,15 +6,13 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: Colors.alabaster,
     height: Dimensions.get('screen').height,
-    paddingHorizontal: 37,
+    paddingLeft: 37,
+    paddingRight: 30,
     paddingBottom: 37,
   },
   title: {
     ...Typography.h3,
     color: Colors.prussianBlue,
-    alignSelf: 'center',
-  },
-  avatar: {
     alignSelf: 'center',
   },
   notLoginMessage: {
@@ -33,16 +31,5 @@ export const styles = StyleSheet.create({
     ...Typography.inputText,
     color: Colors.prussianBlue,
     marginLeft: 9,
-  },
-  emailHolder: {
-    width: '100%',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  email: {
-    marginLeft: 20,
-    ...Typography.inputText,
-    color: Colors.doveGray,
   },
 });

@@ -4,11 +4,12 @@ import { useField } from 'formik';
 import { Colors, Common } from '@styles';
 
 import { fieldStyles as styles } from './styles';
-import { isDefined } from 'src/utils/isDefined';
+import { isDefined } from '../../utils/isDefined';
 
 interface Props {
   name: string;
   icon: React.ReactNode;
+  isEditable?: boolean;
   type?: string;
   secureTextEntry?: boolean;
   placeholder?: string;
@@ -18,6 +19,7 @@ interface Props {
 export const Field: React.FC<Props> = ({
   name,
   icon,
+  isEditable = true,
   placeholder,
   secureTextEntry = false,
   type = 'text',
@@ -26,21 +28,13 @@ export const Field: React.FC<Props> = ({
   const [{ onChange, value }, { error, touched }] = useField({ name, type });
   const borderColorAnimate = React.useRef(new Animated.Value(0)).current;
 
-  const animate = React.useCallback((enable = true) => {
+  React.useEffect(() => {
     Animated.timing(borderColorAnimate, {
-      toValue: enable ? 1 : 0,
+      toValue: isEditable ? 1 : 0,
       duration: 200,
       useNativeDriver: false,
     }).start();
-  }, [borderColorAnimate]);
-
-  const onBlur = React.useCallback(() => {
-    animate(false);
-  }, []);
-
-  const onFocus = React.useCallback(() => {
-    animate();
-  }, []);
+  }, [isEditable, borderColorAnimate]);
 
   const borderColor = borderColorAnimate.interpolate({
     inputRange: [0, 1],
@@ -64,8 +58,7 @@ export const Field: React.FC<Props> = ({
             onChangeText={onChange(name)}
             style={styles.input}
             placeholder={placeholder}
-            onFocus={onFocus}
-            onBlur={onBlur}
+            editable={isEditable}
           />
         </Animated.View>
       </View>

@@ -2,11 +2,9 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Colors } from '@styles';
 
 import { DividerBlock, OverlayLoader, IconButton } from '../../components/common';
-import { Logout, Email } from '../../components/icons';
-import { Avatar } from '../../components/Avatar';
+import { Logout} from '../../components/icons';
 import { EditUserDetails } from '../../components/EditUserDetails';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';
@@ -48,14 +46,6 @@ export const Account: React.FC<Props> = ({ navigation }) => {
     <>
       {isUserLoading && <OverlayLoader />}
       <View style={styles.container}>
-        <DividerBlock height={50} />
-        <View style={styles.avatar}><Avatar user={user} /></View>
-        <DividerBlock height={25} />
-        <View style={styles.emailHolder}>
-          <Email width={16} color={Colors.doveGray} />
-          <Text style={styles.email}>{user.email}</Text>
-        </View>
-        <DividerBlock height={60} />
         <EditUserDetails user={user} />
         <DividerBlock height={170} />
         <IconButton

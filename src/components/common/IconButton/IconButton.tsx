@@ -10,9 +10,10 @@ interface Props {
   handleClick: () => void;
   colorOnPress?: string;
   style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
 }
 
-export const IconButton: React.FC<Props> = ({ children, accessibilityLabel, handleClick, style, colorOnPress }) => {
+export const IconButton: React.FC<Props> = ({ children, accessibilityLabel, handleClick, style, colorOnPress, disabled = false }) => {
   const pressColor = isDefined(colorOnPress) ? colorOnPress : Colors.pressEffect;
 
   return (
@@ -20,6 +21,7 @@ export const IconButton: React.FC<Props> = ({ children, accessibilityLabel, hand
       accessibilityLabel={accessibilityLabel}
       onPress={handleClick}
       android_disableSound
+      disabled={disabled}
       style={({ pressed }) => [
         {
           backgroundColor: pressed ? pressColor : 'transparent', 
