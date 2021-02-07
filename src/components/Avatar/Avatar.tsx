@@ -70,7 +70,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
       <Animated.View style={{...styles.cameraButton, opacity: animatedOpacity }}>
         <IconButton
           accessibilityLabel="Upload avatar"
-          handleClick={storeAvatar}
+          onPress={storeAvatar}
         >
           <Camera />
         </IconButton>

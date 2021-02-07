@@ -26,7 +26,7 @@ export const EditUserDetails: React.FC<Props> = ({ user }) => {
       <IconButton
         style={styles.editButton}
         accessibilityLabel='Edit your account'
-        handleClick={toggleEditMode}
+        onPress={toggleEditMode}
       >
         {isEditMode ? <Cross color={Colors.prussianBlue} width={16} /> : <Edit width={16} />}
       </IconButton>

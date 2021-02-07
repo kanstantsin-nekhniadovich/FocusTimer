@@ -7,19 +7,19 @@ import { styles } from './styles';
 
 interface Props {
   accessibilityLabel: string;
-  handleClick: () => void;
+  onPress: () => void;
   colorOnPress?: string;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
 }
 
-export const IconButton: React.FC<Props> = ({ children, accessibilityLabel, handleClick, style, colorOnPress, disabled = false }) => {
+export const IconButton: React.FC<Props> = ({ children, accessibilityLabel, onPress, style, colorOnPress, disabled = false }) => {
   const pressColor = isDefined(colorOnPress) ? colorOnPress : Colors.pressEffect;
 
   return (
     <Pressable
       accessibilityLabel={accessibilityLabel}
-      onPress={handleClick}
+      onPress={onPress}
       android_disableSound
       disabled={disabled}
       style={({ pressed }) => [

@@ -3,7 +3,7 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import { useSelector } from 'react-redux';
 
 import { getIsUserSkippedLoginFlow } from './ducks';
-import { Home, Login, Account, SignUp, Projects } from './screens';
+import { Home, Login, Account, SignUp, Projects, UpdatePassword } from './screens';
 import { Routes } from './routes';
 import { AvatarHeader } from './components/AvatartHeader';
 import { HeaderTitle } from './components/common';
@@ -21,6 +21,7 @@ const HomeHeader = () => <HeaderTitle title="Home screen" />;
 const SignUpHeader = () => <HeaderTitle title="Sign up" />;
 const MyProjectsHeader = () => <HeaderTitle title="My projects" />;
 const MyAccountHeader = () => <HeaderTitle title="My account" />;
+const UpdatePasswordHeader = () => <HeaderTitle title="My password" />;
 
 export const Navigator: React.FC = () => {
   const isUserSkippedLoginFlow = useSelector(getIsUserSkippedLoginFlow);
@@ -61,6 +62,14 @@ export const Navigator: React.FC = () => {
           headerTitle: MyProjectsHeader,
           ...commonNavigationOptions,
         })}
+      />
+      <Stack.Screen
+        name={Routes.UpdatePassword}
+        component={UpdatePassword}
+        options={{
+          headerTitle: UpdatePasswordHeader,
+          ...commonNavigationOptions,
+        }}
       />
     </Stack.Navigator>
   );

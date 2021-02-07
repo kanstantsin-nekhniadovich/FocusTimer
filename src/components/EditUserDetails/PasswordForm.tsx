@@ -3,7 +3,9 @@ import { User } from '@typings';
 import { View, Animated } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
+import { Routes } from '../../routes';
 import { useOpacityAnimation } from '../../utils/hooks';
 import { ArrowBack, Lock } from '../icons';
 import { IconButton } from '../common';
@@ -24,9 +26,13 @@ const validationSchema = yup.object().shape({
 type SchemaType = yup.InferType<typeof validationSchema>;
 
 export const PasswordForm: React.FC<Props> = ({ enabled }) => {
-  const onSubmit = React.useCallback(() => {
-    return undefined;
-  }, []);
+  const navigation = useNavigation<NavigationProp<Screens, Routes.UpdatePassword>>();
+  const onSubmit = React.useCallback(({ password }: SchemaType) => {
+    navigation.navigate({
+      name: Routes.UpdatePassword,
+      params: { password },
+    });
+  }, [navigation]);
 
   const form = useFormik({
     initialValues: { password: '' } as SchemaType,
@@ -67,7 +73,7 @@ export const PasswordForm: React.FC<Props> = ({ enabled }) => {
       <Animated.View style={arrowStyle}>
         <IconButton
           accessibilityLabel="Edit your password"
-          handleClick={form.handleSubmit}
+          onPress={form.handleSubmit}
           disabled={!enabled}
         >
           <ArrowBack />

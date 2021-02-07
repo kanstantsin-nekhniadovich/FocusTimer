@@ -4,4 +4,5 @@ export enum Routes {
   Account = 'Account',
   SignUp = 'SignUp',
   Projects = 'Projects',
+  UpdatePassword = 'UpdatePassword',
 }

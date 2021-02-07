@@ -9,17 +9,14 @@ import { loginRequest } from '../../ducks/auth';
 import { Input, DividerBlock, PrimaryButton } from '../common';
 import { styles } from './styles';
 
-interface FormProps {
-  email: string;
-  password: string;
-}
-
 const validationShema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Please enter your email'),
   password: yup.string()
     .required('Please enter your password')
     .min(8, 'Password must be at least 8 characters length'),
 });
+
+type SchemaType = yup.InferType<typeof validationShema>;
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -31,11 +28,13 @@ export const LoginForm = () => {
     dispatch(loginRequest(values));
   }, []);
 
+  const initialValues = { email: '', password: '' } as SchemaType;
+
   return (
     <View style={styles.container}>
-      <Formik<FormProps>
+      <Formik<SchemaType>
         validationSchema={validationShema}
-        initialValues={{ email: '', password: '' }}
+        initialValues={initialValues}
         onSubmit={handleLogIn}
         validateOnChange
       >
@@ -49,7 +48,7 @@ export const LoginForm = () => {
               onChangeText={handleChange('email')}
             />
             {touched.email && errors.email && <Text style={Common.error}>{errors.email}</Text>}
-            <DividerBlock height={20} />
+            <DividerBlock />
             <Input
               placeholder="Password"
               secureTextEntry

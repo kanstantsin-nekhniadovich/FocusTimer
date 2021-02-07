@@ -40,6 +40,7 @@ declare global {
     Account: undefined,
     SignUp: undefined,
     Projects: undefined,
+    UpdatePassword: { password: string },
   }
 
   export namespace NodeJs {

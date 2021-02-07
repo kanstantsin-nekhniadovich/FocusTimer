@@ -72,7 +72,7 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
       <Animated.View style={arrowStyle}>
         <IconButton
           accessibilityLabel="Edit your name"
-          handleClick={form.handleSubmit}
+          onPress={form.handleSubmit}
           disabled={!enabled}
         >
           <ArrowBack />

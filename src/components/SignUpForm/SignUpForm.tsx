@@ -9,12 +9,6 @@ import { styles } from './styles';
 import { PrimaryButton, Input, DividerBlock } from '../common';
 import { createUserRequest } from '../../ducks';
 
-interface FormProps {
-  email: string;
-  password: string;
-  repeatPassword: string;
-}
-
 const validationSchema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Please enter your email'),
   password: yup.string()
@@ -25,19 +19,23 @@ const validationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
+type SchemaType = yup.InferType<typeof validationSchema>;
+
 export const SignUpForm = () => {
   const dispatch = useDispatch();
 
-  const handleSignUp = React.useCallback((values: FormProps) => {
+  const handleSignUp = React.useCallback((values: SchemaType) => {
     const { email, password } = values;
     dispatch(createUserRequest({ email, password }));
   }, []);
 
+  const initialValues = { email: '', password: '', repeatPassword: '' } as SchemaType;
+
   return (
     <View style={styles.container}>
-      <Formik<FormProps>
+      <Formik<SchemaType>
         validationSchema={validationSchema}
-        initialValues={{ email: '', password: '', repeatPassword: '' }}
+        initialValues={initialValues}
         onSubmit={handleSignUp}
         validateOnChange
       >

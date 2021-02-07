@@ -7,7 +7,7 @@ export const createUserFailure = createAction('user/CREATE_USER_FAILURE')<Nullab
 
 export const createFacebookUserRequest = createAction('user/CREATE_FACEBOOK_USER_REQUEST')();
 
-export const updateUserRequest = createAction('user/UPDATE_USER_REQUEST')<Partial<User>>();
+export const updateUserRequest = createAction('user/UPDATE_USER_REQUEST')<Partial<User> & { password?: string }>();
 export const updateUserSuccess = createAction('user/UPDATE_USER_SUCCESS')<User>();
 export const updateUserFailure = createAction('user/UPDATE_USER_FAILURE')<string>();
 

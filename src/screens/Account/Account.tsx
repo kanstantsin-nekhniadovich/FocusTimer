@@ -50,7 +50,7 @@ export const Account: React.FC<Props> = ({ navigation }) => {
         <DividerBlock height={170} />
         <IconButton
           accessibilityLabel="Logout"
-          handleClick={logout}
+          onPress={logout}
           style={styles.logoutButton}
         >
           <Logout />
