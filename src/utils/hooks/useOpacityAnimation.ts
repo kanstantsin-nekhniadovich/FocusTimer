@@ -6,11 +6,11 @@ export const useOpacityAnimation = (initial: number, duration: number, enabled: 
 
   React.useEffect(() => {
     Animated.timing(animatedOpacity, {
-      toValue: enabled ? 1 : 0.4,
+      toValue: enabled ? 1 : initial,
       duration,
       useNativeDriver: false,
     }).start();
-  }, [enabled, animatedOpacity, duration]);
+  }, [enabled, animatedOpacity, duration, initial]);
 
   return [animatedOpacity];
 };
