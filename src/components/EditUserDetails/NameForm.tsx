@@ -21,10 +21,12 @@ const validationSchema = yup.object().shape({
   name: yup.string().required('Please enter your username'),
 });
 
+type SchemaType = yup.InferType<typeof validationSchema>;
+
 export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
   const dispatch = useDispatch();
   
-  const onSubmit = React.useCallback(({ name }: { name: string }) => {
+  const onSubmit = React.useCallback(({ name }: SchemaType) => {
     if (user.name === name.trim()) {
       return;
     }
@@ -33,7 +35,7 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
   }, [user]);
 
   const form = useFormik({
-    initialValues: { name: user.name },
+    initialValues: { name: user.name } as SchemaType,
     validationSchema,
     onSubmit: onSubmit,
     validateOnBlur: true,

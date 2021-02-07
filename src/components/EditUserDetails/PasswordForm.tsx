@@ -21,13 +21,15 @@ const validationSchema = yup.object().shape({
     .min(8, 'Password must be at least 8 characters length'),
 });
 
+type SchemaType = yup.InferType<typeof validationSchema>;
+
 export const PasswordForm: React.FC<Props> = ({ enabled }) => {
   const onSubmit = React.useCallback(() => {
     return undefined;
   }, []);
 
   const form = useFormik({
-    initialValues: { password: '' },
+    initialValues: { password: '' } as SchemaType,
     validationSchema,
     onSubmit,
     validateOnBlur: true,
