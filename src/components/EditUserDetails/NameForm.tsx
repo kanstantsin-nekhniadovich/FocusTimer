@@ -39,6 +39,7 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
     validationSchema,
     onSubmit: onSubmit,
     validateOnBlur: true,
+    enableReinitialize: true,
   });
 
   React.useEffect(() => {

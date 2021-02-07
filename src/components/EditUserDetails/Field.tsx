@@ -38,20 +38,27 @@ export const Field: React.FC<Props> = ({ icon, onChange, meta, isEditable = true
     borderColor
   }), [borderColor]);
 
+  const maskStyles = React.useMemo(() =>
+    isDefined(value) && value !== '' ? styles.mask : { ...styles.mask, color: Colors.black_60 as string }, [value]);
+
   return (
     <View style={style}>
       <View style={styles.inputWrapper}>
         <View style={styles.icon}>{icon}</View>
         <Animated.View style={animatedAreaStyles}>
-          <TextInput
-            autoCompleteType="off"
-            secureTextEntry={secureTextEntry}
-            value={value}
-            onChangeText={onChange}
-            style={styles.input}
-            placeholder={placeholder}
-            editable={isEditable}
-          />
+          {isEditable
+            ? <TextInput
+              autoCompleteType="off"
+              secureTextEntry={secureTextEntry}
+              value={value}
+              onChangeText={onChange}
+              style={styles.input}
+              placeholder={placeholder}
+              placeholderTextColor={Colors.black_60}
+              editable={isEditable}
+            />
+            : <Text numberOfLines={1} style={maskStyles}>
+              {isDefined(value) && value !== '' ? value : placeholder}</Text>}
         </Animated.View>
       </View>
       {isDefined(error) && touched && <Text style={Common.error}>{error}</Text>}

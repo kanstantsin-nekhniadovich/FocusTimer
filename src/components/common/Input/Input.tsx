@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, TextInputProps, View, Animated, Easing, NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
+import { Colors } from '@styles';
 
 import { Error } from '../../icons';
 import { styles } from './styles';
@@ -80,7 +81,7 @@ export const Input: React.FC<Props> = ({
         onFocus={onFocus}
         onBlur={handleBlur}
         placeholder={inputPlaceholder}
-        placeholderTextColor='rgba(0, 0, 0, 0.6)'
+        placeholderTextColor={Colors.black_60}
         value={value}
         style={inputStyles}
       />

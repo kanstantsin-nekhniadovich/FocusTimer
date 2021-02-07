@@ -33,6 +33,7 @@ export const PasswordForm: React.FC<Props> = ({ enabled }) => {
     validationSchema,
     onSubmit,
     validateOnBlur: true,
+    enableReinitialize: true,
   });
 
   React.useEffect(() => {
@@ -58,7 +59,7 @@ export const PasswordForm: React.FC<Props> = ({ enabled }) => {
       <Field
         meta={fieldMeta}
         onChange={form.handleChange('password')}
-        placeholder="Password"
+        placeholder="New password"
         secureTextEntry
         icon={<Lock />}
         isEditable={enabled}

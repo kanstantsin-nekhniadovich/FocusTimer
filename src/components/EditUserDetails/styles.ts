@@ -65,4 +65,10 @@ export const fieldStyles = StyleSheet.create({
     width: 24,
     alignItems: 'center',
   },
+  mask: {
+    alignContent: 'center',
+    ...Typography.inputText,
+    color: Colors.prussianBlue,
+    paddingLeft: 16,
+  },
 });
