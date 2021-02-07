@@ -1,31 +1,23 @@
 import React from 'react';
 import { TextInput, View, Animated, Text, StyleProp, ViewStyle } from 'react-native';
-import { useField } from 'formik';
+import { FieldMetaProps } from 'formik';
 import { Colors, Common } from '@styles';
 
 import { fieldStyles as styles } from './styles';
 import { isDefined } from '../../utils/isDefined';
 
 interface Props {
-  name: string;
   icon: React.ReactNode;
+  onChange: (value: string) => void;
+  meta: FieldMetaProps<string>;
   isEditable?: boolean;
-  type?: string;
   secureTextEntry?: boolean;
   placeholder?: string;
   style?: StyleProp<ViewStyle>;
 }
 
-export const Field: React.FC<Props> = ({
-  name,
-  icon,
-  isEditable = true,
-  placeholder,
-  secureTextEntry = false,
-  type = 'text',
-  style,
-}) => {
-  const [{ onChange, value }, { error, touched }] = useField({ name, type });
+export const Field: React.FC<Props> = ({ icon, onChange, meta, isEditable = true, placeholder, secureTextEntry = false, style }) => {
+  const { error, touched, value } = meta;
   const borderColorAnimate = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
@@ -55,7 +47,7 @@ export const Field: React.FC<Props> = ({
             autoCompleteType="off"
             secureTextEntry={secureTextEntry}
             value={value}
-            onChangeText={onChange(name)}
+            onChangeText={onChange}
             style={styles.input}
             placeholder={placeholder}
             editable={isEditable}
