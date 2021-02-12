@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "FocusTimer",
+    "name": "Focus Timer",
     "slug": "FocusTimer",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.konstantyn.FocusTimer"
     },
     "facebookScheme": "fb2836983923294841",
     "facebookAppId": "2836983923294841",
