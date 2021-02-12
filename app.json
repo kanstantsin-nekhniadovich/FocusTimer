@@ -25,12 +25,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundImage": "./assets/background-image.png"
       },
       "package": "com.konstantyn.FocusTimer"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
