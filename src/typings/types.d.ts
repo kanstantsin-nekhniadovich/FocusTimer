@@ -21,3 +21,14 @@ export interface Project {
   status: Status;
   note: string;
 }
+
+export interface Task {
+  id: Id;
+  title: string;
+  cyclesCount: number;
+  workTime: number;
+  breakTime: number;
+  status: Status;
+  remainingTime: number;
+  currentCycle: number;
+}

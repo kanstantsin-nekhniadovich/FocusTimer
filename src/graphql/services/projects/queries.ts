@@ -7,6 +7,16 @@ export const projects = gql`
       title
       status
       note
+      tasks {
+        id
+        title
+        cyclesCount
+        workTime
+        breakTime
+        status
+        remainingTime
+        currentCycle
+      }
     }
   }
 `;

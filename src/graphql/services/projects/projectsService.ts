@@ -1,10 +1,10 @@
-import { Status, Project } from '@typings';
+import { Status, Response } from '@typings';
 import { api } from '../../api';
 import * as mutations from './mutations';
 import * as queries from './queries';
 
 export const fetchProjects = () =>
-  api.query<Project[]>({ query: queries.projects }, 'projects');
+  api.query<Response.ProjectResponse[]>({ query: queries.projects }, 'projects');
 
 export const createProject = (data: { title: string; status: Status }) =>
-  api.mutate<Project>({ mutation: mutations.createProject, variables: { data } }, 'createProject');
+  api.mutate<Response.ProjectResponse>({ mutation: mutations.createProject, variables: { data } }, 'createProject');

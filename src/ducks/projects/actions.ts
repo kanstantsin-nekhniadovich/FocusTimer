@@ -1,4 +1,4 @@
-import { Project } from '@typings';
+import { Response, Project } from '@typings';
 import { createAction } from 'typesafe-actions';
 
 export const createProjectRequest = createAction('projects/CREATE_PROJECT_REQUEST')<{ title: string }>();
@@ -6,5 +6,5 @@ export const createProjectSuccess = createAction('projects/CREATE_PROJECT_SUCCES
 export const createProjectFailure = createAction('projects/CREATE_PROJECT_FAILURE')();
 
 export const fetchProjectsRequest = createAction('projects/FETCH_PROJECTS_REQUEST')();
-export const fetchProjectsSuccess = createAction('projects/FETCH_PROJECTS_SUCCESS')<Project[]>();
+export const fetchProjectsSuccess = createAction('projects/FETCH_PROJECTS_SUCCESS')<Response.ProjectResponse[]>();
 export const fetchProjectsFailure = createAction('projects/FETCH_PROJECTS_FAILURE')();

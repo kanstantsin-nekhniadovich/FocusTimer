@@ -25,11 +25,15 @@ export const handleCreateProjectRequest: ActionHandler<State, typeof createProje
   isLoading: true,
 });
 
-export const handleCreateProjectSuccess: ActionHandler<State, typeof createProjectSuccess> = (state, action) => ({
-  ...state,
-  projects: [...state.projects, action.payload],
-  isLoading: false,
-});
+export const handleCreateProjectSuccess: ActionHandler<State, typeof createProjectSuccess> = (state, action) => {
+  const { id, title, status, note } = action.payload;
+
+  return {
+    ...state,
+    projects: [...state.projects, { id, title, status, note }],
+    isLoading: false,
+  };
+};
 
 export const handleCreateProjectFailure: ActionHandler<State, typeof createProjectFailure> = (state) => ({
   ...state,
@@ -41,11 +45,15 @@ export const handleFetchProjectsRequest: ActionHandler<State, typeof fetchProjec
   isLoading: true,
 });
 
-export const handleFetchProjectsSuccess: ActionHandler<State, typeof fetchProjectsSuccess> = (state, action) => ({
-  ...state,
-  isLoading: false,
-  projects: [...state.projects, ...action.payload],
-});
+export const handleFetchProjectsSuccess: ActionHandler<State, typeof fetchProjectsSuccess> = (state, action) => {
+  const projects = action.payload.map(({ id, title, status, note }) => ({ id, status, title, note }));
+
+  return {
+    ...state,
+    isLoading: false,
+    projects: [...state.projects, ...projects],
+  };
+};
 
 export const handlefFetchProjectsFailure: ActionHandler<State, typeof fetchProjectsFailure> = (state) => ({
   ...state,

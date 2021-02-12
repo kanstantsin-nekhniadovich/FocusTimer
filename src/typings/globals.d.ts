@@ -1,6 +1,6 @@
 import { ActionType } from 'typesafe-actions';
 import { Epic } from 'redux-observable';
-import { AuthReducer, UserReducer, UiReducer, ProjectsReducer } from '../ducks';
+import { AuthReducer, UserReducer, UiReducer, ProjectsReducer, TasksReducer } from '../ducks';
 import { AuthActions, UserActions, UiActions, ProjectsActions } from '../ducks';
 import { Services } from '../graphql/services';
 
@@ -11,6 +11,7 @@ declare global {
     user: UserReducer;
     ui: UiReducer;
     projects: ProjectsReducer;
+    tasks: TasksReducer;
   }
 
   export type AppActions = 
