@@ -7,3 +7,4 @@ export { OverlayLoader } from './OverlayLoader';
 export { Alert } from './Alert';
 export { HeaderTitle } from './HeaderTitle';
 export { IconButton } from './IconButton';
+export { ProjectsBackground } from './ProjectsBackground';

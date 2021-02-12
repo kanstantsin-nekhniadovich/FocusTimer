@@ -20,5 +20,4 @@ export interface Project {
   title: string;
   status: Status;
   note: string;
-  owner: User;
 }

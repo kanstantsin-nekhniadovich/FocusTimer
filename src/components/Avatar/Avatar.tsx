@@ -64,7 +64,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
             start={[0, 0]}
             end={[1, 1]}
             locations={[0, 0.0001, 0.0002, 0.6802, 1]}
-            style={{ ...styles.avatar, ...styles.fakeAvatar}}/>
+            style={{ ...styles.avatar, ...styles.fakeAvatar}} />
           <Text style={styles.userNameLetter}>{firstLetter}</Text>
         </>}
       <Animated.View style={{...styles.cameraButton, opacity: animatedOpacity }}>

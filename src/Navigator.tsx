@@ -1,27 +1,32 @@
 import React from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
+import { enableScreens } from 'react-native-screens';
 import { useSelector } from 'react-redux';
+import { Colors } from '@styles';
 
 import { getIsUserSkippedLoginFlow } from './ducks';
-import { Home, Login, Account, SignUp, Projects, UpdatePassword } from './screens';
+import { Login, Account, SignUp, Projects, UpdatePassword, NewProject } from './screens';
 import { Routes } from './routes';
+import { Cross } from './components/icons';
 import { AvatarHeader } from './components/AvatartHeader';
-import { HeaderTitle } from './components/common';
+import { HeaderTitle, IconButton } from './components/common';
 
+enableScreens();
 const Stack = createStackNavigator<Screens>();
 
 const commonNavigationOptions: StackNavigationOptions = {
   headerStyle: {
     elevation: 0,
     shadowOpacity: 0,
+    backgroundColor: Colors.alabaster,
   },
 };
 
-const HomeHeader = () => <HeaderTitle title="Home screen" />;
 const SignUpHeader = () => <HeaderTitle title="Sign up" />;
-const MyProjectsHeader = () => <HeaderTitle title="My projects" />;
+const ProjectsHeader = () => <HeaderTitle title="My projects" />;
 const MyAccountHeader = () => <HeaderTitle title="My account" />;
 const UpdatePasswordHeader = () => <HeaderTitle title="My password" />;
+const NewProjectsHeader = () => <HeaderTitle title="New projects" />;
 
 export const Navigator: React.FC = () => {
   const isUserSkippedLoginFlow = useSelector(getIsUserSkippedLoginFlow);
@@ -29,23 +34,7 @@ export const Navigator: React.FC = () => {
 
   return (
     <Stack.Navigator initialRouteName={initialRouteName}>
-      <Stack.Screen
-        name={Routes.Home}
-        component={Home}
-        options={{
-          headerTitle: HomeHeader,
-          ...commonNavigationOptions
-        }}
-      />
       <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
-      <Stack.Screen
-        name={Routes.Account}
-        component={Account}
-        options={{
-          headerTitle: MyAccountHeader,
-          ...commonNavigationOptions
-        }}
-      />
       <Stack.Screen
         name={Routes.SignUp}
         component={SignUp}
@@ -55,11 +44,19 @@ export const Navigator: React.FC = () => {
         }}
       />
       <Stack.Screen
+        name={Routes.Account}
+        component={Account}
+        options={{
+          headerTitle: MyAccountHeader,
+          ...commonNavigationOptions
+        }}
+      />
+      <Stack.Screen
         name={Routes.Projects}
         component={Projects}
         options={({ navigation }) => ({
           headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
-          headerTitle: MyProjectsHeader,
+          headerTitle: ProjectsHeader,
           ...commonNavigationOptions,
         })}
       />
@@ -70,6 +67,20 @@ export const Navigator: React.FC = () => {
           headerTitle: UpdatePasswordHeader,
           ...commonNavigationOptions,
         }}
+      />
+      <Stack.Screen
+        name={Routes.NewProject}
+        component={NewProject}
+        options={({ navigation }) => ({
+          headerLeft: () => ( /* eslint-disable-line react/display-name */
+            <IconButton onPress={() => navigation.navigate(Routes.Projects)} accessibilityLabel="Close new project">
+              <Cross color={Colors.prussianBlue} />
+            </IconButton>
+          ),
+          headerTitle: NewProjectsHeader,
+          ...commonNavigationOptions,
+          animationTypeForReplace: 'pop',
+        })}
       />
     </Stack.Navigator>
   );

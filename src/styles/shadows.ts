@@ -6,5 +6,5 @@ export const Shadows: Record<string, ShadowStyleIOS & { elevation: number }> = {
     shadowColor: '#2934D0',
     shadowOffset: { height: 8, width: 0 },
     shadowOpacity: 0.15,
-  }
+  },
 };

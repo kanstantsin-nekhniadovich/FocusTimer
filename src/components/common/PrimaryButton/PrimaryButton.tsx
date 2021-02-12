@@ -30,6 +30,7 @@ export const PrimaryButton: React.FC<Props> = ({ title, variant = 'standard', si
       activeOpacity={0.7}
       style={btnStyles}
       {...rest}
+      disabled={disabled}
     >
       <Text style={labelStyles}>{title}</Text>
     </TouchableOpacity>

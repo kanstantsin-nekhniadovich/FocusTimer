@@ -8,8 +8,7 @@ import { WelcomeHeader, Elipse56 } from '../../components/icons';
 import { DividerBlock, DividerLine, PrimaryButton, OverlayLoader } from '../../components/common';
 import { SignUpForm } from '../../components/SignUpForm';
 import { SkipButton } from '../../components/SkipButton';
-import { getUser, getIsUserLoading, createFacebookUserRequest } from '../../ducks';
-import { isDefined } from '../../utils/isDefined';
+import { getIsUserLoading, createFacebookUserRequest } from '../../ducks';
 import { styles } from './styles';
 
 interface Props {
@@ -18,19 +17,10 @@ interface Props {
 
 export const SignUp: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
   const isLoading = useSelector(getIsUserLoading);
   const signUpWithFacebook = React.useCallback(() => {
     dispatch(createFacebookUserRequest());
   }, []);
-
-  React.useEffect(() => {
-    if (!isDefined(user)) {
-      return;
-    }
-
-    navigation.navigate(Routes.Account);
-  }, [user, navigation]);
 
   return (
     <>

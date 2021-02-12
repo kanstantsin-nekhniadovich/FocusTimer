@@ -1,4 +1,4 @@
-import { User } from './types';
+import { User, Project } from './types';
 
 export namespace Response {
   export type AuthPayload = {
@@ -9,5 +9,7 @@ export namespace Response {
 
   export type All =
     | AuthPayload
-    | User;
+    | User
+    | Project
+    | Project[];
 }

@@ -12,7 +12,7 @@ import { getUser, logoutRequest, getIsUserLoading, getIsFacebookAuth, facebookLo
 import { styles } from './styles';
 
 interface Props {
-  navigation: StackNavigationProp<Screens, 'Account'>;
+  navigation: StackNavigationProp<Screens, Routes.Account>;
 }
 
 export const Account: React.FC<Props> = ({ navigation }) => {
@@ -31,15 +31,11 @@ export const Account: React.FC<Props> = ({ navigation }) => {
 
   const logout = React.useCallback(async () => {
     isFacebookAuth ? dispatch(facebookLogoutRequest()) : dispatch(logoutRequest());
-    navigation.navigate(Routes.Home);
+    navigation.navigate(Routes.Login);
   }, [navigation, isFacebookAuth]);
 
   if (!isDefined(user)) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.notLoginMessage}>User is not logged in</Text>
-      </View>
-    );
+    return <OverlayLoader />;
   }
 
   return (

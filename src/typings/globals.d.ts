@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import { Epic } from 'redux-observable';
-import { AuthActions, UserReducer, UiReducer } from '../ducks';
-import { AuthReducer, UserActions, UiActions } from '../ducks';
+import { AuthReducer, UserReducer, UiReducer, ProjectsReducer } from '../ducks';
+import { AuthActions, UserActions, UiActions, ProjectsActions } from '../ducks';
 import { Services } from '../graphql/services';
 
 declare global {
@@ -10,12 +10,14 @@ declare global {
     auth: AuthReducer;
     user: UserReducer;
     ui: UiReducer;
+    projects: ProjectsReducer;
   }
 
   export type AppActions = 
     | AuthActions
     | UserActions
-    | UiActions;
+    | UiActions
+    | ProjectsActions;
 
   export type AppEpic = Epic<AppActions, AppActions, Store, Services>;
   export type ActionHandler<State, Action> = (state: S, action: ActionType<Action>) => State;
@@ -35,12 +37,13 @@ declare global {
   export type NormalizedResponse<T> = SuccessResponse<T> | FailureResponse;
 
   export type Screens = {
-    Home: undefined,
-    Login: undefined,
-    Account: undefined,
-    SignUp: undefined,
-    Projects: undefined,
-    UpdatePassword: { password: string },
+    Home: undefined;
+    Login: undefined;
+    Account: undefined;
+    SignUp: undefined;
+    Projects: undefined;
+    UpdatePassword: { password: string };
+    NewProject: undefined;
   }
 
   export namespace NodeJs {
