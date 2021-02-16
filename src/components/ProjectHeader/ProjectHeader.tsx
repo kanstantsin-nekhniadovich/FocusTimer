@@ -13,5 +13,5 @@ interface Props {
 export const ProjectHeader: React.FC<Props> = ({ route }) => {
   const project = useSelector(getProjectById(route.params.id));
 
-  return <HeaderTitle title={project.title} />
+  return <HeaderTitle title={project.title} />;
 };
