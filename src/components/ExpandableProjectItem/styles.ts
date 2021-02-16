@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     width: 30,
     height: '100%',
   },
-  titleButton: {
+  pressableTitle: {
     width: '75%',
     height: '100%',
     flexDirection: 'row',

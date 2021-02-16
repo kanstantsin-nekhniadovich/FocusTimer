@@ -116,7 +116,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         >
           {isCompleted ? <Restore /> : <Play />}
         </IconButton>
-        <Pressable style={styles.titleButton} onLongPress={onLongPress}>
+        <Pressable style={styles.pressableTitle} onLongPress={onLongPress}>
           <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
         </Pressable>
         <Animated.View style={arrowHolderStyles}>

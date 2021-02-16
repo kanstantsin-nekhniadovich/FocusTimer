@@ -56,7 +56,7 @@ export const handleFetchProjectsSuccess: ActionHandler<State, typeof fetchProjec
   };
 };
 
-export const handlefFetchProjectsFailure: ActionHandler<State, typeof fetchProjectsFailure> = (state) => ({
+export const handleFetchProjectsFailure: ActionHandler<State, typeof fetchProjectsFailure> = (state) => ({
   ...state,
   isLoading: false,
 });
@@ -67,4 +67,4 @@ export const projectsReducer = createReducer(initialState)
   .handleAction(createProjectFailure, handleCreateProjectFailure)
   .handleAction(fetchProjectsRequest, handleFetchProjectsRequest)
   .handleAction(fetchProjectsSuccess, handleFetchProjectsSuccess)
-  .handleAction(fetchProjectsFailure, handlefFetchProjectsFailure);
+  .handleAction(fetchProjectsFailure, handleFetchProjectsFailure);
