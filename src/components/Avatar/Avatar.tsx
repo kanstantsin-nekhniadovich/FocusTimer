@@ -63,7 +63,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
             colors={['rgba(129, 140, 223, 0.45)', 'rgba(110, 120, 198, 0.888211)', 'rgba(84, 96, 182, 0.45)', '#001F5A', '#6E78C6']}
             start={[0, 0]}
             end={[1, 1]}
-            locations={[0, 0.0001, 0.0002, 0.6802, 1]}
+            locations={[0, 0.001, 0.002, 0.6802, 1]}
             style={{ ...styles.avatar, ...styles.fakeAvatar}} />
           <Text style={styles.userNameLetter}>{firstLetter}</Text>
         </>}

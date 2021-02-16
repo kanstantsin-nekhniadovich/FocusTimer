@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Routes } from '../../routes';
 import { CreateNewProjectHeader, CircePlus } from '../../components/icons';
-import { IconButton, ProjectsBackground, DividerBlock, OverlayLoader } from '../../components/common';
+import { IconButton, ProjectsBackground, DividerBlock, OverlayLoader, LinesBackground } from '../../components/common';
 import { TimerStartButton } from '../../components/TimerStartButton';
+import { ProjectsList } from '../../components/ProjectsList';
 import { fetchProjectsRequest, getProjects, getIsProjectsLoading } from '../../ducks';
 import { isEmpty } from '../../utils/isEmpty';
 
@@ -28,14 +29,19 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
     dispatch(fetchProjectsRequest());
   }, []);
 
-  if (isEmpty(projects) && isProjectLoading) {
+  const thereAreNoProjects = isEmpty(projects);
+
+  const addProjectsButtonStyles = React.useMemo(() =>
+    thereAreNoProjects ? styles.addProject : { ...styles.addProject, ...styles.leftAligned }, [thereAreNoProjects]);
+
+  if (thereAreNoProjects && isProjectLoading) {
     return <OverlayLoader />;
   }
 
   return (
     <View style={styles.container}>
       <IconButton
-        style={styles.addProject}
+        style={addProjectsButtonStyles}
         accessibilityLabel="add project"
         onPress={addProject}
         colorOnPress="rgba(110, 120, 198, 0.15)"
@@ -43,8 +49,14 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
         <CircePlus />
         <Text style={styles.addProjectLabel}>Add project</Text>
       </IconButton>
-      <DividerBlock height={140} />
-      <CreateNewProjectHeader />
+      {thereAreNoProjects
+        ? (<>
+          <DividerBlock height={180} />
+          <CreateNewProjectHeader />
+          <LinesBackground />
+        </>)
+        : <ProjectsList />
+      }
       <View style={styles.timerStartButton}><TimerStartButton /></View>
       <ProjectsBackground />
     </View>

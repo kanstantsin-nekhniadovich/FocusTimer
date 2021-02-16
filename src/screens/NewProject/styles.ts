@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
+import { Common } from '@styles';
 
 const height = Dimensions.get('screen').height;
 const isIOS = Platform.OS === 'ios';
@@ -6,10 +7,10 @@ const isIOS = Platform.OS === 'ios';
 export const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    height: Dimensions.get('screen').height,
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingTop: 60,
+    ...Common.container,
   },
   elipse16: {
     position: 'absolute',

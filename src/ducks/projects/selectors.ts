@@ -1,2 +1,4 @@
-export const getIsProjectsLoading = (store: Store) => store.projects.isLoading;
-export const getProjects = (store: Store) => store.projects.projects;
+import { Project } from '@typings';
+
+export const getIsProjectsLoading = (store: Store): boolean => store.projects.isLoading;
+export const getProjects = (store: Store): Project[] => store.projects.projects;

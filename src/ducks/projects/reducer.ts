@@ -27,6 +27,7 @@ export const handleCreateProjectRequest: ActionHandler<State, typeof createProje
 
 export const handleCreateProjectSuccess: ActionHandler<State, typeof createProjectSuccess> = (state, action) => {
   const { id, title, status, note } = action.payload;
+  console.log(action.payload);
 
   return {
     ...state,

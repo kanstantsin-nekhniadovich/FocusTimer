@@ -21,7 +21,7 @@ declare global {
     | ProjectsActions;
 
   export type AppEpic = Epic<AppActions, AppActions, Store, Services>;
-  export type ActionHandler<State, Action> = (state: S, action: ActionType<Action>) => State;
+  export type ActionHandler<State, Action> = (state: State, action: ActionType<Action>) => State;
   
   type SuccessResponse<T> = {
     status: 'SUCCESS';

@@ -1,19 +1,25 @@
-import { StyleSheet, Dimensions, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Colors, Typography } from '@styles';
-
-const height = Dimensions.get('screen').height;
-const isIOS = Platform.OS === 'ios';
 
 export const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    height: Dimensions.get('screen').height,
+    flex: 1,
     alignItems: 'center',
+    backgroundColor: Colors.alabaster,
+    paddingTop: 18,
+    paddingHorizontal: 16,
   },
   addProject: {
+    position: 'absolute',
     top: 73,
     flexDirection: 'row',
     width: 125,
+  },
+  leftAligned: {
+    top: undefined,
+    bottom: 150,
+    left: 15,
   },
   addProjectLabel: {
     ...Typography.secondary,
@@ -23,6 +29,6 @@ export const styles = StyleSheet.create({
   },
   timerStartButton: {
     position: 'absolute',
-    bottom: (isIOS ? 0.3 : 0.21) * height,
+    bottom: 75,
   },
 });

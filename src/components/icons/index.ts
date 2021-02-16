@@ -20,3 +20,7 @@ export { Elipse17 } from './Elipse17';
 export { Elipse18 } from './Elipse18';
 export { Elipse274 } from './Elipse274';
 export { Count7 } from './Count7';
+export { Play } from './Play';
+export { Arrow } from './Arrow';
+export { Notes } from './Notes';
+export { Delete } from './Delete';
