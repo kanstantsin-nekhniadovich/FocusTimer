@@ -59,7 +59,7 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible }) => {
           accessibilityLabel="Remove project"
           onPress={onDelete}
         >
-          <Delete />
+          <Delete width={22} />
         </IconButton>
       </View>
     </>

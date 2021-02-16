@@ -39,11 +39,17 @@ export const styles = StyleSheet.create({
     width: 30,
     height: '100%',
   },
+  titleButton: {
+    width: '75%',
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   title: {
     ...Typography.subtitle,
     color: Colors.prussianBlue,
     marginLeft: 5,
-    width: '75%',
+    width: '100%',
   },
   tasksIndicator: {
     ...Typography.subtitleSmall,

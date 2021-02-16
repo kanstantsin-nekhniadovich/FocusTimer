@@ -5,7 +5,7 @@ import { Project, Status } from '@typings';
 
 import { ToolsMenu } from './ToolsMenu';
 import { IconButton } from '../common';
-import { Play, Arrow } from '../icons';
+import { Play, Arrow, Restore } from '../icons';
 import { styles } from './styles';
 
 interface Props {
@@ -39,14 +39,14 @@ const BIG_ITEM_HEIGHT = 120;
 export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isToolsMenuOpened, setIsToolsMenuOpened] = React.useState(false);
-
-  const gradientConfig = GRADIENT_CONFIG[project.status];
-
-  const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+  
   const animatedHeight = React.useRef(new Animated.Value(SMALL_ITEM_HEIGHT)).current;
   const animatedRotate = React.useRef(new Animated.Value(0)).current;
   const animatedOpacity = React.useRef(new Animated.Value(0)).current;
   
+  const gradientConfig = GRADIENT_CONFIG[project.status];
+  const isCompleted = project.status === 'COMPLETED';
+
   const toggleExpandProject = React.useCallback(() => {
     setIsExpanded(!isExpanded);
   }, [isExpanded, isToolsMenuOpened]);
@@ -77,7 +77,8 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         useNativeDriver: false,
       }),
       Animated.timing(animatedOpacity, {
-        duration: 120,
+        delay: enable ? 100 : 0,
+        duration: enable ? 120 : 60,
         toValue: enable ? 1 : 0,
         useNativeDriver: false,
       }),
@@ -102,8 +103,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   , [animatedRotateValue]);
 
   return (
-    <AnimatedPressable
-      onLongPress={onLongPress}
+    <Animated.View
       style={{...styles.item, height: animatedHeight }}>
       <LinearGradient
         {...gradientConfig}
@@ -114,9 +114,11 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
           accessibilityLabel={`Run ${project.title} project`}
           onPress={onPlay}
         >
-          <Play />
+          {isCompleted ? <Restore /> : <Play />}
         </IconButton>
-        <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
+        <Pressable style={styles.titleButton} onLongPress={onLongPress}>
+          <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
+        </Pressable>
         <Animated.View style={arrowHolderStyles}>
           <IconButton
             accessibilityLabel="Expand project"
@@ -135,6 +137,6 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         }
       </Animated.View>
       <Text style={styles.tasksIndicator}>0/12</Text>
-    </AnimatedPressable>
+    </Animated.View>
   );
 };
