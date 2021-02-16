@@ -138,7 +138,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
       </View>
       <Animated.View style={{ opacity: animatedOpacity }}>
         {isToolsMenuOpened
-          ? <ToolsMenu isVisible={isToolsMenuOpened} />
+          ? <ToolsMenu isVisible={isToolsMenuOpened} project={project} />
           : <View><Text>Tasks list</Text></View>
         }
       </Animated.View>

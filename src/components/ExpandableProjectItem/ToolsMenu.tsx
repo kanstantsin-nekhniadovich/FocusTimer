@@ -1,23 +1,27 @@
 import React from 'react';
 import { View, Animated } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Project } from '@typings';
 
 import { toolsMenuStyles } from './styles';
 import { Edit, Notes, Delete } from '../icons';
 import { IconButton } from '../common';
+import { Routes } from 'src/routes';
 
 interface Props {
+  project: Project;
   isVisible: boolean;
 }
 
 const ANIMATION_DURATION = 400;
 const ANIMATION_DELAY = 100;
 
-export const ToolsMenu: React.FC<Props> = ({ isVisible }) => {
+export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
   const animatedScale = React.useRef(new Animated.Value(0)).current;
+  const navigation = useNavigation();
 
-  const onEdit = React.useCallback(() => {
-    console.log('on edit');
-  }, []);
+  const onEdit = React.useCallback(() =>
+    navigation.navigate(Routes.Project, { id: project.id }), [project]);
 
   const onEditNote = React.useCallback(() => {
     console.log('on note');
