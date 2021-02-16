@@ -8,6 +8,9 @@ import {
   fetchProjectsRequest,
   fetchProjectsSuccess,
   fetchProjectsFailure,
+  deleteProjectRequest,
+  deleteProjectFailure,
+  deleteProjectSuccess,
 } from './actions';
 
 interface State {
@@ -30,7 +33,7 @@ export const handleCreateProjectSuccess: ActionHandler<State, typeof createProje
 
   return {
     ...state,
-    projects: { ...state.projects, id: { id, title, status, note }},
+    projects: { ...state.projects, [id]: { id, title, status, note }},
     isLoading: false,
   };
 };
@@ -60,10 +63,34 @@ export const handleFetchProjectsFailure: ActionHandler<State, typeof fetchProjec
   isLoading: false,
 });
 
+export const handleDeleteProjectRequest: ActionHandler<State, typeof deleteProjectRequest> = (state) => ({
+  ...state,
+  isLoading: true,
+});
+
+export const handleDeleteProjectSuccess: ActionHandler<State, typeof deleteProjectSuccess> = (state, action) => {
+  const { id } = action.payload;
+
+  return {
+    ...state,
+    isLoading: false,
+    projects: Object.values(state.projects).reduce((acc, current) =>
+      current.id === id ? acc : { ...acc, [current.id]: current }, {}),
+  };
+};
+
+export const handleDeleteProjectFailure: ActionHandler<State, typeof deleteProjectFailure> = (state) => ({
+  ...state,
+  isLoading: false,
+});
+
 export const projectsReducer = createReducer(initialState)
   .handleAction(createProjectRequest, handleCreateProjectRequest)
   .handleAction(createProjectSuccess, handleCreateProjectSuccess)
   .handleAction(createProjectFailure, handleCreateProjectFailure)
   .handleAction(fetchProjectsRequest, handleFetchProjectsRequest)
   .handleAction(fetchProjectsSuccess, handleFetchProjectsSuccess)
-  .handleAction(fetchProjectsFailure, handleFetchProjectsFailure);
+  .handleAction(fetchProjectsFailure, handleFetchProjectsFailure)
+  .handleAction(deleteProjectRequest, handleDeleteProjectRequest)
+  .handleAction(deleteProjectSuccess, handleDeleteProjectSuccess)
+  .handleAction(deleteProjectFailure, handleDeleteProjectFailure);

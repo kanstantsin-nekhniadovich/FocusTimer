@@ -9,6 +9,9 @@ import {
   fetchProjectsFailure,
   fetchProjectsRequest,
   fetchProjectsSuccess,
+  deleteProjectRequest,
+  deleteProjectFailure,
+  deleteProjectSuccess,
 } from './actions';
 
 import { handleResponse } from '../../utils/handleResponse';
@@ -43,4 +46,16 @@ export const fetchProjectsEpic: AppEpic = (action$, _, { projectsService }) =>
     )),
   );
 
-export const projectsEpic = combineEpics(createProjectEpic, fetchProjectsEpic);
+export const deleteProjectEpic: AppEpic = (action$, _, { projectsService }) =>
+  action$.pipe(
+    filter(isActionOf(deleteProjectRequest)),
+    pluck('payload'),
+    mergeMap(projectsService.deleteProject),
+    map(handleResponse),
+    mergeMap(handler => handler(
+      res => [deleteProjectSuccess(res.data)],
+      () => [deleteProjectFailure(), showAlert({ type: 'error', message: 'Unable to delete project.' })],
+    )),
+  );
+
+export const projectsEpic = combineEpics(createProjectEpic, fetchProjectsEpic, deleteProjectEpic);

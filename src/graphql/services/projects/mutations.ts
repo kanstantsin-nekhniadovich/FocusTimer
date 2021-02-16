@@ -23,3 +23,14 @@ export const createProject = gql`
     }
   }
 `;
+
+export const deleteProject = gql`
+  mutation($id: ID!) {
+    deleteProject(id: $id) {
+      id
+      title
+      status
+      note
+    }
+  }
+`;

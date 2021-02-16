@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Animated } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Project } from '@typings';
 
 import { toolsMenuStyles } from './styles';
 import { Edit, Notes, Delete } from '../icons';
 import { IconButton } from '../common';
-import { Routes } from 'src/routes';
+import { Routes } from '../../routes';
+import { deleteProjectRequest } from '../../ducks';
 
 interface Props {
   project: Project;
@@ -17,6 +19,7 @@ const ANIMATION_DURATION = 400;
 const ANIMATION_DELAY = 100;
 
 export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
+  const dispatch = useDispatch();
   const animatedScale = React.useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
 
@@ -28,8 +31,8 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
   }, []);
 
   const onDelete = React.useCallback(() => {
-    console.log('on delete');
-  }, []);
+    dispatch(deleteProjectRequest(project.id));
+  }, [project]);
 
   React.useEffect(() => {
     Animated.timing(animatedScale, {
