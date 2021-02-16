@@ -45,6 +45,7 @@ declare global {
     Projects: undefined;
     UpdatePassword: { password: string };
     NewProject: undefined;
+    Project: { id: string };
   }
 
   export namespace NodeJs {

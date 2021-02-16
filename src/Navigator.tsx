@@ -5,10 +5,11 @@ import { useSelector } from 'react-redux';
 import { Colors } from '@styles';
 
 import { getIsUserSkippedLoginFlow } from './ducks';
-import { Login, Account, SignUp, Projects, UpdatePassword, NewProject } from './screens';
+import { Login, Account, SignUp, Projects, UpdatePassword, NewProject, Project } from './screens';
 import { Routes } from './routes';
 import { Cross } from './components/icons';
 import { AvatarHeader } from './components/AvatartHeader';
+import { ProjectHeader } from './components/ProjectHeader';
 import { HeaderTitle, IconButton } from './components/common';
 
 enableScreens();
@@ -80,6 +81,15 @@ export const Navigator: React.FC = () => {
           headerTitle: NewProjectsHeader,
           ...commonNavigationOptions,
           animationTypeForReplace: 'pop',
+        })}
+      />
+      <Stack.Screen
+        name={Routes.Project}
+        component={Project}
+        options={({ navigation, route }) => ({
+          headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
+          headerTitle: () => <ProjectHeader route={route} />, /* eslint-disable-line react/display-name */
+          ...commonNavigationOptions,
         })}
       />
     </Stack.Navigator>

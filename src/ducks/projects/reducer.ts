@@ -11,12 +11,12 @@ import {
 } from './actions';
 
 interface State {
-  projects: Project[];
+  projects: Record<Id, Project>;
   isLoading: boolean;
 }
 
 const initialState: State = {
-  projects: [],
+  projects: {},
   isLoading: false,
 };
 
@@ -27,11 +27,10 @@ export const handleCreateProjectRequest: ActionHandler<State, typeof createProje
 
 export const handleCreateProjectSuccess: ActionHandler<State, typeof createProjectSuccess> = (state, action) => {
   const { id, title, status, note } = action.payload;
-  console.log(action.payload);
 
   return {
     ...state,
-    projects: [...state.projects, { id, title, status, note }],
+    projects: { ...state.projects, id: { id, title, status, note }},
     isLoading: false,
   };
 };
@@ -47,12 +46,12 @@ export const handleFetchProjectsRequest: ActionHandler<State, typeof fetchProjec
 });
 
 export const handleFetchProjectsSuccess: ActionHandler<State, typeof fetchProjectsSuccess> = (state, action) => {
-  const projects = action.payload.map(({ id, title, status, note }) => ({ id, status, title, note }));
+  const projects = action.payload.reduce((acc, current) => ({ ...acc, [current.id]: current }), {});
 
   return {
     ...state,
     isLoading: false,
-    projects: [...state.projects, ...projects],
+    projects,
   };
 };
 

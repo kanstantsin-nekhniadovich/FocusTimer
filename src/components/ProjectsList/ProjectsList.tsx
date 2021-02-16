@@ -13,12 +13,13 @@ export const ProjectsList = () => {
   const isLoading = useSelector(getIsProjectsLoading);
 
   const renderItem = React.useCallback(({ item }) => <ExpandableProjectItem project={item} />, []);
+  const projectsList = React.useMemo(() => Object.values(projects), [projects]);
 
   return (
     <View style={styles.container}>
       {isLoading && <OverlayLoader />}
       <FlatList<Project>
-        data={projects}
+        data={projectsList}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

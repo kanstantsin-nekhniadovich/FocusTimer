@@ -4,3 +4,4 @@ export { SignUp } from './SignUp';
 export { Projects } from './Projects';
 export { UpdatePassword } from './UpdatePassword'; 
 export { NewProject } from './NewProject';
+export { Project } from './Project';

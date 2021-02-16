@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, Text, View, Animated } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient, LinearGradientProps } from 'expo-linear-gradient';
 import { Project, Status } from '@typings';
 
@@ -7,6 +8,7 @@ import { ToolsMenu } from './ToolsMenu';
 import { IconButton } from '../common';
 import { Play, Arrow, Restore } from '../icons';
 import { styles } from './styles';
+import { Routes } from 'src/routes';
 
 interface Props {
   project: Project;
@@ -37,6 +39,7 @@ const SMALL_ITEM_HEIGHT = 64;
 const BIG_ITEM_HEIGHT = 120;
 
 export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
+  const navigation = useNavigation();
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isToolsMenuOpened, setIsToolsMenuOpened] = React.useState(false);
   
@@ -51,7 +54,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
     setIsExpanded(!isExpanded);
   }, [isExpanded, isToolsMenuOpened]);
 
-  const onLongPress = React.useCallback(() => {
+  const toggleMenuToolsVisibility = React.useCallback(() => {
     if (isExpanded && !isToolsMenuOpened) {
       return;
     }
@@ -59,6 +62,9 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
     !isToolsMenuOpened && setIsToolsMenuOpened(true);
     setIsExpanded(!isExpanded);
   }, [isToolsMenuOpened, isExpanded]);
+
+  const navigateToProject = React.useCallback(() =>
+    navigation.navigate(Routes.Project, { id: project.id }), [project]);
 
   const onPlay = React.useCallback(() => {
     console.log('on play');
@@ -116,7 +122,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         >
           {isCompleted ? <Restore /> : <Play />}
         </IconButton>
-        <Pressable style={styles.pressableTitle} onLongPress={onLongPress}>
+        <Pressable style={styles.pressableTitle} onLongPress={toggleMenuToolsVisibility} onPress={navigateToProject}>
           <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
         </Pressable>
         <Animated.View style={arrowHolderStyles}>

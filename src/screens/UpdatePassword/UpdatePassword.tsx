@@ -12,7 +12,7 @@ import { PrimaryButton } from '../../components/common/PrimaryButton';
 import { styles } from './styles';
 import { updateUserRequest, getIsUserLoading } from '../../ducks';
 
-type Props = StackScreenProps<Screens, 'UpdatePassword'>;
+type Props = StackScreenProps<Screens, Routes.UpdatePassword>;
 
 const validationSchema = yup.object().shape({
   password: yup.string()

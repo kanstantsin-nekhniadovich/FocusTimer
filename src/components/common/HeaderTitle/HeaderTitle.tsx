@@ -7,4 +7,4 @@ interface Props {
 }
 
 export const HeaderTitle: React.FC<Props> = ({ title }) =>
-  <Text style={Typography.h3}>{title}</Text>;
+  <Text numberOfLines={1} style={Typography.h3}>{title}</Text>;
