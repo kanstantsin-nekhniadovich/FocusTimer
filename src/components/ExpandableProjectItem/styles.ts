@@ -72,4 +72,9 @@ export const toolsMenuStyles = StyleSheet.create({
     height: 1,
     backgroundColor: 'rgba(0, 31, 90, 0.2)',
   },
+  confirmMessage: {
+    ...Typography.message,
+    lineHeight: 20,
+    color: Colors.white,
+  },
 });

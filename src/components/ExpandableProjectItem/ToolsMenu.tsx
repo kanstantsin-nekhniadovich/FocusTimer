@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Animated } from 'react-native';
+import { View, Animated, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Project } from '@typings';
+import { Typography } from '@styles';
 
 import { toolsMenuStyles } from './styles';
 import { Edit, Notes, Delete } from '../icons';
-import { IconButton } from '../common';
+import { IconButton, ConfirmModal } from '../common';
 import { Routes } from '../../routes';
 import { deleteProjectRequest } from '../../ducks';
 
@@ -19,9 +20,10 @@ const ANIMATION_DURATION = 400;
 const ANIMATION_DELAY = 100;
 
 export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
+  const [isModalOpened, setIsModalOpened] = React.useState(false);
   const dispatch = useDispatch();
-  const animatedScale = React.useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
+  const animatedScale = React.useRef(new Animated.Value(0)).current;
 
   const onEdit = React.useCallback(() =>
     navigation.navigate(Routes.Project, { id: project.id }), [project]);
@@ -30,9 +32,12 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
     console.log('on note');
   }, []);
 
-  const onDelete = React.useCallback(() => {
+  const removeProject = React.useCallback(() => {
     dispatch(deleteProjectRequest(project.id));
   }, [project]);
+
+  const closeModal = React.useCallback(() => setIsModalOpened(false), []);
+  const openModal = React.useCallback(() => setIsModalOpened(true), []);
 
   React.useEffect(() => {
     Animated.timing(animatedScale, {
@@ -64,11 +69,22 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
         </IconButton>
         <IconButton
           accessibilityLabel="Remove project"
-          onPress={onDelete}
+          onPress={openModal}
         >
           <Delete width={22} />
         </IconButton>
       </View>
+      <ConfirmModal
+        title="Remove project"
+        visible={isModalOpened}
+        onCancel={closeModal}
+        onOk={removeProject}
+        okText="Remove"
+        cancelText="Close"
+        messageContent={<Text style={toolsMenuStyles.confirmMessage}>
+          Are you sure that you want to remove <Text style={Typography.subtitleLarge}>{project.title}</Text> project?
+        </Text>}
+      />
     </>
   );
 };

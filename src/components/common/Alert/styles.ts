@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'solid',
     backgroundColor: Colors.concrete,
-    zIndex: zIndexes.alertZIndex,
+    zIndex: zIndexes.modalZIndex,
   },
   text: {
     ...Typography.primary,

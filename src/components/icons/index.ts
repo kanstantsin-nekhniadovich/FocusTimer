@@ -25,3 +25,4 @@ export { Arrow } from './Arrow';
 export { Notes } from './Notes';
 export { Delete } from './Delete';
 export { Restore } from './Restore';
+export { Logo } from './Logo';

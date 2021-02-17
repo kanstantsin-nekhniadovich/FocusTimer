@@ -9,3 +9,4 @@ export { HeaderTitle } from './HeaderTitle';
 export { IconButton } from './IconButton';
 export { ProjectsBackground } from './ProjectsBackground';
 export { LinesBackground } from './LinesBackground';
+export { ConfirmModal } from './ConfirmModal';
