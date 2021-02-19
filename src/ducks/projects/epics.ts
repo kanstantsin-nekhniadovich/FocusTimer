@@ -14,6 +14,7 @@ import {
   deleteProjectSuccess,
 } from './actions';
 
+import { PROJECTS_PER_REQUEST } from '../../settings';
 import { handleResponse } from '../../utils/handleResponse';
 import { showAlert } from '../ui';
 
@@ -38,7 +39,8 @@ export const createProjectEpic: AppEpic = (action$, _, { projectsService }) =>
 export const fetchProjectsEpic: AppEpic = (action$, _, { projectsService }) =>
   action$.pipe(
     filter(isActionOf(fetchProjectsRequest)),
-    mergeMap(projectsService.fetchProjects),
+    pluck('payload'),
+    mergeMap(({ skip }) => projectsService.fetchProjects({ skip, first: PROJECTS_PER_REQUEST })),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [fetchProjectsSuccess(res.data)],

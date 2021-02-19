@@ -22,6 +22,10 @@ export interface Project {
   note: string;
 }
 
+export interface FullProject extends Project {
+  tasks: Task[];
+}
+
 export interface Task {
   id: Id;
   title: string;

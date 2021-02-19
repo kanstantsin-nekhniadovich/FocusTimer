@@ -1,22 +1,25 @@
 import { gql } from '@apollo/client';
 
 export const projects = gql`
-  query {
-    projects {
-      id
-      title
-      status
-      note
-      tasks {
+  query($skip: Int, $first: Int) {
+    projects(skip: $skip, first: $first) {
+      projects {
         id
         title
-        cyclesCount
-        workTime
-        breakTime
         status
-        remainingTime
-        currentCycle
+        note
+        tasks {
+          id
+          title
+          cyclesCount
+          workTime
+          breakTime
+          status
+          remainingTime
+          currentCycle
+        }
       }
+      totalCount
     }
   }
 `;

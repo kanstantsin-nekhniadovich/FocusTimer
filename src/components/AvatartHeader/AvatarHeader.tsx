@@ -10,7 +10,7 @@ import { Routes } from '../../routes';
 import { styles } from './styles';
 
 interface Props {
-  navigation: StackNavigationProp<Screens, 'Projects'>;
+  navigation: StackNavigationProp<Screens, Routes.Projects>;
 }
 
 export const AvatarHeader: React.FC<Props> = ({ navigation }) => {

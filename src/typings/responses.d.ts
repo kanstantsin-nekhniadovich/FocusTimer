@@ -1,4 +1,4 @@
-import { User, Project, Task } from './types';
+import { User, FullProject } from './types';
 
 export namespace Response {
   export type AuthPayload = {
@@ -7,13 +7,14 @@ export namespace Response {
     user: User;
   }
 
-  export interface ProjectResponse extends Project {
-    tasks: Task[];
+  export interface Projects {
+    projects: FullProject[];
+    totalCount: number;
   }
 
   export type All =
     | AuthPayload
     | User
-    | Project
-    | ProjectResponse[];
+    | FullProject
+    | Projects;
 }

@@ -14,13 +14,15 @@ import {
 } from './actions';
 
 interface State {
-  projects: Record<Id, Project>;
+  projects: Project[];
   isLoading: boolean;
+  totalCount: number;
 }
 
 const initialState: State = {
-  projects: {},
+  projects: [],
   isLoading: false,
+  totalCount: 0,
 };
 
 export const handleCreateProjectRequest: ActionHandler<State, typeof createProjectRequest> = (state) => ({
@@ -33,7 +35,7 @@ export const handleCreateProjectSuccess: ActionHandler<State, typeof createProje
 
   return {
     ...state,
-    projects: { ...state.projects, [id]: { id, title, status, note }},
+    projects: [{ id, title, status, note }, ...state.projects],
     isLoading: false,
   };
 };
@@ -49,12 +51,13 @@ export const handleFetchProjectsRequest: ActionHandler<State, typeof fetchProjec
 });
 
 export const handleFetchProjectsSuccess: ActionHandler<State, typeof fetchProjectsSuccess> = (state, action) => {
-  const projects = action.payload.reduce((acc, current) => ({ ...acc, [current.id]: current }), {});
+  const { totalCount, projects } = action.payload;
 
   return {
     ...state,
     isLoading: false,
-    projects,
+    projects: [...state.projects, ...projects],
+    totalCount,
   };
 };
 
@@ -74,8 +77,7 @@ export const handleDeleteProjectSuccess: ActionHandler<State, typeof deleteProje
   return {
     ...state,
     isLoading: false,
-    projects: Object.values(state.projects).reduce((acc, current) =>
-      current.id === id ? acc : { ...acc, [current.id]: current }, {}),
+    projects: state.projects.filter(project => project.id !== id),
   };
 };
 

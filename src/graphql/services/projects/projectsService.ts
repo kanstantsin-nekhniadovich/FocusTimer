@@ -1,13 +1,13 @@
-import { Status, Response, Project } from '@typings';
+import { Status, Response, FullProject } from '@typings';
 import { api } from '../../api';
 import * as mutations from './mutations';
 import * as queries from './queries';
 
-export const fetchProjects = () =>
-  api.query<Response.ProjectResponse[]>({ query: queries.projects }, 'projects');
+export const fetchProjects = ({ skip, first }: { skip: number; first: number; }) =>
+  api.query<Response.Projects>({ query: queries.projects, variables: { skip, first } }, 'projects');
 
 export const createProject = (data: { title: string; status: Status }) =>
-  api.mutate<Response.ProjectResponse>({ mutation: mutations.createProject, variables: { data } }, 'createProject');
+  api.mutate<FullProject>({ mutation: mutations.createProject, variables: { data } }, 'createProject');
 
 export const deleteProject = (id: string) =>
-  api.mutate<Project>({ mutation: mutations.deleteProject, variables: { id } }, 'deleteProject');
+  api.mutate<FullProject>({ mutation: mutations.deleteProject, variables: { id } }, 'deleteProject');

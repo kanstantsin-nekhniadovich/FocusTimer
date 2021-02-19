@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Colors, Typography } from '@styles';
+
+const height = Dimensions.get('screen').height;
 
 export const styles = StyleSheet.create({
   container: {
@@ -30,5 +32,10 @@ export const styles = StyleSheet.create({
   timerStartButton: {
     position: 'absolute',
     bottom: 75,
+  },
+  list: {
+    width: '100%',
+    height: 0.6 * height,
+    overflow: 'hidden',
   },
 });

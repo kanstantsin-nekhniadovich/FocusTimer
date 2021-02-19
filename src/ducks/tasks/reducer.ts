@@ -14,7 +14,8 @@ const initialState: State = {
 };
 
 export const handleSetTasks: ActionHandler<State, typeof fetchProjectsSuccess> = (state, action) => {
-  const tasks = action.payload.reduce((acc, current) => ({ ...acc, [current.id]: [...current.tasks] }), {});
+  const { projects } = action.payload;
+  const tasks = projects.reduce((acc, current) => ({ ...acc, [current.id]: [...current.tasks] }), {});
 
   return { ...state, tasks };
 };
