@@ -37,6 +37,7 @@ export const handleCreateProjectSuccess: ActionHandler<State, typeof createProje
     ...state,
     projects: [{ id, title, status, note }, ...state.projects],
     isLoading: false,
+    totalCount: state.totalCount + 1,
   };
 };
 
