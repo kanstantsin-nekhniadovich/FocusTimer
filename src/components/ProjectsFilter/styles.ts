@@ -26,11 +26,15 @@ export const styles = StyleSheet.create({
     padding: 6,
     overflow: 'hidden',
   },
-  filterButton: {
+  iconButton: {
     height: 42,
     width: 42,
     position: 'absolute',
     right: 0,
+    zIndex: 0,
+  },
+  crossButton: {
+    zIndex: 2,
   },
   filterIsAppliedIcon: {
     position: 'absolute',

@@ -5,7 +5,7 @@ import { Colors } from '@styles';
 
 import { FilterItem } from './FilterItem';
 import { IconButton, DividerBlock } from '../common';
-import { Filter, Tick } from '../icons';
+import { Filter, Tick, Cross } from '../icons';
 import { styles } from './styles';
 import { isEmpty } from '../../utils/isEmpty';
 
@@ -61,7 +61,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
   return (
     <View style={styles.container}>
       <IconButton
-        style={styles.filterButton}
+        style={styles.iconButton}
         accessibilityLabel="Filter projects list"
         onPress={toggleFilterVisibility}
         colorOnPress="#c8eeee"
@@ -74,12 +74,12 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
       </IconButton>
       <Animated.View style={filterBlockStyles}>
         <IconButton
-          style={styles.filterButton}
+          style={{ ...styles.iconButton, ...styles.crossButton }}
           accessibilityLabel="Filter projects list"
           onPress={toggleFilterVisibility}
           colorOnPress="#c8eeee"
         >
-          <Filter />
+          <Cross color={Colors.prussianBlue} width={12} />
         </IconButton>
         <FilterItem status={Status.TODO} onPress={onChange} label="To do" checked={filter === Status.TODO} />
         <DividerBlock height={12} />
