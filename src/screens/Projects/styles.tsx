@@ -35,7 +35,9 @@ export const styles = StyleSheet.create({
   },
   list: {
     width: '100%',
-    height: 0.6 * height,
-    overflow: 'hidden',
+    height: 0.55 * height,
+  },
+  flatList: {
+    paddingTop: 5,
   },
 });

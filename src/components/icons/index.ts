@@ -26,3 +26,5 @@ export { Notes } from './Notes';
 export { Delete } from './Delete';
 export { Restore } from './Restore';
 export { Logo } from './Logo';
+export { Filter } from './Filter';
+export { Tick } from './Tick';

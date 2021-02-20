@@ -1,11 +1,10 @@
 import React from 'react';
 import { Pressable, Text, View, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient, LinearGradientProps } from 'expo-linear-gradient';
-import { Project, Status } from '@typings';
+import { Project } from '@typings';
 
 import { ToolsMenu } from './ToolsMenu';
-import { IconButton } from '../common';
+import { IconButton, StatusGradient } from '../common';
 import { Play, Arrow, Restore } from '../icons';
 import { styles } from './styles';
 import { Routes } from 'src/routes';
@@ -13,27 +12,6 @@ import { Routes } from 'src/routes';
 interface Props {
   project: Project;
 }
-
-const GRADIENT_CONFIG: Record<Status, LinearGradientProps> = {
-  TODO: {
-    colors: ['#707070', '#C9C9C9', '#484848'],
-    start: [1, 1],
-    end: [0, 0],
-    locations: [0, 0.8156, 1],
-  },
-  INPROGRESS: {
-    colors: ['rgba(99, 13, 106, 0.72)', 'rgba(153, 24, 164, 0.27)', 'rgba(153, 24, 164, 0.405405)', '#7B1A83'],
-    start: [0, 1],
-    end: [1, 0],
-    locations: [0.00259, 0.2084, 0.368, 1],
-  },
-  COMPLETED: {
-    colors: ['#07AB98', '#1DD98D'],
-    start: [1, 0],
-    end: [0, 1],
-    locations: [0, 1],
-  },
-};
 
 const SMALL_ITEM_HEIGHT = 64;
 const BIG_ITEM_HEIGHT = 120;
@@ -47,7 +25,6 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const animatedRotate = React.useRef(new Animated.Value(0)).current;
   const animatedOpacity = React.useRef(new Animated.Value(0)).current;
   
-  const gradientConfig = GRADIENT_CONFIG[project.status];
   const isCompleted = project.status === 'COMPLETED';
 
   const toggleExpandProject = React.useCallback(() => {
@@ -111,10 +88,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   return (
     <Animated.View
       style={{...styles.item, height: animatedHeight }}>
-      <LinearGradient
-        {...gradientConfig}
-        style={styles.gradient}
-      />
+      <StatusGradient status={project.status} style={styles.gradient} />
       <View style={styles.titleHolder}>
         <IconButton
           accessibilityLabel={`Run ${project.title} project`}
