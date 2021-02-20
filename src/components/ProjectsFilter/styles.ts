@@ -32,6 +32,18 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
   },
+  filterIsAppliedIcon: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 12,
+    height: 12,
+    backgroundColor: Colors.alabaster,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 6,
+    zIndex: 1,
+  },
 });
 
 export const filterItemStyles = StyleSheet.create({

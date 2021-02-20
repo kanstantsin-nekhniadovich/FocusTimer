@@ -9,14 +9,14 @@ import { Tick } from '../icons';
 import { filterItemStyles } from './styles';
 
 interface Props {
-  onPress: (status: Status) => void;
+  onPress: (status: Status | EmptyString) => void;
   label: string;
   status: Status;
   checked: boolean;
 }
 
 export const FilterItem: React.FC<Props> = ({ onPress, label, status, checked }) => {
-  const onPressHandler = React.useCallback(() => onPress(status), [status, onPress]);
+  const onPressHandler = React.useCallback(() => onPress(checked ? '' : status), [status, onPress, checked]);
 
   return (
     <TouchableOpacity style={filterItemStyles.item} onPress={onPressHandler}>

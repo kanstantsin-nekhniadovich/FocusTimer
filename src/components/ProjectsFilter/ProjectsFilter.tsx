@@ -1,15 +1,17 @@
 import { Status as StatusType } from '@typings';
 import React from 'react';
 import { View, Animated } from 'react-native';
+import { Colors } from '@styles';
 
 import { FilterItem } from './FilterItem';
 import { IconButton, DividerBlock } from '../common';
-import { Filter } from '../icons';
+import { Filter, Tick } from '../icons';
 import { styles } from './styles';
+import { isEmpty } from '../../utils/isEmpty';
 
 interface Props {
   filter: StatusType | EmptyString;
-  onChange: (status: StatusType) => void;
+  onChange: (status: StatusType | EmptyString) => void;
 }
 
 enum Status {
@@ -23,6 +25,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
   const [scale, setScale] = React.useState(0);
   const animatedOpacity = React.useRef(new Animated.Value(1)).current;
   const animatedScale = React.useRef(new Animated.Value(1)).current;
+  const isFilterApplied = !isEmpty(filter);
 
   React.useEffect(() => {
     isVisible && setScale(1);
@@ -63,6 +66,10 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
         onPress={toggleFilterVisibility}
         colorOnPress="#c8eeee"
       >
+        {isFilterApplied &&
+          <View style={styles.filterIsAppliedIcon}>
+            <Tick width={10} color={Colors.prussianBlue} />
+          </View>}
         <Filter />
       </IconButton>
       <Animated.View style={filterBlockStyles}>
