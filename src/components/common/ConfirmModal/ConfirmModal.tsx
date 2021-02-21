@@ -16,15 +16,41 @@ interface Props {
   cancelText: string;
   message?: string;
   messageContent?: React.ReactNode;
+  closeOnClickOutside?: boolean;
 }
 
-export const ConfirmModal: React.FC<Props> = ({ visible, title, message, messageContent, onOk, onCancel, okText, cancelText }) => {
-  const closeModal = React.useCallback(() => isDefined(onCancel) && onCancel(), [onCancel]);
+export const ConfirmModal: React.FC<Props> = ({ 
+  visible,
+  title,
+  message,
+  messageContent,
+  onOk,
+  onCancel,
+  okText,
+  cancelText,
+  closeOnClickOutside = true,
+}) => {
+  const closeModal = React.useCallback(() => {
+    if (!isDefined(onCancel)) {
+      return;
+    }
+
+    onCancel();
+  }, [onCancel]);
 
   const submitModal = React.useCallback(() => {
     onOk();
     closeModal();
   }, [onOk, closeModal]);
+
+  const onStartShouldSetResponder = React.useCallback(() => {
+    if (!closeOnClickOutside) {
+      return false;
+    }
+
+    closeModal();
+    return true;
+  }, [closeModal, closeOnClickOutside]);
 
   return (
     <Modal
@@ -33,8 +59,8 @@ export const ConfirmModal: React.FC<Props> = ({ visible, title, message, message
       visible={visible}
       onDismiss={onCancel}
     >
-      <View style={styles.modal}>
-        <View style={styles.overlay}></View>
+      <View style={styles.modal} >
+        <View style={styles.overlay} onStartShouldSetResponder={onStartShouldSetResponder} />
         <LinearGradient
           colors={['#232CC6', '#0015B5', '#343882']}
           start={[0, 0]}

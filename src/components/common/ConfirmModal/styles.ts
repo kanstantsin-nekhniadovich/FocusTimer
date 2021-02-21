@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Colors, zIndexes, Typography } from '@styles';
 
 export const styles = StyleSheet.create({
@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   overlay: {
+    height: Dimensions.get('screen').height,
+    width: Dimensions.get('screen').width,
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -18,7 +20,7 @@ export const styles = StyleSheet.create({
     right: 0,
     backgroundColor: Colors.white,
     opacity: 0.6,
-    zIndex: -1,
+    zIndex: 0,
   },
   body: {
     position: 'relative',
