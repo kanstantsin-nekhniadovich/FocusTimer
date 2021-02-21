@@ -6,7 +6,7 @@ import { uiReducer } from './ui';
 import { projectsReducer } from './projects';
 import { tasksReducer } from './tasks';
 
-export const rootReducer = combineReducers<Store, AppActions>({
+export const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   ui: uiReducer,

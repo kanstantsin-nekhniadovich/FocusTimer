@@ -116,7 +116,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
           : <View><Text>Tasks list</Text></View>
         }
       </Animated.View>
-      <Text style={styles.tasksIndicator}>0/12</Text>
+      {!isToolsMenuOpened && <Text style={styles.tasksIndicator}>0/12</Text>}
     </Animated.View>
   );
 };

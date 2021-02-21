@@ -20,5 +20,5 @@ export const handleSetTasks: ActionHandler<State, typeof fetchProjectsSuccess> =
   return { ...state, tasks };
 };
 
-export const tasksReducer = createReducer(initialState)
+export const tasksReducer = createReducer<State, AppActions>(initialState)
   .handleAction(fetchProjectsSuccess, handleSetTasks);

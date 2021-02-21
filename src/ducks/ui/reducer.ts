@@ -4,7 +4,7 @@ import { createReducer } from 'typesafe-actions';
 import { initApplicationSuccess, showAlert, hideAlert, setUserSkippedLoginFlowSuccess } from './actions';
 
 interface State {
-  isApplicationInited: false,
+  isApplicationInited: boolean,
   alert: AlertMeta;
   isUserSkippedLoginFlow: boolean;
 }
@@ -45,7 +45,7 @@ const handleSetUserSkippedLoginFlowSuccess: ActionHandler<State, typeof setUserS
   isUserSkippedLoginFlow: action.payload,
 });
 
-export const uiReducer = createReducer(initialState)
+export const uiReducer = createReducer<State, AppActions>(initialState)
   .handleAction(showAlert, handleShowAlert)
   .handleAction(hideAlert, handleHideAlert)
   .handleAction(setUserSkippedLoginFlowSuccess, handleSetUserSkippedLoginFlowSuccess)

@@ -28,10 +28,11 @@ const initialState: State = {
   error: null,
 };
 
-const handleSetUserRequest: ActionHandler<State, typeof loginRequest | typeof createUserRequest> = (state) => ({
-  ...state,
-  isLoading: true,
-});
+const handleSetUserRequest: ActionHandler<State, typeof loginRequest | typeof createUserRequest | typeof fetchUserDataRequest> =
+  (state) => ({
+    ...state,
+    isLoading: true,
+  });
 
 const handleSetUserSuccess: ActionHandler<State, typeof loginSuccess | typeof createUserSuccess> = (state, action) => ({
   ...state,
@@ -51,7 +52,7 @@ const handleLogoutRequest: ActionHandler<State, typeof logoutRequest> = (state) 
   isLoading: false,
 });
 
-const handleUpdateUserRequest: ActionHandler<State, typeof updateUserRequest> = (state) => ({
+const handleUpdateUserRequest: ActionHandler<State, typeof updateUserRequest | typeof saveUserAvatarRequest> = (state) => ({
   ...state,
   isLoading: true,
 });
@@ -91,7 +92,7 @@ const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSucce
   user: action.payload.user,
 });
 
-export const userReducer = createReducer(initialState)
+export const userReducer = createReducer<State, AppActions>(initialState)
   .handleAction(loginRequest, handleSetUserRequest)
   .handleAction(loginSuccess, handleSetUserSuccess)
   .handleAction(loginFailure, handleSetUserFailure)

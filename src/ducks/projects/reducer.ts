@@ -1,5 +1,7 @@
 import { Project } from '@typings';
-import { createReducer } from 'typesafe-actions';
+import { createReducer, ActionType } from 'typesafe-actions';
+
+import * as actions from './actions';
 
 import {
   createProjectRequest,
@@ -87,7 +89,7 @@ export const handleDeleteProjectFailure: ActionHandler<State, typeof deleteProje
   isLoading: false,
 });
 
-export const projectsReducer = createReducer(initialState)
+export const projectsReducer = createReducer<State, ActionType<typeof actions>>(initialState)
   .handleAction(createProjectRequest, handleCreateProjectRequest)
   .handleAction(createProjectSuccess, handleCreateProjectSuccess)
   .handleAction(createProjectFailure, handleCreateProjectFailure)

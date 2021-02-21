@@ -69,7 +69,7 @@ export const handleFacebookLogoutRequest: ActionHandler<State, typeof facebookLo
   isFacebookAuth: false,
 });
 
-export const authReducer = createReducer(initialState)
+export const authReducer = createReducer<State, AppActions>(initialState)
   .handleAction(loginRequest, handleSetTokenRequest)
   .handleAction(loginSuccess, handleSetTokenSuccess)
   .handleAction(loginFailure, handleSetTokenFailure)
