@@ -31,10 +31,7 @@ export const styles = StyleSheet.create({
     width: 42,
     position: 'absolute',
     right: 0,
-    zIndex: 0,
-  },
-  crossButton: {
-    zIndex: 2,
+    zIndex: 1,
   },
   filterIsAppliedIcon: {
     position: 'absolute',

@@ -58,10 +58,12 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
     ({ ...styles.filterBlock, opacity: animatedOpacity, transform: [{ scale }] })
   ,[animatedOpacity, scale]);
 
+  const iconButtonStyles = isVisible ? { ...styles.iconButton, zIndex: -1 } : styles.iconButton;
+
   return (
     <View style={styles.container}>
       <IconButton
-        style={styles.iconButton}
+        style={iconButtonStyles}
         accessibilityLabel="Filter projects list"
         onPress={toggleFilterVisibility}
         colorOnPress="#c8eeee"
@@ -74,7 +76,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
       </IconButton>
       <Animated.View style={filterBlockStyles}>
         <IconButton
-          style={{ ...styles.iconButton, ...styles.crossButton }}
+          style={styles.iconButton}
           accessibilityLabel="Filter projects list"
           onPress={toggleFilterVisibility}
           colorOnPress="#c8eeee"
