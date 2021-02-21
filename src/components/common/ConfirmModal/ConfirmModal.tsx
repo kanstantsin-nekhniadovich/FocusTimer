@@ -46,9 +46,11 @@ export const ConfirmModal: React.FC<Props> = ({ visible, title, message, message
             <Text style={styles.title}>{title}</Text>
             {isDefined(message)
               ? <Text style={styles.message}>{message}</Text>
-              : isDefined(messageContent) && <View>{messageContent}</View>
+            : isDefined(messageContent) && <View>{messageContent}</View>
             }
-            <View style={styles.actionButtons}>
+          </View>
+          <View style={styles.logo}><Logo /></View>
+          <View style={styles.actionButtons}>
               <TouchableOpacity onPress={closeModal}>
                 <Text style={styles.buttonTitle}>{cancelText}</Text>
               </TouchableOpacity>
@@ -56,8 +58,6 @@ export const ConfirmModal: React.FC<Props> = ({ visible, title, message, message
                 <Text style={styles.buttonTitle}>{okText}</Text>
               </TouchableOpacity>
             </View>
-          </View>
-          <Logo />
         </LinearGradient>
       </View>
     </Modal>

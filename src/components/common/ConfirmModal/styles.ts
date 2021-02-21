@@ -21,9 +21,8 @@ export const styles = StyleSheet.create({
     zIndex: -1,
   },
   body: {
+    position: 'relative',
     width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
     borderRadius: 8,
     padding: 16,
   },
@@ -33,9 +32,7 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   content: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginBottom: 5,
+    marginBottom: 10,
     width: '80%',
   },
   message: {
@@ -46,12 +43,19 @@ export const styles = StyleSheet.create({
   actionButtons: {
     flexDirection: 'row',
     marginTop: 10,
+    justifyContent: 'flex-end',
   },
   buttonTitle: {
     ...Typography.secondary,
     color: Colors.white,
     textTransform: 'uppercase',
     lineHeight: 20,
-    marginRight: 15,
+    marginLeft: 15,
+  },
+  logo: {
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -25 }],
+    right: 16,
   },
 });
