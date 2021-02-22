@@ -5,13 +5,14 @@ export const styles = StyleSheet.create({
   item: {
     position: 'relative',
     width: '100%',
-    height: 64,
+    height: 54,
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: Colors.alabaster,
     marginBottom: 14,
     borderRadius: 8,
-    paddingTop: 19,
+    paddingTop: 13,
+    paddingBottom: 8,
     paddingHorizontal: 10,
     shadowColor: 'rgba(0, 31, 90, 0.16)',
     shadowOffset: {
@@ -26,13 +27,13 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   titleHolder: {
-    height: 28,
+    height: 30,
     flexDirection: 'row',
     alignItems: 'center',
   },
   arrowButtonHolder: {
     position: 'absolute',
-    height: 64,
+    height: 54,
     right: -8,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
@@ -63,8 +64,11 @@ export const styles = StyleSheet.create({
 });
 
 export const toolsMenuStyles = StyleSheet.create({
+  toolsMenuHolder: {
+    paddingTop: 12,
+  },
   toolsMenu: {
-    height: 54,
+    height: 46,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -78,5 +82,29 @@ export const toolsMenuStyles = StyleSheet.create({
     ...Typography.message,
     lineHeight: 20,
     color: Colors.white,
+  },
+});
+
+export const tasksListStyles = StyleSheet.create({
+  list: {
+    paddingLeft: 52,
+    height: 56,
+  },
+  task: {
+    flexDirection: 'row',
+    marginBottom: 3,
+  },
+  label: {
+    ...Typography.subtitleSmall,
+    color: Colors.prussianBlue,
+    marginLeft: 6,
+  },
+  incompletedTaskIcon: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    borderStyle: 'solid',
+    borderWidth: 1.5,
+    borderColor: Colors.prussianBlue,
   },
 });

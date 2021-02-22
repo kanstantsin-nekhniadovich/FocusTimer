@@ -2,30 +2,36 @@ import React from 'react';
 import { Pressable, Text, View, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Project } from '@typings';
+import { useSelector } from 'react-redux';
 
+import { getTasksForProject } from '../../ducks';
 import { ToolsMenu } from './ToolsMenu';
 import { IconButton, StatusGradient } from '../common';
 import { Play, Arrow, Restore } from '../icons';
 import { styles } from './styles';
-import { Routes } from 'src/routes';
+import { Routes } from '../../routes';
+import { TasksList } from './TasksList';
 
 interface Props {
   project: Project;
 }
 
-const SMALL_ITEM_HEIGHT = 64;
-const BIG_ITEM_HEIGHT = 120;
+const SMALL_ITEM_HEIGHT = 54;
+const BIG_ITEM_HEIGHT = 100;
 
 export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const navigation = useNavigation();
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isToolsMenuOpened, setIsToolsMenuOpened] = React.useState(false);
+  const tasks = useSelector(getTasksForProject(project.id));
   
   const animatedHeight = React.useRef(new Animated.Value(SMALL_ITEM_HEIGHT)).current;
   const animatedRotate = React.useRef(new Animated.Value(0)).current;
   const animatedOpacity = React.useRef(new Animated.Value(0)).current;
   
   const isCompleted = project.status === 'COMPLETED';
+  const completedTasksCount = React.useMemo(() => tasks.filter(task => task.status === 'COMPLETED').length, [tasks]);
+  const tasksAmount = tasks.length;
 
   const toggleExpandProject = React.useCallback(() => {
     setIsExpanded(!isExpanded);
@@ -99,7 +105,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         <Pressable style={styles.pressableTitle} onLongPress={toggleMenuToolsVisibility} onPress={navigateToProject}>
           <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
         </Pressable>
-        <Animated.View style={arrowHolderStyles}>
+        {tasksAmount > 0 && <Animated.View style={arrowHolderStyles}>
           <IconButton
             accessibilityLabel="Expand project"
             onPress={toggleExpandProject}
@@ -108,15 +114,15 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
           >
             <Arrow />
           </IconButton>
-        </Animated.View>
+        </Animated.View>}
       </View>
       <Animated.View style={{ opacity: animatedOpacity }}>
         {isToolsMenuOpened
           ? <ToolsMenu isVisible={isToolsMenuOpened} project={project} />
-          : <View><Text>Tasks list</Text></View>
+          : <TasksList tasks={tasks} />
         }
       </Animated.View>
-      {!isToolsMenuOpened && <Text style={styles.tasksIndicator}>0/12</Text>}
+      {!isToolsMenuOpened && <Text style={styles.tasksIndicator}>{completedTasksCount}/{tasksAmount}</Text>}
     </Animated.View>
   );
 };

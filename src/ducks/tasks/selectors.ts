@@ -1,1 +1,1 @@
-export const getTasks = (store: Store) => store.tasks.tasks;
+export const getTasksForProject = (id: Id) => (store: Store) => store.tasks.tasks[id];

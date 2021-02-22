@@ -4,7 +4,7 @@ import { createReducer } from 'typesafe-actions';
 import { fetchProjectsSuccess } from '../projects';
 
 interface State {
-  tasks: Record<Id, Task>;
+  tasks: Record<Id, Task[]>;
   isLoading: boolean;
 }
 
@@ -17,7 +17,7 @@ export const handleSetTasks: ActionHandler<State, typeof fetchProjectsSuccess> =
   const { projects } = action.payload;
   const tasks = projects.reduce((acc, current) => ({ ...acc, [current.id]: [...current.tasks] }), {});
 
-  return { ...state, tasks };
+  return { ...state, tasks: { ...state.tasks, ...tasks } };
 };
 
 export const tasksReducer = createReducer<State, AppActions>(initialState)

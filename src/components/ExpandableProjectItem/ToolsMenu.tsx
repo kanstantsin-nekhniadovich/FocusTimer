@@ -52,7 +52,7 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
     ({ ...toolsMenuStyles.separateLine, transform: [{ scale: animatedScale }] }), [animatedScale]);
 
   return (
-    <>
+    <View style={toolsMenuStyles.toolsMenuHolder}>
       <Animated.View style={separateLineStyles}></Animated.View>
       <View style={toolsMenuStyles.toolsMenu}>
         <IconButton
@@ -85,6 +85,6 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
           Are you sure that you want to remove <Text style={Typography.subtitleLarge}>{project.title}</Text> project?
         </Text>}
       />
-    </>
+    </View>
   );
 };
