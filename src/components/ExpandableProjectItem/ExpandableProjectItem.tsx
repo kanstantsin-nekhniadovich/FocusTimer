@@ -10,7 +10,8 @@ import { IconButton, StatusGradient } from '../common';
 import { Play, Arrow, Restore } from '../icons';
 import { styles } from './styles';
 import { Routes } from '../../routes';
-import { TasksList } from './TasksList';
+import { isDefined } from '../../utils/isDefined';
+import { isEmpty } from '../../utils/isEmpty';
 
 interface Props {
   project: Project;
@@ -31,7 +32,6 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   
   const isCompleted = project.status === 'COMPLETED';
   const completedTasksCount = React.useMemo(() => tasks.filter(task => task.status === 'COMPLETED').length, [tasks]);
-  const tasksAmount = tasks.length;
 
   const toggleExpandProject = React.useCallback(() => {
     setIsExpanded(!isExpanded);
@@ -91,6 +91,8 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
     ({ ...styles.arrowButtonHolder, transform: [{ rotate: animatedRotateValue }] })
   , [animatedRotateValue]);
 
+  const noteExists = isDefined(project.note) && !isEmpty(project.note);
+
   return (
     <Animated.View
       style={{...styles.item, height: animatedHeight }}>
@@ -105,7 +107,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         <Pressable style={styles.pressableTitle} onLongPress={toggleMenuToolsVisibility} onPress={navigateToProject}>
           <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
         </Pressable>
-        {tasksAmount > 0 && <Animated.View style={arrowHolderStyles}>
+        {noteExists && <Animated.View style={arrowHolderStyles}>
           <IconButton
             accessibilityLabel="Expand project"
             onPress={toggleExpandProject}
@@ -119,10 +121,10 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
       <Animated.View style={{ opacity: animatedOpacity }}>
         {isToolsMenuOpened
           ? <ToolsMenu isVisible={isToolsMenuOpened} project={project} />
-          : <TasksList tasks={tasks} />
+          : <Text>{project.note}</Text>
         }
       </Animated.View>
-      {!isToolsMenuOpened && <Text style={styles.tasksIndicator}>{completedTasksCount}/{tasksAmount}</Text>}
+      {!isToolsMenuOpened && <Text style={styles.tasksIndicator}>{completedTasksCount}/{tasks.length}</Text>}
     </Animated.View>
   );
 };

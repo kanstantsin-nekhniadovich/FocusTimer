@@ -84,27 +84,3 @@ export const toolsMenuStyles = StyleSheet.create({
     color: Colors.white,
   },
 });
-
-export const tasksListStyles = StyleSheet.create({
-  list: {
-    paddingLeft: 52,
-    height: 56,
-  },
-  task: {
-    flexDirection: 'row',
-    marginBottom: 3,
-  },
-  label: {
-    ...Typography.subtitleSmall,
-    color: Colors.prussianBlue,
-    marginLeft: 6,
-  },
-  incompletedTaskIcon: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    borderStyle: 'solid',
-    borderWidth: 1.5,
-    borderColor: Colors.prussianBlue,
-  },
-});
