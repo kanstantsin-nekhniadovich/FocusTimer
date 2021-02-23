@@ -24,7 +24,7 @@ export const IconButton: React.FC<Props> = ({ children, accessibilityLabel, onPr
       disabled={disabled}
       style={({ pressed }) => [
         {
-          backgroundColor: pressed ? pressColor : 'transparent', 
+          backgroundColor: pressed ? pressColor : 'transparent',
         },
         styles.button,
         style,

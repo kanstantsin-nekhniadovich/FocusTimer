@@ -9,7 +9,7 @@ interface Props extends TouchableOpacityProps {
   title: string;
   onPress: () => void;
   variant?: Variant;
-  size?: Size; 
+  size?: Size;
 }
 
 export const PrimaryButton: React.FC<Props> = ({ title, variant = 'standard', size = 'big', disabled, ...rest }) => {

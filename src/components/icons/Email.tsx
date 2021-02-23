@@ -6,7 +6,7 @@ import { ColorValue } from 'react-native';
 
 const DEFAULT_WIDTH = 20;
 const DEFAULT_HEIGHT = 16;
-const PROPORTAION = DEFAULT_HEIGHT / DEFAULT_WIDTH; 
+const PROPORTAION = DEFAULT_HEIGHT / DEFAULT_WIDTH;
 
 interface Props {
   width?: number;

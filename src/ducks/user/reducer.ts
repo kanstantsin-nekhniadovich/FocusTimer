@@ -87,7 +87,7 @@ const handleFacebookLogoutRequest: ActionHandler<State, typeof facebookLogoutReq
   isLoading: false,
 });
 
-const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state, action) =>({
+const handleFacebookLoginSuccess: ActionHandler<State, typeof facebookLoginSuccess> = (state, action) => ({
   ...state,
   user: action.payload.user,
 });

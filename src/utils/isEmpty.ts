@@ -8,7 +8,7 @@ export const isEmpty = <T extends string | Record<string, unknown> | any[]>(cand
 };
 
 
-type ReturnType<T> = 
+type ReturnType<T> =
   T extends string
     ? EmptyString
     : T extends any[]

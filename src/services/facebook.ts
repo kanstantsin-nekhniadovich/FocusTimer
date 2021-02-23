@@ -20,7 +20,7 @@ type FacebookUser = {
   email: string;
 }
 
-export const initializeFacebook = async () => 
+export const initializeFacebook = async () =>
   await facebook.initializeAsync({ appId: Constants.manifest.facebookAppId, appName: Constants.manifest.facebookDisplayName });
 
 export const logInWithReadPermissionsAsync = async () =>

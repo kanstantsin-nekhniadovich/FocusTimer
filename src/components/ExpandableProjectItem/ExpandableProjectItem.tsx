@@ -25,11 +25,11 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isToolsMenuOpened, setIsToolsMenuOpened] = React.useState(false);
   const tasks = useSelector(getTasksForProject(project.id));
-  
+
   const animatedHeight = React.useRef(new Animated.Value(SMALL_ITEM_HEIGHT)).current;
   const animatedRotate = React.useRef(new Animated.Value(0)).current;
   const animatedOpacity = React.useRef(new Animated.Value(0)).current;
-  
+
   const isCompleted = project.status === 'COMPLETED';
   const completedTasksCount = React.useMemo(() => tasks.filter(task => task.status === 'COMPLETED').length, [tasks]);
 

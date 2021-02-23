@@ -8,7 +8,7 @@ declare global {
   export type Id = string;
   export type Store = StateType<typeof rootReducer>;
 
-  export type AppActions = 
+  export type AppActions =
     | AuthActions
     | UserActions
     | UiActions
@@ -16,19 +16,19 @@ declare global {
 
   export type AppEpic = Epic<AppActions, AppActions, Store, Services>;
   export type ActionHandler<State, Action> = (state: State, action: ActionType<Action>) => State;
-  
+
   type SuccessResponse<T> = {
     status: 'SUCCESS';
     data: T;
     error: null,
   }
-  
+
   type FailureResponse = {
     status: 'FAILURE';
     data: null,
     error: string;
   }
-  
+
   export type NormalizedResponse<T> = SuccessResponse<T> | FailureResponse;
 
   export type Screens = {

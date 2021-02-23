@@ -7,11 +7,11 @@ export const uploadImageFromMediaLibrary = async (width: number) => {
     allowsEditing: true,
     aspect: [3, 4],
   });
-  
+
   if (media.cancelled) {
     return media;
   }
-  
+
   return await ImageManipulator.manipulateAsync(media.uri,
     [{ resize: { width } }], { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG });
 };

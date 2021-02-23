@@ -20,15 +20,15 @@ enum ColorsType {
   success = 'success',
 }
 
-export const Colors: Record<ColorsType, ColorValue> = {	
-  [ColorsType.black]: '#000000',	
-  [ColorsType.white]: '#ffffff',	
-  [ColorsType.blue]: '#232cc6',	
-  [ColorsType.darkBlue]: '#2028b6',	
-  [ColorsType.disabled]: '#898dce',	
-  [ColorsType.chambray]: '#405a9a',	
-  [ColorsType.prussianBlue]: '#001f5a',	
-  [ColorsType.silverChalice]: '#9e9e9e',	
+export const Colors: Record<ColorsType, ColorValue> = {
+  [ColorsType.black]: '#000000',
+  [ColorsType.white]: '#ffffff',
+  [ColorsType.blue]: '#232cc6',
+  [ColorsType.darkBlue]: '#2028b6',
+  [ColorsType.disabled]: '#898dce',
+  [ColorsType.chambray]: '#405a9a',
+  [ColorsType.prussianBlue]: '#001f5a',
+  [ColorsType.silverChalice]: '#9e9e9e',
   [ColorsType.doveGray]: '#666666',
   [ColorsType.chatelle]: '#c2b9c3',
   [ColorsType.alabaster]: '#fbfbfb',

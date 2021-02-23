@@ -4,12 +4,12 @@ import Svg, { Path } from 'react-native-svg';
 
 export interface Props {
   width?: number;
-  color?: string; 
+  color?: string;
 }
 
 const DEFAULT_WIDTH = 24;
 const DEFAULT_HEIGHT = 24;
-const PROPORTAION = DEFAULT_HEIGHT / DEFAULT_WIDTH; 
+const PROPORTAION = DEFAULT_HEIGHT / DEFAULT_WIDTH;
 
 export const Error: React.FC<Props> = ({ width = DEFAULT_WIDTH, color = '#da1212' }) => {
   return (

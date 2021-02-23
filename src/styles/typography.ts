@@ -34,7 +34,7 @@ export const Typography: Record<TypographyTypes, TextStyle> = {
     letterSpacing: 0,
     lineHeight: 26,
   },
-  [TypographyTypes.inputText]: { // Body 2 
+  [TypographyTypes.inputText]: { // Body 2
     fontFamily: 'DMSans_400Regular',
     fontSize: 16,
     letterSpacing: 0,

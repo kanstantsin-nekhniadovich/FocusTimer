@@ -32,6 +32,8 @@
     "indent": [1, 2],
     "no-multi-spaces": 1,
     "no-inline-comments": 1,
+    "no-trailing-spaces": 1,
+    "arrow-spacing": 1,
     "max-len": [2, {
       "code": 140,
       "tabWidth": 2

@@ -42,7 +42,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
       alert('Hey! You have to enable Storage permissions to set avatar.');
       return;
     }
-    
+
     const media = await uploadImageFromMediaLibrary(200);
 
     if (isMediaUploadCancelledGuard(media)) {

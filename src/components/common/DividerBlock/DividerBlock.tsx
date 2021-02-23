@@ -8,5 +8,5 @@ interface Props {
 }
 
 export const DividerBlock: React.FC<Props> = ({ height = 20 }) => (
-  <View style={{ ...styles.dividerBlock, height }}></View>  
+  <View style={{ ...styles.dividerBlock, height }}></View>
 );

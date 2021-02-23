@@ -19,7 +19,7 @@ interface Props {
   closeOnClickOutside?: boolean;
 }
 
-export const ConfirmModal: React.FC<Props> = ({ 
+export const ConfirmModal: React.FC<Props> = ({
   visible,
   title,
   message,

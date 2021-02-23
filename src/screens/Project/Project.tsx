@@ -16,13 +16,13 @@ export const Project: React.FC<Props> = ({ route }) => {
     return (
       <View>
         <Text>Project is not found</Text>
-      </View> 
+      </View>
     );
   }
 
   return (
     <View>
       <Text>{project.title}</Text>
-    </View>  
+    </View>
   );
 };

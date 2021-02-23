@@ -25,7 +25,7 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 
 export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
   const dispatch = useDispatch();
-  
+
   const onSubmit = React.useCallback(({ name }: SchemaType) => {
     if (user.name === name.trim()) {
       return;
