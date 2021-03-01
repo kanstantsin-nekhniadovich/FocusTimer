@@ -34,7 +34,7 @@ export const Login: React.FC<Props> = ({ navigation }) => {
       return;
     }
 
-    navigation.navigate(Routes.Account);
+    navigation.navigate(Routes.Projects);
   }, [user, isLoading, navigation]);
 
   return (
