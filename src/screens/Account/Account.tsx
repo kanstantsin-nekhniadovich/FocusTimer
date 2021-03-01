@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { DividerBlock, OverlayLoader, IconButton } from '../../components/common';
+import { DividerBlock, OverlayLoader, IconButton, Wrapper } from '../../components/common';
 import { Logout} from '../../components/icons';
 import { EditUserDetails } from '../../components/EditUserDetails';
 import { Routes } from '../../routes';
@@ -41,7 +41,7 @@ export const Account: React.FC<Props> = ({ navigation }) => {
   return (
     <>
       {isUserLoading && <OverlayLoader />}
-      <View style={styles.container}>
+      <Wrapper style={styles.wrapper}>
         <EditUserDetails user={user} />
         <DividerBlock height={170} />
         <IconButton
@@ -52,7 +52,7 @@ export const Account: React.FC<Props> = ({ navigation }) => {
           <Logout />
           <Text style={styles.logoutButtonLabel}>Log out</Text>
         </IconButton>
-      </View>
+      </Wrapper>
     </>
   );
 };

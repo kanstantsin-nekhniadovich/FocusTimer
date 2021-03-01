@@ -1,11 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Colors, Typography } from '@styles';
 
 export const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
-    backgroundColor: Colors.alabaster,
-    height: Dimensions.get('screen').height,
+  wrapper: {
     paddingLeft: 37,
     paddingRight: 30,
     paddingBottom: 37,

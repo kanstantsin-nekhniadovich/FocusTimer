@@ -1,17 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import { CreateProjectForm } from './CreateProjectForm';
-import { ProjectsBackground, LinesBackground } from '../../components/common';
-
-import { styles } from './styles';
+import { ProjectsBackground, LinesBackground, Wrapper, DividerBlock } from '../../components/common';
 
 export const NewProject = () => {
   return (
-    <View style={styles.container}>
+    <Wrapper>
+      <DividerBlock height={60} />
       <LinesBackground />
       <ProjectsBackground />
       <CreateProjectForm />
-    </View>
+    </Wrapper>
   );
 };

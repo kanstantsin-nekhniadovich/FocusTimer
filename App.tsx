@@ -15,7 +15,7 @@ export default function App(): JSX.Element {
     <NavigationContainer>
       <Provider store={store}>
         <AppReady>
-          <SafeAreaView style={Common.container}>
+          <SafeAreaView style={Common.fullHeight}>
             <Navigator />
             <Alert />
           </SafeAreaView>

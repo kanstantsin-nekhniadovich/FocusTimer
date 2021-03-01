@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
@@ -7,7 +7,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { Common } from '@styles';
 
 import { Routes } from '../../routes';
-import { DividerBlock, Input, OverlayLoader } from '../../components/common';
+import { DividerBlock, Input, OverlayLoader, Wrapper } from '../../components/common';
 import { PrimaryButton } from '../../components/common/PrimaryButton';
 import { styles } from './styles';
 import { updateUserRequest, getIsUserLoading } from '../../ducks';
@@ -44,7 +44,7 @@ export const UpdatePassword: React.FC<Props> = ({ route, navigation }) => {
   return (
     <>
       {isLoading && <OverlayLoader />}
-      <View style={styles.container}>
+      <Wrapper style={styles.wrapper}>
         <Text style={styles.header}>Update your password</Text>
         <DividerBlock height={16} />
         <Text style={styles.message}>Your new password must be different from previous used passwords.</Text>
@@ -84,7 +84,7 @@ export const UpdatePassword: React.FC<Props> = ({ route, navigation }) => {
             </>
           )}
         </Formik>
-      </View>
+      </Wrapper>
     </>
   );
 };

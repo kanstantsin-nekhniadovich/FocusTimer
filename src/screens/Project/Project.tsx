@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 
+import { Wrapper } from '../../components/common';
 import { Routes } from '../../routes';
 import { getProjectById } from '../../ducks';
 import { isDefined } from '../../utils/isDefined';
@@ -14,15 +15,15 @@ export const Project: React.FC<Props> = ({ route }) => {
 
   if (!isDefined(project)) {
     return (
-      <View>
+      <Wrapper>
         <Text>Project is not found</Text>
-      </View>
+      </Wrapper>
     );
   }
 
   return (
-    <View>
+    <Wrapper>
       <Text>{project.title}</Text>
-    </View>
+    </Wrapper>
   );
 };

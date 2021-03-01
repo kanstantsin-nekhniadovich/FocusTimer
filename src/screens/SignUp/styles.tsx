@@ -1,18 +1,14 @@
 import { StyleSheet } from 'react-native';
-import { Common, Colors, Typography } from '@styles';
+import { Colors, Typography } from '@styles';
 
 export const styles = StyleSheet.create({
-  container: {
-    ...Common.container,
-    paddingTop: 35,
-    paddingHorizontal: 17,
-  },
   message: {
     ...Typography.message,
     width: '80%',
     letterSpacing: 0,
     lineHeight: 20,
     color: Colors.prussianBlue,
+    alignSelf: 'flex-start',
   },
   elipse56: {
     position: 'absolute',

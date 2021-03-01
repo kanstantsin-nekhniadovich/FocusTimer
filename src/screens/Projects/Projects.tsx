@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Routes } from '../../routes';
 import { CreateNewProjectHeader, CircePlus } from '../../components/icons';
-import { IconButton, ProjectsBackground, DividerBlock, OverlayLoader, LinesBackground } from '../../components/common';
+import { IconButton, ProjectsBackground, DividerBlock, OverlayLoader, LinesBackground, Wrapper } from '../../components/common';
 import { TimerStartButton } from '../../components/TimerStartButton';
 import { ExpandableProjectItem } from '../../components/ExpandableProjectItem';
 import { ProjectsFilter } from '../../components/ProjectsFilter';
@@ -63,7 +63,7 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <Wrapper style={styles.wrapper}>
       <IconButton
         style={addProjectsButtonStyles}
         accessibilityLabel="add project"
@@ -96,6 +96,6 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
       }
       <View style={styles.timerStartButton}><TimerStartButton /></View>
       <ProjectsBackground />
-    </View>
+    </Wrapper>
   );
 };

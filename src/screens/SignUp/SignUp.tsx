@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Routes } from '../../routes';
 import { WelcomeHeader, Elipse56 } from '../../components/icons';
-import { DividerBlock, DividerLine, PrimaryButton, OverlayLoader } from '../../components/common';
+import { DividerBlock, DividerLine, PrimaryButton, OverlayLoader, Wrapper } from '../../components/common';
 import { SignUpForm } from '../../components/SignUpForm';
 import { SkipButton } from '../../components/SkipButton';
 import { getIsUserLoading, createFacebookUserRequest } from '../../ducks';
@@ -25,8 +25,9 @@ export const SignUp: React.FC<Props> = ({ navigation }) => {
   return (
     <>
       {isLoading && <OverlayLoader />}
-      <View style={styles.container}>
-        <View style={{ alignItems: 'center' }}><WelcomeHeader /></View>
+      <Wrapper>
+        <DividerBlock height={35} />
+        <WelcomeHeader />
         <DividerBlock height={42} />
         <View style={styles.elipse56}><Elipse56 /></View>
         <View style={styles.skipButtonHolder}><SkipButton navigation={navigation} /></View>
@@ -37,7 +38,7 @@ export const SignUp: React.FC<Props> = ({ navigation }) => {
         <DividerLine />
         <DividerBlock />
         <PrimaryButton title="Sign up with facebook" onPress={signUpWithFacebook} variant={'social'} />
-      </View>
+      </Wrapper>
     </>
   );
 };

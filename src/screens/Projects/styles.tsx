@@ -4,13 +4,8 @@ import { Colors, Typography } from '@styles';
 const height = Dimensions.get('screen').height;
 
 export const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: Colors.alabaster,
+  wrapper: {
     paddingTop: 18,
-    paddingHorizontal: 16,
   },
   addProject: {
     position: 'absolute',
