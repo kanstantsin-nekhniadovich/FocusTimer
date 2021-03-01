@@ -8,6 +8,7 @@ import { Typography } from '@styles';
 import { toolsMenuStyles } from './styles';
 import { Edit, Notes, Delete } from '../icons';
 import { IconButton, ConfirmModal } from '../common';
+import { EditNoteModal } from './EditNoteModal';
 import { Routes } from '../../routes';
 import { deleteProjectRequest } from '../../ducks';
 
@@ -20,7 +21,8 @@ const ANIMATION_DURATION = 400;
 const ANIMATION_DELAY = 100;
 
 export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
-  const [isModalOpened, setIsModalOpened] = React.useState(false);
+  const [isRemoveProjectModalOpened, setIsRemoveProjectModalOpened] = React.useState(false);
+  const [isEditNoteModalOpened, setIsEditNoteModalOpened] = React.useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const animatedScale = React.useRef(new Animated.Value(0)).current;
@@ -28,16 +30,15 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
   const onEdit = React.useCallback(() =>
     navigation.navigate(Routes.Project, { id: project.id }), [project]);
 
-  const onEditNote = React.useCallback(() => {
-    console.log('on note');
-  }, []);
+  const openEditNoteModal = React.useCallback(() => setIsEditNoteModalOpened(true), []);
+  const closeEditNoteModal = React.useCallback(() => setIsEditNoteModalOpened(false), []);
 
   const removeProject = React.useCallback(() => {
     dispatch(deleteProjectRequest(project.id));
   }, [project]);
 
-  const closeModal = React.useCallback(() => setIsModalOpened(false), []);
-  const openModal = React.useCallback(() => setIsModalOpened(true), []);
+  const closeModal = React.useCallback(() => setIsRemoveProjectModalOpened(false), []);
+  const openModal = React.useCallback(() => setIsRemoveProjectModalOpened(true), []);
 
   React.useEffect(() => {
     Animated.timing(animatedScale, {
@@ -63,7 +64,7 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
         </IconButton>
         <IconButton
           accessibilityLabel="Edit project's note"
-          onPress={onEditNote}
+          onPress={openEditNoteModal}
         >
           <Notes />
         </IconButton>
@@ -76,7 +77,7 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
       </View>
       <ConfirmModal
         title="Remove project"
-        visible={isModalOpened}
+        isVisible={isRemoveProjectModalOpened}
         onCancel={closeModal}
         onOk={removeProject}
         okText="Remove"
@@ -84,6 +85,13 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
         messageContent={<Text style={toolsMenuStyles.confirmMessage}>
           Are you sure that you want to remove <Text style={Typography.subtitleLarge}>{project.title}</Text> project?
         </Text>}
+      />
+      <EditNoteModal
+        title={project.title}
+        isVisible={isEditNoteModalOpened}
+        onClose={closeEditNoteModal}
+        projectId={project.id}
+        note={project.note}
       />
     </View>
   );

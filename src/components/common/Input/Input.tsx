@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, TextInputProps, View, Animated, Easing, NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
+import { TextInput, TextInputProps, View, Animated, Easing, NativeSyntheticEvent, TextInputFocusEventData, ViewStyle } from 'react-native';
 import { Colors } from '@styles';
 
 import { Error } from '../../icons';
@@ -8,6 +8,7 @@ import { isDefined } from '../../../utils/isDefined';
 
 interface Props extends TextInputProps {
   isValid?: boolean;
+  style?: ViewStyle;
 }
 
 export const Input: React.FC<Props> = ({
@@ -15,6 +16,7 @@ export const Input: React.FC<Props> = ({
   isValid = true,
   value,
   onBlur,
+  style,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
@@ -45,7 +47,11 @@ export const Input: React.FC<Props> = ({
     };
   }, [animation]);
 
-  const inputStyles = React.useMemo(() => ({ ...styles.input, ...(!isValid ? styles.invalid : {})}), [isValid]);
+  const inputStyles = React.useMemo(() => ({
+    ...styles.input,
+    ...(!isValid ? styles.invalid : {}),
+    ...(isDefined(style) ? style : {}),
+  }), [isValid, style]);
 
   React.useEffect(() => {
     Animated.timing(animation, {

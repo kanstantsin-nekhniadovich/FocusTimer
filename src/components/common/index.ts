@@ -11,3 +11,4 @@ export { ProjectsBackground } from './ProjectsBackground';
 export { LinesBackground } from './LinesBackground';
 export { ConfirmModal } from './ConfirmModal';
 export { StatusGradient } from './StatusGradient';
+export { Modal } from './Modal';

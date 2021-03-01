@@ -11,11 +11,32 @@ gql`
     title: String!
     status: Status!
   }
+
+  input UpdateProjectInput {
+    title: String
+    status: Status
+    note: String
+  }
+
+  input UniqueIdInput {
+    id: ID!
+  }
 `;
 
 export const createProject = gql`
   mutation($data: CreateProjectInput!) {
     createProject(data: $data) {
+      id
+      title
+      status
+      note
+    }
+  }
+`;
+
+export const updateProject = gql`
+  mutation($data: UpdateProjectInput!, $where: UniqueIdInput!) {
+    updateProject(data: $data, where: $where) {
       id
       title
       status

@@ -121,7 +121,9 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
       <Animated.View style={{ opacity: animatedOpacity }}>
         {isToolsMenuOpened
           ? <ToolsMenu isVisible={isToolsMenuOpened} project={project} />
-          : <Text>{project.note}</Text>
+          : <View style={styles.noteHolder}>
+            <Text style={styles.note}>{project.note}</Text>
+          </View>
         }
       </Animated.View>
       {!isToolsMenuOpened && <Text style={styles.tasksIndicator}>{completedTasksCount}/{tasks.length}</Text>}

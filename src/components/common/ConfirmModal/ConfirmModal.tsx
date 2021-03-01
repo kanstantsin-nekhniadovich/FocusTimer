@@ -8,7 +8,7 @@ import { Logo } from '../../icons';
 import { styles } from './styles';
 
 interface Props {
-  visible: boolean;
+  isVisible: boolean;
   title: string;
   onOk: () => void;
   onCancel: () => void;
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const ConfirmModal: React.FC<Props> = ({
-  visible,
+  isVisible,
   title,
   message,
   messageContent,
@@ -56,7 +56,7 @@ export const ConfirmModal: React.FC<Props> = ({
     <Modal
       transparent
       animationType='fade'
-      visible={visible}
+      visible={isVisible}
       onDismiss={onCancel}
     >
       <View style={styles.modal} >

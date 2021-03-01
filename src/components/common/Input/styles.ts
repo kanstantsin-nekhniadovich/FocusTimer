@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   input: {
     ...Typography.inputText,
     width: '100%',
-    height: 56,
+    minHeight: 56,
     paddingVertical: 4,
     paddingHorizontal: 16,
     borderWidth: 1,

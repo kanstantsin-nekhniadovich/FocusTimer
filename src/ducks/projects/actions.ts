@@ -1,4 +1,4 @@
-import { Response, FullProject } from '@typings';
+import { Response, FullProject, Project } from '@typings';
 import { createAction } from 'typesafe-actions';
 
 export const createProjectRequest = createAction('projects/CREATE_PROJECT_REQUEST')<{ title: string }>();
@@ -8,6 +8,13 @@ export const createProjectFailure = createAction('projects/CREATE_PROJECT_FAILUR
 export const fetchProjectsRequest = createAction('projects/FETCH_PROJECTS_REQUEST')<{ skip: number }>();
 export const fetchProjectsSuccess = createAction('projects/FETCH_PROJECTS_SUCCESS')<Response.Projects>();
 export const fetchProjectsFailure = createAction('projects/FETCH_PROJECTS_FAILURE')();
+
+export const updateProjectRequest = createAction('projects/UPDATE_PROJECT_REQUEST')<{
+  id: Id;
+  data: Partial<Project>;
+}>();
+export const updateProjectSuccess = createAction('projects/UPDATE_PROJECT_SUCCESS')<FullProject>();
+export const updateProjectFailure = createAction('projects/UPDATE_PROJECT_FAILURE')();
 
 export const deleteProjectRequest = createAction('projects/DELETE_PROJECT_REQUEST')<Id>();
 export const deleteProjectSuccess = createAction('projects/DELETE_PROJECT_SUCCESS')<FullProject>();

@@ -7,7 +7,7 @@ const standard = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 4,
     height: 36,
     textTransform: 'uppercase',
     backgroundColor: Colors.blue,

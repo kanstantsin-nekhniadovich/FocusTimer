@@ -1,5 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, Text, TouchableOpacityProps, ViewStyle } from 'react-native';
+
+import { isDefined } from '../../../utils/isDefined';
+
 import { styles, states } from './styles';
 
 type Variant = 'standard' | 'social' | 'outlined';
@@ -10,16 +13,18 @@ interface Props extends TouchableOpacityProps {
   onPress: () => void;
   variant?: Variant;
   size?: Size;
+  style?: ViewStyle;
 }
 
-export const PrimaryButton: React.FC<Props> = ({ title, variant = 'standard', size = 'big', disabled, ...rest }) => {
+export const PrimaryButton: React.FC<Props> = ({ title, variant = 'standard', size = 'big', disabled, style, ...rest }) => {
   const variantStyles = styles[variant];
 
   const btnStyles = React.useMemo(() => ({
     ...variantStyles.btn,
     ...states.btn[size],
     ...(disabled ? states.btn.disabled : {}),
-  }), [variantStyles, size, disabled]);
+    ...(isDefined(style) ? style : {}),
+  }), [variantStyles, size, disabled, style]);
 
   const labelStyles = React.useMemo(() => ({
     ...variantStyles.label,

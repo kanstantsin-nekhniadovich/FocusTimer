@@ -61,6 +61,14 @@ export const styles = StyleSheet.create({
     bottom: 3,
     right: 10,
   },
+  noteHolder: {
+    height: 40,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+  },
+  note: {
+    ...Typography.subtitleSmall,
+  },
 });
 
 export const toolsMenuStyles = StyleSheet.create({
@@ -82,5 +90,32 @@ export const toolsMenuStyles = StyleSheet.create({
     ...Typography.message,
     lineHeight: 20,
     color: Colors.white,
+  },
+});
+
+export const editNoteModalStyles = StyleSheet.create({
+  form: {
+    width: '100%',
+  },
+  buttons: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    elevation: 0,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+  },
+  noteLengthIndicator: {
+    ...Typography.subtitleSmall,
+    alignSelf: 'flex-end',
+    color: Colors.black_60,
+    letterSpacing: -0.3,
+  },
+  textarea: {
+    minHeight: 70,
   },
 });

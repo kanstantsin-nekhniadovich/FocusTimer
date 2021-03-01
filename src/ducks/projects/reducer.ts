@@ -1,4 +1,5 @@
 import { Project } from '@typings';
+import { assocPath } from 'ramda';
 import { createReducer, ActionType } from 'typesafe-actions';
 
 import * as actions from './actions';
@@ -13,6 +14,9 @@ import {
   deleteProjectRequest,
   deleteProjectFailure,
   deleteProjectSuccess,
+  updateProjectRequest,
+  updateProjectSuccess,
+  updateProjectFailure,
 } from './actions';
 
 interface State {
@@ -69,6 +73,27 @@ export const handleFetchProjectsFailure: ActionHandler<State, typeof fetchProjec
   isLoading: false,
 });
 
+export const handleUpdateProjectRequest: ActionHandler<State, typeof updateProjectRequest> = (state) => ({
+  ...state,
+  isLoading: true,
+});
+
+export const handleUpdateProjectSuccess: ActionHandler<State, typeof updateProjectSuccess> = (state, action) => {
+  const { id } = action.payload;
+  const index = state.projects.findIndex((project) => project.id === id);
+
+  return {
+    ...state,
+    isLoading: false,
+    projects: assocPath([index], action.payload, state.projects),
+  };
+};
+
+export const handleUpdateProjectFailure: ActionHandler<State, typeof updateProjectFailure> = (state) => ({
+  ...state,
+  isLoading: false,
+});
+
 export const handleDeleteProjectRequest: ActionHandler<State, typeof deleteProjectRequest> = (state) => ({
   ...state,
   isLoading: true,
@@ -98,4 +123,7 @@ export const projectsReducer = createReducer<State, ActionType<typeof actions>>(
   .handleAction(fetchProjectsFailure, handleFetchProjectsFailure)
   .handleAction(deleteProjectRequest, handleDeleteProjectRequest)
   .handleAction(deleteProjectSuccess, handleDeleteProjectSuccess)
-  .handleAction(deleteProjectFailure, handleDeleteProjectFailure);
+  .handleAction(deleteProjectFailure, handleDeleteProjectFailure)
+  .handleAction(updateProjectRequest, handleUpdateProjectRequest)
+  .handleAction(updateProjectSuccess, handleUpdateProjectSuccess)
+  .handleAction(updateProjectFailure, handleUpdateProjectFailure);

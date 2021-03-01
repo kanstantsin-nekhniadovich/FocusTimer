@@ -12,6 +12,9 @@ import {
   deleteProjectRequest,
   deleteProjectFailure,
   deleteProjectSuccess,
+  updateProjectRequest,
+  updateProjectSuccess,
+  updateProjectFailure,
 } from './actions';
 
 import { PROJECTS_PER_REQUEST } from '../../settings';
@@ -40,11 +43,23 @@ export const fetchProjectsEpic: AppEpic = (action$, _, { projectsService }) =>
   action$.pipe(
     filter(isActionOf(fetchProjectsRequest)),
     pluck('payload'),
-    mergeMap(({ skip }) => projectsService.fetchProjects({ skip, first: PROJECTS_PER_REQUEST })),
+    mergeMap(async ({ skip }) => projectsService.fetchProjects({ skip, first: PROJECTS_PER_REQUEST })),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [fetchProjectsSuccess(res.data)],
       res => [fetchProjectsFailure(), showAlert({ type: 'error', message: res.error })],
+    )),
+  );
+
+export const updateProjectEpic: AppEpic = (action$, _, { projectsService }) =>
+  action$.pipe(
+    filter(isActionOf(updateProjectRequest)),
+    pluck('payload'),
+    mergeMap(async (payload) => projectsService.updateProject(payload)),
+    map(handleResponse),
+    mergeMap(handler => handler(
+      res => [updateProjectSuccess(res.data)],
+      res => [updateProjectFailure(), showAlert({ type: 'error', message: res.error })],
     )),
   );
 
@@ -60,4 +75,4 @@ export const deleteProjectEpic: AppEpic = (action$, _, { projectsService }) =>
     )),
   );
 
-export const projectsEpic = combineEpics(createProjectEpic, fetchProjectsEpic, deleteProjectEpic);
+export const projectsEpic = combineEpics(createProjectEpic, fetchProjectsEpic, deleteProjectEpic, updateProjectEpic);
