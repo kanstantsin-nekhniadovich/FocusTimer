@@ -46,7 +46,7 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
   const renderItem = React.useCallback(({ item }) => <ExpandableProjectItem project={item} />, []);
 
   const onEndReached = React.useCallback(() => {
-    if (projects.length === totalCount) {
+    if (projects.length >= totalCount) {
       return;
     }
 
