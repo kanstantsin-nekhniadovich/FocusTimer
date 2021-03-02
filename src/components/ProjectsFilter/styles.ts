@@ -50,7 +50,6 @@ export const styles = StyleSheet.create({
 export const filterItemStyles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    alignItems: 'center',
     alignSelf: 'flex-start',
     paddingHorizontal: 12,
     paddingVertical: 6,
@@ -62,7 +61,7 @@ export const filterItemStyles = StyleSheet.create({
   label: {
     ...Typography.text,
     letterSpacing: 0,
-    color: Colors.prussianBlue,
+    color: Colors.alabaster,
     paddingRight: 8,
   },
   tick: {

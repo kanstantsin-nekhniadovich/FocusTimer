@@ -1,1 +1,0 @@
-export { StatusGradient } from './StatusGradient';
