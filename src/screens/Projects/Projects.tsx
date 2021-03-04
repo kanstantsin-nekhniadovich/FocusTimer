@@ -78,7 +78,6 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
           <DividerBlock height={180} />
           <CreateNewProjectHeader />
           <LinesBackground />
-          <ProjectsBackground />
         </>)
         : (<>
           <View style={styles.list}>
@@ -96,6 +95,7 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
         </>)
       }
       <View style={styles.timerStartButton}><TimerStartButton /></View>
+      <ProjectsBackground />
     </Wrapper>
   );
 };

@@ -41,7 +41,7 @@ export const Colors: Record<ColorsType, ColorValue> = {
   [ColorsType.black_60]: 'rgba(0, 0, 0, 0.6)',
   [ColorsType.black_38]: 'rgba(0, 0, 0, 0.38)',
   [ColorsType.pressEffect]: 'rgba(95,99,104,0.15)',
-  [ColorsType.todo]: '#3e8391',
+  [ColorsType.todo]: '#ff8c00',
   [ColorsType.inprogress]: '#1890ff',
   [ColorsType.completed]: '#52c41a',
 };
