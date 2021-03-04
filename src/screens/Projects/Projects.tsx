@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Routes } from '../../routes';
 import { CreateNewProjectHeader, CircePlus } from '../../components/icons';
-import { IconButton, ProjectsBackground, DividerBlock, OverlayLoader, LinesBackground, Wrapper } from '../../components/common';
+import { IconButton, DividerBlock, OverlayLoader, Wrapper, LinesBackground, ProjectsBackground } from '../../components/common';
 import { TimerStartButton } from '../../components/TimerStartButton';
 import { ExpandableProjectItem } from '../../components/ExpandableProjectItem';
 import { ProjectsFilter } from '../../components/ProjectsFilter';

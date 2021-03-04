@@ -18,6 +18,9 @@ enum ColorsType {
   pressEffect = 'pressEffect',
   concrete = 'concrete',
   success = 'success',
+  todo = 'todo',
+  inprogress = 'inprogress',
+  completed = 'completed',
 }
 
 export const Colors: Record<ColorsType, ColorValue> = {
@@ -38,4 +41,7 @@ export const Colors: Record<ColorsType, ColorValue> = {
   [ColorsType.black_60]: 'rgba(0, 0, 0, 0.6)',
   [ColorsType.black_38]: 'rgba(0, 0, 0, 0.38)',
   [ColorsType.pressEffect]: 'rgba(95,99,104,0.15)',
+  [ColorsType.todo]: '#ff8c00',
+  [ColorsType.inprogress]: '#1890ff',
+  [ColorsType.completed]: '#52c41a',
 };

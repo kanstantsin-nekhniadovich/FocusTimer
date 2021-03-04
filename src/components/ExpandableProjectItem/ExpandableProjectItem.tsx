@@ -1,12 +1,13 @@
 import React from 'react';
 import { Pressable, Text, View, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Project } from '@typings';
+import { Project, Status } from '@typings';
 import { useSelector } from 'react-redux';
+import { Colors } from '@styles';
 
 import { getTasksForProject } from '../../ducks';
 import { ToolsMenu } from './ToolsMenu';
-import { IconButton, StatusGradient } from '../common';
+import { IconButton } from '../common';
 import { Play, Arrow, Restore } from '../icons';
 import { styles } from './styles';
 import { Routes } from '../../routes';
@@ -19,6 +20,12 @@ interface Props {
 
 const SMALL_ITEM_HEIGHT = 54;
 const BIG_ITEM_HEIGHT = 100;
+
+const statusColors: Record<Status, string> = Object.freeze({
+  TODO: Colors.todo as string,
+  INPROGRESS: Colors.inprogress as string,
+  COMPLETED: Colors.completed as string,
+});
 
 export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const navigation = useNavigation();
@@ -91,12 +98,17 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
     ({ ...styles.arrowButtonHolder, transform: [{ rotate: animatedRotateValue }] })
   , [animatedRotateValue]);
 
+  const indicatorStyles = React.useMemo(() => ({
+    ...styles.indicator,
+    backgroundColor: statusColors[project.status],
+  }), [project]);
+
   const noteExists = isDefined(project.note) && !isEmpty(project.note);
 
   return (
     <Animated.View
       style={{...styles.item, height: animatedHeight }}>
-      <StatusGradient status={project.status} style={styles.gradient} />
+      <View style={indicatorStyles} />
       <View style={styles.titleHolder}>
         <IconButton
           accessibilityLabel={`Run ${project.title} project`}
