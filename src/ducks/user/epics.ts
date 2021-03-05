@@ -16,15 +16,18 @@ import { updateUserRequest,
   createFacebookUserRequest,
 } from './actions';
 
-import { showAlert } from '../ui';
+import { showAlert } from '../../ducks';
 import { getUser } from '../user/selectors';
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { handleResponse } from '../../utils/handleResponse';
 import { getItem, removeItem } from '../../services/storage';
 import { signIn } from '../../services/firebase';
+import { navigate } from '../../services/navigation';
 import { logInWithReadPermissionsAsync, isSuccessLoginResult, requestUserData } from '../../services/facebook';
 import { isDefined } from '../../utils/isDefined';
+import { isEmpty } from '../../utils/isEmpty';
 import { TOKEN, FIREBASE_TOKEN_KEY } from '../../utils/constants';
+import { Routes } from '../../routes';
 
 const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
@@ -33,7 +36,7 @@ const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
     mergeMap(async (payload) => userService.createUser(payload)),
     map(handleResponse),
     mergeMap(handler => handler(
-      res => [createUserSuccess(res.data)],
+      res => [setAuthTokens({ token: res.data.token, firebaseToken: res.data.firebaseToken }), createUserSuccess(res.data)],
       res => [showAlert({ message: res.error, type: 'error' }), createUserFailure(res.error)],
     )),
   );
@@ -50,15 +53,22 @@ const updateUserEpic: AppEpic = (action$, _state$, { userService }) =>
     )),
   );
 
+const navigateToAccountEpic: AppEpic = (action$) =>
+  action$.pipe(
+    filter(isActionOf(updateUserSuccess)),
+    tap(() => navigate(Routes.Account)),
+  );
+
 const saveUserAvatarEpic: AppEpic = (action$, state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(saveUserAvatarRequest)),
     pluck('payload'),
     mergeMap((url) => {
-      const { id } = getUser(state$.value);
+      const user = getUser(state$.value);
 
-      return saveAvatarToStorage(id, url);
+      return isDefined(user) ? saveAvatarToStorage(user.id, url) : '';
     }),
+    filter((avatarUrl) => isDefined(avatarUrl) && !isEmpty(avatarUrl)),
     mergeMap(async avatarUrl => userService.updateUser({ avatarUrl })),
     map(handleResponse),
     mergeMap(handler => handler(
@@ -118,4 +128,5 @@ export const userEpics = combineEpics(
   fetchUserDataEpic,
   createUserEpic,
   createFacebookUserEpic,
+  navigateToAccountEpic,
 );

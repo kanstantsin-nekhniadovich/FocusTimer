@@ -1,6 +1,7 @@
 import { Project, Status } from '@typings';
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,20 +30,20 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
   const [skip, setSkip] = React.useState(0);
   const [filter, setFilter] = React.useState<Status | EmptyString>('');
 
-  const filteredProjects = React.useMemo(() =>
-    isEmpty(filter) ? projects : projects.filter(project => project.status === filter), [projects, filter]);
-
-  const addProject = React.useCallback(() => navigation.navigate(Routes.NewProject), [navigation]);
-
   const loadProjects = React.useCallback(() => {
     dispatch(fetchProjectsRequest({ skip }));
     setSkip(skip + PROJECTS_PER_REQUEST);
   }, [skip]);
 
-  React.useEffect(() => {
-    loadProjects();
-  }, []);
+  useFocusEffect(React.useCallback(() => {
+    dispatch(fetchProjectsRequest({ skip }));
+    setSkip(skip + PROJECTS_PER_REQUEST);
+  }, []));
 
+  const filteredProjects = React.useMemo(() =>
+    isEmpty(filter) ? projects : projects.filter(project => project.status === filter), [projects, filter]);
+
+  const addProject = React.useCallback(() => navigation.navigate(Routes.NewProject), [navigation]);
   const renderItem = React.useCallback(({ item }) => <ExpandableProjectItem project={item} />, []);
 
   const onEndReached = React.useCallback(() => {

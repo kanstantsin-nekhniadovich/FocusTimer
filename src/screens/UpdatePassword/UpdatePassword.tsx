@@ -25,18 +25,12 @@ const validationSchema = yup.object().shape({
 
 type SchemaType = yup.InferType<typeof validationSchema>;
 
-export const UpdatePassword: React.FC<Props> = ({ route, navigation }) => {
-  const [isPasswordUpdated, setIsPasswordUpdated] = React.useState(false);
+export const UpdatePassword: React.FC<Props> = ({ route }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsUserLoading);
 
-  React.useEffect(() => {
-    !isLoading && isPasswordUpdated && navigation.navigate(Routes.Account);
-  }, [isPasswordUpdated, isLoading, navigation]);
-
   const onSubmit = React.useCallback(({ password }: SchemaType) => {
     dispatch(updateUserRequest({ password }));
-    setIsPasswordUpdated(true);
   }, []);
 
   const initialValues = React.useMemo(() => ({ password: route.params.password, confirmPassword: '' }) as SchemaType, [route]);

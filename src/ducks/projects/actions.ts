@@ -19,3 +19,4 @@ export const updateProjectFailure = createAction('projects/UPDATE_PROJECT_FAILUR
 export const deleteProjectRequest = createAction('projects/DELETE_PROJECT_REQUEST')<Id>();
 export const deleteProjectSuccess = createAction('projects/DELETE_PROJECT_SUCCESS')<FullProject>();
 export const deleteProjectFailure = createAction('projects/DELETE_PROJECT_FAILURE')();
+export const resetProjects = createAction('projects/RESET_PROJECTS')();

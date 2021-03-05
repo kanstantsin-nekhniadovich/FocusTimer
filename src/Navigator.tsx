@@ -1,9 +1,11 @@
 import React from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import { enableScreens } from 'react-native-screens';
 import { useSelector } from 'react-redux';
 import { Colors } from '@styles';
 
+import { navigationRef, isReadyRef } from './services/navigation';
 import { getIsUserSkippedLoginFlow } from './ducks';
 import { Login, Account, SignUp, Projects, UpdatePassword, NewProject, Project } from './screens';
 import { Routes } from './routes';
@@ -33,65 +35,74 @@ export const Navigator: React.FC = () => {
   const isUserSkippedLoginFlow = useSelector(getIsUserSkippedLoginFlow);
   const initialRouteName = isUserSkippedLoginFlow ? Routes.Projects : Routes.Login;
 
+  const onNavigationReady = React.useCallback(() => {
+    Object.assign(isReadyRef, { current: true });
+  }, []);
+
   return (
-    <Stack.Navigator initialRouteName={initialRouteName}>
-      <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
-      <Stack.Screen
-        name={Routes.SignUp}
-        component={SignUp}
-        options={{
-          headerTitle: SignUpHeader,
-          ...commonNavigationOptions
-        }}
-      />
-      <Stack.Screen
-        name={Routes.Account}
-        component={Account}
-        options={{
-          headerTitle: MyAccountHeader,
-          ...commonNavigationOptions
-        }}
-      />
-      <Stack.Screen
-        name={Routes.Projects}
-        component={Projects}
-        options={({ navigation }) => ({
-          headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
-          headerTitle: ProjectsHeader,
-          ...commonNavigationOptions,
-        })}
-      />
-      <Stack.Screen
-        name={Routes.UpdatePassword}
-        component={UpdatePassword}
-        options={{
-          headerTitle: UpdatePasswordHeader,
-          ...commonNavigationOptions,
-        }}
-      />
-      <Stack.Screen
-        name={Routes.NewProject}
-        component={NewProject}
-        options={({ navigation }) => ({
-          headerLeft: () => ( /* eslint-disable-line react/display-name */
-            <IconButton onPress={() => navigation.navigate(Routes.Projects)} accessibilityLabel="Close new project">
-              <Cross color={Colors.prussianBlue} />
-            </IconButton>
-          ),
-          headerTitle: NewProjectsHeader,
-          ...commonNavigationOptions,
-          animationTypeForReplace: 'pop',
-        })}
-      />
-      <Stack.Screen
-        name={Routes.Project}
-        component={Project}
-        options={({ navigation, route }) => ({
-          headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
-          headerTitle: () => <ProjectHeader route={route} />, /* eslint-disable-line react/display-name */
-          ...commonNavigationOptions,
-        })}
-      />
-    </Stack.Navigator>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={onNavigationReady}
+    >
+      <Stack.Navigator initialRouteName={initialRouteName}>
+        <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
+        <Stack.Screen
+          name={Routes.SignUp}
+          component={SignUp}
+          options={{
+            headerTitle: SignUpHeader,
+            ...commonNavigationOptions
+          }}
+        />
+        <Stack.Screen
+          name={Routes.Account}
+          component={Account}
+          options={{
+            headerTitle: MyAccountHeader,
+            ...commonNavigationOptions
+          }}
+        />
+        <Stack.Screen
+          name={Routes.Projects}
+          component={Projects}
+          options={({ navigation }) => ({
+            headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
+            headerTitle: ProjectsHeader,
+            ...commonNavigationOptions,
+          })}
+        />
+        <Stack.Screen
+          name={Routes.UpdatePassword}
+          component={UpdatePassword}
+          options={{
+            headerTitle: UpdatePasswordHeader,
+            ...commonNavigationOptions,
+          }}
+        />
+        <Stack.Screen
+          name={Routes.NewProject}
+          component={NewProject}
+          options={({ navigation }) => ({
+            headerLeft: () => ( /* eslint-disable-line react/display-name */
+              <IconButton onPress={() => navigation.navigate(Routes.Projects)} accessibilityLabel="Close new project">
+                <Cross color={Colors.prussianBlue} />
+              </IconButton>
+            ),
+            headerTitle: NewProjectsHeader,
+            ...commonNavigationOptions,
+            animationTypeForReplace: 'pop',
+          })}
+        />
+        <Stack.Screen
+          name={Routes.Project}
+          component={Project}
+          options={({ navigation, route }) => ({
+            headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
+            headerTitle: () => <ProjectHeader route={route} />, /* eslint-disable-line react/display-name */
+            ...commonNavigationOptions,
+          })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };

@@ -13,7 +13,7 @@ import {
   facebookLogoutRequest,
 } from './actions';
 
-import { showAlert } from '../ui';
+import { showAlert, resetProjects, getIsFacebookAuth } from '../';
 
 import {
   facebookLogout,
@@ -25,9 +25,12 @@ import {
 import { handleResponse } from '../../utils/handleResponse';
 import { createUserSuccess } from '../user';
 import { storeItem, removeItem } from '../../services/storage';
+import { client } from '../../graphql/client';
 import { signIn, signOut } from '../../services/firebase';
+import { navigate } from '../../services/navigation';
 import { isDefined } from '../../utils/isDefined';
 import { FIREBASE_TOKEN_KEY, TOKEN } from '../../utils/constants';
+import { Routes } from '../../routes';
 
 const loginEpic: AppEpic = (action$, _state$, { authService }) => {
   return action$.pipe(
@@ -42,12 +45,13 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
   );
 };
 
-const storeJwtTokenEpic: AppEpic = (action$) => {
+const postGettingUserDataEpic: AppEpic = (action$) => {
   return action$.pipe(
     filter(isActionOf([loginSuccess, createUserSuccess, facebookLoginSuccess])),
     pluck('payload'),
     tap(async ({ firebaseToken }) => await storeItem(FIREBASE_TOKEN_KEY, firebaseToken)),
     tap(async ({ token }) => await storeItem(TOKEN, token)),
+    tap(() => navigate(Routes.Projects)),
     ignoreElements(),
   );
 };
@@ -68,12 +72,16 @@ const signOutFirebaseEpic: AppEpic = (action$) => {
   );
 };
 
-const logoutEpic: AppEpic = (action$) => {
+const logoutEpic: AppEpic = (action$, state$) => {
   return action$.pipe(
     filter(isActionOf(logoutRequest)),
     tap(async () => await removeItem(FIREBASE_TOKEN_KEY)),
     tap(async () => await removeItem(TOKEN)),
-    ignoreElements(),
+    tap(() => client.clearStore()),
+    mergeMap(() => getIsFacebookAuth(state$.value)
+      ? [facebookLogoutRequest(), resetProjects()]
+      : [resetProjects()]
+    ),
   );
 };
 
@@ -101,7 +109,7 @@ const facebookLogoutEpic: AppEpic = (action$) =>
 
 export const authEpics = combineEpics(
   loginEpic,
-  storeJwtTokenEpic,
+  postGettingUserDataEpic,
   signInFirebaseEpic,
   logoutEpic,
   signOutFirebaseEpic,

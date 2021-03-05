@@ -1,7 +1,7 @@
 import { Task } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
-import { fetchProjectsSuccess } from '../projects';
+import { fetchProjectsSuccess, resetProjects } from '../projects';
 
 interface State {
   tasks: Record<Id, Task[]>;
@@ -20,5 +20,8 @@ export const handleSetTasks: ActionHandler<State, typeof fetchProjectsSuccess> =
   return { ...state, tasks: { ...state.tasks, ...tasks } };
 };
 
+export const handleResetTasks: ActionHandler<State, typeof resetProjects> = () => initialState;
+
 export const tasksReducer = createReducer<State, AppActions>(initialState)
-  .handleAction(fetchProjectsSuccess, handleSetTasks);
+  .handleAction(fetchProjectsSuccess, handleSetTasks)
+  .handleAction(resetProjects, handleResetTasks);

@@ -8,9 +8,8 @@ import { FocusTimerHeader, Elipse56 } from '../../components/icons';
 import { LoginForm } from '../../components/LoginForm';
 import { SkipButton } from '../../components/SkipButton';
 import { OverlayLoader } from '../../components/common';
-import { getIsUserLoading, getUser, facebookLoginRequest } from '../../ducks';
+import { getIsUserLoading, facebookLoginRequest } from '../../ducks';
 import { styles } from './styles';
-import { isDefined } from '../../utils/isDefined';
 import { Routes } from '../../routes';
 
 interface Props {
@@ -20,7 +19,6 @@ interface Props {
 export const Login: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsUserLoading);
-  const user = useSelector(getUser);
   const handleFacebookLogIn = React.useCallback(async () => {
     dispatch(facebookLoginRequest());
   }, []);
@@ -28,14 +26,6 @@ export const Login: React.FC<Props> = ({ navigation }) => {
   const navigateToSignUpScreen = React.useCallback(() => {
     navigation.navigate(Routes.SignUp);
   }, [navigation]);
-
-  React.useEffect(() => {
-    if (!isDefined(user) || isLoading) {
-      return;
-    }
-
-    navigation.navigate(Routes.Projects);
-  }, [user, isLoading, navigation]);
 
   return (
     <>

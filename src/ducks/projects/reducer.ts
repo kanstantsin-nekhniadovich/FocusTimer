@@ -1,5 +1,5 @@
 import { Project } from '@typings';
-import { assocPath } from 'ramda';
+import { assocPath, uniqBy, prop } from 'ramda';
 import { createReducer, ActionType } from 'typesafe-actions';
 
 import * as actions from './actions';
@@ -17,6 +17,7 @@ import {
   updateProjectRequest,
   updateProjectSuccess,
   updateProjectFailure,
+  resetProjects,
 } from './actions';
 
 interface State {
@@ -63,7 +64,7 @@ export const handleFetchProjectsSuccess: ActionHandler<State, typeof fetchProjec
   return {
     ...state,
     isLoading: false,
-    projects: [...state.projects, ...projects],
+    projects: uniqBy(prop('id'), [...state.projects, ...projects]),
     totalCount,
   };
 };
@@ -114,6 +115,8 @@ export const handleDeleteProjectFailure: ActionHandler<State, typeof deleteProje
   isLoading: false,
 });
 
+export const handleResetProjects: ActionHandler<State, typeof resetProjects> = () => initialState;
+
 export const projectsReducer = createReducer<State, ActionType<typeof actions>>(initialState)
   .handleAction(createProjectRequest, handleCreateProjectRequest)
   .handleAction(createProjectSuccess, handleCreateProjectSuccess)
@@ -126,4 +129,5 @@ export const projectsReducer = createReducer<State, ActionType<typeof actions>>(
   .handleAction(deleteProjectFailure, handleDeleteProjectFailure)
   .handleAction(updateProjectRequest, handleUpdateProjectRequest)
   .handleAction(updateProjectSuccess, handleUpdateProjectSuccess)
-  .handleAction(updateProjectFailure, handleUpdateProjectFailure);
+  .handleAction(updateProjectFailure, handleUpdateProjectFailure)
+  .handleAction(resetProjects, handleResetProjects);

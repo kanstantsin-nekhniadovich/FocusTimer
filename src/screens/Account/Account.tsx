@@ -8,7 +8,7 @@ import { Logout} from '../../components/icons';
 import { EditUserDetails } from '../../components/EditUserDetails';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';
-import { getUser, logoutRequest, getIsUserLoading, getIsFacebookAuth, facebookLogoutRequest } from '../../ducks';
+import { getUser, logoutRequest, getIsUserLoading } from '../../ducks';
 import { styles } from './styles';
 
 interface Props {
@@ -18,7 +18,6 @@ interface Props {
 export const Account: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const isFacebookAuth = useSelector(getIsFacebookAuth);
   const isUserLoading = useSelector(getIsUserLoading);
 
   React.useEffect(() => {
@@ -30,9 +29,9 @@ export const Account: React.FC<Props> = ({ navigation }) => {
   }, [user]);
 
   const logout = React.useCallback(async () => {
-    isFacebookAuth ? dispatch(facebookLogoutRequest()) : dispatch(logoutRequest());
+    dispatch(logoutRequest());
     navigation.navigate(Routes.Login);
-  }, [navigation, isFacebookAuth]);
+  }, [navigation]);
 
   if (!isDefined(user)) {
     return <OverlayLoader />;
