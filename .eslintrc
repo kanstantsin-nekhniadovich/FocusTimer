@@ -53,6 +53,9 @@
         "delimiter": "semi",
         "requireLast": false
       }
+    }],
+    "@typescript-eslint/strict-boolean-expressions": [2, {
+      "allowNullableBoolean": true
     }]
   },
   "overrides": [

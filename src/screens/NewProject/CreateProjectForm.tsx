@@ -10,6 +10,7 @@ import { Routes } from '../../routes';
 import { DividerBlock, PrimaryButton, Input } from '../../components/common';
 import { CreateProjectHeader } from '../../components/icons';
 import { createProjectRequest } from '../../ducks';
+import { isDefined } from '../../utils/isDefined';
 
 const validationSchema = yup.object().shape({
   title: yup.string()
@@ -37,7 +38,7 @@ export const CreateProjectForm = () => {
       validateOnBlur
     >
       {({ handleSubmit, handleChange, values, errors, touched }) => {
-        const isDisabled = !!errors.title || !values.title;
+        const isDisabled = isDefined(errors.title) || !values.title;
 
         return (
           <>
@@ -45,7 +46,7 @@ export const CreateProjectForm = () => {
               placeholder="Project name"
               value={values.title}
               onChangeText={handleChange('title')}
-              isValid={!touched.title || !errors.title}
+              isValid={!touched.title || !isDefined(errors.title)}
             />
             {touched.title && errors.title && <Text style={Common.error}>{errors.title}</Text>}
             <DividerBlock height={85} />

@@ -20,7 +20,7 @@ export const Input: React.FC<Props> = ({
   ...rest
 }) => {
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
-  const inputIsActive = isFocused || !!value;
+  const inputIsActive = isFocused || isDefined(value);
   const [inputPlaceholder, setInputPlaceholder] = React.useState(placeholder);
   const [zIndex, setZIndex] = React.useState(inputIsActive ? 0 : -1);
   const animation = React.useRef(new Animated.Value(inputIsActive ? 1 : 0)).current;

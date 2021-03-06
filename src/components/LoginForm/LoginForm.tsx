@@ -8,6 +8,7 @@ import { Common } from '@styles';
 import { loginRequest } from '../../ducks/auth';
 import { Input, DividerBlock, PrimaryButton } from '../common';
 import { styles } from './styles';
+import { isDefined } from '../../utils/isDefined';
 
 const validationShema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Please enter your email'),
@@ -44,7 +45,7 @@ export const LoginForm = () => {
               placeholder="Email"
               keyboardType='email-address'
               value={values.email}
-              isValid={!touched.email || !errors.email}
+              isValid={!touched.email || !isDefined(errors.email)}
               onChangeText={handleChange('email')}
               multiline
             />
@@ -53,7 +54,7 @@ export const LoginForm = () => {
             <Input
               placeholder="Password"
               secureTextEntry
-              isValid={!touched.password || !errors.password}
+              isValid={!touched.password || !isDefined(errors.password)}
               onChangeText={handleChange('password')}
               value={values.password}
             />

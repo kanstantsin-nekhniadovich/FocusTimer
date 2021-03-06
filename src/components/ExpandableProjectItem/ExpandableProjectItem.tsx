@@ -31,7 +31,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const navigation = useNavigation();
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isToolsMenuOpened, setIsToolsMenuOpened] = React.useState(false);
-  const tasks = useSelector(getTasksForProject(project.id)) || [];
+  const tasks = useSelector(getTasksForProject(project.id)) ?? [];
 
   const animatedHeight = React.useRef(new Animated.Value(SMALL_ITEM_HEIGHT)).current;
   const animatedRotate = React.useRef(new Animated.Value(0)).current;

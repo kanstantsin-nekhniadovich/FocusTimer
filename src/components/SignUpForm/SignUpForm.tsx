@@ -8,6 +8,7 @@ import { Common } from '@styles';
 import { styles } from './styles';
 import { PrimaryButton, Input, DividerBlock } from '../common';
 import { createUserRequest } from '../../ducks';
+import { isDefined } from '../../utils/isDefined';
 
 const validationSchema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required('Please enter your email'),
@@ -46,7 +47,7 @@ export const SignUpForm = () => {
               keyboardType='email-address'
               value={values.email}
               onChangeText={handleChange('email')}
-              isValid={!touched.email || !errors.email}
+              isValid={!touched.email || !isDefined(errors.email)}
             />
             {touched.email && errors.email && <Text style={Common.error}>{errors.email}</Text>}
             <DividerBlock />
@@ -55,7 +56,7 @@ export const SignUpForm = () => {
               secureTextEntry
               value={values.password}
               onChangeText={handleChange('password')}
-              isValid={!touched.password || !errors.password}
+              isValid={!touched.password || !isDefined(errors.password)}
             />
             {touched.password && errors.password && <Text style={Common.error}>{errors.password}</Text>}
             <DividerBlock />
@@ -64,7 +65,7 @@ export const SignUpForm = () => {
               secureTextEntry
               value={values.repeatPassword}
               onChangeText={handleChange('repeatPassword')}
-              isValid={!touched.repeatPassword || !errors.repeatPassword}
+              isValid={!touched.repeatPassword || !isDefined(errors.repeatPassword)}
             />
             {touched.repeatPassword && errors.repeatPassword && <Text style={Common.error}>{errors.repeatPassword}</Text>}
             <DividerBlock />

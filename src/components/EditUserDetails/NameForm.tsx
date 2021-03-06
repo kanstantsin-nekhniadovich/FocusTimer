@@ -56,7 +56,7 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
   const fieldMeta = React.useMemo(() => ({
     initialTouched: false,
     value: form.values.name,
-    touched: form.touched.name || false,
+    touched: form.touched.name ?? false,
     error: form.errors.name,
   }), [form]);
 

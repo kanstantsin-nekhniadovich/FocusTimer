@@ -11,6 +11,7 @@ import { DividerBlock, Input, OverlayLoader, Wrapper } from '../../components/co
 import { PrimaryButton } from '../../components/common/PrimaryButton';
 import { styles } from './styles';
 import { updateUserRequest, getIsUserLoading } from '../../ducks';
+import { isDefined } from '../../utils/isDefined';
 
 type Props = StackScreenProps<Screens, Routes.UpdatePassword>;
 
@@ -56,7 +57,7 @@ export const UpdatePassword: React.FC<Props> = ({ route }) => {
                 placeholder="Password"
                 onChangeText={handleChange('password')}
                 secureTextEntry
-                isValid={!touched.password || !errors.password}
+                isValid={!touched.password || !isDefined(errors.password)}
                 onBlur={handleBlur('password')}
               />
               {touched.password && errors.password && <Text style={Common.error}>{errors.password}</Text>}
@@ -66,7 +67,7 @@ export const UpdatePassword: React.FC<Props> = ({ route }) => {
                 placeholder="Confirm password"
                 onChangeText={handleChange('confirmPassword')}
                 secureTextEntry
-                isValid={!touched.confirmPassword || !errors.confirmPassword}
+                isValid={!touched.confirmPassword || !isDefined(errors.confirmPassword)}
                 onBlur={handleBlur('confirmPassword')}
               />
               {touched.confirmPassword && errors.confirmPassword && <Text style={Common.error}>{errors.confirmPassword}</Text>}
