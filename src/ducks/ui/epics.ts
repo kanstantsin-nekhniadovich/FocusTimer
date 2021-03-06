@@ -22,7 +22,7 @@ const initSuccessActions = [setUserSkippedLoginFlowSuccess, fetchUserDataSuccess
 export const initApplicationRequestEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(initApplicationRequest)),
-    tap(async () => await initializeFacebook()),
+    map(async () => await initializeFacebook()),
     tap(() => !isFirebaseInitialized() && initializeFirebase()),
     mergeMap(() => initActions.map(action => action())),
   );
@@ -45,7 +45,7 @@ export const setUserSkippedLoginFlowEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(setUserSkippedLoginFlowRequest)),
     pluck('payload'),
-    tap(async (payload) => await storeItem(USER_SKIPPED_LOGIN_FLOW_KEY, `${payload}`)),
+    tap(async (payload) => await storeItem(USER_SKIPPED_LOGIN_FLOW_KEY, payload)),
     map(isUserSkippedLoginFlow => setUserSkippedLoginFlowSuccess(isUserSkippedLoginFlow)),
   );
 

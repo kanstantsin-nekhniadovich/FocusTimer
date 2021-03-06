@@ -59,7 +59,7 @@ const postGettingUserDataEpic: AppEpic = (action$) => {
 const signInFirebaseEpic: AppEpic = (action$) => {
   return action$.pipe(
     filter(isActionOf([loginSuccess, createUserSuccess, facebookLoginSuccess])),
-    tap(signIn),
+    map(signIn),
     ignoreElements(),
   );
 };
@@ -67,7 +67,7 @@ const signInFirebaseEpic: AppEpic = (action$) => {
 const signOutFirebaseEpic: AppEpic = (action$) => {
   return action$.pipe(
     filter(isActionOf(logoutRequest)),
-    tap(signOut),
+    map(signOut),
     ignoreElements(),
   );
 };
@@ -103,7 +103,7 @@ const facebookLoginEpic: AppEpic = (action$, _state$, { authService }) =>
 const facebookLogoutEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(facebookLogoutRequest)),
-    tap(facebookLogout),
+    map(facebookLogout),
     ignoreElements(),
   );
 

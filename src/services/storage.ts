@@ -1,9 +1,12 @@
 import { AsyncStorage } from 'react-native';
 
-export const storeItem = async (key: string, data: string): Promise<void> => {
+export const storeItem = async <T extends unknown>(key: string, data: T): Promise<T | null> => {
   try {
-    await AsyncStorage.setItem(key, data);
-  } catch { }
+    await AsyncStorage.setItem(key, JSON.stringify(data));
+    return data;
+  } catch {
+    return null;
+  }
 };
 
 export const getItem = async (key: string): Promise<Nullable<string>> => {

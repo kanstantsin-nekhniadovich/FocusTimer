@@ -37,7 +37,7 @@ const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
     mergeMap(async (payload) => await userService.createUser(payload)),
     map(handleResponse),
     mergeMap(handler => handler(
-      res => [setAuthTokens({ token: res.data.token, firebaseToken: res.data.firebaseToken }), createUserSuccess(res.data)],
+      res => [createUserSuccess(res.data)],
       res => [showAlert({ message: res.error, type: 'error' }), createUserFailure(res.error)],
     )),
   );
@@ -91,7 +91,7 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
 
       return from(userService.getUser()).pipe(
         map(handleResponse),
-        map(handler => handler(
+        mergeMap(async handler => handler(
           res => fetchUserDataSuccess(res.data),
           res => {
             removeItem(TOKEN);
