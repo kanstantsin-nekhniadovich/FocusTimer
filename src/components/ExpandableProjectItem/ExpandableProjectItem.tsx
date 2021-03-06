@@ -107,7 +107,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
 
   return (
     <Animated.View
-      style={{...styles.item, height: animatedHeight }}>
+      style={{ ...styles.item, height: animatedHeight }}>
       <View style={indicatorStyles} />
       <View style={styles.titleHolder}>
         <IconButton

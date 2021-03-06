@@ -22,7 +22,7 @@ export const PrimaryButton: React.FC<Props> = ({ title, variant = 'standard', si
   const btnStyles = React.useMemo(() => ({
     ...variantStyles.btn,
     ...states.btn[size],
-    ...(disabled ? states.btn.disabled : {}),
+    ...(isDefined(disabled) ? states.btn.disabled : {}),
     ...(isDefined(style) ? style : {}),
   }), [variantStyles, size, disabled, style]);
 

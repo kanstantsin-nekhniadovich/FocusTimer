@@ -4,7 +4,7 @@ import { createReducer } from 'typesafe-actions';
 import { initApplicationSuccess, showAlert, hideAlert, setUserSkippedLoginFlowSuccess } from './actions';
 
 interface State {
-  isApplicationInited: boolean,
+  isApplicationInited: boolean;
   alert: AlertMeta;
   isUserSkippedLoginFlow: boolean;
 }

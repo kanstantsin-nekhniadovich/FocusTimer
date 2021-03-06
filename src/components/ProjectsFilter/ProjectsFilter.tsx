@@ -56,7 +56,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
 
   const filterBlockStyles = React.useMemo(() =>
     ({ ...styles.filterBlock, opacity: animatedOpacity, transform: [{ scale }] })
-  ,[animatedOpacity, scale]);
+  , [animatedOpacity, scale]);
 
   const iconButtonStyles = isVisible ? { ...styles.iconButton, zIndex: -1 } : styles.iconButton;
 

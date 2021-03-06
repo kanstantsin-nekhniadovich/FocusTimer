@@ -31,7 +31,7 @@ export const createProjectEpic: AppEpic = (action$, _, { projectsService }) =>
   action$.pipe(
     filter(isActionOf(createProjectRequest)),
     pluck('payload'),
-    mergeMap(async (payload) => projectsService.createProject({ ...payload, status: Status.TODO })),
+    mergeMap(async (payload) => await projectsService.createProject({ ...payload, status: Status.TODO })),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [createProjectSuccess(res.data)],
@@ -43,7 +43,7 @@ export const fetchProjectsEpic: AppEpic = (action$, _, { projectsService }) =>
   action$.pipe(
     filter(isActionOf(fetchProjectsRequest)),
     pluck('payload'),
-    mergeMap(async ({ skip }) => projectsService.fetchProjects({ skip, first: PROJECTS_PER_REQUEST })),
+    mergeMap(async ({ skip }) => await projectsService.fetchProjects({ skip, first: PROJECTS_PER_REQUEST })),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [fetchProjectsSuccess(res.data)],
@@ -55,7 +55,7 @@ export const updateProjectEpic: AppEpic = (action$, _, { projectsService }) =>
   action$.pipe(
     filter(isActionOf(updateProjectRequest)),
     pluck('payload'),
-    mergeMap(async (payload) => projectsService.updateProject(payload)),
+    mergeMap(async (payload) => await projectsService.updateProject(payload)),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [updateProjectSuccess(res.data)],

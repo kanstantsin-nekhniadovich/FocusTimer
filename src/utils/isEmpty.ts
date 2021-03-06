@@ -7,7 +7,6 @@ export const isEmpty = <T extends string | Record<string, unknown> | any[]>(cand
       : Object.keys(candidate).length === 0;
 };
 
-
 type ReturnType<T> =
   T extends string
     ? EmptyString

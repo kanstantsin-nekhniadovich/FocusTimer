@@ -37,7 +37,7 @@ export const initApplicationSuccessEpic: AppEpic = (action$) =>
 export const getUserSkippedLoginFlowEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(readUserSkippedLoginFlow)),
-    mergeMap(async () => getItem(USER_SKIPPED_LOGIN_FLOW_KEY)),
+    mergeMap(async () => await getItem(USER_SKIPPED_LOGIN_FLOW_KEY)),
     map(isUserSkippedLoginFlow => setUserSkippedLoginFlowSuccess(isUserSkippedLoginFlow === 'true')),
   );
 
@@ -45,7 +45,7 @@ export const setUserSkippedLoginFlowEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(setUserSkippedLoginFlowRequest)),
     pluck('payload'),
-    tap(async (payload) => storeItem(USER_SKIPPED_LOGIN_FLOW_KEY, `${payload}`)),
+    tap(async (payload) => await storeItem(USER_SKIPPED_LOGIN_FLOW_KEY, `${payload}`)),
     map(isUserSkippedLoginFlow => setUserSkippedLoginFlowSuccess(isUserSkippedLoginFlow)),
   );
 

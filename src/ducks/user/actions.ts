@@ -1,7 +1,7 @@
 import { User, Response } from '@typings';
 import { createAction } from 'typesafe-actions';
 
-export const createUserRequest = createAction('user/CREATE_USER_REQUEST')<{ email: string, password: string }>();
+export const createUserRequest = createAction('user/CREATE_USER_REQUEST')<{ email: string; password: string }>();
 export const createUserSuccess = createAction('user/CREATE_USER_SUCCESS')<Response.AuthPayload>();
 export const createUserFailure = createAction('user/CREATE_USER_FAILURE')<Nullable<string>>();
 

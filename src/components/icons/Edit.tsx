@@ -2,7 +2,7 @@
 import React from 'react';
 import { ColorValue } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { Colors} from '@styles';
+import { Colors } from '@styles';
 
 interface Props {
   width?: number;

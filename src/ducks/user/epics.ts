@@ -3,7 +3,8 @@ import { combineEpics } from 'redux-observable';
 import { from } from 'rxjs';
 import { filter, mergeMap, pluck, map, tap } from 'rxjs/operators';
 
-import { updateUserRequest,
+import {
+  updateUserRequest,
   updateUserSuccess,
   updateUserFailure,
   saveUserAvatarRequest,
@@ -33,7 +34,7 @@ const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(createUserRequest)),
     pluck('payload'),
-    mergeMap(async (payload) => userService.createUser(payload)),
+    mergeMap(async (payload) => await userService.createUser(payload)),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [setAuthTokens({ token: res.data.token, firebaseToken: res.data.firebaseToken }), createUserSuccess(res.data)],
@@ -45,7 +46,7 @@ const updateUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(updateUserRequest)),
     pluck('payload'),
-    mergeMap(async (payload) => userService.updateUser(payload)),
+    mergeMap(async (payload) => await userService.updateUser(payload)),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [updateUserSuccess(res.data), showAlert({ message: 'User info was updated successfully', type: 'success' })],
@@ -69,7 +70,7 @@ const saveUserAvatarEpic: AppEpic = (action$, state$, { userService }) =>
       return isDefined(user) ? saveAvatarToStorage(user.id, url) : '';
     }),
     filter((avatarUrl) => isDefined(avatarUrl) && !isEmpty(avatarUrl)),
-    mergeMap(async avatarUrl => userService.updateUser({ avatarUrl })),
+    mergeMap(async avatarUrl => await userService.updateUser({ avatarUrl })),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [showAlert({ message: 'User photo was updated successfully', type: 'success' }), updateUserSuccess(res.data)],
@@ -105,15 +106,15 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
 const createFacebookUserEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(createFacebookUserRequest)),
-    mergeMap(async () => logInWithReadPermissionsAsync()),
+    mergeMap(async () => await logInWithReadPermissionsAsync()),
     filter(isSuccessLoginResult),
-    mergeMap(async response => requestUserData(response.token)),
+    mergeMap(async response => await requestUserData(response.token)),
     filter(isDefined),
     mergeMap(async data => {
       const { name, email, picture } = data;
       const avatarUrl = isDefined(picture) ? picture.data?.url : null;
 
-      return userService.createFacebookUser({ name, email, avatarUrl });
+      return await userService.createFacebookUser({ name, email, avatarUrl });
     }),
     map(handleResponse),
     mergeMap(handler => handler(

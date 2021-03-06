@@ -1,7 +1,7 @@
 import { User, FullProject } from './types';
 
 export namespace Response {
-  export type AuthPayload = {
+  export interface AuthPayload {
     token: string;
     firebaseToken: string;
     user: User;

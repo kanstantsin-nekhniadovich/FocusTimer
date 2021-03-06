@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { PrimaryButton, DividerLine, DividerBlock, Wrapper } from '../../components/common';
+import { PrimaryButton, DividerLine, DividerBlock, Wrapper, OverlayLoader } from '../../components/common';
 import { FocusTimerHeader, Elipse56 } from '../../components/icons';
 import { LoginForm } from '../../components/LoginForm';
 import { SkipButton } from '../../components/SkipButton';
-import { OverlayLoader } from '../../components/common';
+
 import { getIsUserLoading, facebookLoginRequest } from '../../ducks';
 import { styles } from './styles';
 import { Routes } from '../../routes';

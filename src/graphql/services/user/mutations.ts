@@ -20,7 +20,6 @@ gql`
   }
 `;
 
-
 export const createUser = gql`
   mutation($data: CreateUserInput!) {
     createUser(data: $data) {

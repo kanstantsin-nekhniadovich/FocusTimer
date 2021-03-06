@@ -58,13 +58,13 @@ export const EditNoteModal: React.FC<Props> = ({ projectId, onClose, title, note
             <Input
               placeholder="Note"
               value={values.note}
-              isValid={!touched.note || !errors.note}
+              isValid={!isDefined(touched.note) || !isDefined(errors.note)}
               onChangeText={handleChange('note')}
               multiline
               numberOfLines={2}
               style={editNoteModalStyles.textarea}
             />
-            {touched.note && errors.note && <Text style={Common.error}>{errors.note}</Text>}
+            {isDefined(touched.note) && errors.note && <Text style={Common.error}>{errors.note}</Text>}
             <DividerBlock />
             <View style={editNoteModalStyles.buttons}>
               <PrimaryButton

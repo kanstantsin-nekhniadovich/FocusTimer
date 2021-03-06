@@ -36,7 +36,7 @@ const loginEpic: AppEpic = (action$, _state$, { authService }) => {
   return action$.pipe(
     filter(isActionOf(loginRequest)),
     pluck('payload'),
-    mergeMap(({ email, password }) => authService.login(email, password)),
+    mergeMap(async ({ email, password }) => await authService.login(email, password)),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [loginSuccess(res.data)],
@@ -77,7 +77,7 @@ const logoutEpic: AppEpic = (action$, state$) => {
     filter(isActionOf(logoutRequest)),
     tap(async () => await removeItem(FIREBASE_TOKEN_KEY)),
     tap(async () => await removeItem(TOKEN)),
-    tap(() => client.clearStore()),
+    tap(async () => await client.clearStore()),
     mergeMap(() => getIsFacebookAuth(state$.value)
       ? [facebookLogoutRequest(), resetProjects()]
       : [resetProjects()]
@@ -88,11 +88,11 @@ const logoutEpic: AppEpic = (action$, state$) => {
 const facebookLoginEpic: AppEpic = (action$, _state$, { authService }) =>
   action$.pipe(
     filter(isActionOf(facebookLoginRequest)),
-    mergeMap(async () => logInWithReadPermissionsAsync()),
+    mergeMap(async () => await logInWithReadPermissionsAsync()),
     filter(isSuccessLoginResult),
-    mergeMap(async response => requestUserData(response.token)),
+    mergeMap(async response => await requestUserData(response.token)),
     filter(isDefined),
-    mergeMap(async (data) => authService.facebookLogin(data.email)),
+    mergeMap(async (data) => await authService.facebookLogin(data.email)),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [facebookLoginSuccess(res.data)],

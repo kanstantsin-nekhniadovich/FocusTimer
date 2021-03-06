@@ -17,6 +17,5 @@ const getEnvironment = (): Environments => {
   return Environments.DEV;
 };
 
-
 export const isProdEnv = (): boolean => getEnvironment() === Environments.PROD;
 export const isDevEnv = (): boolean => getEnvironment() === Environments.DEV;

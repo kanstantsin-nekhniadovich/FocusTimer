@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "module": "es2015",
+    "module": "es2020",
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { DividerBlock, OverlayLoader, IconButton, Wrapper } from '../../components/common';
-import { Logout} from '../../components/icons';
+import { Logout } from '../../components/icons';
 import { EditUserDetails } from '../../components/EditUserDetails';
 import { Routes } from '../../routes';
 import { isDefined } from '../../utils/isDefined';

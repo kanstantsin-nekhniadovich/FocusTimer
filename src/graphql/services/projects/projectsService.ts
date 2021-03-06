@@ -3,14 +3,14 @@ import { api } from '../../api';
 import * as mutations from './mutations';
 import * as queries from './queries';
 
-export const fetchProjects = ({ skip, first }: { skip: number; first: number; }) =>
-  api.query<Response.Projects>({ query: queries.projects, variables: { skip, first } }, 'projects');
+export const fetchProjects = async ({ skip, first }: { skip: number; first: number }) =>
+  await api.query<Response.Projects>({ query: queries.projects, variables: { skip, first } }, 'projects');
 
-export const createProject = (data: { title: string; status: Status }) =>
-  api.mutate<FullProject>({ mutation: mutations.createProject, variables: { data } }, 'createProject');
+export const createProject = async (data: { title: string; status: Status }) =>
+  await api.mutate<FullProject>({ mutation: mutations.createProject, variables: { data } }, 'createProject');
 
-export const updateProject = ({ data, id }: { data: Partial<Project>; id: Id; }) =>
-  api.mutate<FullProject>({ mutation: mutations.updateProject, variables: { data, where: { id } } }, 'updateProject');
+export const updateProject = async ({ data, id }: { data: Partial<Project>; id: Id }) =>
+  await api.mutate<FullProject>({ mutation: mutations.updateProject, variables: { data, where: { id } } }, 'updateProject');
 
-export const deleteProject = (id: string) =>
-  api.mutate<FullProject>({ mutation: mutations.deleteProject, variables: { id } }, 'deleteProject');
+export const deleteProject = async (id: string) =>
+  await api.mutate<FullProject>({ mutation: mutations.deleteProject, variables: { id } }, 'deleteProject');

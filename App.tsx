@@ -9,7 +9,7 @@ import { AppReady } from './src/components/AppReady';
 import { Navigator } from './src/Navigator';
 import { Alert } from './src/components/common';
 
-export default function App(): JSX.Element {
+export default function App (): JSX.Element {
   return (
     <Provider store={store}>
       <AppReady>

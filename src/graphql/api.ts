@@ -10,7 +10,7 @@ export enum Status {
 type ClientResultType = FetchResult<Unrestricted> | ApolloQueryResult<Unrestricted>;
 
 const normalize = <T, P>(handler: (options: P) => Promise<ClientResultType>): (options: P, property: string) =>
-  Promise<NormalizedResponse<T>> => async (options: P, property: string): Promise<NormalizedResponse<T>> => {
+Promise<NormalizedResponse<T>> => async (options: P, property: string): Promise<NormalizedResponse<T>> => {
     try {
       const response = await handler(options);
 
@@ -28,12 +28,12 @@ const normalize = <T, P>(handler: (options: P) => Promise<ClientResultType>): (o
     }
   };
 
-const mutate = <T extends Response.All>(options: MutationOptions, property: string): Promise<NormalizedResponse<T>> => {
-  return normalize<T, MutationOptions>(client.mutate)(options, property);
+const mutate = async <T extends Response.All>(options: MutationOptions, property: string): Promise<NormalizedResponse<T>> => {
+  return await normalize<T, MutationOptions>(client.mutate)(options, property);
 };
 
-const query = <T extends Response.All>(options: QueryOptions, property: string): Promise<NormalizedResponse<T>> => {
-  return normalize<T, QueryOptions>(client.query)(options, property);
+const query = async <T extends Response.All>(options: QueryOptions, property: string): Promise<NormalizedResponse<T>> => {
+  return await normalize<T, QueryOptions>(client.query)(options, property);
 };
 
 export const api = {

@@ -83,7 +83,7 @@ export const Navigator: React.FC = () => {
           name={Routes.NewProject}
           component={NewProject}
           options={({ navigation }) => ({
-            headerLeft: () => ( /* eslint-disable-line react/display-name */
+            headerLeft: () => (/* eslint-disable-line react/display-name */
               <IconButton onPress={() => navigation.navigate(Routes.Projects)} accessibilityLabel="Close new project">
                 <Cross color={Colors.prussianBlue} />
               </IconButton>

@@ -50,7 +50,7 @@ export const PasswordForm: React.FC<Props> = ({ enabled }) => {
 
   const fieldMeta = React.useMemo(() => ({
     initialTouched: false,
-    touched: form.touched.password || false,
+    touched: form.touched.password ?? false,
     value: form.values.password,
     error: form.errors.password,
   }), [form]);

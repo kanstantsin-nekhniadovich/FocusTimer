@@ -4,21 +4,21 @@ import Constants from 'expo-constants';
 const URL = 'https://graph.facebook.com/me?fields=id,email,name,birthday,picture.type(large)';
 const PERMISSIONS = ['public_profile', 'email'];
 
-type Picture = {
+interface Picture {
   data: {
     height: number;
     width: number;
     is_silhouette: boolean;
     url: string;
-  }
-}
+  };
+};
 
-type FacebookUser = {
+interface FacebookUser {
   id: string;
   name: string;
   picture: Nullable<Picture>;
   email: string;
-}
+};
 
 export const initializeFacebook = async () =>
   await facebook.initializeAsync({ appId: Constants.manifest.facebookAppId, appName: Constants.manifest.facebookDisplayName });

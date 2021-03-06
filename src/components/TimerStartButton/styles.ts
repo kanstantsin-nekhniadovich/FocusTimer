@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     borderRadius: 27,
-    transform: [{ rotate: '180deg', }],
+    transform: [{ rotate: '180deg' }],
   },
   label: {
     ...Typography.subtitleLarge,
