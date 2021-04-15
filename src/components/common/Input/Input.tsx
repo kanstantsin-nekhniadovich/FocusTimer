@@ -5,6 +5,7 @@ import { Colors } from '@styles';
 import { Error } from '../../icons';
 import { styles } from './styles';
 import { isDefined } from '../../../utils/isDefined';
+import { isEmpty } from '../../../utils/isEmpty';
 
 interface Props extends TextInputProps {
   isValid?: boolean;
@@ -20,7 +21,7 @@ export const Input: React.FC<Props> = ({
   ...rest
 }) => {
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
-  const inputIsActive = isFocused || isDefined(value);
+  const inputIsActive = isFocused || (isDefined(value) && !isEmpty(value));
   const [inputPlaceholder, setInputPlaceholder] = React.useState(placeholder);
   const [zIndex, setZIndex] = React.useState(inputIsActive ? 0 : -1);
   const animation = React.useRef(new Animated.Value(inputIsActive ? 1 : 0)).current;

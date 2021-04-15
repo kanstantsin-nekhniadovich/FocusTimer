@@ -91,11 +91,12 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
 
       return from(userService.getUser()).pipe(
         map(handleResponse),
-        mergeMap(async handler => handler(
+        mergeMap(async handler => await handler(
           res => fetchUserDataSuccess(res.data),
-          res => {
-            removeItem(TOKEN);
-            removeItem(FIREBASE_TOKEN_KEY);
+          async res => {
+            await removeItem(TOKEN);
+            await removeItem(FIREBASE_TOKEN_KEY);
+
             return fetchUserDataFailure(res.error);
           },
         )),
