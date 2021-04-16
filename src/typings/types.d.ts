@@ -4,7 +4,7 @@ export type Status = 'TODO' | 'INPROGRESS' | 'COMPLETED';
 
 export interface AlertMeta {
   isVisible: boolean;
-  type?: Alert;
+  type: Alert;
   message: string;
 }
 

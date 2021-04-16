@@ -34,10 +34,7 @@ const handleShowAlert: ActionHandler<State, typeof showAlert> = (state, action) 
 
 const handleHideAlert: ActionHandler<State, typeof hideAlert> = (state) => ({
   ...state,
-  alert: {
-    isVisible: false,
-    message: '',
-  },
+  alert: initialState.alert,
 });
 
 const handleSetUserSkippedLoginFlowSuccess: ActionHandler<State, typeof setUserSkippedLoginFlowSuccess> = (state, action) => ({

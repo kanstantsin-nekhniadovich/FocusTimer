@@ -30,7 +30,7 @@ declare global {
 
   export type NormalizedResponse<T> = SuccessResponse<T> | FailureResponse;
 
-  export interface Screens {
+  export interface Screens extends Record<string, object | undefined> {
     Home: undefined;
     Login: undefined;
     Account: undefined;

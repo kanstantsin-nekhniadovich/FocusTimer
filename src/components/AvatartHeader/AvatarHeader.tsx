@@ -15,16 +15,15 @@ interface Props {
 
 export const AvatarHeader: React.FC<Props> = ({ navigation }) => {
   const user = useSelector(getUser);
-  const isUserDefined = isDefined(user);
 
-  const accessibilityLabel = isUserDefined ? 'Navigate to account screen' : 'Navigate to login screen';
+  const accessibilityLabel = isDefined(user) ? 'Navigate to account screen' : 'Navigate to login screen';
   const onPress = React.useCallback(() => {
-    navigation.navigate(isUserDefined ? Routes.Account : Routes.Login);
-  }, [isUserDefined]);
+    navigation.navigate(isDefined(user) ? Routes.Account : Routes.Login);
+  }, [user]);
 
   return (
     <TouchableOpacity onPress={onPress} accessibilityLabel={accessibilityLabel} style={styles.container}>
-      {isUserDefined && isDefined(user.avatarUrl)
+      {isDefined(user) && isDefined(user.avatarUrl)
         ? <Image style={styles.image} source={{ uri: user.avatarUrl }} />
         : <UserAvatar width={34} />
       }
