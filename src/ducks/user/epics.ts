@@ -1,7 +1,7 @@
 import { isActionOf } from 'typesafe-actions';
 import { combineEpics } from 'redux-observable';
 import { from } from 'rxjs';
-import { filter, mergeMap, pluck, map, tap } from 'rxjs/operators';
+import { filter, mergeMap, pluck, map, tap, ignoreElements } from 'rxjs/operators';
 
 import {
   updateUserRequest,
@@ -82,7 +82,7 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(fetchUserDataRequest)),
     pluck('payload'),
-    mergeMap(async () => await getItem(TOKEN)),
+    mergeMap(async () => await getItem<string>(TOKEN)),
     tap(token => isDefined(token) && signIn()),
     mergeMap(token => {
       if (!isDefined(token)) {
@@ -97,6 +97,13 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
         )),
       );
     }),
+  );
+
+const fetchUserDataSuccessEpic: AppEpic = (action$) =>
+  action$.pipe(
+    filter(isActionOf(fetchUserDataSuccess)),
+    tap(() => navigate(Routes.Projects)),
+    ignoreElements(),
   );
 
 const createFacebookUserEpic: AppEpic = (action$, _state$, { userService }) =>
@@ -126,4 +133,5 @@ export const userEpics = combineEpics(
   createUserEpic,
   createFacebookUserEpic,
   navigateToAccountEpic,
+  fetchUserDataSuccessEpic,
 );

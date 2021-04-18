@@ -15,6 +15,7 @@ import { getItem, storeItem } from '../../services/storage';
 import { initializeFacebook } from '../../services/facebook';
 import { initializeFirebase, isFirebaseInitialized } from '../../services/firebase';
 import { USER_SKIPPED_LOGIN_FLOW_KEY } from '../../utils/constants';
+import { isDefined } from '../../utils/isDefined';
 
 const initActions = [readUserSkippedLoginFlow, fetchUserDataRequest];
 const initSuccessActions = [setUserSkippedLoginFlowSuccess, fetchUserDataSuccess];
@@ -37,8 +38,8 @@ export const initApplicationSuccessEpic: AppEpic = (action$) =>
 export const getUserSkippedLoginFlowEpic: AppEpic = (action$) =>
   action$.pipe(
     filter(isActionOf(readUserSkippedLoginFlow)),
-    mergeMap(async () => await getItem(USER_SKIPPED_LOGIN_FLOW_KEY)),
-    map(isUserSkippedLoginFlow => setUserSkippedLoginFlowSuccess(isUserSkippedLoginFlow === 'true')),
+    mergeMap(async () => await getItem<boolean>(USER_SKIPPED_LOGIN_FLOW_KEY)),
+    map(isUserSkippedLoginFlow => setUserSkippedLoginFlowSuccess(isDefined(isUserSkippedLoginFlow) && isUserSkippedLoginFlow)),
   );
 
 export const setUserSkippedLoginFlowEpic: AppEpic = (action$) =>

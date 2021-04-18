@@ -27,7 +27,7 @@ export const initializeFirebase = () => {
 };
 
 export const signIn = async () => {
-  const token = await getItem(FIREBASE_TOKEN_KEY);
+  const token = await getItem<string>(FIREBASE_TOKEN_KEY);
 
   if (!isDefined(token)) {
     return;

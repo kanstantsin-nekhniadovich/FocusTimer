@@ -11,7 +11,7 @@ export const storeItem = async <T extends unknown>(key: string, data: T): Promis
   }
 };
 
-export const getItem = async (key: string): Promise<Nullable<string>> => {
+export const getItem = async <T extends Unrestricted>(key: string): Promise<Nullable<T>> => {
   try {
     const item = await AsyncStorage.getItem(key);
 

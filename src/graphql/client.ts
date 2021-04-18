@@ -8,7 +8,7 @@ import { TOKEN } from '../utils/constants';
 const httpLink = new HttpLink({ uri: Constants.manifest.extra.api });
 
 const authLink = setContext(async (_, { headers }) => {
-  const token = await getItem(TOKEN);
+  const token = await getItem<string>(TOKEN);
 
   return {
     headers: {
