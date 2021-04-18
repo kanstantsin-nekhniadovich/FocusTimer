@@ -11,6 +11,7 @@ import {
   facebookLoginFailure,
   facebookLoginSuccess,
   facebookLogoutRequest,
+  invalidateTokens,
 } from './actions';
 
 import { showAlert, resetProjects, getIsFacebookAuth } from '../';
@@ -72,16 +73,26 @@ const signOutFirebaseEpic: AppEpic = (action$) => {
   );
 };
 
-const logoutEpic: AppEpic = (action$, state$) => {
+const invalidateTokensEpic: AppEpic = (action$) => {
   return action$.pipe(
-    filter(isActionOf(logoutRequest)),
+    filter(isActionOf(invalidateTokens)),
     tap(async () => await removeItem(FIREBASE_TOKEN_KEY)),
     tap(async () => await removeItem(TOKEN)),
     tap(async () => await client.clearStore()),
-    mergeMap(() => getIsFacebookAuth(state$.value)
-      ? [facebookLogoutRequest(), resetProjects()]
-      : [resetProjects()]
-    ),
+    ignoreElements(),
+  );
+};
+
+const logoutEpic: AppEpic = (action$, state$) => {
+  return action$.pipe(
+    filter(isActionOf(logoutRequest)),
+    mergeMap(() => {
+      const isFacebookUser = getIsFacebookAuth(state$.value);
+
+      return isFacebookUser
+        ? [invalidateTokens(), resetProjects(), facebookLogoutRequest()]
+        : [invalidateTokens(), resetProjects()];
+    }),
   );
 };
 
@@ -115,4 +126,5 @@ export const authEpics = combineEpics(
   signOutFirebaseEpic,
   facebookLoginEpic,
   facebookLogoutEpic,
+  invalidateTokensEpic,
 );

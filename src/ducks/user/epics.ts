@@ -17,17 +17,17 @@ import {
   createFacebookUserRequest,
 } from './actions';
 
-import { showAlert } from '../../ducks';
+import { showAlert, invalidateTokens } from '../../ducks';
 import { getUser } from '../user/selectors';
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
 import { handleResponse } from '../../utils/handleResponse';
-import { getItem, removeItem } from '../../services/storage';
+import { getItem } from '../../services/storage';
 import { signIn } from '../../services/firebase';
 import { navigate } from '../../services/navigation';
 import { logInWithReadPermissionsAsync, isSuccessLoginResult, requestUserData } from '../../services/facebook';
 import { isDefined } from '../../utils/isDefined';
 import { isEmpty } from '../../utils/isEmpty';
-import { TOKEN, FIREBASE_TOKEN_KEY } from '../../utils/constants';
+import { TOKEN } from '../../utils/constants';
 import { Routes } from '../../routes';
 
 const createUserEpic: AppEpic = (action$, _state$, { userService }) =>
@@ -91,14 +91,9 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
 
       return from(userService.getUser()).pipe(
         map(handleResponse),
-        mergeMap(async handler => await handler(
-          res => fetchUserDataSuccess(res.data),
-          async res => {
-            await removeItem(TOKEN);
-            await removeItem(FIREBASE_TOKEN_KEY);
-
-            return fetchUserDataFailure(res.error);
-          },
+        mergeMap(handler => handler(
+          res => [fetchUserDataSuccess(res.data)],
+          res => [invalidateTokens(), fetchUserDataFailure(res.error)],
         )),
       );
     }),

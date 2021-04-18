@@ -12,3 +12,5 @@ export const facebookLoginSuccess = createAction('auth/FACEBOOK_LOGIN_SUCCESS')<
 export const facebookLoginFailure = createAction('auth/FACEBOOK_LOGIN_FAILURE')<string>();
 
 export const facebookLogoutRequest = createAction('auth/FACEBOOK_LOGOUT_REQUEST')();
+
+export const invalidateTokens = createAction('auth/INVALIDATE_TOKENS')();

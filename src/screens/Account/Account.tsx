@@ -28,7 +28,7 @@ export const Account: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(Routes.Login);
   }, [user]);
 
-  const logout = React.useCallback(async () => {
+  const logout = React.useCallback(() => {
     dispatch(logoutRequest());
     navigation.navigate(Routes.Login);
   }, [navigation]);
