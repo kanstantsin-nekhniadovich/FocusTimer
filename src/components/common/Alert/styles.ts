@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     top: 40,
-    right: -600,
     borderRadius: 6,
     minHeight: 40,
     width: width - 20,

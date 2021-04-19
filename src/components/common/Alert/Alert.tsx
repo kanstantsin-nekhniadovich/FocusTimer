@@ -1,6 +1,6 @@
 import { Alert as AlertType } from '@typings';
 import React from 'react';
-import { View, TouchableOpacity, Text, Animated } from 'react-native';
+import { View, TouchableOpacity, Text, Animated, PanResponder, Dimensions } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Colors } from '@styles';
 
@@ -9,7 +9,12 @@ import { Cross } from '../../icons';
 import { styles } from './styles';
 import { isDefined } from '../../../utils/isDefined';
 
+const width = Dimensions.get('screen').width;
+
 const ALERT_TIMEOUT = 7000;
+const MIN_POSITON_OFFSET = width / 2;
+const HIDDEN_POSITION = 2 * width;
+const VISIBLE_POSITION = 10;
 
 const config: Record<AlertType, string> = Object.freeze({
   error: Colors.error as string,
@@ -19,8 +24,25 @@ const config: Record<AlertType, string> = Object.freeze({
 export const Alert: React.FC = () => {
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = React.useState(false);
+  const [timeoutId, setTimeoutId] = React.useState<NodeJS.Timeout>();
   const alertMeta = useSelector(getAlertMeta);
-  const rightAnimate = React.useRef(new Animated.Value(0)).current;
+  const positionX = React.useRef(new Animated.Value(-HIDDEN_POSITION)).current;
+
+  const panResponder = React.useRef(PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderMove: (_event, gestureState) => {
+      positionX.setValue(gestureState.dx);
+    },
+    onPanResponderRelease: (_event, gestureState) => {
+      if (gestureState.dx > MIN_POSITON_OFFSET) {
+        animateAlert(HIDDEN_POSITION);
+      } else if (gestureState.dx < -MIN_POSITON_OFFSET) {
+        animateAlert(-HIDDEN_POSITION);
+      } else {
+        animateAlert(VISIBLE_POSITION);
+      }
+    },
+  })).current;
 
   React.useEffect(() => {
     setIsVisible(alertMeta.isVisible);
@@ -28,18 +50,33 @@ export const Alert: React.FC = () => {
 
   const closeErrorAlert = React.useCallback(() => setIsVisible(false), []);
 
-  React.useEffect(() => {
-    Animated.spring(rightAnimate, {
+  const clearVisibilityTimeout = React.useCallback(() => {
+    if (isDefined(timeoutId)) {
+      clearTimeout(timeoutId);
+    }
+  }, [timeoutId]);
+
+  const animateAlert = React.useCallback((toValue: number) => {
+    Animated.spring(positionX, {
       stiffness: 100,
       damping: 9,
       mass: 1,
-      toValue: isVisible ? 1 : 0,
+      toValue,
       useNativeDriver: false,
     }).start(({ finished }) => {
       if (!isVisible && finished) {
+        clearVisibilityTimeout();
         dispatch(hideAlert());
       }
     });
+  }, [isVisible, positionX, clearVisibilityTimeout]);
+
+  React.useEffect(() => {
+    if (!isVisible) {
+      return;
+    }
+
+    animateAlert(VISIBLE_POSITION);
   }, [isVisible]);
 
   React.useEffect(() => {
@@ -47,30 +84,21 @@ export const Alert: React.FC = () => {
       return;
     }
 
-    const timerId = setTimeout(() => {
+    setTimeoutId(setTimeout(() => {
       closeErrorAlert();
-    }, ALERT_TIMEOUT);
+    }, ALERT_TIMEOUT));
 
-    return () => {
-      if (isDefined(timerId)) {
-        clearTimeout(timerId);
-      }
-    };
+    return clearVisibilityTimeout;
   }, [isVisible]);
-
-  const right = rightAnimate.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-600, 10],
-  });
 
   const style = React.useMemo(() => ({
     ...styles.alert,
-    right,
+    transform: [{ translateX: positionX }],
     borderColor: config[alertMeta.type],
-  }), [styles.alert, right, alertMeta]);
+  }), [styles.alert, alertMeta, positionX]);
 
   return (
-    <Animated.View style={{ ...style }}>
+    <Animated.View style={style} { ...panResponder.panHandlers }>
       <Text style={styles.text}>{alertMeta.message}</Text>
       <TouchableOpacity onPress={closeErrorAlert} style={styles.crossButton}>
         <View style={{ ...styles.cross, borderColor: config[alertMeta.type] }}>
