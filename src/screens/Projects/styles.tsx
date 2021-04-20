@@ -32,7 +32,4 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 0.55 * height,
   },
-  flatList: {
-    paddingTop: 5,
-  },
 });
