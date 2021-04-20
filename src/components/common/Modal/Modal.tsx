@@ -32,12 +32,14 @@ export const Modal: React.FC<Props> = ({ title, isVisible, closeOnClickOutside =
     >
       <View style={styles.modal}>
         <View style={styles.overlay} onStartShouldSetResponder={onStartShouldSetResponder} />
-        <View style={styles.body}>
-          <IconButton onPress={onClose} accessibilityLabel="Close modal" style={styles.crossIcon}>
-            <Cross color={Colors.black} />
-          </IconButton>
-          <Text numberOfLines={1} style={styles.title}>{title}</Text>
-          {children}
+        <View style={styles.shell}>
+          <View style={styles.head}>
+            <Text numberOfLines={1} style={styles.title}>{title}</Text>
+            <IconButton onPress={onClose} accessibilityLabel="Close modal" style={styles.crossIcon}>
+              <Cross color={Colors.black_38} width={16} />
+            </IconButton>
+          </View>
+          <View style={styles.body}>{children}</View>
         </View>
       </View>
     </ReactNativeModal>

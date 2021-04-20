@@ -33,7 +33,7 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 export const EditNoteModal: React.FC<Props> = ({ projectId, onClose, title, note, isVisible = false }) => {
   const dispatch = useDispatch();
   const onSubmit = React.useCallback((data: SchemaType) => {
-    dispatch(updateProjectRequest({ id: projectId, data }));
+    dispatch(updateProjectRequest({ id: projectId, data: { ...data, note: data.note.trim() } }));
     onClose();
   }, [projectId, onClose]);
 
@@ -69,14 +69,13 @@ export const EditNoteModal: React.FC<Props> = ({ projectId, onClose, title, note
             <View style={editNoteModalStyles.buttons}>
               <PrimaryButton
                 onPress={onClose}
-                variant='outlined'
+                variant="outlined"
                 size="small"
                 title="Close"
                 style={{ ...editNoteModalStyles.button, marginRight: 12 }}
               />
               <PrimaryButton
                 onPress={handleSubmit}
-                variant="standard"
                 size="small"
                 title={submitButtonTitle}
                 style={editNoteModalStyles.button}

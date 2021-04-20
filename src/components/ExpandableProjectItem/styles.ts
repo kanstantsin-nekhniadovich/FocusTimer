@@ -116,6 +116,7 @@ export const editNoteModalStyles = StyleSheet.create({
     letterSpacing: -0.3,
   },
   textarea: {
-    minHeight: 70,
+    minHeight: 40,
+    maxHeight: 150,
   },
 });

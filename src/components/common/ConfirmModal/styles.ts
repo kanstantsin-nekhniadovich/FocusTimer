@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   body: {
     position: 'relative',
     width: '100%',
-    borderRadius: 4,
+    borderRadius: 8,
     padding: 16,
   },
   title: {
