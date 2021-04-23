@@ -3,6 +3,7 @@ export { CreateNewProjectHeader } from './CreateNewProjectHeader';
 export { CreateProjectHeader } from './CreateProjectHeader';
 export { WelcomeHeader } from './WelcomeHeader';
 export { FocusTimerHeader } from './FocusTimerHeader';
+export { AddNewTaskHeader } from './AddNewTaskHeader';
 
 export { Error } from './Error';
 export { Camera } from './Camera';

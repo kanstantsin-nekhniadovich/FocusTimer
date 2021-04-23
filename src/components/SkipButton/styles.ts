@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Typography } from '@styles';
 
 export const styles = StyleSheet.create({
   button: {
@@ -9,10 +10,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   label: {
-    fontFamily: 'DMSans_700Bold',
+    ...Typography.subtitleLarge,
     fontSize: 14,
-    lineHeight: 18,
-    letterSpacing: -0.35,
     textTransform: 'uppercase',
   },
 });
