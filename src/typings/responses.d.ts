@@ -1,4 +1,4 @@
-import { User, FullProject } from './types';
+import { User, FullProject, Task } from './types';
 
 export namespace Response {
   export interface AuthPayload {
@@ -16,5 +16,7 @@ export namespace Response {
     | AuthPayload
     | User
     | FullProject
+    | Task[]
+    | Task
     | Projects;
 }

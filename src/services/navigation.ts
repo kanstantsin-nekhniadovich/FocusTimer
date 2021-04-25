@@ -7,7 +7,7 @@ import { Routes } from '../routes';
 export const isReadyRef = React.createRef<boolean>();
 export const navigationRef = React.createRef<NavigationContainerRef>();
 
-export const navigate = (name: Routes, params?: Screens) => {
+export const navigate = <T extends Routes>(name: T, params?: PropType<ScreensMap, T>) => {
   if (!isReadyRef.current || !isDefined(navigationRef.current)) {
     return;
   }

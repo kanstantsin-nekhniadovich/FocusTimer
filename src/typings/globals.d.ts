@@ -1,6 +1,6 @@
 import { ActionType, StateType } from 'typesafe-actions';
 import { Epic } from 'redux-observable';
-import { AuthActions, UserActions, UiActions, ProjectsActions, rootReducer } from '../ducks';
+import { AuthActions, UserActions, UiActions, ProjectsActions, TasksActions, rootReducer } from '../ducks';
 import { Services } from '../graphql/services';
 
 declare global {
@@ -11,7 +11,8 @@ declare global {
     | AuthActions
     | UserActions
     | UiActions
-    | ProjectsActions;
+    | ProjectsActions
+    | TasksActions;
 
   export type AppEpic = Epic<AppActions, AppActions, Store, Services>;
   export type ActionHandler<State, Action> = (state: State, action: ActionType<Action>) => State;
@@ -30,7 +31,7 @@ declare global {
 
   export type NormalizedResponse<T> = SuccessResponse<T> | FailureResponse;
 
-  export interface Screens extends Record<string, object | undefined> {
+  export interface ScreensMap {
     Home: undefined;
     Login: undefined;
     Account: undefined;
@@ -39,7 +40,10 @@ declare global {
     UpdatePassword: { password: string };
     NewProject: undefined;
     Project: { id: string };
-  };
+    Task: { title: string; projectId: Id };
+  }
+
+  export interface Screens extends Record<string, object | undefined>, ScreensMap {};
 
   export namespace NodeJs {
     export interface ProcessEnv {

@@ -30,12 +30,10 @@ export const Project: React.FC<Props> = ({ route }) => {
 
   return (
     <Wrapper style={styles.wrapper}>
+      <AddTaskForm projectId={project.id} />
       {areTasksExist
         ? <TasksList tasks={tasks} />
-        : <>
-          <AddTaskForm />
-          <View style={styles.addTasksHeader}><AddNewTaskHeader /></View>
-        </>
+        : <View style={styles.addTasksHeader}><AddNewTaskHeader /></View>
       }
       <ProjectsBackground />
     </Wrapper>

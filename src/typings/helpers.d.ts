@@ -6,6 +6,7 @@ declare global {
   export type EmptyArray = never[];
   export type EmptyObject = Record<string, never>;
   export type EmptyString = '';
+  export type PropType<T, K extends keyof T> = T[K];
 }
 
 export {};

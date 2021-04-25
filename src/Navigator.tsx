@@ -7,11 +7,12 @@ import { Colors } from '@styles';
 
 import { navigationRef, isReadyRef } from './services/navigation';
 import { getIsUserSkippedLoginFlow } from './ducks';
-import { Login, Account, SignUp, Projects, UpdatePassword, NewProject, Project } from './screens';
+import { Login, Account, SignUp, Projects, UpdatePassword, NewProject, Project, Task } from './screens';
 import { Routes } from './routes';
 import { Cross } from './components/icons';
 import { AvatarHeader } from './components/AvatartHeader';
 import { ProjectHeader } from './components/ProjectHeader';
+import { TaskHeader } from './components/TaskHeader';
 import { HeaderTitle, IconButton } from './components/common';
 
 enableScreens();
@@ -99,6 +100,15 @@ export const Navigator: React.FC = () => {
           options={({ navigation, route }) => ({
             headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
             headerTitle: () => <ProjectHeader route={route} />, /* eslint-disable-line react/display-name */
+            ...commonNavigationOptions,
+          })}
+        />
+        <Stack.Screen
+          name={Routes.Task}
+          component={Task}
+          options={({ navigation, route }) => ({
+            headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
+            headerTitle: () => <TaskHeader route={route} />, /* eslint-disable-line react/display-name */
             ...commonNavigationOptions,
           })}
         />
