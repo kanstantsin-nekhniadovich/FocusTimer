@@ -29,3 +29,7 @@ export { Restore } from './Restore';
 export { Logo } from './Logo';
 export { Filter } from './Filter';
 export { Tick } from './Tick';
+export { Clock } from './Clock';
+export { RepeatArrow } from './RepeatArrow';
+export { ArrowDownUp } from './ArrowDownUp';
+export { Coffee } from './Coffee';
