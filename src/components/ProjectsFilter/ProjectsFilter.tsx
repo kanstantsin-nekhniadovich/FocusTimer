@@ -8,16 +8,11 @@ import { IconButton, DividerBlock } from '../common';
 import { Filter, Tick, Cross } from '../icons';
 import { styles } from './styles';
 import { isEmpty } from '../../utils/isEmpty';
+import { Status } from '../../utils/constants';
 
 interface Props {
   filter: StatusType | EmptyString;
   onChange: (status: StatusType | EmptyString) => void;
-}
-
-enum Status {
-  TODO = 'TODO',
-  INPROGRESS = 'INPROGRESS',
-  COMPLETED = 'COMPLETED',
 }
 
 export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {

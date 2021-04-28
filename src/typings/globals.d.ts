@@ -7,6 +7,10 @@ declare global {
   export type Id = string;
   export type Store = StateType<typeof rootReducer>;
 
+  export interface UniqIq {
+    id: Id;
+  }
+
   export type AppActions =
     | AuthActions
     | UserActions
@@ -39,8 +43,8 @@ declare global {
     Projects: undefined;
     UpdatePassword: { password: string };
     NewProject: undefined;
-    Project: { id: string };
-    Task: { title: string; projectId: Id };
+    Project: UniqIq;
+    Task: { projectId: Id; id: Id };
   }
 
   export interface Screens extends Record<string, object | undefined>, ScreensMap {};

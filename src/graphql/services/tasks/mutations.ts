@@ -32,6 +32,9 @@ export const createTask = gql`
       status,
       remainingTime,
       currentCycle,
+      project {
+        id
+      }
     }
   }
 `;

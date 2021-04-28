@@ -35,9 +35,5 @@ export interface Task {
   status: Status;
   remainingTime: number;
   currentCycle: number;
-}
-
-export interface TaskPayload {
-  data: Omit<Task, 'id'>;
-  projectId: Id;
+  project: UniqIq;
 }

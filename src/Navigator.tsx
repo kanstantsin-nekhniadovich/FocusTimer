@@ -106,8 +106,7 @@ export const Navigator: React.FC = () => {
         <Stack.Screen
           name={Routes.Task}
           component={Task}
-          options={({ navigation, route }) => ({
-            headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
+          options={({ route }) => ({
             headerTitle: () => <TaskHeader route={route} />, /* eslint-disable-line react/display-name */
             ...commonNavigationOptions,
           })}

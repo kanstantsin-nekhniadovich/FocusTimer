@@ -1,9 +1,13 @@
 import { combineEpics } from 'redux-observable';
 import { isActionOf } from 'typesafe-actions';
-import { filter, map, mergeMap, pluck } from 'rxjs/operators';
+import { filter, map, mergeMap, pluck, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
+import { Routes } from '../../routes';
+import { navigate } from '../../services/navigation';
 import { createTaskRequest, createTaskSuccess, createTaskFailure } from './actions';
 import { handleResponse } from '../../utils/handleResponse';
+import { showAlert } from '../';
 
 export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
   action$.pipe(
@@ -11,9 +15,14 @@ export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
     pluck('payload'),
     mergeMap(async (payload) => await tasksService.createTask(payload)),
     map(handleResponse),
-    map(handler => handler(
-      res => createTaskSuccess(res.data),
-      () => createTaskFailure(),
+    mergeMap(handler => handler(
+      res => {
+        return of(res.data).pipe(
+          mergeMap(data => [createTaskSuccess(data)]),
+          tap(() => navigate(Routes.Task, { projectId: res.data.project.id, id: res.data.id })),
+        );
+      },
+      res => [showAlert({ message: res.error, type: 'error' }), createTaskFailure()],
     )),
   );
 

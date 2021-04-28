@@ -2,15 +2,17 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { View, Text } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { Colors } from '@styles';
 
-import { navigate } from '../../services/navigation';
 import { Input, IconButton } from '../common';
 import { CircePlus } from '../icons';
 import { isDefined } from '../../utils/isDefined';
+import { createTaskRequest } from '../../ducks';
+import { convertMinutesInMilliseconds } from '../../utils/date';
+import { DEFAULT_BREAK_TIME_IN_MINUTES, DEFAULT_WORK_TIME_IN_MINUTES, Status } from '../../utils/constants';
 
 import { styles } from './styles';
-import { Routes } from 'src/routes';
 
 const validationSchema = yup.object().shape({
   title: yup.string().required('Please provide task name'),
@@ -25,8 +27,25 @@ interface Props {
 }
 
 export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
+  const dispatch = useDispatch();
+
   const onSubmit = React.useCallback((values: SchemaType) => {
-    navigate(Routes.Task, { title: values.title, projectId });
+    const workTime = convertMinutesInMilliseconds(DEFAULT_WORK_TIME_IN_MINUTES);
+    const breakTime = convertMinutesInMilliseconds(DEFAULT_BREAK_TIME_IN_MINUTES);
+    const taskPayload = {
+      title: values.title,
+      cyclesCount: 1,
+      workTime,
+      breakTime,
+      remainingTime: workTime,
+      status: Status.TODO,
+      currentCycle: 1,
+      project: {
+        id: projectId,
+      }
+    };
+
+    dispatch(createTaskRequest(taskPayload));
   }, [projectId]);
 
   return (

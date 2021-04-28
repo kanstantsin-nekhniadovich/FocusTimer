@@ -17,6 +17,9 @@ export const projects = gql`
           status
           remainingTime
           currentCycle
+          project {
+            id
+          }
         }
       }
       totalCount
