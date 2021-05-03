@@ -26,3 +26,5 @@ jobs:
         run: npm run lint:types
       - name: Run tests
         run: npm run test
+      - name: Run build
+        run: npm run start
