@@ -10,7 +10,8 @@
     "lint:eslint": "eslint . --ext .ts,.tsx --fix",
     "lint": "npm run lint:eslint && npm run lint:types",
     "inspect": "react-devtools",
-    "test": "jest"
+    "test": "jest",
+    "update-shapshot": "jest --updateSnapshot"
   },
   "husky": {
     "hooks": {

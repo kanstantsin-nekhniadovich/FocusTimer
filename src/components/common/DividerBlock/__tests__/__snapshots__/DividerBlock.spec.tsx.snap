@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DividerBlock /> test DividerBlock snapshot 1`] = `
+<View
+  style={
+    Object {
+      "height": 20,
+      "width": "100%",
+    }
+  }
+/>
+`;
