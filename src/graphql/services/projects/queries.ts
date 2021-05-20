@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const projects = gql`
-  query($skip: Int, $first: Int) {
-    projects(skip: $skip, first: $first) {
+  query($skip: Int, $take: Int) {
+    projects(skip: $skip, take: $take) {
       projects {
         id
         title
@@ -17,9 +17,7 @@ export const projects = gql`
           status
           remainingTime
           currentCycle
-          project {
-            id
-          }
+          projectId
         }
       }
       totalCount
