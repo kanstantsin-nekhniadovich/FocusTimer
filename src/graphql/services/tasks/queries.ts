@@ -11,9 +11,7 @@ export const tasks = gql`
       status
       remainingTime
       currentCycle
-      project {
-        id
-      }
+      projectId
     }
   }
 `;

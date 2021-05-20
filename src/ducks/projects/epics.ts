@@ -43,7 +43,7 @@ export const fetchProjectsEpic: AppEpic = (action$, _, { projectsService }) =>
   action$.pipe(
     filter(isActionOf(fetchProjectsRequest)),
     pluck('payload'),
-    mergeMap(async ({ skip }) => await projectsService.fetchProjects({ skip, first: PROJECTS_PER_REQUEST })),
+    mergeMap(async ({ skip }) => await projectsService.fetchProjects({ skip, take: PROJECTS_PER_REQUEST })),
     map(handleResponse),
     mergeMap(handler => handler(
       res => [fetchProjectsSuccess(res.data)],
