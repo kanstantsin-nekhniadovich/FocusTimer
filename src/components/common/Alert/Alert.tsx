@@ -12,7 +12,7 @@ import { isDefined } from '../../../utils/isDefined';
 const width = Dimensions.get('screen').width;
 
 const ALERT_TIMEOUT = 7000;
-const MIN_POSITON_OFFSET = width / 2;
+const MIN_POSITION_OFFSET = width / 2;
 const HIDDEN_POSITION = 2 * width;
 const VISIBLE_POSITION = 10;
 
@@ -34,9 +34,9 @@ export const Alert: React.FC = () => {
       positionX.setValue(gestureState.dx);
     },
     onPanResponderRelease: (_event, gestureState) => {
-      if (gestureState.dx > MIN_POSITON_OFFSET) {
+      if (gestureState.dx > MIN_POSITION_OFFSET) {
         animateAlert(HIDDEN_POSITION);
-      } else if (gestureState.dx < -MIN_POSITON_OFFSET) {
+      } else if (gestureState.dx < -MIN_POSITION_OFFSET) {
         animateAlert(-HIDDEN_POSITION);
       } else {
         animateAlert(VISIBLE_POSITION);
@@ -72,11 +72,7 @@ export const Alert: React.FC = () => {
   }, [isVisible, positionX, clearVisibilityTimeout]);
 
   React.useEffect(() => {
-    if (!isVisible) {
-      return;
-    }
-
-    animateAlert(VISIBLE_POSITION);
+    animateAlert(isVisible ? VISIBLE_POSITION : HIDDEN_POSITION);
   }, [isVisible]);
 
   React.useEffect(() => {
