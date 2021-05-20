@@ -1,4 +1,4 @@
-import { Task } from '@typings';
+import { Task, CreateTaskPayload } from '@typings';
 
 import * as queries from './queries';
 import * as mutations from './mutations';
@@ -6,7 +6,7 @@ import { api } from '../../api';
 
 export const fetchTasks = async () => await api.query<Task[]>({ query: queries.tasks }, 'tasks');
 
-export const createTask = async (payload: Omit<Task, 'id'>) => {
+export const createTask = async (payload: CreateTaskPayload) => {
   const { id } = payload.project;
   const data = { ...payload, project: { connect: { id } } };
 

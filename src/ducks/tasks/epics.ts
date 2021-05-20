@@ -19,7 +19,7 @@ export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
       res => {
         return of(res.data).pipe(
           mergeMap(data => [createTaskSuccess(data)]),
-          tap(() => navigate(Routes.Task, { projectId: res.data.project.id, id: res.data.id })),
+          tap(() => navigate(Routes.Task, { projectId: res.data.projectId, id: res.data.id })),
         );
       },
       res => [showAlert({ message: res.error, type: 'error' }), createTaskFailure()],

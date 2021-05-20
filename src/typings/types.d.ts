@@ -26,6 +26,14 @@ export interface FullProject extends Project {
   tasks: Task[];
 }
 
+export interface CreateTaskPayload {
+  title: string;
+  cyclesCount: number;
+  workTime: number;
+  breakTime: number;
+  project: UniqIq;
+}
+
 export interface Task {
   id: Id;
   title: string;
@@ -35,5 +43,5 @@ export interface Task {
   status: Status;
   remainingTime: number;
   currentCycle: number;
-  project: UniqIq;
+  projectId: Id;
 }
