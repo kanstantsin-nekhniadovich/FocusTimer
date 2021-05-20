@@ -30,13 +30,13 @@ export const handleCreateTaskRequest: ActionHandler<State, typeof createTaskRequ
 
 export const handleCreateTaskSuccess: ActionHandler<State, typeof createTaskSuccess> = (state, action) => {
   const task = action.payload;
-  const projectTasks = state.tasks[task.project.id];
+  const projectTasks = state.tasks[task.projectId];
 
   return {
     isLoading: false,
     tasks: {
       ...state.tasks,
-      [task.project.id]: [...projectTasks, task],
+      [task.projectId]: [...projectTasks, task],
     }
   };
 };

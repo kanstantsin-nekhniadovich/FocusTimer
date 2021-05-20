@@ -4,7 +4,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 
 import { getProjectById, getTasksForProject, getIsTaskLoading } from '../../ducks';
-import { Wrapper, ProjectsBackground, OverlayLoader } from '../../components/common';
+import { Wrapper, ProjectsBackground, OverlayLoader, DividerBlock } from '../../components/common';
 import { AddNewTaskHeader } from '../../components/icons';
 import { TasksList } from '../../components/TasksList';
 import { AddTaskForm } from '../../components/AddTaskForm';
@@ -33,8 +33,11 @@ export const Project: React.FC<Props> = ({ route }) => {
 
   return (
     <Wrapper style={styles.wrapper}>
-      <AddTaskForm projectId={project.id} />
       {isLoading && <OverlayLoader />}
+      <AddTaskForm projectId={project.id} />
+      <DividerBlock height={30} />
+      <Text style={styles.header}>My tasks</Text>
+      <DividerBlock height={30} />
       {areTasksExist
         ? <TasksList tasks={tasks} />
         : <View style={styles.addTasksHeader}><AddNewTaskHeader /></View>

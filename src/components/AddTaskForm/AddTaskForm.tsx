@@ -10,7 +10,7 @@ import { CircePlus } from '../icons';
 import { isDefined } from '../../utils/isDefined';
 import { createTaskRequest } from '../../ducks';
 import { convertMinutesInMilliseconds } from '../../utils/date';
-import { DEFAULT_BREAK_TIME_IN_MINUTES, DEFAULT_WORK_TIME_IN_MINUTES, Status } from '../../utils/constants';
+import { DEFAULT_BREAK_TIME_IN_MINUTES, DEFAULT_WORK_TIME_IN_MINUTES } from '../../utils/constants';
 
 import { styles } from './styles';
 
@@ -37,9 +37,6 @@ export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
       cyclesCount: 1,
       workTime,
       breakTime,
-      remainingTime: workTime,
-      status: Status.TODO,
-      currentCycle: 1,
       project: {
         id: projectId,
       }
