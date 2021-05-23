@@ -33,3 +33,4 @@ export { Clock } from './Clock';
 export { RepeatArrow } from './RepeatArrow';
 export { ArrowDownUp } from './ArrowDownUp';
 export { Coffee } from './Coffee';
+export { Time } from './Time';

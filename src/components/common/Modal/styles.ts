@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   shell: {
     width: '100%',
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderStyle: 'solid',
     borderColor: Colors.black_15,
     borderRadius: 4,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     height: 60,
     paddingTop: 15,
     backgroundColor: Colors.alabaster,
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderStyle: 'solid',
     borderColor: Colors.black_38,
   },

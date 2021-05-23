@@ -9,6 +9,7 @@ enum ColorsType {
   chambray = 'chambray',
   prussianBlue = 'prussianBlue',
   silverChalice = 'silverChalice',
+  silverChaliceLight = 'silverChaliceLight',
   doveGray = 'doveGray',
   chatelle = 'chatelle',
   alabaster = 'alabaster',
@@ -22,6 +23,7 @@ enum ColorsType {
   todo = 'todo',
   inprogress = 'inprogress',
   completed = 'completed',
+  mischka = 'mischka'
 }
 
 export const Colors: Record<ColorsType, ColorValue> = {
@@ -33,6 +35,7 @@ export const Colors: Record<ColorsType, ColorValue> = {
   [ColorsType.chambray]: '#405a9a',
   [ColorsType.prussianBlue]: '#001f5a',
   [ColorsType.silverChalice]: '#9e9e9e',
+  [ColorsType.silverChaliceLight]: '#a4a4a4',
   [ColorsType.doveGray]: '#666666',
   [ColorsType.chatelle]: '#c2b9c3',
   [ColorsType.alabaster]: '#fbfbfb',
@@ -46,4 +49,5 @@ export const Colors: Record<ColorsType, ColorValue> = {
   [ColorsType.todo]: '#ff8c00',
   [ColorsType.inprogress]: '#1890ff',
   [ColorsType.completed]: '#52c41a',
+  [ColorsType.mischka]: '#d7d8e7',
 };
