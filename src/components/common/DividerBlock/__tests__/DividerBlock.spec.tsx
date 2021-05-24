@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 
 import { DividerBlock } from '..';
 
@@ -7,16 +7,14 @@ const HEIGHT = 100;
 
 describe('<DividerBlock />', () => {
   it('test DividerBlock snapshot', () => {
-    const tree = renderer
-      .create(<DividerBlock />)
-      .toJSON();
+    const tree = render(<DividerBlock />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it('should render DividerBlock with passed height in props', () => {
-    const instance = renderer.create(<DividerBlock height={HEIGHT} />).root;
+    const { container } = render(<DividerBlock height={HEIGHT} />);
 
-    expect(instance.props.height).toEqual(HEIGHT);
+    expect(container.props.height).toEqual(HEIGHT);
   });
 });
