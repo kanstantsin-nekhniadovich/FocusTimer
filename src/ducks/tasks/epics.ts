@@ -7,7 +7,7 @@ import { Routes } from '../../routes';
 import { navigate } from '../../services/navigation';
 import { createTaskRequest, createTaskSuccess, createTaskFailure } from './actions';
 import { handleResponse } from '../../utils/handleResponse';
-import { showAlert } from '../';
+import { showAlert } from '../ui/actions';
 
 export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
   action$.pipe(

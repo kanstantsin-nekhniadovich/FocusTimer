@@ -10,3 +10,8 @@ export enum Status {
   INPROGRESS = 'INPROGRESS',
   COMPLETED = 'COMPLETED',
 }
+
+export enum ResponseStatus {
+  SUCCESS = 'SUCCESS',
+  FAILURE = 'FAILURE',
+}
