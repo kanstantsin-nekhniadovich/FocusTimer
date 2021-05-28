@@ -7,7 +7,7 @@ interface Options {
   count: number;
   actionsToInvoke: AppActions[];
   state?: Record<Unrestricted, Unrestricted>;
-  dependencies?: Record<Unrestricted, Unrestricted>;
+  dependencies?: Partial<Services>;
 }
 
 const commonDependencies = {
