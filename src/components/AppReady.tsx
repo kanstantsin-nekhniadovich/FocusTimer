@@ -1,14 +1,13 @@
 import React from 'react';
 import AppLoading from 'expo-app-loading';
-import { useFonts, fonts } from '@styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useFonts } from '@styles';
+import { useDispatch } from 'react-redux';
 
-import { initApplicationRequest, getIsApplicationInited } from '../ducks';
+import { initApplicationRequest } from '../ducks';
 
 export const AppReady: React.FC = ({ children }) => {
   const dispatch = useDispatch();
-  const isApplicationInited = useSelector(getIsApplicationInited);
-  const [areFontsLoaded] = useFonts(fonts);
+  const [areFontsLoaded] = useFonts();
 
   React.useEffect(() => {
     dispatch(initApplicationRequest());
@@ -16,7 +15,7 @@ export const AppReady: React.FC = ({ children }) => {
 
   return (
     <>
-      {areFontsLoaded && isApplicationInited
+      {areFontsLoaded
         ? children
         : <AppLoading />
       }

@@ -1,5 +1,5 @@
 import { isActionOf } from 'typesafe-actions';
-import { filter, mergeMap, tap, map, pluck, withLatestFrom } from 'rxjs/operators';
+import { filter, mergeMap, tap, map, pluck, switchMap } from 'rxjs/operators';
 import { combineEpics } from 'redux-observable';
 
 import {
@@ -10,7 +10,7 @@ import {
   readUserSkippedLoginFlow,
 } from './actions';
 
-import { fetchUserDataRequest, fetchUserDataSuccess } from '../user';
+import { fetchUserDataRequest, fetchUserDataSuccess, fetchUserDataFailure } from '../user';
 import { getItem, storeItem } from '../../services/storage';
 import { initializeFacebook } from '../../services/facebook';
 import { initializeFirebase, isFirebaseInitialized } from '../../services/firebase';
@@ -18,7 +18,7 @@ import { USER_SKIPPED_LOGIN_FLOW_KEY } from '../../utils/constants';
 import { isDefined } from '../../utils/isDefined';
 
 const initActions = [readUserSkippedLoginFlow, fetchUserDataRequest];
-const initSuccessActions = [setUserSkippedLoginFlowSuccess, fetchUserDataSuccess];
+const fetchUserActions = [fetchUserDataSuccess, fetchUserDataFailure];
 
 export const initApplicationRequestEpic: AppEpic = (action$) =>
   action$.pipe(
@@ -30,9 +30,14 @@ export const initApplicationRequestEpic: AppEpic = (action$) =>
 
 export const initApplicationSuccessEpic: AppEpic = (action$) =>
   action$.pipe(
-    filter(isActionOf(initSuccessActions)),
-    withLatestFrom(),
-    map(() => initApplicationSuccess()),
+    filter(isActionOf(setUserSkippedLoginFlowSuccess)),
+    switchMap(() => {
+      return action$
+        .pipe(
+          filter(isActionOf(fetchUserActions)),
+          map(() => initApplicationSuccess()),
+        );
+    }),
   );
 
 export const getUserSkippedLoginFlowEpic: AppEpic = (action$) =>
