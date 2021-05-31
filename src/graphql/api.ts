@@ -1,11 +1,7 @@
 import { Response } from '@typings';
 import { ApolloQueryResult, FetchResult, MutationOptions, QueryOptions } from '@apollo/client';
 import { client } from './client';
-
-export enum Status {
-  SUCCESS = 'SUCCESS',
-  FAILURE = 'FAILURE',
-}
+import { ResponseStatus } from '../utils/constants';
 
 type ClientResultType = FetchResult<Unrestricted> | ApolloQueryResult<Unrestricted>;
 
@@ -17,13 +13,13 @@ Promise<NormalizedResponse<T>> => async (options: P, property: string): Promise<
       return {
         data: response.data[property],
         error: null,
-        status: Status.SUCCESS,
+        status: ResponseStatus.SUCCESS,
       };
     } catch (error) {
       return {
         data: null,
         error: error.message,
-        status: Status.FAILURE,
+        status: ResponseStatus.FAILURE,
       };
     }
   };

@@ -16,7 +16,8 @@
   },
   "plugins": [
     "react",
-    "react-native"
+    "react-native",
+    "testing-library"
   ],
   "env": {
     "react-native/react-native": true

@@ -3,7 +3,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { rootReducer, rootEpic } from './ducks';
-import { services, Services } from './graphql/services';
+import { services } from './graphql/services';
 import { isDevEnv } from './utils/environment';
 
 const epicMiddleware = createEpicMiddleware<AppActions, AppActions, Store, Services>({

@@ -1,11 +1,12 @@
 import { ActionType, StateType } from 'typesafe-actions';
 import { Epic } from 'redux-observable';
 import { AuthActions, UserActions, UiActions, ProjectsActions, TasksActions, rootReducer } from '../ducks';
-import { Services } from '../graphql/services';
+import { Services as ServicesType } from '../graphql/services';
 
 declare global {
   export type Id = string;
   export type Store = StateType<typeof rootReducer>;
+  export type Services = ServicesType;
 
   export interface UniqIq {
     id: Id;
