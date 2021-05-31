@@ -1,11 +1,23 @@
-
 import * as actions from '../actions';
-import { initApplicationRequestEpic, initApplicationSuccessEpic } from '../epics';
+import { initApplicationRequestEpic, initApplicationSuccessEpic, getUserSkippedLoginFlowEpic, setUserSkippedLoginFlowEpic } from '../epics';
 import { testEpic } from '../../../utils/testEpics';
+import { getItem, storeItem } from '../../../services/storage';
+import { fetchUserDataSuccess, fetchUserDataRequest } from '../../user';
 
-jest.mock('../../user', () => ({
-  fetchUserDataRequest: () => ({ type: 'user/FETCH_USER_DATA_REQUEST', payload: undefined }),
-}));
+jest.mock('../../../services/storage');
+jest.mock('../../user', () => {
+  const fetchUserDataSuccessAction = () => ({ type: 'user/FETCH_USER_DATA_SUCCESS', payload: { } });
+  fetchUserDataSuccessAction.getType = () => 'user/FETCH_USER_DATA_SUCCESS';
+
+  const fetchUserDataFailuresAction = () => ({ type: 'user/FETCH_USER_DATA_FAILURE' });
+  fetchUserDataFailuresAction.getType = 'user/FETCH_USER_DATA_FAILURE';
+
+  return {
+    fetchUserDataRequest: () => ({ type: 'user/FETCH_USER_DATA_REQUEST' }),
+    fetchUserDataSuccess: fetchUserDataSuccessAction,
+    fetchUserDataFailure: fetchUserDataFailuresAction,
+  };
+});
 
 jest.mock('../../../services/facebook', () => ({
   initializeFacebook: jest.fn(),
@@ -27,9 +39,13 @@ const state = {
 };
 
 describe('UI epics', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('initApplicationRequestEpic', (done: jest.DoneCallback) => {
     const readUserSkippedLoginFlowSpy = jest.spyOn(actions, 'readUserSkippedLoginFlow');
-    const expectedActions = [actions.readUserSkippedLoginFlow(), { type: 'user/FETCH_USER_DATA_REQUEST', payload: undefined }];
+    const expectedActions = [actions.readUserSkippedLoginFlow(), fetchUserDataRequest()];
 
     const epicTestRunner = testEpic({
       epic: initApplicationRequestEpic,
@@ -41,7 +57,6 @@ describe('UI epics', () => {
     epicTestRunner((actions: AppActions[]) => {
       expect(actions).toEqual(expectedActions);
       expect(readUserSkippedLoginFlowSpy).toHaveBeenCalled();
-      readUserSkippedLoginFlowSpy.mockReset();
       done();
     });
   });
@@ -54,7 +69,7 @@ describe('UI epics', () => {
       epic: initApplicationSuccessEpic,
       actionsToInvoke: [
         actions.setUserSkippedLoginFlowSuccess(true),
-        { type: 'user/FETCH_USER_DATA_SUCCESS', payload: { id: '1', name: 'test', avatarUrl: '', email: '' } },
+        fetchUserDataSuccess({ id: '1', name: 'test', avatarUrl: '', email: '' }),
       ],
       state,
       count: expectedActions.length,
@@ -63,6 +78,46 @@ describe('UI epics', () => {
     epicTestRunner((actions: AppActions[]) => {
       expect(actions).toEqual(expectedActions);
       expect(initApplicationSuccessSpy).toHaveBeenCalled();
+      done();
+    });
+  });
+
+  it('getUserSkippedLoginFlowEpic', (done: jest.DoneCallback) => {
+    const isSkipped = true;
+    (getItem as jest.Mock).mockReturnValue(isSkipped);
+    const setUserSkippedLoginFlowSuccessSpy = jest.spyOn(actions, 'setUserSkippedLoginFlowSuccess');
+    const expectedActions = [actions.setUserSkippedLoginFlowSuccess(isSkipped)];
+
+    const epicTestRunner = testEpic({
+      epic: getUserSkippedLoginFlowEpic,
+      actionsToInvoke: [actions.readUserSkippedLoginFlow()],
+      state,
+      count: expectedActions.length,
+    });
+
+    epicTestRunner((actions: AppActions[]) => {
+      expect(actions).toEqual(expectedActions);
+      expect(setUserSkippedLoginFlowSuccessSpy).toHaveBeenCalled();
+      done();
+    });
+  });
+
+  it('setUserSkippedLoginFlowEpic', (done: jest.DoneCallback) => {
+    const isSkipped = false;
+    (storeItem as jest.Mock).mockReturnValue(isSkipped);
+    const setUserSkippedLoginFlowSuccessSpy = jest.spyOn(actions, 'setUserSkippedLoginFlowSuccess');
+    const expectedActions = [actions.setUserSkippedLoginFlowSuccess(isSkipped)];
+
+    const epicTestRunner = testEpic({
+      epic: setUserSkippedLoginFlowEpic,
+      actionsToInvoke: [actions.setUserSkippedLoginFlowRequest(isSkipped)],
+      state,
+      count: expectedActions.length,
+    });
+
+    epicTestRunner((actions: AppActions[]) => {
+      expect(actions).toEqual(expectedActions);
+      expect(setUserSkippedLoginFlowSuccessSpy).toHaveBeenCalled();
       done();
     });
   });
