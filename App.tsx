@@ -8,7 +8,8 @@ import { AppReady } from './src/components/AppReady';
 import { Navigator } from './src/Navigator';
 import { Alert } from './src/components/common';
 
-import { store } from './src/store';
+import { configureStore } from './src/store';
+const store = configureStore();
 
 export default function App (): JSX.Element {
   return (

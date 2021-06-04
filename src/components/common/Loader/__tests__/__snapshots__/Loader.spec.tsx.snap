@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LinesBackground /> show match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 102,
+        "width": "100%",
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#001f5a",
+        "fontFamily": "DMSans_500Medium",
+        "fontSize": 20,
+        "height": 72,
+        "letterSpacing": 0,
+        "lineHeight": 26,
+        "textAlign": "center",
+        "width": 300,
+      }
+    }
+  >
+    Loading...
+  </Text>
+  <View
+    style={
+      Object {
+        "height": 194,
+        "width": "100%",
+      }
+    }
+  />
+  <RNSVGSvgView
+    bbHeight={70}
+    bbWidth={70}
+    focusable={false}
+    height={70}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "left": "50%",
+          "position": "absolute",
+          "top": "50%",
+          "transform": Array [
+            Object {
+              "translateY": -35,
+            },
+            Object {
+              "translateX": -35,
+            },
+            Object {
+              "rotateZ": "0deg",
+            },
+          ],
+          "zIndex": 100,
+        },
+        Object {
+          "flex": 0,
+          "height": 70,
+          "width": 70,
+        },
+      ]
+    }
+    width={70}
+  >
+    <RNSVGGroup
+      matrix={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    >
+      <RNSVGCircle
+        cx={35}
+        cy={35}
+        propList={
+          Array [
+            "stroke",
+            "strokeWidth",
+            "strokeOpacity",
+          ]
+        }
+        r={32}
+        stroke={4284900966}
+        strokeOpacity={0.2}
+        strokeWidth={3}
+      />
+      <RNSVGCircle
+        cx={35}
+        cy={35}
+        propList={
+          Array [
+            "stroke",
+            "strokeWidth",
+            "strokeDasharray",
+            "strokeDashoffset",
+            "strokeLinecap",
+          ]
+        }
+        r={32}
+        stroke={4280495302}
+        strokeDasharray={
+          Array [
+            201.06192982974676,
+            201.06192982974676,
+          ]
+        }
+        strokeDashoffset={60.31857894892403}
+        strokeLinecap={1}
+        strokeWidth={3}
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <View
+    style={
+      Object {
+        "height": 57,
+        "width": "100%",
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#666666",
+        "fontFamily": "Roboto_400Regular",
+        "fontSize": 14,
+        "letterSpacing": -0.3,
+        "lineHeight": 18,
+        "textAlign": "center",
+        "width": 240,
+      }
+    }
+  >
+    Please wate, the information is processing.
+  </Text>
+</View>
+`;

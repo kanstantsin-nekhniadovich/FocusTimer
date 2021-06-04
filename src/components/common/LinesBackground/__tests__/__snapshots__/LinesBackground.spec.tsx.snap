@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LinesBackground /> show match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "bottom": 0,
+      "height": 1334,
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+      "zIndex": -1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "position": "absolute",
+        "right": -8,
+        "top": 70,
+        "transform": Array [
+          Object {
+            "rotate": "-3deg",
+          },
+        ],
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="165"
+      bbWidth="143"
+      fill="none"
+      focusable={false}
+      height="165"
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 165,
+            "width": 143,
+          },
+        ]
+      }
+      vbHeight={165}
+      vbWidth={143}
+      width="143"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M154.675 158.905C155.757 123.334 142.956 88.7388 118.981 62.4404C95.006 36.1419 61.7385 20.2045 26.2201 18.0014L25.4931 29.7223C57.9669 31.7365 88.3828 46.3078 110.303 70.352C132.223 94.3962 143.927 126.026 142.937 158.548L154.675 158.905Z"
+          fill={4285429958}
+          fillOpacity={0.45}
+          propList={
+            Array [
+              "fill",
+              "fillOpacity",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <View
+    style={
+      Object {
+        "left": 84,
+        "position": "absolute",
+        "top": 80,
+        "transform": Array [
+          Object {
+            "rotate": "7deg",
+          },
+        ],
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="34"
+      bbWidth="34"
+      fill="none"
+      focusable={false}
+      height="34"
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 34,
+            "width": 34,
+          },
+        ]
+      }
+      vbHeight={34}
+      vbWidth={34}
+      width="34"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M27.285 9.26483C19.5835 10.1726 11.973 11.7327 4.53544 13.9283L7.86022 25.1912C14.6602 23.1838 21.6184 21.7575 28.6597 20.9275L27.285 9.26483Z"
+          fill={4285429958}
+          fillOpacity={0.45}
+          propList={
+            Array [
+              "fill",
+              "fillOpacity",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <View
+    style={
+      Object {
+        "left": 0,
+        "position": "absolute",
+        "top": 72,
+        "transform": Array [
+          Object {
+            "rotate": "10deg",
+          },
+        ],
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="157"
+      bbWidth="87"
+      fill="none"
+      focusable={false}
+      height="157"
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 157,
+            "width": 87,
+          },
+        ]
+      }
+      vbHeight={157}
+      vbWidth={87}
+      width="87"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M73.6488 15.027C45.5984 24.5616 21.3945 42.9322 4.66648 67.3843C-12.0616 91.8364 -20.4123 121.052 -19.1337 150.651L-7.40126 150.144C-8.57029 123.083 -0.935331 96.3711 14.3588 74.015C29.653 51.6588 51.7821 34.8629 77.4281 26.1457L73.6488 15.027Z"
+          fill={4285429958}
+          fillOpacity={0.45}
+          propList={
+            Array [
+              "fill",
+              "fillOpacity",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;

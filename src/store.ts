@@ -16,5 +16,9 @@ const enhancers = isDevEnv()
   ? composeWithDevTools(applyMiddleware(epicMiddleware))
   : applyMiddleware(epicMiddleware);
 
-export const store = createStore(rootReducer, enhancers);
-epicMiddleware.run(rootEpic);
+export const configureStore = (initialState?: Partial<Store>) => {
+  const store = createStore(rootReducer, initialState, enhancers);
+  epicMiddleware.run(rootEpic);
+
+  return store;
+};

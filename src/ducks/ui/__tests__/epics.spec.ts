@@ -3,6 +3,7 @@ import { initApplicationRequestEpic, initApplicationSuccessEpic, getUserSkippedL
 import { testEpic } from '../../../utils/testEpics';
 import { getItem, storeItem } from '../../../services/storage';
 import { fetchUserDataSuccess, fetchUserDataRequest } from '../../user';
+import { initialState as state } from '../reducer';
 
 jest.mock('../../../services/storage');
 jest.mock('../../user', () => {
@@ -27,16 +28,6 @@ jest.mock('../../../services/firebase', () => ({
   isFirebaseInitialized: jest.fn(),
   initializeFirebase: jest.fn(),
 }));
-
-const state = {
-  isApplicationInited: false,
-  isUserSkippedLoginFlow: false,
-  alert: {
-    isVisible: false,
-    type: 'success',
-    message: '',
-  },
-};
 
 describe('UI epics', () => {
   afterEach(() => {

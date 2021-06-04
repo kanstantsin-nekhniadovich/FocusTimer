@@ -17,7 +17,7 @@ import {
   updateProjectFailure,
 } from './actions';
 
-import { PROJECTS_PER_REQUEST } from '../../settings';
+import { PROJECTS_PER_REQUEST } from '../../utils/constants';
 import { handleResponse } from '../../utils/handleResponse';
 import { showAlert } from '../ui';
 

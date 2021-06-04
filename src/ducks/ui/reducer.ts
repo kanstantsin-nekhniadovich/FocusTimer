@@ -9,7 +9,7 @@ interface State {
   isUserSkippedLoginFlow: boolean;
 }
 
-const initialState: State = {
+export const initialState: State = {
   isApplicationInited: false,
   isUserSkippedLoginFlow: false,
   alert: {
