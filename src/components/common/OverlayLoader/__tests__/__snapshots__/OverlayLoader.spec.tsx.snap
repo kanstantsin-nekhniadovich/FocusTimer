@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OverlayLoader> should be rendered with default props 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "bottom": 0,
+        "left": 0,
+        "opacity": 0.6,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100,
+      }
+    }
+  />,
+  <RNSVGSvgView
+    bbHeight={70}
+    bbWidth={70}
+    focusable={false}
+    height={70}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "left": "50%",
+          "position": "absolute",
+          "top": "50%",
+          "transform": Array [
+            Object {
+              "translateY": -35,
+            },
+            Object {
+              "translateX": -35,
+            },
+            Object {
+              "rotateZ": "0deg",
+            },
+          ],
+          "zIndex": 100,
+        },
+        Object {
+          "flex": 0,
+          "height": 70,
+          "width": 70,
+        },
+      ]
+    }
+    width={70}
+  >
+    <RNSVGGroup
+      matrix={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    >
+      <RNSVGCircle
+        cx={35}
+        cy={35}
+        propList={
+          Array [
+            "stroke",
+            "strokeWidth",
+            "strokeOpacity",
+          ]
+        }
+        r={32}
+        stroke={4284900966}
+        strokeOpacity={0.2}
+        strokeWidth={3}
+      />
+      <RNSVGCircle
+        cx={35}
+        cy={35}
+        propList={
+          Array [
+            "stroke",
+            "strokeWidth",
+            "strokeDasharray",
+            "strokeDashoffset",
+            "strokeLinecap",
+          ]
+        }
+        r={32}
+        stroke={4280495302}
+        strokeDasharray={
+          Array [
+            201.06192982974676,
+            201.06192982974676,
+          ]
+        }
+        strokeDashoffset={60.31857894892403}
+        strokeLinecap={1}
+        strokeWidth={3}
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>,
+]
+`;
