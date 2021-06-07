@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Wrapper /> show match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fbfbfb",
+      "flex": 1,
+      "paddingHorizontal": 16,
+      "position": "relative",
+    }
+  }
+/>
+`;

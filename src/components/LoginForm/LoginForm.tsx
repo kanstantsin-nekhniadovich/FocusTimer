@@ -47,7 +47,6 @@ export const LoginForm = () => {
               value={values.email}
               isValid={!touched.email || !isDefined(errors.email)}
               onChangeText={handleChange('email')}
-              multiline
             />
             {touched.email && errors.email && <Text style={Common.error}>{errors.email}</Text>}
             <DividerBlock />
