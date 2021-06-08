@@ -35,9 +35,6 @@ export const Project: React.FC<Props> = ({ route }) => {
     <Wrapper style={styles.wrapper}>
       {isLoading && <OverlayLoader />}
       <AddTaskForm projectId={project.id} />
-      <DividerBlock height={30} />
-      <Text style={styles.header}>My tasks</Text>
-      <DividerBlock height={30} />
       {areTasksExist
         ? <TasksList tasks={tasks} />
         : <View style={styles.addTasksHeader}><AddNewTaskHeader /></View>

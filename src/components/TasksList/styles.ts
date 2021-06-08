@@ -2,8 +2,15 @@ import { StyleSheet } from 'react-native';
 import { Typography, Colors } from '@styles';
 
 export const styles = StyleSheet.create({
+  tasksList: {
+    flex: 1,
+  },
+  header: {
+    ...Typography.subtitleLarge,
+    textAlign: 'center'
+  },
   list: {
-    width: '100%',
+    maxHeight: '75%',
   }
 });
 
@@ -17,14 +24,27 @@ export const itemStyles = StyleSheet.create({
     height: 36,
     marginBottom: 20,
   },
+  titleHolder: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   title: {
     ...Typography.subtitle,
     fontSize: 16,
     color: Colors.prussianBlue,
+    textTransform: 'capitalize',
+    marginLeft: 15,
+    maxWidth: 180,
   },
   newTaskLabel: {
     ...Typography.text,
     color: Colors.prussianBlue,
+  },
+  timeHolder: {
+    width: 65,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   remainingTime: {
     ...Typography.primary,
