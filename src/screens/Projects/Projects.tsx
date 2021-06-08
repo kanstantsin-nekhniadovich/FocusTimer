@@ -13,7 +13,7 @@ import { ProjectsFilter } from '../../components/ProjectsFilter';
 import { ProjectsList } from '../../components/ProjectsList';
 import { getProjects, getIsProjectsLoading, fetchProjectsRequest } from '../../ducks';
 import { isEmpty } from '../../utils/isEmpty';
-import { PROJECTS_PER_REQUEST } from '../../settings';
+import { PROJECTS_PER_REQUEST } from '../../utils/constants';
 
 import { styles } from './styles';
 

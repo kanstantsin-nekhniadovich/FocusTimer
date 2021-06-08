@@ -95,9 +95,9 @@ export const Alert: React.FC = () => {
 
   return (
     <Animated.View style={style} { ...panResponder.panHandlers }>
-      <Text style={styles.text}>{alertMeta.message}</Text>
+      <Text testID="alert-message" style={styles.text}>{alertMeta.message}</Text>
       <TouchableOpacity onPress={closeErrorAlert} style={styles.crossButton}>
-        <View style={{ ...styles.cross, borderColor: config[alertMeta.type] }}>
+        <View style={{ ...styles.cross, borderColor: config[alertMeta.type] }} testID="cross-icon">
           <Cross width={10} color={config[alertMeta.type]} />
         </View>
       </TouchableOpacity>
