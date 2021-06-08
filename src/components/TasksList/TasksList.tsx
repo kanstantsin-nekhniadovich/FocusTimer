@@ -1,6 +1,11 @@
 import { Task } from '@typings';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
+
+import { TaskItem } from './TaskItem';
+import { DividerBlock } from '../common';
+
+import { styles } from './styles';
 
 interface Props {
   tasks: Task[];
@@ -8,10 +13,15 @@ interface Props {
 
 export const TasksList: React.FC<Props> = ({ tasks }) => {
   return (
-    <View>
-      {tasks.map(task => (
-        <Text key={task.id}>{task.title}</Text>
-      ))}
+    <View style={styles.tasksList}>
+      <DividerBlock height={30} />
+      <Text style={styles.header}>My tasks</Text>
+      <DividerBlock height={15} />
+      <ScrollView style={styles.list}>
+        {tasks.map(task => (
+          <TaskItem key={task.id} task={task} />
+        ))}
+      </ScrollView>
     </View>
   );
 };

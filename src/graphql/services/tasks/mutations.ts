@@ -24,11 +24,14 @@ gql`
 export const createTask = gql`
   mutation($data: CreateTaskInput!) {
     createTask(data: $data) {
-      id,
-      title,
-      cyclesCount,
-      workTime,
-      breakTime,
+      id
+      title
+      cyclesCount
+      workTime
+      breakTime
+      status
+      remainingTime
+      currentCycle
       projectId
     }
   }
