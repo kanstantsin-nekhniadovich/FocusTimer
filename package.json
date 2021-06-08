@@ -11,7 +11,7 @@
     "lint": "npm run lint:eslint && npm run lint:types",
     "inspect": "react-devtools",
     "test": "jest",
-    "update-shapshot": "jest --updateSnapshot"
+    "update-snapshot": "jest --updateSnapshot"
   },
   "husky": {
     "hooks": {

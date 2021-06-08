@@ -1,0 +1,486 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TasksList /> should render TasksList component with task in TODO 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 30,
+        "width": "100%",
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "fontFamily": "DMSans_700Bold",
+        "fontSize": 16,
+        "letterSpacing": 0,
+        "lineHeight": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+    My tasks
+  </Text>
+  <View
+    style={
+      Object {
+        "height": 15,
+        "width": "100%",
+      }
+    }
+  />
+  <RCTScrollView
+    style={
+      Object {
+        "maxHeight": "75%",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 36,
+            "justifyContent": "space-between",
+            "marginBottom": 20,
+            "paddingVertical": 4,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <RNSVGSvgView
+            bbHeight={36}
+            bbWidth={36}
+            focusable={false}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "height": 36,
+                  "transform": Array [
+                    Object {
+                      "rotate": "-90deg",
+                    },
+                  ],
+                  "width": 36,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 36,
+                  "width": 36,
+                },
+              ]
+            }
+          >
+            <RNSVGGroup
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+            >
+              <RNSVGCircle
+                cx={18}
+                cy={18}
+                propList={
+                  Array [
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r={16.5}
+                stroke={4292335847}
+                strokeWidth={3}
+              />
+              <RNSVGCircle
+                cx={18}
+                cy={18}
+                propList={
+                  Array [
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={16.5}
+                stroke={4280297654}
+                strokeDasharray={
+                  Array [
+                    103.67255756846318,
+                    103.67255756846318,
+                  ]
+                }
+                strokeDashoffset={103.67255756846318}
+                strokeWidth={3}
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#001f5a",
+                "fontFamily": "DMSans_500Medium",
+                "fontSize": 16,
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginLeft": 15,
+                "maxWidth": 180,
+                "textTransform": "capitalize",
+              }
+            }
+          >
+            Test task
+          </Text>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#001f5a",
+              "fontFamily": "Roboto_400Regular",
+              "fontSize": 14,
+              "letterSpacing": -0.3,
+              "lineHeight": 18,
+            }
+          }
+        >
+          New Task
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 36,
+            "justifyContent": "space-between",
+            "marginBottom": 20,
+            "paddingVertical": 4,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <RNSVGSvgView
+            bbHeight={36}
+            bbWidth={36}
+            focusable={false}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "height": 36,
+                  "transform": Array [
+                    Object {
+                      "rotate": "-90deg",
+                    },
+                  ],
+                  "width": 36,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 36,
+                  "width": 36,
+                },
+              ]
+            }
+          >
+            <RNSVGGroup
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+            >
+              <RNSVGCircle
+                cx={18}
+                cy={18}
+                propList={
+                  Array [
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                r={16.5}
+                stroke={4292335847}
+                strokeWidth={3}
+              />
+              <RNSVGCircle
+                cx={18}
+                cy={18}
+                propList={
+                  Array [
+                    "stroke",
+                    "strokeWidth",
+                    "strokeDasharray",
+                    "strokeDashoffset",
+                  ]
+                }
+                r={16.5}
+                stroke={4280297654}
+                strokeDasharray={
+                  Array [
+                    103.67255756846318,
+                    103.67255756846318,
+                  ]
+                }
+                strokeDashoffset={89.8495498926681}
+                strokeWidth={3}
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#001f5a",
+                "fontFamily": "DMSans_500Medium",
+                "fontSize": 16,
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginLeft": 15,
+                "maxWidth": 180,
+                "textTransform": "capitalize",
+              }
+            }
+          >
+            Second task
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": 65,
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="none"
+            focusable={false}
+            height={16}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={16}
+            vbWidth={16}
+            width={16}
+          >
+            <RNSVGGroup
+              fill={null}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGPath
+                d="M7.9935 1.33325C4.3135 1.33325 1.3335 4.31992 1.3335 7.99992C1.3335 11.6799 4.3135 14.6666 7.9935 14.6666C11.6802 14.6666 14.6668 11.6799 14.6668 7.99992C14.6668 4.31992 11.6802 1.33325 7.9935 1.33325ZM8.00016 13.3333C5.0535 13.3333 2.66683 10.9466 2.66683 7.99992C2.66683 5.05325 5.0535 2.66659 8.00016 2.66659C10.9468 2.66659 13.3335 5.05325 13.3335 7.99992C13.3335 10.9466 10.9468 13.3333 8.00016 13.3333Z"
+                fill={4288980132}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              />
+              <RNSVGPath
+                d="M8.3335 4.66675H7.3335V8.66675L10.8335 10.7667L11.3335 9.94675L8.3335 8.16675V4.66675Z"
+                fill={4288980132}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <Text
+            style={
+              Object {
+                "color": "#a4a4a4",
+                "fontFamily": "Roboto_500Medium",
+                "fontSize": 14,
+                "letterSpacing": 0.14,
+                "lineHeight": 24,
+                "textTransform": "lowercase",
+              }
+            }
+          >
+            3 min
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 36,
+            "justifyContent": "space-between",
+            "marginBottom": 20,
+            "paddingVertical": 4,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={36}
+            bbWidth={36}
+            fill="none"
+            focusable={false}
+            height={36}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 36,
+                  "width": 36,
+                },
+              ]
+            }
+            vbHeight={36}
+            vbWidth={36}
+            width={36}
+          >
+            <RNSVGGroup
+              fill={null}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGPath
+                d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM14.4 27L5.4 18L7.938 15.462L14.4 21.906L28.062 8.244L30.6 10.8L14.4 27Z"
+                fill={
+                  Array [
+                    1,
+                    "paint0_linear",
+                  ]
+                }
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              />
+              <RNSVGDefs>
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -16274536,
+                      1,
+                      -14820979,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={1}
+                  name="paint0_linear"
+                  x1="36"
+                  x2="0"
+                  y1="18"
+                  y2="18"
+                />
+              </RNSVGDefs>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#001f5a",
+                "fontFamily": "DMSans_500Medium",
+                "fontSize": 16,
+                "letterSpacing": 0,
+                "lineHeight": 20,
+                "marginLeft": 15,
+                "maxWidth": 180,
+                "textTransform": "capitalize",
+              }
+            }
+          >
+            Third task
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
