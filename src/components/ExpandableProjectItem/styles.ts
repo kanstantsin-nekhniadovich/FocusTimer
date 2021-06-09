@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   item: {
     position: 'relative',
     width: '100%',
-    height: 57,
+    height: 60,
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
   },
   titleHolder: {
-    height: 57,
+    height: 60,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   arrowButtonHolder: {
     position: 'absolute',
-    height: 57,
+    height: 60,
     width: 30,
     right: 0,
     borderTopRightRadius: 8,
@@ -75,12 +75,11 @@ export const styles = StyleSheet.create({
 
 export const toolsMenuStyles = StyleSheet.create({
   toolsMenuHolder: {
-    // paddingTop: 3,
     paddingRight: 10,
     paddingLeft: 15,
   },
   toolsMenu: {
-    height: 46,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

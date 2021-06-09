@@ -19,8 +19,8 @@ interface Props {
   project: Project;
 }
 
-const SMALL_ITEM_HEIGHT = 57;
-const BIG_ITEM_HEIGHT = 100;
+const SMALL_ITEM_HEIGHT = 60;
+const BIG_ITEM_HEIGHT = 110;
 const ANIMATION_DURATION = 300;
 
 const statusColors: Record<Status, string> = Object.freeze({
