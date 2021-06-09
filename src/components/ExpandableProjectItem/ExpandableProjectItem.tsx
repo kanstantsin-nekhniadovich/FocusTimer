@@ -19,7 +19,7 @@ interface Props {
   project: Project;
 }
 
-const SMALL_ITEM_HEIGHT = 54;
+const SMALL_ITEM_HEIGHT = 57;
 const BIG_ITEM_HEIGHT = 100;
 const ANIMATION_DURATION = 300;
 
