@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, Text, View, Animated } from 'react-native';
+import { Text, View, Animated } from 'react-native';
+import Ripple from 'react-native-material-ripple';
 import { useNavigation } from '@react-navigation/native';
 import { Project, Status } from '@typings';
 import { useSelector } from 'react-redux';
@@ -18,8 +19,9 @@ interface Props {
   project: Project;
 }
 
-const SMALL_ITEM_HEIGHT = 54;
-const BIG_ITEM_HEIGHT = 100;
+const SMALL_ITEM_HEIGHT = 60;
+const BIG_ITEM_HEIGHT = 110;
+const ANIMATION_DURATION = 300;
 
 const statusColors: Record<Status, string> = Object.freeze({
   TODO: Colors.todo as string,
@@ -63,20 +65,20 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const animateExpanding = React.useCallback((enable: boolean) => {
     Animated.parallel([
       Animated.timing(animatedHeight, {
-        duration: 200,
+        duration: ANIMATION_DURATION,
         toValue: enable ? BIG_ITEM_HEIGHT : SMALL_ITEM_HEIGHT,
         useNativeDriver: false,
       }),
       Animated.timing(animatedRotate, {
-        duration: 200,
+        duration: ANIMATION_DURATION,
         toValue: enable ? 1 : 0,
-        useNativeDriver: false,
+        useNativeDriver: true,
       }),
       Animated.timing(animatedOpacity, {
-        delay: enable ? 100 : 0,
-        duration: enable ? 120 : 60,
+        delay: enable ? 200 : 0,
+        duration: enable ? 150 : 80,
         toValue: enable ? 1 : 0,
-        useNativeDriver: false,
+        useNativeDriver: true,
       }),
     ]).start(({ finished }) => {
       if (finished && isToolsMenuOpened && !isExpanded) {
@@ -111,14 +113,20 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
       <View style={indicatorStyles} />
       <View style={styles.titleHolder}>
         <IconButton
+          style={styles.runProjectButton}
           accessibilityLabel={`Run ${project.title} project`}
           onPress={onPlay}
         >
           {isCompleted ? <Restore /> : <Play />}
         </IconButton>
-        <Pressable style={styles.pressableTitle} onLongPress={toggleMenuToolsVisibility} onPress={navigateToProject}>
+        <Ripple
+          style={styles.pressableTitle}
+          onLongPress={toggleMenuToolsVisibility}
+          onPress={navigateToProject}
+          rippleContainerBorderRadius={8}
+        >
           <Text numberOfLines={1} style={styles.title}>{project.title}</Text>
-        </Pressable>
+        </Ripple>
         {noteExists && <Animated.View style={arrowHolderStyles}>
           <IconButton
             accessibilityLabel="Expand project"

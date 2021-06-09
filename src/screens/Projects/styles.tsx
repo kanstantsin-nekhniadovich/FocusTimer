@@ -30,6 +30,6 @@ export const styles = StyleSheet.create({
   },
   list: {
     width: '100%',
-    height: 0.55 * height,
+    height: 0.59 * height,
   },
 });
