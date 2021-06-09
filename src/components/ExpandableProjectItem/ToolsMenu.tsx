@@ -17,7 +17,7 @@ interface Props {
   isVisible: boolean;
 }
 
-const ANIMATION_DURATION = 400;
+const ANIMATION_DURATION = 300;
 const ANIMATION_DELAY = 100;
 
 export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
