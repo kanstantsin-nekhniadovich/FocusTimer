@@ -6,6 +6,7 @@ const height = Dimensions.get('screen').height;
 export const styles = StyleSheet.create({
   wrapper: {
     paddingTop: 18,
+    paddingHorizontal: 2,
   },
   addProject: {
     position: 'absolute',
