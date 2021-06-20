@@ -12,7 +12,7 @@ interface Props {
 const CIRCLE_SMALL_WIDTH = 18;
 
 export const OverlayLoader: React.FC<Props> = ({ variant = 'fullscreen' }) => {
-  const circleWidth = React.useMemo(() => variant === 'small' ? CIRCLE_SMALL_WIDTH : undefined, [variant]);
+  const circleWidth = variant === 'small' ? CIRCLE_SMALL_WIDTH : undefined;
 
   return (
     <>

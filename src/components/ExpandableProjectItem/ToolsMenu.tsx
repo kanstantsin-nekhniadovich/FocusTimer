@@ -49,8 +49,7 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
     }).start();
   }, [isVisible]);
 
-  const separateLineStyles = React.useMemo(() =>
-    ({ ...toolsMenuStyles.separateLine, transform: [{ scale: animatedScale }] }), [animatedScale]);
+  const separateLineStyles = { ...toolsMenuStyles.separateLine, transform: [{ scale: animatedScale }] };
 
   return (
     <View style={toolsMenuStyles.toolsMenuHolder}>

@@ -33,13 +33,12 @@ export const Field: React.FC<Props> = ({ icon, onChange, meta, isEditable = true
     outputRange: ['transparent', Colors.black_38 as string],
   });
 
-  const animatedAreaStyles = React.useMemo(() => ({
+  const animatedAreaStyles = {
     ...styles.animatedArea,
     borderColor
-  }), [borderColor]);
+  };
 
-  const maskStyles = React.useMemo(() =>
-    isDefined(value) && value !== '' ? styles.mask : { ...styles.mask, color: Colors.black_60 as string }, [value]);
+  const maskStyles = isDefined(value) && value !== '' ? styles.mask : { ...styles.mask, color: Colors.black_60 as string };
 
   return (
     <View style={style}>

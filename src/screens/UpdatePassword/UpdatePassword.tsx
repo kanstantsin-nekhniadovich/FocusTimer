@@ -34,7 +34,7 @@ export const UpdatePassword: React.FC<Props> = ({ route }) => {
     dispatch(updateUserRequest({ password }));
   }, []);
 
-  const initialValues = React.useMemo(() => ({ password: route.params.password, confirmPassword: '' }) as SchemaType, [route]);
+  const initialValues = { password: route.params.password, confirmPassword: '' } as SchemaType;
 
   return (
     <>

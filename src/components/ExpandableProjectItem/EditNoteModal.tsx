@@ -37,8 +37,8 @@ export const EditNoteModal: React.FC<Props> = ({ projectId, onClose, title, note
     onClose();
   }, [projectId, onClose]);
 
-  const initialValues = React.useMemo(() => ({ note: isDefined(note) ? note : '' }) as SchemaType, [note]);
-  const submitButtonTitle = React.useMemo(() => isDefined(note) ? 'Update note' : 'Save note', [note]);
+  const initialValues = ({ note: isDefined(note) ? note : '' }) as SchemaType;
+  const submitButtonTitle = isDefined(note) ? 'Update note' : 'Save note';
 
   return (
     <Modal

@@ -40,7 +40,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const animatedOpacity = React.useRef(new Animated.Value(0)).current;
 
   const isCompleted = project.status === 'COMPLETED';
-  const completedTasksCount = React.useMemo(() => tasks.filter(task => task.status === 'COMPLETED').length, [tasks]);
+  const completedTasksCount = tasks.filter(task => task.status === 'COMPLETED').length;
 
   const toggleExpandProject = React.useCallback(() => {
     setIsExpanded(!isExpanded);
@@ -96,14 +96,12 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
     outputRange: ['0deg', '180deg'],
   });
 
-  const arrowHolderStyles = React.useMemo(() =>
-    ({ ...styles.arrowButtonHolder, transform: [{ rotate: animatedRotateValue }] })
-  , [animatedRotateValue]);
+  const arrowHolderStyles = { ...styles.arrowButtonHolder, transform: [{ rotate: animatedRotateValue }] };
 
-  const indicatorStyles = React.useMemo(() => ({
+  const indicatorStyles = {
     ...styles.indicator,
     backgroundColor: statusColors[project.status],
-  }), [project]);
+  };
 
   const noteExists = isDefined(project.note) && !isEmpty(project.note);
 

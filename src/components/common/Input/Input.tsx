@@ -26,33 +26,31 @@ export const Input: React.FC<Props> = ({
   const [zIndex, setZIndex] = React.useState(inputIsActive ? 0 : -1);
   const animation = React.useRef(new Animated.Value(inputIsActive ? 1 : 0)).current;
 
-  const labelStyles = React.useMemo(() => {
-    return {
-      ...styles.label,
-      fontSize: animation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [16, 13],
-      }),
-      left: animation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [16, 6],
-      }),
-      top: animation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [18, -10],
-      }),
-      paddingHorizontal: animation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 9],
-      }),
-    };
-  }, [animation]);
+  const labelStyles = {
+    ...styles.label,
+    fontSize: animation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [16, 13],
+    }),
+    left: animation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [16, 6],
+    }),
+    top: animation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [18, -10],
+    }),
+    paddingHorizontal: animation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 9],
+    }),
+  };
 
-  const inputStyles = React.useMemo(() => ({
+  const inputStyles = {
     ...styles.input,
     ...(!isValid ? styles.invalid : {}),
     ...(isDefined(style) ? style : {}),
-  }), [isValid, style]);
+  };
 
   React.useEffect(() => {
     Animated.timing(animation, {

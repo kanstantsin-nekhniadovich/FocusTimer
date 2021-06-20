@@ -48,17 +48,17 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
 
   const [animatedOpacity] = useOpacityAnimation(0.4, 200, enabled);
 
-  const arrowStyle = React.useMemo(() => ({
+  const arrowStyle = {
     ...styles.arrowButton,
     opacity: animatedOpacity,
-  }), [animatedOpacity]);
+  };
 
-  const fieldMeta = React.useMemo(() => ({
+  const fieldMeta = {
     initialTouched: false,
     value: form.values.name,
     touched: form.touched.name ?? false,
     error: form.errors.name,
-  }), [form]);
+  };
 
   return (
     <View style={styles.form}>
