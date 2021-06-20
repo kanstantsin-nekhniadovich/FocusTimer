@@ -21,7 +21,7 @@ const statusColors: Record<Status, string> = Object.freeze({
 });
 
 export const FilterItem: React.FC<Props> = ({ onPress, label, status, checked }) => {
-  const onPressHandler = React.useCallback(() => onPress(checked ? '' : status), [status, onPress, checked]);
+  const onPressHandler = () => onPress(checked ? '' : status);
 
   const style = {
     ...filterItemStyles.item,

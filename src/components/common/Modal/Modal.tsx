@@ -14,14 +14,14 @@ interface Props {
 }
 
 export const Modal: React.FC<Props> = ({ title, isVisible, closeOnClickOutside = true, onClose, children }) => {
-  const onStartShouldSetResponder = React.useCallback(() => {
+  const onStartShouldSetResponder = () => {
     if (!closeOnClickOutside) {
       return false;
     }
 
     onClose();
     return true;
-  }, [onClose, closeOnClickOutside]);
+  };
 
   return (
     <ReactNativeModal

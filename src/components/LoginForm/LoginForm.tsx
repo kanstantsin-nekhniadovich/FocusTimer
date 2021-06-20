@@ -21,13 +21,13 @@ type SchemaType = yup.InferType<typeof validationShema>;
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const handleForgotPassword = React.useCallback(() => {
+  const handleForgotPassword = () => {
     console.log('forgot password');
-  }, []);
+  };
 
-  const handleLogIn = React.useCallback((values) => {
+  const handleLogIn = (values: SchemaType) => {
     dispatch(loginRequest(values));
-  }, []);
+  };
 
   const initialValues = { email: '', password: '' } as SchemaType;
 

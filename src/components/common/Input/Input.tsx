@@ -64,18 +64,18 @@ export const Input: React.FC<Props> = ({
     });
   }, [inputIsActive, placeholder]);
 
-  const onFocus = React.useCallback(() => {
+  const onFocus = () => {
     setIsFocused(true);
     setInputPlaceholder('');
     setZIndex(0);
-  }, []);
+  };
 
-  const handleBlur = React.useCallback((event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleBlur = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setIsFocused(false);
     if (isDefined(onBlur)) {
       onBlur(event);
     }
-  }, [onBlur]);
+  };
 
   return (
     <View style={styles.container}>

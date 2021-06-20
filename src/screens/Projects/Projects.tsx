@@ -29,12 +29,12 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
   const [skip, setSkip] = React.useState(0);
   const [filter, setFilter] = React.useState<Status | EmptyString>('');
 
-  const addProject = React.useCallback(() => navigation.navigate(Routes.NewProject), [navigation]);
+  const addProject = () => navigation.navigate(Routes.NewProject);
 
-  const loadProjects = React.useCallback(() => {
+  const loadProjects = () => {
     dispatch(fetchProjectsRequest({ skip }));
     setSkip(skip + PROJECTS_PER_REQUEST);
-  }, [skip]);
+  };
 
   useFocusEffect(React.useCallback(() => {
     loadProjects();

@@ -28,10 +28,10 @@ export const Account: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(Routes.Login);
   }, [user]);
 
-  const logout = React.useCallback(() => {
+  const logout = () => {
     dispatch(logoutRequest());
     navigation.navigate(Routes.Login);
-  }, [navigation]);
+  };
 
   if (!isDefined(user)) {
     return <OverlayLoader />;

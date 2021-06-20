@@ -32,7 +32,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
     }).start();
   }, [isEditable, animatedOpacity]);
 
-  const storeAvatar = React.useCallback(async () => {
+  const storeAvatar = async () => {
     if (!isEditable || !isFirebaseInitialized()) {
       return;
     }
@@ -49,7 +49,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
     }
 
     dispatch(saveUserAvatarRequest(media.uri));
-  }, [user, permission, isEditable]);
+  };
 
   const firstLetter = user.email.charAt(0);
 

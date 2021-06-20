@@ -36,9 +36,7 @@ export const Navigator: React.FC = () => {
   const isUserSkippedLoginFlow = useSelector(getIsUserSkippedLoginFlow);
   const initialRouteName = isUserSkippedLoginFlow ? Routes.Projects : Routes.Login;
 
-  const onNavigationReady = React.useCallback(() => {
-    Object.assign(isReadyRef, { current: true });
-  }, []);
+  const onNavigationReady = () => Object.assign(isReadyRef, { current: true });
 
   return (
     <NavigationContainer

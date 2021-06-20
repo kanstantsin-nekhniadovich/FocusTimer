@@ -45,9 +45,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
     }).start();
   }, [animatedScale, isVisible]);
 
-  const toggleFilterVisibility = React.useCallback(() => {
-    setIsVisible(!isVisible);
-  }, [isVisible]);
+  const toggleFilterVisibility = () => setIsVisible(!isVisible);
 
   const filterBlockStyles = { ...styles.filterBlock, opacity: animatedOpacity, transform: [{ scale }] };
   const iconButtonStyles = isVisible ? { ...styles.iconButton, zIndex: -1 } : styles.iconButton;
