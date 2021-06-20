@@ -28,7 +28,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
     Animated.timing(animatedOpacity, {
       toValue: isEditable ? 1 : 0.4,
       duration: 200,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   }, [isEditable, animatedOpacity]);
 

@@ -21,16 +21,12 @@ export const AnimatedCircle: React.FC<Props> = ({ width = WIDTH, strokeWidth = S
 
   const animate = () => {
     Animated.loop(
-      Animated.parallel([
-        Animated.timing(
-          spinAnimation, {
-            toValue: 1,
-            duration: 1200,
-            easing: Easing.linear,
-            useNativeDriver: false,
-          },
-        ),
-      ]),
+      Animated.timing(spinAnimation, {
+        toValue: 1,
+        duration: 1200,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
     ).start();
   };
 

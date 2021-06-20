@@ -4,14 +4,6 @@ import { render } from '@testing-library/react-native';
 import { TaskItem } from '../TaskItem';
 import { Status } from '../../../utils/constants';
 
-jest.mock('expo-constants', () => ({
-  manifest: {
-    extra: {
-      firebaseApiKey: ''
-    },
-  }
-}));
-
 describe('<TaskItem />', () => {
   it('should render TaskItem component with task in TODO', () => {
     const task = {

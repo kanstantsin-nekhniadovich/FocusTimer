@@ -62,7 +62,7 @@ export const Alert: React.FC = () => {
       damping: 9,
       mass: 1,
       toValue,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start(({ finished }) => {
       if (!isVisible && finished) {
         clearVisibilityTimeout();

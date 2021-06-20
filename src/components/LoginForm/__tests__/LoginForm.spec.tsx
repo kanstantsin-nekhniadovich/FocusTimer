@@ -6,13 +6,6 @@ import * as actions from '../../../ducks/auth/actions';
 import { LoginForm } from '..';
 
 jest.mock('../../../ducks/auth/actions');
-jest.mock('expo-constants', () => ({
-  manifest: {
-    extra: {
-      firebaseApiKey: ''
-    },
-  }
-}));
 
 describe('<LoginForm />', () => {
   afterEach(() => {
