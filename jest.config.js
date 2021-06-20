@@ -8,4 +8,7 @@ module.exports = {
     '@styles': '<rootDir>/src/styles',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  setupFiles: [
+    "./jestSetup/mock.js"
+  ]
 };

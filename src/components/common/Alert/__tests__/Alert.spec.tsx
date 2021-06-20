@@ -6,14 +6,6 @@ import { renderWithRedux } from '../../../../utils/renderWithRedux';
 import { getAlertMeta, hideAlert, showAlert } from '../../../../ducks/ui';
 import { Alert } from '../Alert';
 
-jest.mock('expo-constants', () => ({
-  manifest: {
-    extra: {
-      firebaseApiKey: ''
-    },
-  }
-}));
-
 describe('<Alert />', () => {
   it('should render Alert component with initial isVisible=false', () => {
     const { store } = renderWithRedux(<Alert />);

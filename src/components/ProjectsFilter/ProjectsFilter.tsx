@@ -27,7 +27,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
     Animated.timing(animatedOpacity, {
       duration: 200,
       toValue: isVisible ? 1 : 0,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start(({ finished }) => {
       if (!finished) {
         return;
@@ -41,7 +41,7 @@ export const ProjectsFilter: React.FC<Props> = ({ onChange, filter }) => {
     Animated.timing(animatedScale, {
       duration: 200,
       toValue: isVisible ? 0 : 1,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   }, [animatedScale, isVisible]);
 

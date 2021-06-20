@@ -41,7 +41,7 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
       delay: isVisible ? ANIMATION_DELAY : 0,
       duration: ANIMATION_DURATION,
       toValue: isVisible ? 1 : 0,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   }, [isVisible]);
 

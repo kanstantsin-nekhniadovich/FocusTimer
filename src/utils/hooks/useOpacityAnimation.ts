@@ -8,7 +8,7 @@ export const useOpacityAnimation = (initial: number, duration: number, enabled: 
     Animated.timing(animatedOpacity, {
       toValue: enabled ? 1 : initial,
       duration,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   }, [enabled, animatedOpacity, duration, initial]);
 

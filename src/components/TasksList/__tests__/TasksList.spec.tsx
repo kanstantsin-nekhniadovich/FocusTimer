@@ -4,14 +4,6 @@ import { render } from '@testing-library/react-native';
 import { TasksList } from '..';
 import { Status } from '../../../utils/constants';
 
-jest.mock('expo-constants', () => ({
-  manifest: {
-    extra: {
-      firebaseApiKey: ''
-    },
-  }
-}));
-
 describe('<TasksList />', () => {
   it('should render TasksList component with task in TODO', () => {
     const tasks = [{
