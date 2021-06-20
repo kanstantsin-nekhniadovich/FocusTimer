@@ -32,10 +32,10 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 
 export const EditNoteModal: React.FC<Props> = ({ projectId, onClose, title, note, isVisible = false }) => {
   const dispatch = useDispatch();
-  const onSubmit = React.useCallback((data: SchemaType) => {
+  const onSubmit = (data: SchemaType) => {
     dispatch(updateProjectRequest({ id: projectId, data: { ...data, note: data.note.trim() } }));
     onClose();
-  }, [projectId, onClose]);
+  };
 
   const initialValues = ({ note: isDefined(note) ? note : '' }) as SchemaType;
   const submitButtonTitle = isDefined(note) ? 'Update note' : 'Save note';

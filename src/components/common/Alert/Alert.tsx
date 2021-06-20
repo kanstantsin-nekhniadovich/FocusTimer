@@ -48,15 +48,15 @@ export const Alert: React.FC = () => {
     setIsVisible(alertMeta.isVisible);
   }, [alertMeta]);
 
-  const closeErrorAlert = React.useCallback(() => setIsVisible(false), []);
+  const closeErrorAlert = () => setIsVisible(false);
 
-  const clearVisibilityTimeout = React.useCallback(() => {
+  const clearVisibilityTimeout = () => {
     if (isDefined(timeoutId)) {
       clearTimeout(timeoutId);
     }
-  }, [timeoutId]);
+  };
 
-  const animateAlert = React.useCallback((toValue: number) => {
+  const animateAlert = (toValue: number) => {
     Animated.spring(positionX, {
       stiffness: 100,
       damping: 9,
@@ -69,7 +69,7 @@ export const Alert: React.FC = () => {
         dispatch(hideAlert());
       }
     });
-  }, [isVisible, positionX, clearVisibilityTimeout]);
+  };
 
   React.useEffect(() => {
     animateAlert(isVisible ? VISIBLE_POSITION : HIDDEN_POSITION);

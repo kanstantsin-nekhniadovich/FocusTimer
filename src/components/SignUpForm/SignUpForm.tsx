@@ -25,10 +25,10 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 export const SignUpForm = () => {
   const dispatch = useDispatch();
 
-  const handleSignUp = React.useCallback((values: SchemaType) => {
+  const handleSignUp = (values: SchemaType) => {
     const { email, password } = values;
     dispatch(createUserRequest({ email, password }));
-  }, []);
+  };
 
   const initialValues = { email: '', password: '', repeatPassword: '' } as SchemaType;
 

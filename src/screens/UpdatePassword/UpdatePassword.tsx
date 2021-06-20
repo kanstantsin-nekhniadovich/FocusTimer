@@ -30,9 +30,9 @@ export const UpdatePassword: React.FC<Props> = ({ route }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsUserLoading);
 
-  const onSubmit = React.useCallback(({ password }: SchemaType) => {
+  const onSubmit = ({ password }: SchemaType) => {
     dispatch(updateUserRequest({ password }));
-  }, []);
+  };
 
   const initialValues = { password: route.params.password, confirmPassword: '' } as SchemaType;
 

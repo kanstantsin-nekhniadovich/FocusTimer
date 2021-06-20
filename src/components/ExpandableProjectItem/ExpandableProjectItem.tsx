@@ -42,27 +42,24 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const isCompleted = project.status === 'COMPLETED';
   const completedTasksCount = tasks.filter(task => task.status === 'COMPLETED').length;
 
-  const toggleExpandProject = React.useCallback(() => {
-    setIsExpanded(!isExpanded);
-  }, [isExpanded, isToolsMenuOpened]);
+  const toggleExpandProject = () => setIsExpanded(!isExpanded);
 
-  const toggleMenuToolsVisibility = React.useCallback(() => {
+  const toggleMenuToolsVisibility = () => {
     if (isExpanded && !isToolsMenuOpened) {
       return;
     }
 
     !isToolsMenuOpened && setIsToolsMenuOpened(true);
     setIsExpanded(!isExpanded);
-  }, [isToolsMenuOpened, isExpanded]);
+  };
 
-  const navigateToProject = React.useCallback(() =>
-    navigation.navigate(Routes.Project, { id: project.id }), [project]);
+  const navigateToProject = () => navigation.navigate(Routes.Project, { id: project.id });
 
-  const onPlay = React.useCallback(() => {
+  const onPlay = () => {
     console.log('on play');
-  }, []);
+  };
 
-  const animateExpanding = React.useCallback((enable: boolean) => {
+  const animateExpanding = (enable: boolean) => {
     Animated.parallel([
       Animated.timing(animatedHeight, {
         duration: ANIMATION_DURATION,
@@ -85,7 +82,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
         setIsToolsMenuOpened(false);
       }
     });
-  }, [animatedHeight, animatedRotate, animatedOpacity, isToolsMenuOpened, isExpanded]);
+  };
 
   React.useEffect(() => {
     animateExpanding(isExpanded);

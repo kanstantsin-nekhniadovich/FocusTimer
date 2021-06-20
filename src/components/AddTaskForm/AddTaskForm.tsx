@@ -29,7 +29,7 @@ interface Props {
 export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
   const dispatch = useDispatch();
 
-  const onSubmit = React.useCallback((values: SchemaType) => {
+  const onSubmit = (values: SchemaType) => {
     const workTime = convertMinutesInMilliseconds(DEFAULT_WORK_TIME_IN_MINUTES);
     const breakTime = convertMinutesInMilliseconds(DEFAULT_BREAK_TIME_IN_MINUTES);
     const taskPayload = {
@@ -43,7 +43,7 @@ export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
     };
 
     dispatch(createTaskRequest(taskPayload));
-  }, [projectId]);
+  };
 
   return (
     <Formik<SchemaType>

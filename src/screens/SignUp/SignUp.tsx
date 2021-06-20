@@ -18,9 +18,7 @@ interface Props {
 export const SignUp: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsUserLoading);
-  const signUpWithFacebook = React.useCallback(() => {
-    dispatch(createFacebookUserRequest());
-  }, []);
+  const signUpWithFacebook = () => dispatch(createFacebookUserRequest());
 
   return (
     <>

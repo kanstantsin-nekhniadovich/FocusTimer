@@ -17,9 +17,7 @@ interface Props {
 export const EditUserDetails: React.FC<Props> = ({ user }) => {
   const [isEditMode, setIsEditMode] = React.useState<boolean>(false);
 
-  const toggleEditMode = React.useCallback(() => {
-    setIsEditMode(!isEditMode);
-  }, [isEditMode, user]);
+  const toggleEditMode = () => setIsEditMode(!isEditMode);
 
   return (
     <View style={styles.container}>

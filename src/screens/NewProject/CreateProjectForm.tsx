@@ -23,10 +23,10 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 export const CreateProjectForm = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const onSubmit = React.useCallback((value: SchemaType) => {
+  const onSubmit = (value: SchemaType) => {
     dispatch(createProjectRequest(value));
     navigation.navigate(Routes.Projects);
-  }, []);
+  };
 
   const initialValues = { title: '' } as SchemaType;
 

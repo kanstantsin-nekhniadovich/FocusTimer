@@ -19,13 +19,9 @@ interface Props {
 export const Login: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsUserLoading);
-  const handleFacebookLogIn = React.useCallback(async () => {
-    dispatch(facebookLoginRequest());
-  }, []);
 
-  const navigateToSignUpScreen = React.useCallback(() => {
-    navigation.navigate(Routes.SignUp);
-  }, [navigation]);
+  const handleFacebookLogIn = async () => dispatch(facebookLoginRequest());
+  const navigateToSignUpScreen = () => navigation.navigate(Routes.SignUp);
 
   return (
     <>

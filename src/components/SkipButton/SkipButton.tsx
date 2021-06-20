@@ -21,10 +21,10 @@ export const SkipButton: React.FC<Props> = ({ navigation }) => {
     setIsVisible(!isUserSkippedLoginFlow);
   }, [isUserSkippedLoginFlow]);
 
-  const handlePress = React.useCallback(() => {
+  const handlePress = () => {
     dispatch(setUserSkippedLoginFlowRequest(true));
     navigation.navigate(Routes.Projects);
-  }, []);
+  };
 
   if (!isVisible) {
     return null;

@@ -27,12 +27,12 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 
 export const PasswordForm: React.FC<Props> = ({ enabled }) => {
   const navigation = useNavigation<NavigationProp<Screens, Routes.UpdatePassword>>();
-  const onSubmit = React.useCallback(({ password }: SchemaType) => {
+  const onSubmit = ({ password }: SchemaType) => {
     navigation.navigate({
       name: Routes.UpdatePassword,
       params: { password },
     });
-  }, [navigation]);
+  };
 
   const form = useFormik({
     initialValues: { password: '' } as SchemaType,

@@ -5,9 +5,9 @@ import { TouchableOpacity, Text } from 'react-native';
 import { styles } from './styles';
 
 export const TimerStartButton = () => {
-  const onPress = React.useCallback(() => {
+  const onPress = () => {
     console.log('onPress');
-  }, []);
+  };
 
   return (
     <TouchableOpacity

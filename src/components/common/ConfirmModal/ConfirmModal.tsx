@@ -30,27 +30,27 @@ export const ConfirmModal: React.FC<Props> = ({
   cancelText,
   closeOnClickOutside = true,
 }) => {
-  const closeModal = React.useCallback(() => {
+  const closeModal = () => {
     if (!isDefined(onCancel)) {
       return;
     }
 
     onCancel();
-  }, [onCancel]);
+  };
 
-  const submitModal = React.useCallback(() => {
+  const submitModal = () => {
     onOk();
     closeModal();
-  }, [onOk, closeModal]);
+  };
 
-  const onStartShouldSetResponder = React.useCallback(() => {
+  const onStartShouldSetResponder = () => {
     if (!closeOnClickOutside) {
       return false;
     }
 
     closeModal();
     return true;
-  }, [closeModal, closeOnClickOutside]);
+  };
 
   return (
     <Modal

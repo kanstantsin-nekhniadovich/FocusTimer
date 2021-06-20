@@ -26,13 +26,13 @@ type SchemaType = yup.InferType<typeof validationSchema>;
 export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
   const dispatch = useDispatch();
 
-  const onSubmit = React.useCallback(({ name }: SchemaType) => {
+  const onSubmit = ({ name }: SchemaType) => {
     if (user.name === name.trim()) {
       return;
     }
 
     dispatch(updateUserRequest({ name }));
-  }, [user]);
+  };
 
   const form = useFormik({
     initialValues: { name: user.name } as SchemaType,

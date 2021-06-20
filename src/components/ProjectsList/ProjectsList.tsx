@@ -22,15 +22,15 @@ export const ProjectsList: React.FC<Props> = ({ filter, loadMore }) => {
   const filteredProjects = React.useMemo(() =>
     isEmpty(filter) ? projects : projects.filter(project => project.status === filter), [projects, filter]);
 
-  const renderItem = React.useCallback(({ item }) => <ExpandableProjectItem project={item} />, []);
+  const renderItem = ({ item }: { item: Project }) => <ExpandableProjectItem project={item} />;
 
-  const onEndReached = React.useCallback(() => {
+  const onEndReached = () => {
     if (projects.length >= totalCount) {
       return;
     }
 
     loadMore();
-  }, [totalCount, loadMore, projects]);
+  };
 
   return (
     <FlatList<Project>

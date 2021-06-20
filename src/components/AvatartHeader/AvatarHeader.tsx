@@ -17,9 +17,9 @@ export const AvatarHeader: React.FC<Props> = ({ navigation }) => {
   const user = useSelector(getUser);
 
   const accessibilityLabel = isDefined(user) ? 'Navigate to account screen' : 'Navigate to login screen';
-  const onPress = React.useCallback(() => {
+  const onPress = () => {
     navigation.navigate(isDefined(user) ? Routes.Account : Routes.Login);
-  }, [user]);
+  };
 
   return (
     <TouchableOpacity onPress={onPress} accessibilityLabel={accessibilityLabel} style={styles.container}>

@@ -27,18 +27,14 @@ export const ToolsMenu: React.FC<Props> = ({ isVisible, project }) => {
   const navigation = useNavigation();
   const animatedScale = React.useRef(new Animated.Value(0)).current;
 
-  const onEdit = React.useCallback(() =>
-    navigation.navigate(Routes.Project, { id: project.id }), [project]);
+  const onEdit = () => navigation.navigate(Routes.Project, { id: project.id });
+  const openEditNoteModal = () => setIsEditNoteModalOpened(true);
+  const closeEditNoteModal = () => setIsEditNoteModalOpened(false);
 
-  const openEditNoteModal = React.useCallback(() => setIsEditNoteModalOpened(true), []);
-  const closeEditNoteModal = React.useCallback(() => setIsEditNoteModalOpened(false), []);
+  const removeProject = () => dispatch(deleteProjectRequest(project.id));
 
-  const removeProject = React.useCallback(() => {
-    dispatch(deleteProjectRequest(project.id));
-  }, [project]);
-
-  const closeModal = React.useCallback(() => setIsRemoveProjectModalOpened(false), []);
-  const openModal = React.useCallback(() => setIsRemoveProjectModalOpened(true), []);
+  const closeModal = () => setIsRemoveProjectModalOpened(false);
+  const openModal = () => setIsRemoveProjectModalOpened(true);
 
   React.useEffect(() => {
     Animated.timing(animatedScale, {
