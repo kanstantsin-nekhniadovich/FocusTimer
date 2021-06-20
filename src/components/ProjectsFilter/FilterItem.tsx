@@ -23,10 +23,10 @@ const statusColors: Record<Status, string> = Object.freeze({
 export const FilterItem: React.FC<Props> = ({ onPress, label, status, checked }) => {
   const onPressHandler = React.useCallback(() => onPress(checked ? '' : status), [status, onPress, checked]);
 
-  const style = React.useMemo(() => ({
+  const style = {
     ...filterItemStyles.item,
     backgroundColor: statusColors[status],
-  }), [status]);
+  };
 
   return (
     <TouchableOpacity style={style} onPress={onPressHandler}>

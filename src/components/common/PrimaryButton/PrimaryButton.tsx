@@ -19,16 +19,16 @@ interface Props extends TouchableOpacityProps {
 export const PrimaryButton: React.FC<Props> = ({ title, variant = 'standard', size = 'big', disabled, style, ...rest }) => {
   const variantStyles = styles[variant];
 
-  const btnStyles = React.useMemo(() => ({
+  const btnStyles = {
     ...variantStyles.btn,
     ...states.btn[size],
     ...(isDefined(disabled) && disabled ? states.btn.disabled : {}),
     ...(isDefined(style) ? style : {}),
-  }), [variantStyles, size, disabled, style]);
+  };
 
-  const labelStyles = React.useMemo(() => ({
+  const labelStyles = {
     ...variantStyles.label,
-  }), [variantStyles]);
+  };
 
   return (
     <TouchableOpacity

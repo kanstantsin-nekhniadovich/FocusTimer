@@ -28,7 +28,7 @@ export const CreateProjectForm = () => {
     navigation.navigate(Routes.Projects);
   }, []);
 
-  const initialValues = React.useMemo(() => ({ title: '' }) as SchemaType, []);
+  const initialValues = { title: '' } as SchemaType;
 
   return (
     <Formik<SchemaType>

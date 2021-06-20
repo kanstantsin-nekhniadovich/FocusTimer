@@ -48,17 +48,17 @@ export const PasswordForm: React.FC<Props> = ({ enabled }) => {
 
   const [animatedOpacity] = useOpacityAnimation(0.4, 200, enabled);
 
-  const fieldMeta = React.useMemo(() => ({
+  const fieldMeta = {
     initialTouched: false,
     touched: form.touched.password ?? false,
     value: form.values.password,
     error: form.errors.password,
-  }), [form]);
+  };
 
-  const arrowStyle = React.useMemo(() => ({
+  const arrowStyle = {
     ...styles.arrowButton,
     opacity: animatedOpacity,
-  }), [animatedOpacity]);
+  };
 
   return (
     <View style={styles.form}>

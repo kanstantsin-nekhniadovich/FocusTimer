@@ -42,9 +42,7 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
 
   const areProjectsExist = !isEmpty(projects);
 
-  const addProjectsButtonStyles = React.useMemo(() =>
-    areProjectsExist ? { ...styles.addProject, ...styles.leftAligned } : styles.addProject
-  , [areProjectsExist]);
+  const addProjectsButtonStyles = areProjectsExist ? { ...styles.addProject, ...styles.leftAligned } : styles.addProject;
 
   if (!areProjectsExist && areProjectsLoading) {
     return <OverlayLoader />;

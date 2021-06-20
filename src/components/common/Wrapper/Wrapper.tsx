@@ -9,11 +9,11 @@ interface Props {
 }
 
 export const Wrapper: React.FC<Props> = ({ style = {}, adjustStatusBar = false, children }) => {
-  const wrapperStyles = React.useMemo(() => ({
+  const wrapperStyles = {
     ...styles.wrapper,
     ...style,
     ...(adjustStatusBar ? styles.statusBarAdjusting : {}),
-  }), [style, adjustStatusBar]);
+  };
 
   return (
     <View style={wrapperStyles}>{children}</View>

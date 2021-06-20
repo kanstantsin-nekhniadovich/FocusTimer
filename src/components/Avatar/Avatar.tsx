@@ -51,7 +51,7 @@ export const Avatar: React.FC<Props> = ({ user, isEditable = true }) => {
     dispatch(saveUserAvatarRequest(media.uri));
   }, [user, permission, isEditable]);
 
-  const firstLetter = React.useMemo(() => user.email.charAt(0), [user]);
+  const firstLetter = user.email.charAt(0);
 
   return (
     <View style={styles.avatarHolder}>

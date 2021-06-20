@@ -43,12 +43,10 @@ export const AnimatedCircle: React.FC<Props> = ({ width = WIDTH, strokeWidth = S
     outputRange: ['0deg', '360deg'],
   });
 
-  const style = React.useMemo(() => {
-    return {
-      ...styles.circle,
-      transform: [{ translateY: -width }, { translateX: -width }, { rotateZ: spin }],
-    };
-  }, [spin, width]);
+  const style = {
+    ...styles.circle,
+    transform: [{ translateY: -width }, { translateX: -width }, { rotateZ: spin }],
+  };
 
   return (
     <AnimatedSvg width={2 * width} height={2 * width} style={style}>

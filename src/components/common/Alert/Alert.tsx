@@ -87,11 +87,11 @@ export const Alert: React.FC = () => {
     return clearVisibilityTimeout;
   }, [isVisible]);
 
-  const style = React.useMemo(() => ({
+  const style = {
     ...styles.alert,
     transform: [{ translateX: positionX }],
     borderColor: config[alertMeta.type],
-  }), [styles.alert, alertMeta, positionX]);
+  };
 
   return (
     <Animated.View style={style} { ...panResponder.panHandlers }>
