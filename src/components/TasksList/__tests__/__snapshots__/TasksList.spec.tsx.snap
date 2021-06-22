@@ -325,902 +325,998 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
             }
           >
             <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#fbfbfb",
-                  "borderRadius": 8,
-                  "flexDirection": "row",
-                  "height": 70,
-                  "justifyContent": "space-between",
-                  "paddingHorizontal": 18,
-                  "width": "100%",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  bbHeight={36}
-                  bbWidth={36}
-                  focusable={false}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "height": 36,
-                        "transform": Array [
-                          Object {
-                            "rotate": "-90deg",
-                          },
-                        ],
-                        "width": 36,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 36,
-                        "width": 36,
-                      },
-                    ]
-                  }
-                >
-                  <RNSVGGroup
-                    matrix={
-                      Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        0,
-                        0,
-                      ]
-                    }
-                  >
-                    <RNSVGCircle
-                      cx={18}
-                      cy={18}
-                      propList={
-                        Array [
-                          "stroke",
-                          "strokeWidth",
-                        ]
-                      }
-                      r={16.5}
-                      stroke={4292335847}
-                      strokeWidth={3}
-                    />
-                    <RNSVGCircle
-                      cx={18}
-                      cy={18}
-                      propList={
-                        Array [
-                          "stroke",
-                          "strokeWidth",
-                          "strokeDasharray",
-                          "strokeDashoffset",
-                        ]
-                      }
-                      r={16.5}
-                      stroke={4280297654}
-                      strokeDasharray={
-                        Array [
-                          103.67255756846318,
-                          103.67255756846318,
-                        ]
-                      }
-                      strokeDashoffset={103.67255756846318}
-                      strokeWidth={3}
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Object {
-                      "color": "#001f5a",
-                      "fontFamily": "DMSans_500Medium",
-                      "fontSize": 16,
-                      "letterSpacing": 0,
-                      "lineHeight": 20,
-                      "marginLeft": 15,
-                      "maxWidth": 180,
-                      "textTransform": "capitalize",
-                    }
-                  }
-                >
-                  Test task
-                </Text>
-              </View>
-              <Text
-                style={
-                  Object {
-                    "color": "#001f5a",
-                    "fontFamily": "Roboto_400Regular",
-                    "fontSize": 14,
-                    "letterSpacing": -0.3,
-                    "lineHeight": 18,
-                  }
-                }
-              >
-                New Task
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "rgba(0, 0, 0, 0.38)",
-              "height": 0.5,
-            }
-          }
-        />
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          collapsable={false}
-          forwardedRef={[Function]}
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
-          onLayout={[Function]}
-          style={
-            Object {
-              "overflow": "hidden",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "bottom": 0,
-                "flexDirection": "row",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "transform": Array [
-                  Object {
-                    "translateX": -10000,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#2028b6",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 0.5,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={18.666666666666668}
-                  bbWidth={24}
-                  fill="none"
-                  focusable={false}
-                  height={18.666666666666668}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 18,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={18}
-                  vbWidth={14}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={null}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGPath
-                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
-                      fill={4294967295}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-            </View>
-            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
               onLayout={[Function]}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "bottom": 0,
-                "flexDirection": "row-reverse",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "transform": Array [
-                  Object {
-                    "translateX": -10000,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#2028b6",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "paddingHorizontal": 10,
-                  },
-                  Object {
-                    "justifyContent": "flex-end",
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 0.5,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={18.666666666666668}
-                  bbWidth={24}
-                  fill="none"
-                  focusable={false}
-                  height={18.666666666666668}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 18,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={18}
-                  vbWidth={14}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={null}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGPath
-                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
-                      fill={4294967295}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-            </View>
-            <View
-              onLayout={[Function]}
-            />
-          </View>
-          <View
-            collapsable={false}
-            forwardedRef={[Function]}
-            onGestureHandlerEvent={[Function]}
-            onGestureHandlerStateChange={[Function]}
-            pointerEvents="auto"
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#fbfbfb",
-                  "borderRadius": 8,
-                  "flexDirection": "row",
-                  "height": 70,
-                  "justifyContent": "space-between",
-                  "paddingHorizontal": 18,
-                  "width": "100%",
-                }
-              }
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              pointerEvents="box-only"
             >
               <View
                 style={
                   Object {
                     "alignItems": "center",
+                    "backgroundColor": "#fbfbfb",
+                    "borderRadius": 8,
                     "flexDirection": "row",
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  bbHeight={36}
-                  bbWidth={36}
-                  focusable={false}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "height": 36,
-                        "transform": Array [
-                          Object {
-                            "rotate": "-90deg",
-                          },
-                        ],
-                        "width": 36,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 36,
-                        "width": 36,
-                      },
-                    ]
-                  }
-                >
-                  <RNSVGGroup
-                    matrix={
-                      Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        0,
-                        0,
-                      ]
-                    }
-                  >
-                    <RNSVGCircle
-                      cx={18}
-                      cy={18}
-                      propList={
-                        Array [
-                          "stroke",
-                          "strokeWidth",
-                        ]
-                      }
-                      r={16.5}
-                      stroke={4292335847}
-                      strokeWidth={3}
-                    />
-                    <RNSVGCircle
-                      cx={18}
-                      cy={18}
-                      propList={
-                        Array [
-                          "stroke",
-                          "strokeWidth",
-                          "strokeDasharray",
-                          "strokeDashoffset",
-                        ]
-                      }
-                      r={16.5}
-                      stroke={4280297654}
-                      strokeDasharray={
-                        Array [
-                          103.67255756846318,
-                          103.67255756846318,
-                        ]
-                      }
-                      strokeDashoffset={89.8495498926681}
-                      strokeWidth={3}
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Object {
-                      "color": "#001f5a",
-                      "fontFamily": "DMSans_500Medium",
-                      "fontSize": 16,
-                      "letterSpacing": 0,
-                      "lineHeight": 20,
-                      "marginLeft": 15,
-                      "maxWidth": 180,
-                      "textTransform": "capitalize",
-                    }
-                  }
-                >
-                  Second task
-                </Text>
-              </View>
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
+                    "height": 70,
                     "justifyContent": "space-between",
-                    "width": 65,
+                    "paddingHorizontal": 18,
+                    "width": "100%",
                   }
                 }
               >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={16}
-                  bbWidth={16}
-                  fill="none"
-                  focusable={false}
-                  height={16}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 16,
-                        "width": 16,
-                      },
-                    ]
-                  }
-                  vbHeight={16}
-                  vbWidth={16}
-                  width={16}
-                >
-                  <RNSVGGroup
-                    fill={null}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGPath
-                      d="M7.9935 1.33325C4.3135 1.33325 1.3335 4.31992 1.3335 7.99992C1.3335 11.6799 4.3135 14.6666 7.9935 14.6666C11.6802 14.6666 14.6668 11.6799 14.6668 7.99992C14.6668 4.31992 11.6802 1.33325 7.9935 1.33325ZM8.00016 13.3333C5.0535 13.3333 2.66683 10.9466 2.66683 7.99992C2.66683 5.05325 5.0535 2.66659 8.00016 2.66659C10.9468 2.66659 13.3335 5.05325 13.3335 7.99992C13.3335 10.9466 10.9468 13.3333 8.00016 13.3333Z"
-                      fill={4288980132}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    />
-                    <RNSVGPath
-                      d="M8.3335 4.66675H7.3335V8.66675L10.8335 10.7667L11.3335 9.94675L8.3335 8.16675V4.66675Z"
-                      fill={4288980132}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-                <Text
+                <View
                   style={
                     Object {
-                      "color": "#a4a4a4",
-                      "fontFamily": "Roboto_500Medium",
-                      "fontSize": 14,
-                      "letterSpacing": 0.14,
-                      "lineHeight": 24,
-                      "textTransform": "lowercase",
+                      "alignItems": "center",
+                      "flexDirection": "row",
                     }
                   }
                 >
-                  3 min
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "rgba(0, 0, 0, 0.38)",
-              "height": 0.5,
-            }
-          }
-        />
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          collapsable={false}
-          forwardedRef={[Function]}
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
-          onLayout={[Function]}
-          style={
-            Object {
-              "overflow": "hidden",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "bottom": 0,
-                "flexDirection": "row",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "transform": Array [
-                  Object {
-                    "translateX": -10000,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#2028b6",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 0.5,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={18.666666666666668}
-                  bbWidth={24}
-                  fill="none"
-                  focusable={false}
-                  height={18.666666666666668}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 18,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={18}
-                  vbWidth={14}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={null}
-                    propList={
+                  <RNSVGSvgView
+                    bbHeight={36}
+                    bbWidth={36}
+                    focusable={false}
+                    style={
                       Array [
-                        "fill",
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "height": 36,
+                          "transform": Array [
+                            Object {
+                              "rotate": "-90deg",
+                            },
+                          ],
+                          "width": 36,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 36,
+                          "width": 36,
+                        },
                       ]
                     }
                   >
-                    <RNSVGPath
-                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
-                      fill={4294967295}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-            </View>
-            <View
-              onLayout={[Function]}
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "bottom": 0,
-                "flexDirection": "row-reverse",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "transform": Array [
-                  Object {
-                    "translateX": -10000,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#2028b6",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "paddingHorizontal": 10,
-                  },
-                  Object {
-                    "justifyContent": "flex-end",
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 0.5,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={18.666666666666668}
-                  bbWidth={24}
-                  fill="none"
-                  focusable={false}
-                  height={18.666666666666668}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 18,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={18}
-                  vbWidth={14}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={null}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGPath
-                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
-                      fill={4294967295}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    />
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-            </View>
-            <View
-              onLayout={[Function]}
-            />
-          </View>
-          <View
-            collapsable={false}
-            forwardedRef={[Function]}
-            onGestureHandlerEvent={[Function]}
-            onGestureHandlerStateChange={[Function]}
-            pointerEvents="auto"
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#fbfbfb",
-                  "borderRadius": 8,
-                  "flexDirection": "row",
-                  "height": 70,
-                  "justifyContent": "space-between",
-                  "paddingHorizontal": 18,
-                  "width": "100%",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={36}
-                  bbWidth={36}
-                  fill="none"
-                  focusable={false}
-                  height={36}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 36,
-                        "width": 36,
-                      },
-                    ]
-                  }
-                  vbHeight={36}
-                  vbWidth={36}
-                  width={36}
-                >
-                  <RNSVGGroup
-                    fill={null}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGPath
-                      d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM14.4 27L5.4 18L7.938 15.462L14.4 21.906L28.062 8.244L30.6 10.8L14.4 27Z"
-                      fill={
+                    <RNSVGGroup
+                      matrix={
                         Array [
                           1,
-                          "paint0_linear",
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
                         ]
                       }
+                    >
+                      <RNSVGCircle
+                        cx={18}
+                        cy={18}
+                        propList={
+                          Array [
+                            "stroke",
+                            "strokeWidth",
+                          ]
+                        }
+                        r={16.5}
+                        stroke={4292335847}
+                        strokeWidth={3}
+                      />
+                      <RNSVGCircle
+                        cx={18}
+                        cy={18}
+                        propList={
+                          Array [
+                            "stroke",
+                            "strokeWidth",
+                            "strokeDasharray",
+                            "strokeDashoffset",
+                          ]
+                        }
+                        r={16.5}
+                        stroke={4280297654}
+                        strokeDasharray={
+                          Array [
+                            103.67255756846318,
+                            103.67255756846318,
+                          ]
+                        }
+                        strokeDashoffset={103.67255756846318}
+                        strokeWidth={3}
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      Object {
+                        "color": "#001f5a",
+                        "fontFamily": "DMSans_500Medium",
+                        "fontSize": 16,
+                        "letterSpacing": 0,
+                        "lineHeight": 20,
+                        "marginLeft": 15,
+                        "maxWidth": 180,
+                        "textTransform": "capitalize",
+                      }
+                    }
+                  >
+                    Test task
+                  </Text>
+                </View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#001f5a",
+                      "fontFamily": "Roboto_400Regular",
+                      "fontSize": 14,
+                      "letterSpacing": -0.3,
+                      "lineHeight": 18,
+                    }
+                  }
+                >
+                  New Task
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "bottom": 0,
+                      "left": 0,
+                      "overflow": "hidden",
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "borderRadius": 8,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.38)",
+              "height": 0.5,
+            }
+          }
+        />
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          collapsable={false}
+          forwardedRef={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onLayout={[Function]}
+          style={
+            Object {
+              "overflow": "hidden",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "flexDirection": "row",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -10000,
+                  },
+                ],
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#2028b6",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 0.5,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={18.666666666666668}
+                  bbWidth={24}
+                  fill="none"
+                  focusable={false}
+                  height={18.666666666666668}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 18,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={18}
+                  vbWidth={14}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
+                      fill={4294967295}
                       propList={
                         Array [
                           "fill",
                         ]
                       }
                     />
-                    <RNSVGDefs>
-                      <RNSVGLinearGradient
-                        gradient={
-                          Array [
-                            0,
-                            -16274536,
-                            1,
-                            -14820979,
-                          ]
-                        }
-                        gradientTransform={null}
-                        gradientUnits={1}
-                        name="paint0_linear"
-                        x1="36"
-                        x2="0"
-                        y1="18"
-                        y2="18"
-                      />
-                    </RNSVGDefs>
                   </RNSVGGroup>
                 </RNSVGSvgView>
-                <Text
-                  numberOfLines={1}
+              </View>
+            </View>
+            <View
+              onLayout={[Function]}
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "flexDirection": "row-reverse",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -10000,
+                  },
+                ],
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#2028b6",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingHorizontal": 10,
+                  },
+                  Object {
+                    "justifyContent": "flex-end",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 0.5,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={18.666666666666668}
+                  bbWidth={24}
+                  fill="none"
+                  focusable={false}
+                  height={18.666666666666668}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 18,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={18}
+                  vbWidth={14}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+            <View
+              onLayout={[Function]}
+            />
+          </View>
+          <View
+            collapsable={false}
+            forwardedRef={[Function]}
+            onGestureHandlerEvent={[Function]}
+            onGestureHandlerStateChange={[Function]}
+            pointerEvents="auto"
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                ],
+              }
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onLayout={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              pointerEvents="box-only"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#fbfbfb",
+                    "borderRadius": 8,
+                    "flexDirection": "row",
+                    "height": 70,
+                    "justifyContent": "space-between",
+                    "paddingHorizontal": 18,
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
                   style={
                     Object {
-                      "color": "#001f5a",
-                      "fontFamily": "DMSans_500Medium",
-                      "fontSize": 16,
-                      "letterSpacing": 0,
-                      "lineHeight": 20,
-                      "marginLeft": 15,
-                      "maxWidth": 180,
-                      "textTransform": "capitalize",
+                      "alignItems": "center",
+                      "flexDirection": "row",
                     }
                   }
                 >
-                  Third task
-                </Text>
+                  <RNSVGSvgView
+                    bbHeight={36}
+                    bbWidth={36}
+                    focusable={false}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "height": 36,
+                          "transform": Array [
+                            Object {
+                              "rotate": "-90deg",
+                            },
+                          ],
+                          "width": 36,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 36,
+                          "width": 36,
+                        },
+                      ]
+                    }
+                  >
+                    <RNSVGGroup
+                      matrix={
+                        Array [
+                          1,
+                          0,
+                          0,
+                          1,
+                          0,
+                          0,
+                        ]
+                      }
+                    >
+                      <RNSVGCircle
+                        cx={18}
+                        cy={18}
+                        propList={
+                          Array [
+                            "stroke",
+                            "strokeWidth",
+                          ]
+                        }
+                        r={16.5}
+                        stroke={4292335847}
+                        strokeWidth={3}
+                      />
+                      <RNSVGCircle
+                        cx={18}
+                        cy={18}
+                        propList={
+                          Array [
+                            "stroke",
+                            "strokeWidth",
+                            "strokeDasharray",
+                            "strokeDashoffset",
+                          ]
+                        }
+                        r={16.5}
+                        stroke={4280297654}
+                        strokeDasharray={
+                          Array [
+                            103.67255756846318,
+                            103.67255756846318,
+                          ]
+                        }
+                        strokeDashoffset={89.8495498926681}
+                        strokeWidth={3}
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      Object {
+                        "color": "#001f5a",
+                        "fontFamily": "DMSans_500Medium",
+                        "fontSize": 16,
+                        "letterSpacing": 0,
+                        "lineHeight": 20,
+                        "marginLeft": 15,
+                        "maxWidth": 180,
+                        "textTransform": "capitalize",
+                      }
+                    }
+                  >
+                    Second task
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": 65,
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={16}
+                    bbWidth={16}
+                    fill="none"
+                    focusable={false}
+                    height={16}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 16,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={16}
+                    vbWidth={16}
+                    width={16}
+                  >
+                    <RNSVGGroup
+                      fill={null}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGPath
+                        d="M7.9935 1.33325C4.3135 1.33325 1.3335 4.31992 1.3335 7.99992C1.3335 11.6799 4.3135 14.6666 7.9935 14.6666C11.6802 14.6666 14.6668 11.6799 14.6668 7.99992C14.6668 4.31992 11.6802 1.33325 7.9935 1.33325ZM8.00016 13.3333C5.0535 13.3333 2.66683 10.9466 2.66683 7.99992C2.66683 5.05325 5.0535 2.66659 8.00016 2.66659C10.9468 2.66659 13.3335 5.05325 13.3335 7.99992C13.3335 10.9466 10.9468 13.3333 8.00016 13.3333Z"
+                        fill={4288980132}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                      <RNSVGPath
+                        d="M8.3335 4.66675H7.3335V8.66675L10.8335 10.7667L11.3335 9.94675L8.3335 8.16675V4.66675Z"
+                        fill={4288980132}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    style={
+                      Object {
+                        "color": "#a4a4a4",
+                        "fontFamily": "Roboto_500Medium",
+                        "fontSize": 14,
+                        "letterSpacing": 0.14,
+                        "lineHeight": 24,
+                        "textTransform": "lowercase",
+                      }
+                    }
+                  >
+                    3 min
+                  </Text>
+                </View>
               </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "bottom": 0,
+                      "left": 0,
+                      "overflow": "hidden",
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "borderRadius": 8,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.38)",
+              "height": 0.5,
+            }
+          }
+        />
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          collapsable={false}
+          forwardedRef={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onLayout={[Function]}
+          style={
+            Object {
+              "overflow": "hidden",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "flexDirection": "row",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -10000,
+                  },
+                ],
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#2028b6",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 0.5,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={18.666666666666668}
+                  bbWidth={24}
+                  fill="none"
+                  focusable={false}
+                  height={18.666666666666668}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 18,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={18}
+                  vbWidth={14}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+            <View
+              onLayout={[Function]}
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "flexDirection": "row-reverse",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -10000,
+                  },
+                ],
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#2028b6",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingHorizontal": 10,
+                  },
+                  Object {
+                    "justifyContent": "flex-end",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 0.5,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={18.666666666666668}
+                  bbWidth={24}
+                  fill="none"
+                  focusable={false}
+                  height={18.666666666666668}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 18,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={18}
+                  vbWidth={14}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={null}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGPath
+                      d="M1 16C1 17.1 1.9 18 3 18H11C12.1 18 13 17.1 13 16V4H1V16ZM14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1Z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+            <View
+              onLayout={[Function]}
+            />
+          </View>
+          <View
+            collapsable={false}
+            forwardedRef={[Function]}
+            onGestureHandlerEvent={[Function]}
+            onGestureHandlerStateChange={[Function]}
+            pointerEvents="auto"
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                ],
+              }
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onLayout={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              pointerEvents="box-only"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#fbfbfb",
+                    "borderRadius": 8,
+                    "flexDirection": "row",
+                    "height": 70,
+                    "justifyContent": "space-between",
+                    "paddingHorizontal": 18,
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={36}
+                    bbWidth={36}
+                    fill="none"
+                    focusable={false}
+                    height={36}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 36,
+                          "width": 36,
+                        },
+                      ]
+                    }
+                    vbHeight={36}
+                    vbWidth={36}
+                    width={36}
+                  >
+                    <RNSVGGroup
+                      fill={null}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGPath
+                        d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM14.4 27L5.4 18L7.938 15.462L14.4 21.906L28.062 8.244L30.6 10.8L14.4 27Z"
+                        fill={
+                          Array [
+                            1,
+                            "paint0_linear",
+                          ]
+                        }
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                      <RNSVGDefs>
+                        <RNSVGLinearGradient
+                          gradient={
+                            Array [
+                              0,
+                              -16274536,
+                              1,
+                              -14820979,
+                            ]
+                          }
+                          gradientTransform={null}
+                          gradientUnits={1}
+                          name="paint0_linear"
+                          x1="36"
+                          x2="0"
+                          y1="18"
+                          y2="18"
+                        />
+                      </RNSVGDefs>
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      Object {
+                        "color": "#001f5a",
+                        "fontFamily": "DMSans_500Medium",
+                        "fontSize": 16,
+                        "letterSpacing": 0,
+                        "lineHeight": 20,
+                        "marginLeft": 15,
+                        "maxWidth": 180,
+                        "textTransform": "capitalize",
+                      }
+                    }
+                  >
+                    Third task
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "bottom": 0,
+                      "left": 0,
+                      "overflow": "hidden",
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "borderRadius": 8,
+                    },
+                  ]
+                }
+              />
             </View>
           </View>
         </View>
