@@ -9,6 +9,7 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   setupFiles: [
-    "./jestSetup/mock.js"
+    "./jestSetup/mock.js",
+    "./node_modules/react-native-gesture-handler/jestSetup.js"
   ]
 };

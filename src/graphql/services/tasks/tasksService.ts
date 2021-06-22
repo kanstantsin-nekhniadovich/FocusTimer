@@ -12,3 +12,5 @@ export const createTask = async (payload: CreateTaskPayload) => {
 
   return await api.mutate<Task>({ mutation: mutations.createTask, variables: { data } }, 'createTask');
 };
+
+export const deleteTask = async (id: Id) => await api.mutate<Task>({ mutation: mutations.deleteTask, variables: { id } }, 'deleteTask');

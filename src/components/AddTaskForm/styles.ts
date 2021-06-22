@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   error: {
     ...Common.error,
     position: 'absolute',
-    left: 22,
+    left: 40,
     bottom: -20,
   },
 });

@@ -1,8 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
 
 import { TaskItem } from '../TaskItem';
 import { Status } from '../../../utils/constants';
+import { renderWithRedux } from '../../../utils/renderWithRedux';
+import { formatMillisecondsToMinutes } from '../../../utils/date';
 
 describe('<TaskItem />', () => {
   it('should render TaskItem component with task in TODO', () => {
@@ -18,9 +19,9 @@ describe('<TaskItem />', () => {
       projectId: '1',
     };
 
-    const { toJSON } = render(<TaskItem task={task}/>);
-
-    expect(toJSON()).toMatchSnapshot();
+    const { getByText } = renderWithRedux(<TaskItem task={task} />);
+    expect(getByText(task.title)).toBeDefined();
+    expect(getByText('New Task')).toBeDefined();
   });
 
   it('should render TaskItem component with task in INPROGRESS', () => {
@@ -36,9 +37,10 @@ describe('<TaskItem />', () => {
       projectId: '2',
     };
 
-    const { toJSON } = render(<TaskItem task={task}/>);
+    const { getByText } = renderWithRedux(<TaskItem task={task}/>);
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(getByText(task.title)).toBeDefined();
+    expect(getByText(formatMillisecondsToMinutes(task.remainingTime))).toBeDefined();
   });
 
   it('should render TaskItem component with COMPLETED task', () => {
@@ -54,8 +56,8 @@ describe('<TaskItem />', () => {
       projectId: '2',
     };
 
-    const { toJSON } = render(<TaskItem task={task}/>);
+    const { getByText } = renderWithRedux(<TaskItem task={task}/>);
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(getByText(task.title)).toBeDefined();
   });
 });

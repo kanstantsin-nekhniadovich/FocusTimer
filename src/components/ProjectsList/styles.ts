@@ -4,6 +4,7 @@ import { Typography, Colors } from '@styles';
 export const styles = StyleSheet.create({
   list: {
     paddingTop: 5,
+    paddingHorizontal: 10,
   },
   emptyList: {
     ...Typography.message,

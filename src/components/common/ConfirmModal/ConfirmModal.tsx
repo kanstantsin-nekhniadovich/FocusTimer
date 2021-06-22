@@ -52,6 +52,10 @@ export const ConfirmModal: React.FC<Props> = ({
     return true;
   };
 
+  if (!isVisible) {
+    return null;
+  }
+
   return (
     <Modal
       transparent
@@ -59,7 +63,7 @@ export const ConfirmModal: React.FC<Props> = ({
       visible={isVisible}
       onDismiss={onCancel}
     >
-      <View style={styles.modal} >
+      <View style={styles.modal} data-testID="config-modal">
         <View style={styles.overlay} onStartShouldSetResponder={onStartShouldSetResponder} />
         <LinearGradient
           colors={['#232CC6', '#0015B5', '#343882']}

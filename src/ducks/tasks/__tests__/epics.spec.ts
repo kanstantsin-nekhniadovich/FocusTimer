@@ -2,7 +2,7 @@ import { Task } from '@typings';
 
 import * as actions from '../actions';
 import { showAlert } from '../../ui/actions';
-import { createTasksEpic } from '../epics';
+import { createTasksEpic, deleteTaskEpic } from '../epics';
 import { ResponseStatus } from '../../../utils/constants';
 import { testEpic } from '../../../utils/testEpics';
 
@@ -45,52 +45,108 @@ export const failureResponse: FailureResponse = {
   status: ResponseStatus.FAILURE,
 };
 
-describe('createTasksEpic', () => {
-  it('should dispatch success action after creating task', (done: jest.DoneCallback) => {
-    const tasksService = {
-      fetchTasks: jest.fn() as Unrestricted,
-      createTask: jest.fn(async () => await Promise.resolve(successResponse)),
-    };
+describe('Tasks epics', () => {
+  describe('createTasksEpic', () => {
+    it('should dispatch success action after creating task', (done: jest.DoneCallback) => {
+      const tasksService = {
+        deleteTask: jest.fn(),
+        fetchTasks: jest.fn(),
+        createTask: jest.fn(async () => await Promise.resolve(successResponse)),
+      };
 
-    const expectedActions = [actions.createTaskSuccess(task)];
+      const expectedActions = [actions.createTaskSuccess(task)];
 
-    const epicTestRunner = testEpic({
-      epic: createTasksEpic,
-      count: expectedActions.length,
-      actionsToInvoke: [actions.createTaskRequest(payload)],
-      state,
-      dependencies: {
-        tasksService,
-      },
+      const epicTestRunner = testEpic({
+        epic: createTasksEpic,
+        count: expectedActions.length,
+        actionsToInvoke: [actions.createTaskRequest(payload)],
+        state,
+        dependencies: {
+          tasksService,
+        },
+      });
+
+      epicTestRunner((actions) => {
+        expect(actions).toEqual(expectedActions);
+        done();
+      });
     });
 
-    epicTestRunner((actions) => {
-      expect(actions).toEqual(expectedActions);
-      done();
+    it('should dispatch failure action after try to create task', (done: jest.DoneCallback) => {
+      const tasksService = {
+        deleteTask: jest.fn(),
+        fetchTasks: jest.fn(),
+        createTask: jest.fn(async () => await Promise.resolve(failureResponse)),
+      };
+
+      const expectedActions = [showAlert({ message: '', type: 'error' }), actions.createTaskFailure()];
+
+      const epicTestRunner = testEpic({
+        epic: createTasksEpic,
+        count: expectedActions.length,
+        actionsToInvoke: [actions.createTaskRequest(payload)],
+        state,
+        dependencies: {
+          tasksService,
+        },
+      });
+
+      epicTestRunner((actions) => {
+        expect(actions).toEqual(expectedActions);
+        done();
+      });
     });
   });
 
-  it('should dispatch failure action after try to create task', (done: jest.DoneCallback) => {
-    const tasksService = {
-      fetchTasks: jest.fn() as Unrestricted,
-      createTask: jest.fn(async () => await Promise.resolve(failureResponse)),
-    };
+  describe('deleteTaskEpic', () => {
+    it('should successfully remove task', (done: jest.DoneCallback) => {
+      const tasksService = {
+        deleteTask: jest.fn(async () => await Promise.resolve(successResponse)),
+        fetchTasks: jest.fn(),
+        createTask: jest.fn(),
+      };
 
-    const expectedActions = [showAlert({ message: '', type: 'error' }), actions.createTaskFailure()];
+      const expectedActions = [actions.deleteTaskSuccess(task)];
 
-    const epicTestRunner = testEpic({
-      epic: createTasksEpic,
-      count: expectedActions.length,
-      actionsToInvoke: [actions.createTaskRequest(payload)],
-      state,
-      dependencies: {
-        tasksService,
-      },
+      const epicTestRunner = testEpic({
+        epic: deleteTaskEpic,
+        count: expectedActions.length,
+        actionsToInvoke: [actions.deleteTaskRequest(task.id)],
+        state: { ...state, tasks: { [task.projectId]: [task] } },
+        dependencies: {
+          tasksService,
+        },
+      });
+
+      epicTestRunner((actions) => {
+        expect(actions).toEqual(expectedActions);
+        done();
+      });
     });
 
-    epicTestRunner((actions) => {
-      expect(actions).toEqual(expectedActions);
-      done();
+    it('should fail to remove task', (done: jest.DoneCallback) => {
+      const tasksService = {
+        deleteTask: jest.fn(async () => await Promise.resolve(failureResponse)),
+        fetchTasks: jest.fn(),
+        createTask: jest.fn(),
+      };
+
+      const expectedActions = [showAlert({ message: '', type: 'error' }), actions.deleteTaskFailure()];
+
+      const epicTestRunner = testEpic({
+        epic: deleteTaskEpic,
+        count: expectedActions.length,
+        actionsToInvoke: [actions.deleteTaskRequest(task.id)],
+        state: { ...state, tasks: { [task.projectId]: [task] } },
+        dependencies: {
+          tasksService,
+        },
+      });
+
+      epicTestRunner((actions) => {
+        expect(actions).toEqual(expectedActions);
+        done();
+      });
     });
   });
 });

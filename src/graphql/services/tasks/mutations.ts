@@ -36,3 +36,19 @@ export const createTask = gql`
     }
   }
 `;
+
+export const deleteTask = gql`
+  mutation($id: ID!) {
+    deleteTask(id: $id) {
+      id
+      title
+      cyclesCount
+      workTime
+      breakTime
+      status
+      remainingTime
+      currentCycle
+      projectId
+    }
+  }
+`;
