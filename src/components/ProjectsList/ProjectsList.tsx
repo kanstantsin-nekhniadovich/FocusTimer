@@ -15,14 +15,14 @@ interface Props {
   loadMore: () => void;
 }
 
+const renderItem = ({ item }: { item: Project }) => <ExpandableProjectItem project={item} />;
+
 export const ProjectsList: React.FC<Props> = ({ filter, loadMore }) => {
   const projects = useSelector(getProjects);
   const totalCount = useSelector(getProjectTotalCount);
 
   const filteredProjects = React.useMemo(() =>
     isEmpty(filter) ? projects : projects.filter(project => project.status === filter), [projects, filter]);
-
-  const renderItem = ({ item }: { item: Project }) => <ExpandableProjectItem project={item} />;
 
   const onEndReached = () => {
     if (projects.length >= totalCount) {
@@ -41,6 +41,7 @@ export const ProjectsList: React.FC<Props> = ({ filter, loadMore }) => {
       onEndReachedThreshold={0.1}
       style={styles.list}
       ListEmptyComponent={EmptyProjectsList}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

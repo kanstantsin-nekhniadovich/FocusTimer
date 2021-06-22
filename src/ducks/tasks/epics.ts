@@ -5,9 +5,17 @@ import { of } from 'rxjs';
 
 import { Routes } from '../../routes';
 import { navigate } from '../../services/navigation';
-import { createTaskRequest, createTaskSuccess, createTaskFailure } from './actions';
 import { handleResponse } from '../../utils/handleResponse';
 import { showAlert } from '../ui/actions';
+
+import {
+  createTaskRequest,
+  createTaskSuccess,
+  createTaskFailure,
+  deleteTaskRequest,
+  deleteTaskFailure,
+  deleteTaskSuccess
+} from './actions';
 
 export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
   action$.pipe(
@@ -26,4 +34,16 @@ export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
     )),
   );
 
-export const tasksEpic = combineEpics(createTasksEpic);
+export const deleteTaskEpic: AppEpic = (action$, _state$, { tasksService }) =>
+  action$.pipe(
+    filter(isActionOf(deleteTaskRequest)),
+    pluck('payload'),
+    mergeMap(async (id: Id) => await tasksService.deleteTask(id)),
+    map(handleResponse),
+    mergeMap(handler => handler(
+      res => [deleteTaskSuccess(res.data)],
+      res => [showAlert({ message: res.error, type: 'error' }), deleteTaskFailure()],
+    )),
+  );
+
+export const tasksEpic = combineEpics(createTasksEpic, deleteTaskEpic);

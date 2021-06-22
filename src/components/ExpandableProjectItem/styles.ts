@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   item: {
     position: 'relative',
     width: '100%',
-    height: 60,
+    height: 65,
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
   },
   titleHolder: {
-    height: 60,
+    height: 65,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   arrowButtonHolder: {
     position: 'absolute',
-    height: 60,
+    height: 65,
     width: 30,
     right: 0,
     borderTopRightRadius: 8,

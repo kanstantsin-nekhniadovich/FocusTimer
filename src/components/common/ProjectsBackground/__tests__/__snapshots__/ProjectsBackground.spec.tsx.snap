@@ -1,6 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ProjectsBackground /> show match snapshot 1`] = `
+exports[`<ProjectsBackground /> should match snapshot with hideLargeCircle = true prop 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "bottom": 0,
+      "height": 1334,
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+      "zIndex": -1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "bottom": 186.76000000000002,
+        "position": "absolute",
+        "right": 0,
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="74"
+      bbWidth="68"
+      fill="none"
+      focusable={false}
+      height="74"
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 74,
+            "width": 68,
+          },
+        ]
+      }
+      vbHeight={74}
+      vbWidth={68}
+      width="68"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M29.1544 27.5202C30.8878 22.6526 35.7754 19.6476 40.9013 20.2979L46.0869 20.9557C48.3651 21.2447 50.6792 21.0068 52.8509 20.2603L57.7941 18.5611C62.6805 16.8814 68.0773 18.8291 70.7649 23.2422L73.4837 27.7066C74.6782 29.6679 76.307 31.3288 78.2447 32.5613L82.6553 35.3666C87.0151 38.1397 88.8572 43.5734 87.0826 48.4261L85.2873 53.3353C84.4986 55.4921 84.2156 57.8011 84.4602 60.0844L85.0168 65.2819C85.5671 70.4195 82.4673 75.2476 77.5669 76.8858L72.6094 78.543C70.4314 79.2711 68.4497 80.4895 66.817 82.1044L63.1005 85.7801C59.4268 89.4136 53.7194 90.0004 49.3833 87.1904L44.9966 84.3478C43.0695 83.0989 40.8813 82.3092 38.6008 82.0396L33.4098 81.4257C28.2785 80.8189 24.2612 76.7225 23.7546 71.5804L23.242 66.3784C23.0169 64.0931 22.27 61.89 21.0589 59.9388L18.3023 55.4976C15.5775 51.1075 16.2754 45.4126 19.9798 41.8104L23.7273 38.1663C25.3736 36.5654 26.6304 34.6078 27.4008 32.4445L29.1544 27.5202Z"
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          stroke={4285429958}
+          strokeWidth="4"
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
+
+exports[`<ProjectsBackground /> should match snapshot without any props 1`] = `
 <View
   style={
     Object {

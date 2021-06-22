@@ -39,7 +39,7 @@ export const Project: React.FC<Props> = ({ route }) => {
         ? <TasksList tasks={tasks} />
         : <View style={styles.addTasksHeader}><AddNewTaskHeader /></View>
       }
-      <ProjectsBackground />
+      <ProjectsBackground hideLargeCircle />
     </Wrapper>
   );
 };

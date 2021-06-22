@@ -2,7 +2,15 @@ import { Task } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
 import { fetchProjectsSuccess, resetProjects } from '../projects';
-import { createTaskRequest, createTaskFailure, createTaskSuccess } from './actions';
+
+import {
+  createTaskRequest,
+  createTaskFailure,
+  createTaskSuccess,
+  deleteTaskFailure,
+  deleteTaskSuccess,
+  deleteTaskRequest
+} from './actions';
 
 interface State {
   tasks: Record<Id, Task[]>;
@@ -46,9 +54,33 @@ export const handleCreateTaskFailure: ActionHandler<State, typeof createTaskFail
   isLoading: false,
 });
 
+export const handleDeleteTaskRequest: ActionHandler<State, typeof deleteTaskRequest> = (state) => ({
+  ...state,
+  isLoading: true,
+});
+
+export const handleDeleteTaskSuccess: ActionHandler<State, typeof deleteTaskSuccess> = (state, action) => {
+  const { projectId, id } = action.payload;
+  const tasks = state.tasks[projectId].filter((task) => task.id !== id);
+
+  return {
+    ...state,
+    isLoading: false,
+    tasks: { ...state.tasks, [projectId]: tasks },
+  };
+};
+
+export const handleDeleteTaskFailure: ActionHandler<State, typeof deleteTaskFailure> = (state) => ({
+  ...state,
+  isLoading: false,
+});
+
 export const tasksReducer = createReducer<State, AppActions>(initialState)
   .handleAction(fetchProjectsSuccess, handleSetTasks)
   .handleAction(resetProjects, handleResetTasks)
   .handleAction(createTaskRequest, handleCreateTaskRequest)
   .handleAction(createTaskSuccess, handleCreateTaskSuccess)
-  .handleAction(createTaskFailure, handleCreateTaskFailure);
+  .handleAction(createTaskFailure, handleCreateTaskFailure)
+  .handleAction(deleteTaskRequest, handleDeleteTaskRequest)
+  .handleAction(deleteTaskFailure, handleDeleteTaskFailure)
+  .handleAction(deleteTaskSuccess, handleDeleteTaskSuccess);

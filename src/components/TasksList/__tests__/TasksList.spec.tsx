@@ -1,11 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
 
 import { TasksList } from '..';
 import { Status } from '../../../utils/constants';
+import { renderWithRedux } from '../../../utils/renderWithRedux';
+import { formatMillisecondsToMinutes } from '../../../utils/date';
 
 describe('<TasksList />', () => {
-  it('should render TasksList component with task in TODO', () => {
+  it('should render TasksList component with 3 tasks', () => {
     const tasks = [{
       id: '1',
       title: 'Test task',
@@ -40,7 +41,15 @@ describe('<TasksList />', () => {
       projectId: '1',
     }];
 
-    const { toJSON } = render(<TasksList tasks={tasks}/>);
+    const { getByText, toJSON } = renderWithRedux(<TasksList tasks={tasks}/>);
+    const remainingTime = formatMillisecondsToMinutes(tasks[1].remainingTime);
+
+    expect(getByText('My tasks')).toBeDefined();
+    expect(getByText('Test task')).toBeDefined();
+    expect(getByText('Second task')).toBeDefined();
+    expect(getByText('Third task')).toBeDefined();
+    expect(getByText('New Task')).toBeDefined();
+    expect(getByText(remainingTime)).toBeDefined();
 
     expect(toJSON()).toMatchSnapshot();
   });

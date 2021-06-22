@@ -6,13 +6,13 @@ export const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingRight: 10,
-    paddingLeft: 22,
+    paddingRight: 26,
+    paddingLeft: 38,
   },
   error: {
     ...Common.error,
     position: 'absolute',
-    left: 22,
+    left: 40,
     bottom: -20,
   },
 });

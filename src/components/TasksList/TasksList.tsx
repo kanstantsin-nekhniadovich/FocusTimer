@@ -1,9 +1,8 @@
 import { Task } from '@typings';
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 
-import { TaskItem } from './TaskItem';
-import { DividerBlock } from '../common';
+import { TaskItem } from '../TaskItem';
 
 import { styles } from './styles';
 
@@ -11,17 +10,22 @@ interface Props {
   tasks: Task[];
 }
 
-export const TasksList: React.FC<Props> = ({ tasks }) => {
-  return (
-    <View style={styles.tasksList}>
-      <DividerBlock height={30} />
-      <Text style={styles.header}>My tasks</Text>
-      <DividerBlock height={15} />
-      <ScrollView style={styles.list}>
-        {tasks.map(task => (
-          <TaskItem key={task.id} task={task} />
-        ))}
-      </ScrollView>
-    </View>
-  );
-};
+const renderItem = ({ item }: { item: Task }) => <TaskItem key={item.id} task={item} />;
+
+const renderSeparator = () => <View style={styles.separator} />;
+
+export const TasksList: React.FC<Props> = ({ tasks }) => (
+  <View style={styles.tasksList}>
+    <Text style={styles.header}>My tasks</Text>
+    <FlatList<Task>
+      style={styles.list}
+      data={tasks}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      ItemSeparatorComponent={renderSeparator}
+      ListHeaderComponent={renderSeparator}
+      ListFooterComponent={renderSeparator}
+      showsVerticalScrollIndicator={false}
+    />
+  </View>
+);
