@@ -17,8 +17,8 @@ interface Props {
 
 const renderRightActions = (_progress: Animated.AnimatedInterpolation, dragX: Animated.AnimatedInterpolation) => {
   const scale = dragX.interpolate({
-    inputRange: [-300, -60],
-    outputRange: [1, 0.6],
+    inputRange: [-100, 0],
+    outputRange: [1, 0.9],
   });
 
   return (
@@ -32,8 +32,8 @@ const renderRightActions = (_progress: Animated.AnimatedInterpolation, dragX: An
 
 const renderLeftActions = (_progress: Animated.AnimatedInterpolation, dragX: Animated.AnimatedInterpolation) => {
   const scale = dragX.interpolate({
-    inputRange: [60, 300],
-    outputRange: [0.6, 1],
+    inputRange: [0, 100],
+    outputRange: [0.9, 1],
   });
 
   return (

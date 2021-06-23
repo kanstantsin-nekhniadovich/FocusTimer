@@ -4,7 +4,7 @@ import * as mutations from './mutations';
 import * as queries from './queries';
 
 export const fetchProjects = async ({ skip, take }: { skip: number; take: number }) =>
-  await api.query<Response.Projects>({ query: queries.projects, variables: { skip, take } }, 'projects');
+  await api.query<Response.Projects>({ query: queries.projects, variables: { skip, take }, fetchPolicy: 'network-only' }, 'projects');
 
 export const createProject = async (data: { title: string; status: Status }) =>
   await api.mutate<FullProject>({ mutation: mutations.createProject, variables: { data } }, 'createProject');
