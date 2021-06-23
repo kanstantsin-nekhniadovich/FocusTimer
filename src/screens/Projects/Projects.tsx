@@ -32,13 +32,23 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
   const addProject = () => navigation.navigate(Routes.NewProject);
 
   const loadProjects = () => {
+    if (!isEmpty(projects)) {
+      setSkip(projects.length);
+      return;
+    }
+
+    dispatch(fetchProjectsRequest({ skip: 0 }));
+    setSkip(PROJECTS_PER_REQUEST);
+  };
+
+  const loadMoreProjects = () => {
     dispatch(fetchProjectsRequest({ skip }));
     setSkip(skip + PROJECTS_PER_REQUEST);
   };
 
   useFocusEffect(React.useCallback(() => {
     loadProjects();
-  }, []));
+  }, [projects]));
 
   const areProjectsExist = !isEmpty(projects);
 
@@ -63,7 +73,7 @@ export const Projects: React.FC<Props> = ({ navigation }) => {
         ? (<>
           <View style={styles.list}>
             {areProjectsLoading && <OverlayLoader variant='small' />}
-            <ProjectsList filter={filter} loadMore={loadProjects} />
+            <ProjectsList filter={filter} loadMore={loadMoreProjects} />
           </View>
           <ProjectsFilter onChange={setFilter} filter={filter}/>
         </>)

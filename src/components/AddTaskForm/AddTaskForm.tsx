@@ -1,7 +1,8 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { View, Text } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { Colors } from '@styles';
 
@@ -45,33 +46,33 @@ export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
     dispatch(createTaskRequest(taskPayload));
   };
 
+  const { handleSubmit, handleChange, touched, errors, isValid, values, resetForm } = useFormik({
+    initialValues: initialValues,
+    validateOnChange: true,
+    validationSchema: validationSchema,
+    onSubmit: onSubmit,
+  });
+
+  useFocusEffect(React.useCallback(() => {
+    resetForm();
+  }, []));
+
   return (
-    <Formik<SchemaType>
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validateOnChange
-    >
-      {({ handleSubmit, handleChange, values, isValid, touched, errors }) => (
-        <>
-          <View style={styles.form}>
-            <Input
-              placeholder="Task title"
-              value={values.title}
-              onChangeText={handleChange('title')}
-              isValid={touched.title && !isDefined(errors.title)}
-            />
-            {touched.title && isDefined(errors.title) && <Text style={styles.error}>{errors.title}</Text>}
-            <IconButton
-              accessibilityLabel="add task button"
-              onPress={handleSubmit}
-              disabled={!isValid}
-            >
-              <CircePlus color={Colors.blue} />
-            </IconButton>
-          </View>
-        </>
-      )}
-    </Formik>
+    <View style={styles.form}>
+      <Input
+        placeholder="Task title"
+        value={values.title}
+        onChangeText={handleChange('title')}
+        isValid={touched.title && !isDefined(errors.title)}
+      />
+      {touched.title && isDefined(errors.title) && <Text style={styles.error}>{errors.title}</Text>}
+      <IconButton
+        accessibilityLabel="add task button"
+        onPress={handleSubmit}
+        disabled={!isValid}
+      >
+        <CircePlus color={Colors.blue} />
+      </IconButton>
+    </View>
   );
 };

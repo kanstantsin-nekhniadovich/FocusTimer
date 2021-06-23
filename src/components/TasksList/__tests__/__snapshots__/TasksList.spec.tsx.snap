@@ -154,7 +154,7 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
                   Object {
                     "transform": Array [
                       Object {
-                        "scale": 0.5,
+                        "scale": 0.9,
                       },
                     ],
                   }
@@ -250,7 +250,7 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
                   Object {
                     "transform": Array [
                       Object {
-                        "scale": 0.5,
+                        "scale": 0.9,
                       },
                     ],
                   }
@@ -546,7 +546,7 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
                   Object {
                     "transform": Array [
                       Object {
-                        "scale": 0.5,
+                        "scale": 0.9,
                       },
                     ],
                   }
@@ -642,7 +642,7 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
                   Object {
                     "transform": Array [
                       Object {
-                        "scale": 0.5,
+                        "scale": 0.9,
                       },
                     ],
                   }
@@ -1005,7 +1005,7 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
                   Object {
                     "transform": Array [
                       Object {
-                        "scale": 0.5,
+                        "scale": 0.9,
                       },
                     ],
                   }
@@ -1101,7 +1101,7 @@ exports[`<TasksList /> should render TasksList component with 3 tasks 1`] = `
                   Object {
                     "transform": Array [
                       Object {
-                        "scale": 0.5,
+                        "scale": 0.9,
                       },
                     ],
                   }
