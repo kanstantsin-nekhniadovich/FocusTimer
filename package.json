@@ -19,7 +19,7 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "^3.3.17",
+    "@apollo/client": "^3.3.19",
     "@expo-google-fonts/dm-sans": "^0.1.0",
     "@expo-google-fonts/dm-serif-display": "^0.1.0",
     "@expo-google-fonts/roboto": "^0.1.0",
