@@ -48,10 +48,13 @@ export const updateProject = gql`
 export const deleteProject = gql`
   mutation($id: ID!) {
     deleteProject(id: $id) {
-      id
-      title
-      status
-      note
+      project {
+        id
+        title
+        status
+        note
+      }
+      totalCount
     }
   }
 `;
