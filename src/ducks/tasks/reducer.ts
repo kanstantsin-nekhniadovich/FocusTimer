@@ -1,7 +1,7 @@
 import { Task } from '@typings';
 import { createReducer } from 'typesafe-actions';
 
-import { fetchProjectsSuccess, resetProjects } from '../projects';
+import { fetchProjectsSuccess, resetProjects, createProjectSuccess } from '../projects';
 
 import {
   createTaskRequest,
@@ -75,6 +75,13 @@ export const handleDeleteTaskFailure: ActionHandler<State, typeof deleteTaskFail
   isLoading: false,
 });
 
+export const handleCreateProjectSuccess: ActionHandler<State, typeof createProjectSuccess> = (state, action) => {
+  return {
+    ...state,
+    tasks: { ...state.tasks, [action.payload.id]: [] },
+  };
+};
+
 export const tasksReducer = createReducer<State, AppActions>(initialState)
   .handleAction(fetchProjectsSuccess, handleSetTasks)
   .handleAction(resetProjects, handleResetTasks)
@@ -83,4 +90,5 @@ export const tasksReducer = createReducer<State, AppActions>(initialState)
   .handleAction(createTaskFailure, handleCreateTaskFailure)
   .handleAction(deleteTaskRequest, handleDeleteTaskRequest)
   .handleAction(deleteTaskFailure, handleDeleteTaskFailure)
-  .handleAction(deleteTaskSuccess, handleDeleteTaskSuccess);
+  .handleAction(deleteTaskSuccess, handleDeleteTaskSuccess)
+  .handleAction(createProjectSuccess, handleCreateProjectSuccess);

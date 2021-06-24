@@ -101,12 +101,13 @@ export const handleDeleteProjectRequest: ActionHandler<State, typeof deleteProje
 });
 
 export const handleDeleteProjectSuccess: ActionHandler<State, typeof deleteProjectSuccess> = (state, action) => {
-  const { id } = action.payload;
+  const { project, totalCount } = action.payload;
 
   return {
     ...state,
     isLoading: false,
-    projects: state.projects.filter(project => project.id !== id),
+    projects: state.projects.filter(({ id }) => id !== project.id),
+    totalCount,
   };
 };
 

@@ -1,4 +1,4 @@
-import { User, FullProject, Task } from './types';
+import { User, FullProject, Task, Project } from './types';
 
 export namespace Response {
   export interface AuthPayload {
@@ -12,11 +12,17 @@ export namespace Response {
     totalCount: number;
   }
 
+  export interface DeleteProject {
+    project: Project;
+    totalCount: number;
+  }
+
   export type All =
     | AuthPayload
     | User
     | FullProject
     | Task[]
     | Task
-    | Projects;
+    | Projects
+    | DeleteProject;
 }
