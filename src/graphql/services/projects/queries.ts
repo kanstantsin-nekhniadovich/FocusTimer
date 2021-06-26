@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-request';
 
 export const projects = gql`
   query($skip: Int, $take: Int) {

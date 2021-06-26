@@ -1,38 +1,39 @@
+import fetch from 'cross-fetch';
 import { Response } from '@typings';
-import { ApolloQueryResult, FetchResult, MutationOptions, QueryOptions } from '@apollo/client';
-import { client } from './client';
+import Constants from 'expo-constants';
+import { GraphQLClient } from 'graphql-request';
+import { RequestDocument, Variables } from 'graphql-request/dist/types';
+
 import { ResponseStatus } from '../utils/constants';
+import { isDefined } from '../utils/isDefined';
 
-type ClientResultType = FetchResult<Unrestricted> | ApolloQueryResult<Unrestricted>;
+const client = new GraphQLClient(Constants.manifest.extra.api, { fetch });
 
-const normalize = <T, P>(handler: (options: P) => Promise<ClientResultType>): (options: P, property: string) =>
-Promise<NormalizedResponse<T>> => async (options: P, property: string): Promise<NormalizedResponse<T>> => {
-    try {
-      const response = await handler(options);
+interface Options {
+  document: RequestDocument;
+  variables?: Variables;
+}
 
-      return {
-        data: response.data[property],
-        error: null,
-        status: ResponseStatus.SUCCESS,
-      };
-    } catch (error) {
-      return {
-        data: null,
-        error: error.message,
-        status: ResponseStatus.FAILURE,
-      };
-    }
-  };
+export const request = async <T extends Response.All>(options: Options, property: string): Promise<NormalizedResponse<T>> => {
+  const { document, variables } = options;
 
-const mutate = async <T extends Response.All>(options: MutationOptions, property: string): Promise<NormalizedResponse<T>> => {
-  return await normalize<T, MutationOptions>(client.mutate)(options, property);
+  try {
+    const response = await client.request(document, variables);
+
+    return {
+      data: response[property],
+      error: null,
+      status: ResponseStatus.SUCCESS,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error: error.message,
+      status: ResponseStatus.FAILURE,
+    };
+  }
 };
 
-const query = async <T extends Response.All>(options: QueryOptions, property: string): Promise<NormalizedResponse<T>> => {
-  return await normalize<T, QueryOptions>(client.query)(options, property);
-};
-
-export const api = {
-  mutate,
-  query,
+export const setAuthorizationHeader = (token: Nullable<string>) => {
+  client.setHeader('authorization', isDefined(token) ? `Bearer ${token}` : '');
 };

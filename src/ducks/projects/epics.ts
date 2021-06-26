@@ -47,7 +47,7 @@ export const fetchProjectsEpic: AppEpic = (action$, _, { projectsService }) =>
     map(handleResponse),
     mergeMap(handler => handler(
       res => [fetchProjectsSuccess(res.data)],
-      res => [fetchProjectsFailure(), showAlert({ type: 'error', message: res.error })],
+      () => [fetchProjectsFailure(), showAlert({ type: 'error', message: 'Unable to fetch projects' })],
     )),
   );
 

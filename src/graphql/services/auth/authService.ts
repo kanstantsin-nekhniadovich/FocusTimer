@@ -1,12 +1,12 @@
 import { Response } from '@typings';
 
-import { api } from '../../api';
+import { request } from '../../api';
 import * as mutations from './mutations';
 
 export const login = async (email: string, password: string) => {
-  return await api.mutate<Response.AuthPayload>({ mutation: mutations.login, variables: { email, password } }, 'login');
+  return await request<Response.AuthPayload>({ document: mutations.login, variables: { email, password } }, 'login');
 };
 
 export const facebookLogin = async (email: string) => {
-  return await api.mutate<Response.AuthPayload>({ mutation: mutations.facebookLogin, variables: { email } }, 'facebookLogin');
+  return await request<Response.AuthPayload>({ document: mutations.facebookLogin, variables: { email } }, 'facebookLogin');
 };

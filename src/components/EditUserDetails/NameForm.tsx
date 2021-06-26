@@ -31,7 +31,7 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
       return;
     }
 
-    dispatch(updateUserRequest({ name }));
+    dispatch(updateUserRequest({ name: name.trim() }));
   };
 
   const form = useFormik({
