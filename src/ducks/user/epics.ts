@@ -17,6 +17,7 @@ import {
   createFacebookUserRequest,
 } from './actions';
 
+import { setAuthorizationHeader } from '../../graphql/api';
 import { showAlert, invalidateTokens } from '../../ducks';
 import { getUser } from '../user/selectors';
 import { saveAvatarToStorage } from '../../services/saveAvatarToStorage';
@@ -54,12 +55,6 @@ const updateUserEpic: AppEpic = (action$, _state$, { userService }) =>
     )),
   );
 
-const navigateToAccountEpic: AppEpic = (action$) =>
-  action$.pipe(
-    filter(isActionOf(updateUserSuccess)),
-    tap(() => navigate(Routes.Account)),
-  );
-
 const saveUserAvatarEpic: AppEpic = (action$, state$, { userService }) =>
   action$.pipe(
     filter(isActionOf(saveUserAvatarRequest)),
@@ -84,6 +79,7 @@ const fetchUserDataEpic: AppEpic = (action$, _state$, { userService }) =>
     pluck('payload'),
     mergeMap(async () => await getItem<string>(TOKEN)),
     tap(token => isDefined(token) && signIn()),
+    tap(token => setAuthorizationHeader(token)),
     mergeMap(token => {
       if (!isDefined(token)) {
         return [fetchUserDataFailure(null)];
@@ -132,6 +128,5 @@ export const userEpics = combineEpics(
   fetchUserDataEpic,
   createUserEpic,
   createFacebookUserEpic,
-  navigateToAccountEpic,
   fetchUserDataSuccessEpic,
 );

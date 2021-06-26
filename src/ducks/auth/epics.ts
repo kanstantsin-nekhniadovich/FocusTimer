@@ -23,10 +23,10 @@ import {
   isSuccessLoginResult,
 } from '../../services/facebook';
 
+import { setAuthorizationHeader } from '../../graphql/api';
 import { handleResponse } from '../../utils/handleResponse';
 import { createUserSuccess } from '../user';
 import { storeItem, removeItem } from '../../services/storage';
-import { client } from '../../graphql/client';
 import { signIn, signOut } from '../../services/firebase';
 import { navigate } from '../../services/navigation';
 import { isDefined } from '../../utils/isDefined';
@@ -52,6 +52,7 @@ const postGettingUserDataEpic: AppEpic = (action$) => {
     pluck('payload'),
     tap(async ({ firebaseToken }) => await storeItem(FIREBASE_TOKEN_KEY, firebaseToken)),
     tap(async ({ token }) => await storeItem(TOKEN, token)),
+    tap(({ token }) => setAuthorizationHeader(token)),
     tap(() => navigate(Routes.Projects)),
     ignoreElements(),
   );
@@ -78,7 +79,7 @@ const invalidateTokensEpic: AppEpic = (action$) => {
     filter(isActionOf(invalidateTokens)),
     tap(async () => await removeItem(FIREBASE_TOKEN_KEY)),
     tap(async () => await removeItem(TOKEN)),
-    tap(async () => await client.clearStore()),
+    tap(() => setAuthorizationHeader(null)),
     ignoreElements(),
   );
 };
