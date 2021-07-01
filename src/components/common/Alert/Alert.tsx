@@ -28,7 +28,7 @@ export const Alert: React.FC = () => {
   const alertMeta = useSelector(getAlertMeta);
   const positionX = React.useRef(new Animated.Value(-HIDDEN_POSITION)).current;
 
-  const panResponder = React.useRef(PanResponder.create({
+  const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (_event, gestureState) => {
       positionX.setValue(gestureState.dx);
@@ -39,10 +39,10 @@ export const Alert: React.FC = () => {
       } else if (gestureState.dx < -MIN_POSITION_OFFSET) {
         animateAlert(-HIDDEN_POSITION);
       } else {
-        animateAlert(VISIBLE_POSITION);
+        animateAlert(VISIBLE_POSITION, false);
       }
     },
-  })).current;
+  });
 
   React.useEffect(() => {
     setIsVisible(alertMeta.isVisible);
@@ -56,7 +56,7 @@ export const Alert: React.FC = () => {
     }
   };
 
-  const animateAlert = (toValue: number) => {
+  const animateAlert = (toValue: number, isClosing: boolean = true) => {
     Animated.spring(positionX, {
       stiffness: 100,
       damping: 9,
@@ -65,10 +65,10 @@ export const Alert: React.FC = () => {
       useNativeDriver: true,
     }).start(({ finished }) => {
       if (!isVisible && finished) {
-        clearVisibilityTimeout();
         dispatch(hideAlert());
       }
     });
+    isClosing && clearVisibilityTimeout();
   };
 
   React.useEffect(() => {
