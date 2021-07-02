@@ -15,4 +15,7 @@ export const styles = StyleSheet.create({
     left: 40,
     bottom: -20,
   },
+  disabledButton: {
+    opacity: 0.4,
+  }
 });

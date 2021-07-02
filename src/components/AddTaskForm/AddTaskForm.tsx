@@ -9,6 +9,7 @@ import { Colors } from '@styles';
 import { Input, IconButton } from '../common';
 import { CircePlus } from '../icons';
 import { isDefined } from '../../utils/isDefined';
+import { isEmpty } from '../../utils/isEmpty';
 import { createTaskRequest } from '../../ducks';
 import { convertMinutesInMilliseconds } from '../../utils/date';
 import { DEFAULT_BREAK_TIME_IN_MINUTES, DEFAULT_WORK_TIME_IN_MINUTES } from '../../utils/constants';
@@ -57,6 +58,8 @@ export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
     resetForm();
   }, []));
 
+  const iconButtonStyles = !isValid || isEmpty(values.title) ? styles.disabledButton : {};
+
   return (
     <View style={styles.form}>
       <Input
@@ -70,6 +73,7 @@ export const AddTaskForm: React.FC<Props> = ({ projectId }) => {
         accessibilityLabel="add task button"
         onPress={handleSubmit}
         disabled={!isValid}
+        style={iconButtonStyles}
       >
         <CircePlus color={Colors.blue} />
       </IconButton>
