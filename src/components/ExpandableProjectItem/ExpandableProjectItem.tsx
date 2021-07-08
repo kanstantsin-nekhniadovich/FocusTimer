@@ -6,7 +6,7 @@ import { Project, Status } from '@typings';
 import { useSelector } from 'react-redux';
 import { Colors } from '@styles';
 
-import { getTasksForProject } from '../../ducks';
+import { getTasksForProject, isCompletedTask } from '../../ducks';
 import { ToolsMenu } from './ToolsMenu';
 import { IconButton } from '../common';
 import { Play, Arrow, Restore } from '../icons';
@@ -40,7 +40,7 @@ export const ExpandableProjectItem: React.FC<Props> = ({ project }) => {
   const animatedOpacity = React.useRef(new Animated.Value(0)).current;
 
   const isCompleted = project.status === 'COMPLETED';
-  const completedTasksCount = tasks.filter(task => task.status === 'COMPLETED').length;
+  const completedTasksCount = tasks.filter(isCompletedTask).length;
 
   const toggleExpandProject = () => setIsExpanded(!isExpanded);
 

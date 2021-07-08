@@ -7,7 +7,6 @@ exports[`<Wrapper /> show match snapshot 1`] = `
       "alignItems": "center",
       "backgroundColor": "#fbfbfb",
       "flex": 1,
-      "paddingHorizontal": 16,
       "position": "relative",
     }
   }

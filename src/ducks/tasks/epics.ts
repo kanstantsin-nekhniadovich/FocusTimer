@@ -14,7 +14,10 @@ import {
   createTaskFailure,
   deleteTaskRequest,
   deleteTaskFailure,
-  deleteTaskSuccess
+  deleteTaskSuccess,
+  updateTaskRequest,
+  updateTaskFailure,
+  updateTaskSuccess
 } from './actions';
 
 export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
@@ -34,6 +37,18 @@ export const createTasksEpic: AppEpic = (action$, _state$, { tasksService }) =>
     )),
   );
 
+export const updateTaskEpic: AppEpic = (action$, _state$, { tasksService }) =>
+  action$.pipe(
+    filter(isActionOf(updateTaskRequest)),
+    pluck('payload'),
+    mergeMap(async (payload) => await tasksService.updateTask(payload)),
+    map(handleResponse),
+    mergeMap(handler => handler(
+      res => [updateTaskSuccess(res.data)],
+      res => [showAlert({ message: res.error, type: 'error' }), updateTaskFailure()],
+    )),
+  );
+
 export const deleteTaskEpic: AppEpic = (action$, _state$, { tasksService }) =>
   action$.pipe(
     filter(isActionOf(deleteTaskRequest)),
@@ -46,4 +61,4 @@ export const deleteTaskEpic: AppEpic = (action$, _state$, { tasksService }) =>
     )),
   );
 
-export const tasksEpic = combineEpics(createTasksEpic, deleteTaskEpic);
+export const tasksEpic = combineEpics(createTasksEpic, updateTaskEpic, deleteTaskEpic);

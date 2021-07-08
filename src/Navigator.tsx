@@ -12,7 +12,7 @@ import { Routes } from './routes';
 import { Cross } from './components/icons';
 import { AvatarHeader } from './components/AvatartHeader';
 import { ProjectHeader } from './components/ProjectHeader';
-import { TaskHeader } from './components/TaskHeader';
+import { TaskHeader, TaskHeaderControls } from './components/TaskHeader';
 import { HeaderTitle, IconButton } from './components/common';
 
 enableScreens();
@@ -65,7 +65,7 @@ export const Navigator: React.FC = () => {
           name={Routes.Projects}
           component={Projects}
           options={({ navigation }) => ({
-            headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
+            headerLeft: () => <AvatarHeader navigation={navigation} />,
             headerTitle: ProjectsHeader,
             ...commonNavigationOptions,
           })}
@@ -82,7 +82,7 @@ export const Navigator: React.FC = () => {
           name={Routes.NewProject}
           component={NewProject}
           options={({ navigation }) => ({
-            headerLeft: () => (/* eslint-disable-line react/display-name */
+            headerLeft: () => (
               <IconButton onPress={() => navigation.navigate(Routes.Projects)} accessibilityLabel="Close new project">
                 <Cross color={Colors.prussianBlue} />
               </IconButton>
@@ -96,8 +96,8 @@ export const Navigator: React.FC = () => {
           name={Routes.Project}
           component={Project}
           options={({ navigation, route }) => ({
-            headerLeft: () => <AvatarHeader navigation={navigation} />, /* eslint-disable-line react/display-name */
-            headerTitle: () => <ProjectHeader route={route} />, /* eslint-disable-line react/display-name */
+            headerLeft: () => <AvatarHeader navigation={navigation} />,
+            headerTitle: () => <ProjectHeader route={route} />,
             ...commonNavigationOptions,
           })}
         />
@@ -105,7 +105,8 @@ export const Navigator: React.FC = () => {
           name={Routes.Task}
           component={Task}
           options={({ route }) => ({
-            headerTitle: () => <TaskHeader route={route} />, /* eslint-disable-line react/display-name */
+            headerTitle: () => <TaskHeader route={route} />,
+            headerRight: () => <TaskHeaderControls route={route} />,
             ...commonNavigationOptions,
           })}
         />

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: Colors.alabaster,
     flex: 1,
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
     alignItems: 'center',
   },
   statusBarAdjusting: {

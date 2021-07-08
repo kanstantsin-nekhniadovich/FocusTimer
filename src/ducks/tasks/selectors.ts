@@ -1,6 +1,7 @@
 import { Task, Project } from '@typings';
 import { pathOr } from 'ramda';
 
+import { Status } from '../../utils/constants';
 import { isDefined } from '../../utils/isDefined';
 
 export const getTasksForProject = (project: Maybe<Project>) => (store: Store): Task[] => {
@@ -18,3 +19,5 @@ export const getTaskById = (projectId: Id, id: Id) => (store: Store): Maybe<Task
 };
 
 export const getIsTaskLoading = (store: Store) => store.tasks.isLoading;
+
+export const isCompletedTask = (task: Task) => task.status === Status.COMPLETED && task.remainingTime === 0;

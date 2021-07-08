@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { Route } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 import { getTaskById } from '../../ducks';
-import { Wrapper } from '../../components/common';
+import { Wrapper, DividerBlock, ProjectsBackground } from '../../components/common';
+import { TaskTitleForm } from '../../components/TaskTitleForm';
 import { Routes } from '../../routes';
-import { isDefined } from 'src/utils/isDefined';
+import { isDefined } from '../../utils/isDefined';
+
+import { styles } from './styles';
 
 interface Props {
   route: Route<Routes.Task, Screens['Task']>;
@@ -22,8 +24,10 @@ export const Task: React.FC<Props> = ({ route }) => {
   }
 
   return (
-    <Wrapper>
-      <Text>{task.title}</Text>
+    <Wrapper style={styles.wrapper}>
+      <DividerBlock height={50} />
+      <TaskTitleForm task={task} />
+      <ProjectsBackground />
     </Wrapper>
   );
 };
