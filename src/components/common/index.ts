@@ -13,3 +13,4 @@ export { ConfirmModal } from './ConfirmModal';
 export { Modal } from './Modal';
 export { Wrapper } from './Wrapper';
 export { CircleProgressBar } from './CircleProgressBar';
+export { EditableTextField } from './EditableTextField';

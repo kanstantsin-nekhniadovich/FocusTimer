@@ -8,6 +8,10 @@ import { LoginForm } from '..';
 jest.mock('../../../ducks/auth/actions');
 
 describe('<LoginForm />', () => {
+  beforeEach(() => {
+    jest.spyOn(actions, 'loginRequest').mockImplementation(() => ({ type: 'auth/LOGIN_REQUEST', payload: { email: '', password: '' } }));
+  });
+
   afterEach(() => {
     jest.restoreAllMocks();
   });
@@ -19,7 +23,6 @@ describe('<LoginForm />', () => {
   });
 
   it('should not fire login request action', async () => {
-    jest.spyOn(actions, 'loginRequest');
     const { getByText } = renderWithRedux(<LoginForm />);
     fireEvent.press(getByText('Log In'));
 
@@ -27,7 +30,6 @@ describe('<LoginForm />', () => {
   });
 
   it('should show email is required error', async () => {
-    jest.spyOn(actions, 'loginRequest');
     const { getByText, getByPlaceholderText } = renderWithRedux(<LoginForm />);
     const passwordInput = getByPlaceholderText('Password');
 
@@ -40,7 +42,6 @@ describe('<LoginForm />', () => {
   });
 
   it('should show email validation error', async () => {
-    jest.spyOn(actions, 'loginRequest');
     const { getByText, getByPlaceholderText } = renderWithRedux(<LoginForm />);
     const emailInput = getByPlaceholderText('Email');
     const passwordInput = getByPlaceholderText('Password');
@@ -55,7 +56,6 @@ describe('<LoginForm />', () => {
   });
 
   it('should show password is required error', async () => {
-    jest.spyOn(actions, 'loginRequest');
     const { getByText, getByPlaceholderText } = renderWithRedux(<LoginForm />);
     const emailInput = getByPlaceholderText('Email');
 
@@ -68,7 +68,6 @@ describe('<LoginForm />', () => {
   });
 
   it('should show password min characters validation error', async () => {
-    jest.spyOn(actions, 'loginRequest');
     const { getByText, getByPlaceholderText } = renderWithRedux(<LoginForm />);
     const emailInput = getByPlaceholderText('Email');
     const passwordInput = getByPlaceholderText('Password');
@@ -83,7 +82,6 @@ describe('<LoginForm />', () => {
   });
 
   it('should fire login request action', async () => {
-    jest.spyOn(actions, 'loginRequest');
     const { getByText, getByPlaceholderText } = renderWithRedux(<LoginForm />);
     const emailInput = getByPlaceholderText('Email');
     const passwordInput = getByPlaceholderText('Password');

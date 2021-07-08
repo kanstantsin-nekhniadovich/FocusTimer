@@ -7,9 +7,8 @@ import { View, Animated } from 'react-native';
 
 import { useOpacityAnimation } from '../../utils/hooks';
 import { ArrowBack, UserAvatar } from '../icons';
-import { IconButton } from '../common';
+import { IconButton, EditableTextField } from '../common';
 import { updateUserRequest } from '../../ducks';
-import { Field } from './Field';
 import { styles } from './styles';
 
 interface Props {
@@ -62,9 +61,9 @@ export const NameForm: React.FC<Props> = ({ user, enabled = true }) => {
 
   return (
     <View style={styles.form}>
-      <Field
+      <EditableTextField
         meta={fieldMeta}
-        onChange={form.handleChange('name')}
+        onChangeText={form.handleChange('name')}
         placeholder="Username"
         icon={<UserAvatar />}
         isEditable={enabled}

@@ -8,9 +8,8 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { useOpacityAnimation } from '../../utils/hooks';
 import { ArrowBack, Lock } from '../icons';
-import { IconButton } from '../common';
+import { IconButton, EditableTextField } from '../common';
 import { styles } from './styles';
-import { Field } from './Field';
 
 interface Props {
   user: User;
@@ -62,9 +61,9 @@ export const PasswordForm: React.FC<Props> = ({ enabled }) => {
 
   return (
     <View style={styles.form}>
-      <Field
+      <EditableTextField
         meta={fieldMeta}
-        onChange={form.handleChange('password')}
+        onChangeText={form.handleChange('password')}
         placeholder="New password"
         secureTextEntry
         icon={<Lock />}

@@ -1,5 +1,6 @@
 import { Task } from '@typings';
 import { createReducer } from 'typesafe-actions';
+import { assocPath } from 'ramda';
 
 import { fetchProjectsSuccess, resetProjects, createProjectSuccess } from '../projects';
 
@@ -7,6 +8,9 @@ import {
   createTaskRequest,
   createTaskFailure,
   createTaskSuccess,
+  updateTaskFailure,
+  updateTaskSuccess,
+  updateTaskRequest,
   deleteTaskFailure,
   deleteTaskSuccess,
   deleteTaskRequest
@@ -82,6 +86,35 @@ export const handleCreateProjectSuccess: ActionHandler<State, typeof createProje
   };
 };
 
+export const handleUpdateTaskRequest: ActionHandler<State, typeof updateTaskRequest> = (state) => ({
+  ...state,
+  isLoading: true,
+});
+
+export const handleUpdateTaskSuccess: ActionHandler<State, typeof updateTaskSuccess> = (state, action) => {
+  const { projectId, id } = action.payload;
+  const tasks = state.tasks[projectId];
+  const index = tasks.findIndex((task) => task.id === id);
+
+  if (index < 0) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
+
+  return {
+    ...state,
+    tasks: assocPath([projectId, index], action.payload, state.tasks),
+    isLoading: false,
+  };
+};
+
+export const handleUpdateTaskFailure: ActionHandler<State, typeof updateTaskFailure> = (state) => ({
+  ...state,
+  isLoading: false,
+});
+
 export const tasksReducer = createReducer<State, AppActions>(initialState)
   .handleAction(fetchProjectsSuccess, handleSetTasks)
   .handleAction(resetProjects, handleResetTasks)
@@ -91,4 +124,7 @@ export const tasksReducer = createReducer<State, AppActions>(initialState)
   .handleAction(deleteTaskRequest, handleDeleteTaskRequest)
   .handleAction(deleteTaskFailure, handleDeleteTaskFailure)
   .handleAction(deleteTaskSuccess, handleDeleteTaskSuccess)
-  .handleAction(createProjectSuccess, handleCreateProjectSuccess);
+  .handleAction(createProjectSuccess, handleCreateProjectSuccess)
+  .handleAction(updateTaskRequest, handleUpdateTaskRequest)
+  .handleAction(updateTaskSuccess, handleUpdateTaskSuccess)
+  .handleAction(updateTaskFailure, handleUpdateTaskFailure);

@@ -34,6 +34,17 @@ export interface CreateTaskPayload {
   project: UniqIq;
 }
 
+export interface UpdateTaskPayload {
+  id: Id;
+  title?: string;
+  cyclesCount?: number;
+  workTime?: number;
+  breakTime?: number;
+  status?: Status;
+  remainingTime?: number;
+  currentCycle?: number;
+}
+
 export interface Task {
   id: Id;
   title: string;

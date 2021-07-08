@@ -16,6 +16,6 @@ export const TaskHeader: React.FC<Props> = ({ route }) => {
   const task = useSelector(getTaskById(projectId, id));
 
   return isDefined(task)
-    ? <HeaderTitle title={task.title} />
+    ? <HeaderTitle title={task.title} style={{ maxWidth: 150 }} />
     : null;
 };
