@@ -9,6 +9,7 @@ import { updateTaskRequest } from '../../ducks';
 import { EditableTextField, IconButton } from '../../components/common';
 import { ArrowBack, Notes } from '../../components/icons';
 import { useOpacityAnimation } from '../../utils/hooks';
+import { isEmpty } from '../../utils/isEmpty';
 
 import { styles } from './styles';
 
@@ -32,7 +33,7 @@ export const TaskTitleForm = ({ task }: Props): JSX.Element => {
     Keyboard.dismiss();
     onBlur();
 
-    if (title.trim() === task.title.trim()) {
+    if (title.trim() === task.title.trim() || isEmpty(title)) {
       return;
     }
 
