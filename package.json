@@ -30,7 +30,7 @@
     "dotenv": "^8.6.0",
     "expo": "~41.0.0",
     "expo-app-loading": "^1.0.1",
-    "expo-constants": "^10.0.0",
+    "expo-constants": "^14.4.1",
     "expo-facebook": "~11.0.5",
     "expo-font": "~9.1.0",
     "expo-image-manipulator": "^9.0.0",
