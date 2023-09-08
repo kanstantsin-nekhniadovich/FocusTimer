@@ -42,7 +42,7 @@
     "graphql-request": "^3.4.0",
     "ramda": "^0.27.1",
     "react": "16.14.0",
-    "react-devtools": "^4.13.2",
+    "react-devtools": "^4.27.3",
     "react-dom": "16.14.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-gesture-handler": "~1.10.2",
